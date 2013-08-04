@@ -1,0 +1,36 @@
+{% extends "MGDBasicBundle::layout.html.twig" %}
+
+{% block title %}{{ 'inicio.metas.title' | trans }}{% endblock %}
+{% block description %}{{ 'inicio.metas.description' | trans }}{% endblock %}
+
+{% block body_principal %}
+
+    {% for noticia in noticias %}
+        <article>
+            <header>
+                <h2>{{ noticia.titulo }}</h2>
+
+                <time datetime="{{ noticia.fecha |date('Y-m-d') }}">{{ noticia.fecha |date('M jS,Y H:i') }}</time>
+
+                <p>
+                    {{ noticia.noticia | raw }}
+                </p>
+            </header>
+        </article>
+    {% endfor %}
+
+{% endblock %}
+
+{% block aside_principal %}
+
+    <h3>{{ 'inicio.aside.titulo' | trans }}</h3>
+    <ul>
+        <li>{{ 'inicio.aside.slot_1' | trans }}</li>
+        <li>{{ 'inicio.aside.slot_2' | trans }}</li>
+        <li>{{ 'inicio.aside.slot_3' | trans }}</li>
+        <li>{{ 'inicio.aside.slot_4' | trans }}</li>
+        <li>{{ 'inicio.aside.slot_5' | trans }}</li>
+    </ul>
+    <br>
+
+{% endblock %}

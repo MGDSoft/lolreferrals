@@ -1,0 +1,23 @@
+mgd_framework:
+    resource: "@MGDFrameworkBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mgd_admin:
+    resource: "@MGDAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+
+mgd_basic:
+    resource: "@MGDBasicBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+_welcome:
+    path:  /
+    defaults: { _controller: MGDBasicBundle:Default:index }
+
+OrderlyPayPalIpnBundleEmail:
+    resource: "@OrderlyPayPalIpnBundle/Controller/TwigNotificationEmailController.php"
+    type:     annotation
+    prefix:   /ipn/

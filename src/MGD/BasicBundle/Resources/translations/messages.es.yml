@@ -1,0 +1,153 @@
+portal:
+    menu:
+        inicio: Inicio
+        encargar: Encargar
+        preguntas:  Preguntas
+        reputacion: Reputacion
+        seguimiento: Seguimiento
+        contacto: Contacto
+
+    footer: LolReferrals.com tu web para ganar puntos del lol
+
+inicio:
+    metas:
+        title: inicio
+        description: description
+
+    aside:
+        titulo: Realiza tu pedido
+        slot_1: ~250 referrals al dia
+        slot_2: Referrals hasta nivel 10
+        slot_3: Precios baratos
+        slot_4: Seguimiento del pedido
+        slot_5: Referrals es mas rentable que RP!
+
+pedido:
+    metas:
+            title: inicio
+            description: description
+    principal:
+        titulo: El mejor servicio de referrals
+        texto: >
+                 Contamos con el mejor sistema de referrals del mercado muy rápidos y con precios inmejorables.
+                 <br>Cuando usted encargue el pedido dispondra de un código de seguimiento en el cual podra ver el
+                 seguimiento del mismo.<br><br>
+                 Pague mediante la confianza de paypal
+        packs: Listado de packs
+        footer:
+            titulo: Pago seguro con paypal
+
+    aside:
+        titulo: Nuestros clientes lo aconsejan
+        texto:  >
+                  Todos nuestros clientes quedan satisfechos, tenemos 100% de votos positivos en ebay.
+                  <br>Insuperable
+
+faq:
+    metas:
+        title: inicio
+        description: description
+
+    principal:
+        titulo: Preguntas y respuestas
+
+        slot_1_title: What will I get with this?
+        slot_1_texto: Referral System Rewards: Riot Points, Influence Points and rare skins!
+
+        slot_2_title: How does this work?
+        slot_2_texto: We create the accounts you purchased using your referral link. Then we level them to 10 in a very short time.
+
+        slot_3_title: Where can I get the referral link?
+        slot_3_texto: You can get the referral link here(linkear en el here http://leagueoflegends.com/rewards). Of course we also need your payment.
+
+        slot_4_title: What server is it available on?
+        slot_4_texto: <ul><li>NA</li><li>EU West</li><li>EU East & Nordic</li><li>Brazil</li><li>Turkey</li></ul>
+
+        slot_5_title: How long does it take to level the accounts?
+        slot_5_texto: <ul><li>24 - 72 hours depending on the current queue.</li><li>We do about 200 referrals daily and we do our best to do all orders as fast as possible.</li></ul>
+
+        slot_6_title: Do you start my referrals as soon as I make a purchase?
+        slot_6_texto: No, It will depend on the current queue.
+
+        slot_7_title: How long does it take for my rewards to show up?
+        slot_7_texto: 24 to 48 hours depending on riot and updating the information.
+
+        slot_8_title: Will my account be banned?
+        slot_8_texto: No One has been banned.
+
+        slot_9_title: Why are the accounts showing up as level 1 and  nonamed?
+        slot_9_texto: Because they haven't been fully updated by riot. Perfectly normal, allow between 24 and 48 hours.
+
+        slot_10_title: Why are most of the accounts level 10 but a few a different levels?
+        slot_10_texto: Because they haven't been fully updated by riot. Perfectly normal, allow between 24 and 48 hours.
+
+        slot_11_title: Do the Patches delay the leveling process?
+        slot_11_texto: Yes.
+
+    aside:
+        titulo: Despues de leer.
+        texto: ¿Sigues teniendo preguntas? contacta con nosotros,
+        link: en nuestra zona de contacto
+
+contacto:
+
+    metas:
+            title: inicio
+            description: description
+
+    enviado: Mensaje enviado correctamente, en un breve periodo le contestaremos.
+
+    principal:
+        titulo: Contacta con nosotros
+        texto: >
+                  Si tienes una empresa o eres un usuario profesional, visita el Apple Online Store para Empresas o
+                  llama al 900 812 683. El horario de atención es de lunes a viernes, de 09:00 a 18:00. El Apple Online
+                  Store para Empresas ofrece una gran variedad de servicios de negocio y financiación, además de un
+                  servicio de intercambio y ventas para desarrolladores.
+
+    aside:
+        titulo: Contacta con nosotros
+        texto: Para cualquier duda que tengas te atendera "nuestra mejor empleada" Mundo Ejecutivo.
+
+seguimiento:
+    metas:
+        title: inicio
+        description: description
+
+    principal:
+        titulo: Seguimiento de los pedidos
+        texto: >
+                  Escribiendo el id del pedido podra ver como va el estado de su pedido
+
+    aside:
+        titulo: Titulo
+        texto: Texto
+
+formularios:
+        seguimiento:
+              seguimiento: "Seguimiento"
+              submit: Seguimiento del pedido
+              estado: Estado
+              fecha: Fecha
+              descripcion: Mensaje
+
+        contacto:
+              errors:
+                  codigo_referencia_no: El Código de referencia no existe
+
+              nombre:
+                  placeholder: Escribe tu nombre
+                  label: Nombre *
+              email:
+                  placeholder: Escribe un email valido
+                  label: Email *
+              pedido:
+                  placeholder: 'LOL2013080301273951fce92b28529'
+                  label: Código de referencia
+              mensaje:
+                  placeholder: Escribe tu pregunta o problema
+                  label: Mensaje *
+              captcha:
+                  placeholder: Código de seguridad
+
+              submit: Enviar Mensaje

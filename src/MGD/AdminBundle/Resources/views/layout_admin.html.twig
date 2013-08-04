@@ -1,0 +1,18 @@
+{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+
+
+{% block stylesheet %}
+    {% stylesheets 'bundles/mgdadmin/css/*.css'%}
+        <link rel="stylesheet" href="{{ asset_url }}" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block base %}
+    {{ block('page') }}
+{% endblock %}
+
+{% block menu %}
+    <div id="menu">
+        {% include 'MGDAdminBundle::menu_admin.html.twig' %}
+    </div>
+{% endblock %}

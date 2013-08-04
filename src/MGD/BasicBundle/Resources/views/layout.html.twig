@@ -1,0 +1,82 @@
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+    {% stylesheets
+        'bundles/mgdbasic/css/*.less'
+        'bundles/mgdbasic/css/normalize.min.css'
+        'bundles/mgdbasic/css/bootstrap.min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="header-container">
+        <header class="wrapper clearfix">
+            <div id="top">
+
+                <div id="language">
+                    <a href="{{ path('cambiar_lenguaje',{ '_locale' : 'es' }) }}">
+                        <img src="{{ asset('bundles/mgdbasic/images/spain.png') }}"
+                            {% if "es" == app.request.locale %}
+                                class="selected"
+                            {% endif %}
+                                >
+                    </a>
+                    <a href="{{ path('cambiar_lenguaje',{ '_locale' : 'en' }) }}">
+                        <img src="{{ asset('bundles/mgdbasic/images/unitedkingsom.png') }}"
+                                {% if "en" == app.request.locale %}
+                                    class="selected"
+                                {% endif %}
+                                >
+                    </a>
+                </div>
+
+                <a href="{{ path('home') }}">
+                    <img id="logo" src="{{ asset('img/logo.png') }}" title="Lol Referrals" alt="Lol Referrals">
+                    <h1 class="title">LolReferrals.com</h1>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ path('home') }}">{{ 'portal.menu.inicio' | trans }}</a></li>
+                    <li><a href="{{ path('pedido_' ~ app.request.locale) }}">{{ 'portal.menu.encargar' | trans }}</a></li>
+                    <li><a href="{{ path('faq_' ~ app.request.locale) }}">{{ 'portal.menu.preguntas' | trans }}</a></li>
+                    <li><a href="{{ path('seguimiento_' ~ app.request.locale) }}">{{ 'portal.menu.seguimiento' | trans }}</a></li>
+                    <li><a href="{{ path('contacto_' ~ app.request.locale) }}">{{ 'portal.menu.contacto' | trans }}</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <div class="main-container">
+        <div class="main wrapper clearfix">
+            {% for type, flashMessages in app.session.flashbag.all() %}
+                {% for flashMessage in flashMessages %}
+                    <div class="alert alert-{{ type }}">
+                        {{ flashMessage|trans({}) }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <section id="body_principal">
+                {{ block('body_principal') }}
+            </section>
+            <aside>
+                {{ block('aside_principal') }}
+            </aside>
+            {% block central %}
+            {% endblock %}
+        </div> <!-- #main -->
+    </div> <!-- #main-container -->
+
+    <div class="footer-container">
+        <footer class="wrapper">
+            <h3>{{ 'portal.footer' | trans }}</h3>
+        </footer>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {% javascripts 'bundles/mgdbasic/js/*.js'  %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

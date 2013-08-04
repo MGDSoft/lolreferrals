@@ -1,0 +1,149 @@
+portal:
+    menu:
+        inicio: Home
+        encargar: Order
+        preguntas:  FAQ
+        reputacion: Feedback
+        seguimiento: Tracking
+        contacto: Contact
+
+    footer: Copyright © 2013 LolReferrals.com. All rights reserved.
+
+inicio:
+    metas:
+        title: Buy League of Legends referrals 2.0 | Cheap & Fast
+        description: Chepest League of Legends Referral
+    aside:
+        titulo: Statics
+        slot_1: ~250 referrals a day.
+        slot_2: Leveling referrals to level 10.
+        slot_3: Cheapest prices!
+        slot_4: Tracking of the order on our website!
+        slot_5: Referrals are much profitable than RP!
+
+pedido:
+    metas:
+        title: Order League of Legends Referrals 2.0
+        description: Purchase your League of Legends referral bundle
+    principal:
+        titulo: Best referral service!
+        texto: >
+                 We have the best league of legends referral-service in the market, fastest and with unbeatable prices.
+                 <br>When you purchase a referral bundle you'll receive an order ID to track the order.
+                 <br><br>
+                 Pay by paypal confidence.
+        packs: All our referrals bundles
+        footer:
+            titulo: Safe payment with Paypal
+
+    aside:
+        titulo: Our clients suggest it!
+        texto:  >
+                  All our clients are satisfied  with our service, we have a 100% positive feedback on ebay.
+                  <br>Unbeatable
+
+faq:
+    metas:
+        title: Frequently Asked Questions | League of legends Referrals 2.0
+        description: FAQ of League of Legends referral-service 2.0
+    principal:
+        titulo: Frequently Asked Questions
+
+        slot_1_title: What will I get with this?
+        slot_1_texto: Referral System Rewards: Riot Points, Influence Points and rare skins!
+
+        slot_2_title: How does this work?
+        slot_2_texto: We create the accounts you purchased using your referral link. Then we level them to 10 in a very short time.
+
+        slot_3_title: Where can I get the referral link?
+        slot_3_texto: You can get the referral link here(linkear en el here http://leagueoflegends.com/rewards). Of course we also need your payment.
+
+        slot_4_title: What server is it available on?
+        slot_4_texto: <ul><li>NA</li><li>EU West</li><li>EU East & Nordic</li><li>Brazil</li><li>Turkey</li></ul>
+
+        slot_5_title: How long does it take to level the accounts?
+        slot_5_texto: <ul><li>24 - 72 hours depending on the current queue.</li><li>We do about 200 referrals daily and we do our best to do all orders as fast as possible.</li></ul>
+
+        slot_6_title: Do you start my referrals as soon as I make a purchase?
+        slot_6_texto: No, It will depend on the current queue.
+
+        slot_7_title: How long does it take for my rewards to show up?
+        slot_7_texto: 24 to 48 hours depending on riot and updating the information.
+
+        slot_8_title: Will my account be banned?
+        slot_8_texto: No One has been banned.
+
+        slot_9_title: Why are the accounts showing up as level 1 and  nonamed?
+        slot_9_texto: Because they haven't been fully updated by riot. Perfectly normal, allow between 24 and 48 hours.
+
+        slot_10_title: Why are most of the accounts level 10 but a few a different levels?
+        slot_10_texto: Because they haven't been fully updated by riot. Perfectly normal, allow between 24 and 48 hours.
+
+        slot_11_title: Do the Patches delay the leveling process?
+        slot_11_texto: Yes.
+
+    aside:
+        titulo: After read...
+        texto: I still have a question, Where I can contact you?
+        link: En nuestra zona de contacto
+
+
+contacto:
+    metas:
+        title: Contact information of www.referralslol.com
+        description: Information about League of Legends referral-service
+    enviado: Message sent correctly, we will reply in a short period of time.
+
+    principal:
+        titulo: Contact us
+        texto: >
+                  Si tienes una empresa o eres un usuario profesional, visita el Apple Online Store para Empresas o
+                  llama al 900 812 683. El horario de atención es de lunes a viernes, de 09:00 a 18:00. El Apple Online
+                  Store para Empresas ofrece una gran variedad de servicios de negocio y financiación, además de un
+                  servicio de intercambio y ventas para desarrolladores.
+
+    aside:
+        titulo: Contact us!
+        texto: If you have any question Corporate Mundo will attend you
+
+
+seguimiento:
+    metas:
+        title: Track your order of League of Legends referrals 2.0
+        description: Tracking of the referral-service order.
+    principal:
+        titulo: Tracking of the order
+        texto: >
+                  Fill it with the order id to see the state of your order.
+    aside:
+        titulo: Title
+        texto: Text
+
+formularios:
+        seguimiento:
+              seguimiento: "Tracking"
+              submit: Track of the order
+              estado: Status
+              fecha: Date
+              descripcion: Message
+
+        contacto:
+              errors:
+                  codigo_referencia_no: Order ID not exist.
+
+              nombre:
+                  placeholder: Write your name
+                  label: Name *
+              email:
+                  placeholder: Write a valid Email
+                  label: Email *
+              pedido:
+                  placeholder: 'LOL2013080301273951fce92b28529'
+                  label: Order ID
+              mensaje:
+                  placeholder: Write your question or issue
+                  label: Message *
+              captcha:
+                  placeholder: Captcha
+
+              submit: Submit Message

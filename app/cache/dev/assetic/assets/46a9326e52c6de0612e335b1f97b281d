@@ -1,0 +1,10 @@
+@import "normalize.min.css";
+.background-cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#contacto label {
+  width: 150px;
+}

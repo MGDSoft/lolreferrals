@@ -1,0 +1,15 @@
+Nombre:
+    {{ contacto.nombre }}
+
+Email:
+{{ contacto.email }}
+
+Mensaje:
+    {{ contacto.mensaje }}
+
+Pedido:
+{% if contacto.pedido  %}
+    {{ contacto.pedido }}
+{% else %}
+    No Declarado
+{% endif %}

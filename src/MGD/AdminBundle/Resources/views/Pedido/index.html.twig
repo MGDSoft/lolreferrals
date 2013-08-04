@@ -1,0 +1,105 @@
+{% extends 'MGDAdminBundle::layout_admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'Pedido'}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+<div class="row">
+
+    <div class="span8">
+        <h1>{{ 'views.index.list'|trans({'%entity%': 'Pedido'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+    </div>
+    <div class="span2">
+        {% if form_errors(filterForm) %}
+        <div class="alert alert-block alert-error fade in form-errors">
+            {{ form_errors(filterForm) }}
+        </div>
+        {% endif %}
+        &nbsp;
+    </div>
+    <div class="span2">
+        <div class="filters-right">
+            <a class="btn dropdown-toggle" data-toggle="collapse" data-target="#filters">
+                {{ 'views.index.filters'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+                <span class="caret"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="span12">
+        <div id="filters" class="collapse">
+
+            <form class="well" action="{{ path('pedido') }}" method="get" {{ form_enctype(filterForm) }}>
+                {{ form_row(filterForm.id) }}
+                {{ form_row(filterForm.ip) }}
+                {{ form_row(filterForm.refPaypal) }}
+                {{ form_row(filterForm.fecha) }}
+                {{ form_rest(filterForm) }}
+
+                <p>
+                    <button type="submit" name="filter_action" value="filter">{{ 'views.index.filter'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                    <button type="submit" name="filter_action" value="reset">{{ 'views.index.reset'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="span12">
+
+    <table class="table table-striped table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Referral Link</th>
+            <th>Articulo</th>
+            <th>Estado</th>
+            <th>Refpaypal</th>
+            <th>Fecha</th>
+            <th>Ip</th>
+            <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('pedido_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.email }}</td>
+            <td>{{ entity.referralLink }}</td>
+            <td>{{ entity.articulo }}</td>
+            <td>{{ entity.estado }}</td>
+            <td>{{ entity.refPaypal }}</td>
+            <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.ip }}</td>
+            <td>
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <a class="btn btn-mini" href="{{ path('pedido_show', { 'id': entity.id }) }}">
+            {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+        <a class="btn btn-mini" href="{{ path('pedido_edit', { 'id': entity.id }) }}">
+            {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+
+            {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+    <div class="span4">
+    {{ pagerHtml|raw }}
+    </div>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <div class="span8">
+        <a class="btn btn-primary likepaginator" href="{{ path('pedido_new') }}">
+            {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} Pedido
+        </a>
+        </div>
+    {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+@import "common.less";
+
+@interval-color: lighten(@base-color,40%);
+@interval-color-border: lighten(@base-color,30%);
+
+#seguimiento{
+    width: 100%;
+    text-align: left;
+    margin: 20px 30px;
+
+    td,th{
+        margin: 0;
+        padding: 10px;
+    }
+    td{
+        border-top: 1px solid @interval-color-border;
+    }
+    tr:nth-child(2n) {
+        background: @interval-color;
+    }
+}

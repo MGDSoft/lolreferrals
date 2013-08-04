@@ -1,0 +1,40 @@
+{% extends 'MGDAdminBundle::layout_admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.show.show'|trans({'%entity%': 'Contacto'}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+<h1>Contacto</h1>
+
+<form class="form-horizontal">
+    <fieldset>        <div class="control-group">
+            <label class="control-label">Id</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Email</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.email }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Nombre</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.nombre }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Mensaje</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.mensaje }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Fecha</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fecha|date('Y-m-d H:i:s') }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Ip</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.ip }}</span>            </div>
+        </div>    </fieldset>
+</form>
+
+<div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('contacto') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+</div>
+{% endblock %}

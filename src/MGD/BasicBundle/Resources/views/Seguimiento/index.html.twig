@@ -1,0 +1,57 @@
+{% extends "MGDBasicBundle::layout.html.twig" %}
+
+{% block title %}{{ 'pedido.metas.title' | trans }}{% endblock %}
+{% block description %}{{ 'pedido.metas.description' | trans }}{% endblock %}
+
+{% block body_principal %}
+
+    <article>
+        <header>
+            <h1>{{ 'seguimiento.principal.titulo' | trans }}</h1>
+            <p>
+                {{ 'seguimiento.principal.texto' | trans }}
+            </p>
+
+        </header>
+        <section>
+            <br>
+            <form id="contacto" action="{{ path('seguimiento_' ~ app.request.locale) }}" method="post">
+                {{ form_widget(seguimiento_form) }}
+
+                <input type="submit" class="btn btn-primary" value="{{ 'formularios.seguimiento.submit' | trans }}">
+
+            </form>
+
+                {% if seguimientos %}
+                    <br>
+                    <h4>{{ 'formularios.seguimiento.seguimiento' | trans }}: {{ seguimientoId }}</h4>
+
+                    <table id="seguimiento">
+                    <tr>
+                        <th>{{ 'formularios.seguimiento.estado' | trans }}</th>
+                        <th>{{ 'formularios.seguimiento.fecha' | trans }}</th>
+                        <th>{{ 'formularios.seguimiento.descripcion' | trans }}</th>
+                    </tr>
+
+                    {% for seguimiento in seguimientos %}
+                        <tr>
+                            <td>{{ seguimiento.estado }}</td>
+                            <td>{{ seguimiento.fecha |date('Y-m-d H:i:s') }}</td>
+                            <td>{{ seguimiento.descripcion }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                {% endif %}
+        </section>
+    </article>
+
+{% endblock %}
+
+{% block aside_principal %}
+
+    <h3>{{ 'contacto.aside.titulo' | trans }}</h3>
+    <p>{{ 'contacto.aside.texto' | trans | raw }}</p>
+    <br>
+
+{% endblock %}

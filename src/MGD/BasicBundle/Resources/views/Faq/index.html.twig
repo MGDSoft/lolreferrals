@@ -1,0 +1,58 @@
+{% extends "MGDBasicBundle::layout.html.twig" %}
+
+{% block title %}{{ 'faq.metas.title' | trans }}{% endblock %}
+{% block description %}{{ 'faq.metas.description' | trans }}{% endblock %}
+
+{% block body_principal %}
+
+    <article>
+        <header>
+            <h1 style="margin-bottom: 50px">{{ 'faq.principal.titulo' | trans }}</h1>
+
+        </header>
+        <section>
+            <h3>{{ 'faq.principal.slot_1_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_1_texto' | trans | raw }}</p>
+
+            <h3>{{ 'faq.principal.slot_2_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_2_texto' | trans | raw  }}</p>
+
+            <h3>{{ 'faq.principal.slot_3_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_3_texto' | trans | raw  }}</p>
+
+            <h3>{{ 'faq.principal.slot_4_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_4_texto' | trans | raw  }}</p>
+
+            <h3>{{ 'faq.principal.slot_5_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_5_texto' | trans | raw  }}</p>
+
+            <h3>{{ 'faq.principal.slot_6_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_6_texto' | trans | raw  }}</p>
+
+            <h3>{{ 'faq.principal.slot_7_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_7_texto' | trans | raw  }}</p>
+
+            <h3>{{ 'faq.principal.slot_8_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_8_texto' | trans | raw  }}</p>
+
+            <h3>{{ 'faq.principal.slot_9_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_10_texto' | trans | raw  }}</p>
+
+            <h3>{{ 'faq.principal.slot_11_title' | trans }}</h3>
+            <p>{{ 'faq.principal.slot_11_texto' | trans | raw  }}</p>
+
+
+        </section>
+    </article>
+
+{% endblock %}
+
+{% block aside_principal %}
+
+    <h3>{{ 'faq.aside.titulo' | trans }}</h3>
+    <p>{{ 'faq.aside.texto' | trans | raw }}
+        <a style="color: white;font-weight: bold" href="{{ path('contacto_' ~ app.request.locale) }}">{{ 'faq.aside.link' | trans }}</a>
+    </p>
+    <br>
+
+{% endblock %}

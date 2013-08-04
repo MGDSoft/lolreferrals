@@ -1,0 +1,39 @@
+{% extends "MGDBasicBundle::layout.html.twig" %}
+{% block title %}{{ 'contacto.metas.title' | trans }}{% endblock %}
+{% block description %}{{ 'contacto.metas.description' | trans }}{% endblock %}
+
+
+{% block body_principal %}
+
+    <article>
+        <header>
+            <h1>{{ 'contacto.principal.titulo' | trans }}</h1>
+            <p>
+                {{ 'contacto.principal.texto' | trans }}
+            </p>
+
+        </header>
+        <section>
+
+            <form id="contacto" action="{{ path('contacto_' ~ app.request.locale) }}" method="post">
+                {{ form_widget(contacto_form) }}
+                <div class="text-right">
+                    <input type="submit" class="btn btn-primary" value="{{ 'formularios.contacto.submit' | trans }}">
+                </div>
+            </form>
+
+
+        </section>
+    </article>
+
+{% endblock %}
+
+{% block aside_principal %}
+
+    <h3>{{ 'contacto.aside.titulo' | trans }}</h3>
+    <p>{{ 'contacto.aside.texto' | trans | raw }}</p>
+    <br>
+    <img src="{{ asset('img/contacto.jpg') }}">
+    <br><br>
+
+{% endblock %}
