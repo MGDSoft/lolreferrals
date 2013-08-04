@@ -1,8 +1,3 @@
-mgd_framework:
-    resource: "@MGDFrameworkBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 mgd_admin:
     resource: "@MGDAdminBundle/Controller/"
     type:     annotation

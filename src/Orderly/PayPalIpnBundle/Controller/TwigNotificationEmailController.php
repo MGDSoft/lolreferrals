@@ -34,11 +34,12 @@ class TwigNotificationEmailController extends Controller
     
     public $paypal_ipn;
     /**
-     * @Route("/ipn-twig-email-notification")
+     * @Route("/validacion",name="validacion_ipn")
      * @Template()
      */
     public function indexAction()
     {
+	    die();
         //getting ipn service registered in container
         $this->paypal_ipn = $this->get('orderly_pay_pal_ipn');
         

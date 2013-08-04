@@ -135,7 +135,7 @@ class ArticuloController extends Controller
 			    <input type="hidden" name="return" value="'.$this->generateUrl('home').'">
 				<input type="hidden" name="cancel_return" value="'.$this->generateUrl('home').'">
 				<input type="hidden" name="notify_url " value="'.$this->generateUrl('pago_completado').'">
-				<input type="hidden" name="ipn_notify_url" value="'.$this->generateUrl('pago_completado').'" />
+				<input type="hidden" name="ipn_notify_url" value="'.$this->generateUrl('validacion_ipn').'" />
 				</form>
 			';
 
