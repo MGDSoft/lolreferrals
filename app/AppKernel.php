@@ -26,6 +26,7 @@ class AppKernel extends Kernel
 	        new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 	        new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
 
+
 	        new MGD\BasicBundle\MGDBasicBundle(),
 	        new MGD\FrameworkBundle\MGDFrameworkBundle(),
 	        new MGD\AdminBundle\MGDAdminBundle(),
