@@ -10,7 +10,7 @@ mgd_basic:
 
 _welcome:
     path:  /
-    defaults: { _controller: MGDBasicBundle:Default:index }
+    defaults: { _controller: MGDBasicBundle:Default:index, _locale: es  }
 
 OrderlyPayPalIpnBundleEmail:
     resource: "@OrderlyPayPalIpnBundle/Controller/TwigNotificationEmailController.php"

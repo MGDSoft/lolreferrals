@@ -6,15 +6,19 @@ use Ladybug\Processor\Doctrine;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/{_locale}/",defaults={"_locale" = "en"}, name="home")
+     * @Route("/{_locale}/",requirements={"_locale" = "(en|es|de)"},defaults={"_locale" = "en"}, name="home")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($_locale)
     {
+		$this->setLocale($_locale);
+
 	    $em = $this->getDoctrine()->getManager();
 
 	    $repository = $this->getDoctrine()
@@ -30,4 +34,19 @@ class DefaultController extends Controller
 
 	    return array('noticias'=>$noticias);
     }
+
+	/**
+	*/
+	private function setLocale($locale)
+	{
+		/** @var $request Request */
+		$request=$this->getRequest();
+
+		if (!$request->getLocale())
+		{
+			$defaultLocale=$this->container->getParameter('locale');
+			$request->setLocale($defaultLocale);
+		}
+
+	}
 }

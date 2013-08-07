@@ -39,7 +39,7 @@ class TwigNotificationEmailController extends Controller
      */
     public function indexAction()
     {
-	    die();
+
         //getting ipn service registered in container
         $this->paypal_ipn = $this->get('orderly_pay_pal_ipn');
         
