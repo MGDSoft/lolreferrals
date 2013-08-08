@@ -79,9 +79,8 @@ class VerificationController extends Controller
             {
 	            $this->log->info('Validado pago');
 
-	            $refenciaPaypal = $this->paypal_ipn->getOrder()->getReceiverId();
-
-
+	            $refenciaPaypal = $this->paypal_ipn->getOrder()->getTxnId();
+	            
 	            $em = $this->getDoctrine()->getManager();
 	            if (!$em->getRepository('MGDBasicBundle:Pedido')->findOneByRefPaypal($refenciaPaypal))
 	            {
@@ -152,7 +151,7 @@ class VerificationController extends Controller
 		$item = $items[0];
 
 		$idArticulo = $item->getItemNumber();
-		$refenciaPaypal = $order->getReceiverId();
+		$refenciaPaypal = $order->getTxnId();
 		$referralsLink = $request->request->get('option_selection1');
 		$email = $request->request->get('option_selection2');
 
