@@ -65,6 +65,8 @@ class VerificationController extends Controller
 	    //validate ipn (generating response on PayPal IPN request)
         if ($this->paypal_ipn->validateIPN())
         {
+	        $this->log->info('Validado ipn');
+
             // Succeeded, now let's extract the order
             $this->paypal_ipn->extractOrder();
 
@@ -74,6 +76,7 @@ class VerificationController extends Controller
             // Now let's check what the payment status is and act accordingly
             if ($this->paypal_ipn->getOrderStatus() == Ipn::PAID)
             {
+	            $this->log->info('Validado pago');
 
 	            if (!$pedido = $this->insertarBD())
 	            {
@@ -111,7 +114,7 @@ class VerificationController extends Controller
 				)
 			), 'text/html')
 		;
-		
+
 		if (!$this->get('mailer')->send($message))
 		{
 			$this->log->addCritical("No se ha enviado el correo para $para, despues del pago");
