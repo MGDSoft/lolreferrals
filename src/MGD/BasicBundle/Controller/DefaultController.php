@@ -36,6 +36,24 @@ class DefaultController extends Controller
     }
 
 	/**
+	 * @Route("/pay-success/", name="pagado")
+	 * @Template("MGDBasicBundle:Default:index.html.twig")
+	 */
+	public function pagadoAction()
+	{
+		$this->get('session')->getFlashBag()->add('success', '<b>Su pedido se realizo correctamente</b>,
+	                Recibira un correo comunicandole su id de seguimiento  si tiene cualquier problema dirijase a
+	                nuestra seccion de contacto. Gracias por su compra!'
+		);
+
+		$request=$this->getRequest();
+
+		return $this->indexAction(
+			($request->getLocale()) ? $request->getLocale() :$this->container->getParameter('locale')
+		);
+	}
+
+	/**
 	*/
 	private function setLocale($locale)
 	{

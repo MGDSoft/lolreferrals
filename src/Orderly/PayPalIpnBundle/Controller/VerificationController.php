@@ -81,12 +81,6 @@ class VerificationController extends Controller
 
 	            $this->enviarCorreo($pedido,$request->request->get('option_selection2'));
 	            $this->enviarCorreo($pedido,$this->container->getParameter('email_contacto')); //copia
-
-	            $this->get('session')->getFlashBag()->add('success', '<b>Su pedido se realizo correctamente</b>,
-	                Puede comprobar el estado de su pedido con el siguiente id de seguimiento:<br><b>'
-		            .$pedido->getId().'</b><br><br>
-                    Gracias por su compra!'
-	            );
             }
         }
         else // Just redirect to the root URL
