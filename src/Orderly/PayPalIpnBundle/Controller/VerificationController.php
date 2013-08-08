@@ -97,7 +97,7 @@ class VerificationController extends Controller
 		            $this->enviarCorreo($pedido,$request->request->get('option_selection2'));
 		            $this->enviarCorreo($pedido,$this->container->getParameter('email_contacto')); //copia
 	            }else{
-		            $this->log->info('Ya existe el pedido en la bd!');
+		            $this->log->info("Ya existe el pedido en la bd con la referencia $refenciaPaypal!");
 	            }
             }
         }
