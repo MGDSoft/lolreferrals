@@ -14,6 +14,7 @@ use Orderly\PayPalIpnBundle\Ipn;
 use Orderly\PayPalIpnBundle\Event as Events;
 use MGD\BasicBundle\Entity\Articulo;
 use MGD\BasicBundle\Entity\Pedido;
+use MGD\BasicBundle\Entity\PedidoEstados;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 
 /*
