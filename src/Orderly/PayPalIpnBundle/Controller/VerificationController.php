@@ -39,6 +39,11 @@ class VerificationController extends Controller
 {
     
     public $paypal_ipn;
+
+	/**
+	 * @var Logger $log
+	 */
+	private $log;
     /**
      * @Route("/verify_order",name="validacion_ipn")
      * @Template()
@@ -46,11 +51,11 @@ class VerificationController extends Controller
     public function indexAction()
     {
 	    $request = $this->get('request');
-		/** @var Logger $logger  */
-	    $logger = $this->get('logger');
 
-	    $logger->info('all parametters GET '.print_r($request->query->all(),true));
-	    $logger->info('all parametters POST '.print_r($request->request->all(),true));
+	    $this->log = $this->get('logger');
+
+	    $this->log->info('all parametters GET '.print_r($request->query->all(),true));
+	    $this->log->info('all parametters POST '.print_r($request->request->all(),true));
 
         //getting ipn service registered in container
 	    /** @var OrderlyPayPalIpnBundle paypal_ipn  */
@@ -71,7 +76,7 @@ class VerificationController extends Controller
 
 	            if (!$pedido = $this->insertarBD())
 	            {
-		            $logger->addCritical("No se ha insertado el pedido arreglarlo urgente");
+		            $this->log->addCritical("No se ha insertado el pedido arreglarlo urgente");
 	            }
 
 	            $this->enviarCorreo($pedido,$request->request->get('option_selection2'));
@@ -124,13 +129,14 @@ class VerificationController extends Controller
 
 		if (!$items = $this->paypal_ipn->getOrderItems())
 		{
+			$this->log->info('No contiene articulos el pedido');
 			return false;
 		}
 
 		/** @var IpnOrderItems $item  */
 		$item = $items[0];
 
-		$idArticulo = $item->getOrderId();
+		$idArticulo = $item->getItemNumber();
 		$refenciaPaypal = $order->getReceiverId();
 		$referralsLink = $request->request->get('option_selection1');
 		$email = $request->request->get('option_selection2');
