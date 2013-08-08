@@ -1,38 +1,38 @@
+            <div class="row" style="padding-bottom: 20px;margin-bottom: 50px;border-bottom: 1px dashed #ccc">
+                <ul class="span4">
+                    <h3>Opciones de la página</h3>
 
-            <ul>
-                <h3>Opciones de la página</h3>
-
-                <li><a href="{{ path('noticia') }}">Noticias</a></li>
-                <li><a href="{{ path('contacto') }}">Preguntas de clientes</a></li>
-                <li><a href="{{ path('pedido') }}">Pedidos Realizados</a></li>
-                <li><a href="{{ path('pedidoestados') }}">Estado de pedidos</a></li>
+                    <li><a href="{{ path('noticia') }}">Noticias</a></li>
+                    <li><a href="{{ path('contacto') }}">Preguntas de clientes</a></li>
+                    <li><a href="{{ path('pedido') }}">Pedidos Realizados</a></li>
+                    <li><a href="{{ path('pedidoestados') }}">Estado de pedidos</a></li>
 
 
-                {% if is_granted('ROLE_SUPER_ADMIN') %}
-                    <li><a href="{{ path('estado') }}">Estados</a></li>
-                    <li><a href="{{ path('articulo') }}">Articulos en venta</a></li>
-            </ul>
-            <ul>
-                    <h3>Opciones de Usuarios</h3>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <li><a href="{{ path('estado') }}">Estados</a></li>
+                        <li><a href="{{ path('articulo') }}">Articulos en venta</a></li>
+                </ul>
+                <ul class="span4">
+                        <h3>Opciones de Usuarios</h3>
 
-                    <li><a href="{{ path('usuario') }}">Usuarios</a></li>
-                    <li><a href="{{ path('rol') }}">Roles</a></li>
+                        <li><a href="{{ path('usuario') }}">Usuarios</a></li>
+                        <li><a href="{{ path('rol') }}">Roles</a></li>
 
-                {% endif %}
-            </ul>
-            <ul>
-                <h3>Otras Opciones</h3>
+                    {% endif %}
+                </ul>
+                <ul class="span4">
+                    <h3>Otras Opciones</h3>
 
-                <li><b>Usuario</b>: {{ app.user.username }}</li>
-                <li>
-                    <b>Rol</b>:
-                    {% for rol in app.user.getUserRoles() %}
-                        {{ rol }}
-                    {% endfor %}
-                </li>
-                <li style="margin-top: 20px"><a href="{{ path('logout') }}">Salir / logout</a></li>
+                    <li><b>Usuario</b>: {{ app.user.username }}</li>
+                    <li>
+                        <b>Rol</b>:
+                        {% for rol in app.user.getUserRoles() %}
+                            {{ rol }}
+                        {% endfor %}
+                    </li>
+                    <li style="margin-top: 20px"><a href="{{ path('logout') }}">Salir / logout</a></li>
 
-            </ul>
-
+                </ul>
+            </div>
 
 

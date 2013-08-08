@@ -131,17 +131,7 @@ class ArticuloController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-	        $redirectsPostPaypal='
-			    <input type="hidden" name="return" value="'.$this->generateUrl('home').'">
-				<input type="hidden" name="cancel_return" value="'.$this->generateUrl('home').'">
-				<input type="hidden" name="notify_url " value="'.$this->generateUrl('pago_completado').'">
-				<input type="hidden" name="ipn_notify_url" value="'.$this->generateUrl('validacion_ipn').'" />
-				</form>
-			';
-
-	        $entity->setPaypalHtml(
-		        str_replace('</form>',$redirectsPostPaypal,$entity->getPaypalHtml())
-	        );
+	        $this->setIpnVerificacionSiNoExiste($entity);
 
             $em->persist($entity);
             $em->flush();
@@ -236,7 +226,7 @@ class ArticuloController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
+		/** @var Articulo $entity   */
         $entity = $em->getRepository('MGDBasicBundle:Articulo')->find($id);
 
         if (!$entity) {
@@ -248,6 +238,9 @@ class ArticuloController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+
+			$this->setIpnVerificacionSiNoExiste($entity);
+
             $em->persist($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
@@ -263,6 +256,29 @@ class ArticuloController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+
+	private function setIpnVerificacionSiNoExiste(Articulo &$entity)
+	{
+
+		if (strpos('<input type="hidden" name="ipn_notify_url"',$entity->getPaypalHtml())=== false)
+		{
+			$request = $this->getRequest();
+
+			$baseUrl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+
+			$redirectsPostPaypal='
+				    <input type="hidden" name="return" value="'.$baseUrl.$this->generateUrl('home').'">
+					<input type="hidden" name="cancel_return" value="'.$baseUrl.$this->generateUrl('home').'">
+					<input type="hidden" name="notify_url " value="'.$baseUrl.$this->generateUrl('pago_completado').'">
+					<input type="hidden" name="ipn_notify_url" value="'.$baseUrl.$this->generateUrl('validacion_ipn').'" />
+					</form>
+				';
+
+			$entity->setPaypalHtml(
+				str_replace('</form>',$redirectsPostPaypal,$entity->getPaypalHtml())
+			);
+		}
+	}
 
     /**
      * Deletes a Articulo entity.
