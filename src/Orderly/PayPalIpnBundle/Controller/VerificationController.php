@@ -79,15 +79,23 @@ class VerificationController extends Controller
             {
 	            $this->log->info('Validado pago');
 
-	            if (!$pedido = $this->insertarBD())
+	            $refenciaPaypal = $this->paypal_ipn->getOrder()->getReceiverId();
+
+	            $em = $this->getDoctrine()->getManager();
+	            if (!$em->getRepository('MGDBasicBundle:Articulo')->findByRefPayPay($refenciaPaypal))
 	            {
-		            $this->log->addCritical("No se ha insertado el pedido arreglarlo urgente");
+
+		            if (!$pedido = $this->insertarBD())
+		            {
+			            $this->log->addCritical("No se ha insertado el pedido arreglarlo urgente");
+			            return ;
+		            }
+
+		            $this->log->info('pedido insertado CORRECTAMENTE!');
+
+		            $this->enviarCorreo($pedido,$request->request->get('option_selection2'));
+		            $this->enviarCorreo($pedido,$this->container->getParameter('email_contacto')); //copia
 	            }
-
-	            $this->log->info('pedido insertado CORRECTAMENTE!');
-
-	            $this->enviarCorreo($pedido,$request->request->get('option_selection2'));
-	            $this->enviarCorreo($pedido,$this->container->getParameter('email_contacto')); //copia
             }
         }
         else // Just redirect to the root URL
