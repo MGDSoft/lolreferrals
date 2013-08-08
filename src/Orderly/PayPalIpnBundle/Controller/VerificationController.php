@@ -5,6 +5,7 @@ namespace Orderly\PayPalIpnBundle\Controller;
 use Orderly\PayPalIpnBundle\Document\IpnOrderItems;
 use Orderly\PayPalIpnBundle\Entity\IpnOrders;
 use Orderly\PayPalIpnBundle\OrderlyPayPalIpnBundle;
+use Symfony\Bridge\Monolog\Logger;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,7 +46,7 @@ class VerificationController extends Controller
     public function indexAction()
     {
 	    $request = $this->get('request');
-
+		/** @var Logger $logger  */
 	    $logger = $this->get('logger');
 
 	    $logger->info('all parametters GET '.print_r($request->query->all(),true));
@@ -68,7 +69,11 @@ class VerificationController extends Controller
             if ($this->paypal_ipn->getOrderStatus() == Ipn::PAID)
             {
 
-	            $pedido = $this->insertarBD();
+	            if (!$pedido = $this->insertarBD())
+	            {
+		            $logger->addCritical("No se ha insertado el pedido arreglarlo urgente");
+	            }
+
 	            $this->enviarCorreo($pedido,$request->request->get('option_selection2'));
 	            $this->enviarCorreo($pedido,$this->container->getParameter('email_contacto')); //copia
 
@@ -92,8 +97,6 @@ class VerificationController extends Controller
     }
 	private function  enviarCorreo(Pedido $pedido,$para)
 	{
-		$request = $this->get('request');
-
 		//preparing message
 		$message = \Swift_Message::newInstance()
 			->setSubject('Order confirmation')
@@ -119,8 +122,13 @@ class VerificationController extends Controller
 		/** @var IpnOrders $order  */
 		$order = $this->paypal_ipn->getOrder();
 
+		if (!$items = $this->paypal_ipn->getOrderItems())
+		{
+			return false;
+		}
+
 		/** @var IpnOrderItems $item  */
-		$item = $this->paypal_ipn->getOrderItems()[0];
+		$item = $items[0];
 
 		$idArticulo = $item->getOrderId();
 		$refenciaPaypal = $order->getReceiverId();
