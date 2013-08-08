@@ -1,17 +1,12 @@
 <html>
 <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"  font-family='verdana'>
-<table width="100%"cellpadding="10" cellspacing="0">
-    <tr>
-        <th valign="top" align="center">
-            Su pago ha sido recibido correctamente. {{ pedido.articulo }}
-        </th>
-    </tr>
+<br>
+{{ 'pago.correo.articulo'|trans({'%articulo%': pedido.articulo}) }}
+<br>
+<br>
+{{ 'pago.correo.seguimiento'|trans({'%pedidoId%': pedido.id}) }}
+<br>
+{{ 'pago.correo.extra'|trans }}
 
-    <tr>
-        <td  align="center">
-            Puede seguir el estado de su pedido con el siguiente codigo {{ pedido.id }}
-        </td>
-    </tr>
-</table>
 </body>
 </html>

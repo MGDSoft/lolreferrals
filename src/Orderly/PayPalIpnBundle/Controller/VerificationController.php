@@ -44,6 +44,7 @@ class VerificationController extends Controller
 	 * @var Logger $log
 	 */
 	private $log;
+
     /**
      * @Route("/verify_order",name="validacion_ipn")
      * @Template()
@@ -98,9 +99,9 @@ class VerificationController extends Controller
 	{
 		//preparing message
 		$message = \Swift_Message::newInstance()
-			->setSubject('Order confirmation')
+			->setSubject($this->get('translator')->trans('pago.correo.asunto'))
 			->setFrom($this->container->getParameter('email_contacto'), 'TEST')
-			->setTo($para, $this->paypal_ipn->getOrder()->getFirstName() .' '. $this->paypal_ipn->getOrder()->getLastName())
+			->setTo($para, "asd")
 			->setBody($this->renderView('OrderlyPayPalIpnBundle:Default:confirmation_email.html.twig',
 				// Prepare the variables to populate the email template:
 				array(

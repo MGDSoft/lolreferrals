@@ -41,16 +41,18 @@ class DefaultController extends Controller
 	 */
 	public function pagadoAction()
 	{
-		$this->get('session')->getFlashBag()->add('success', '<b>Su pedido se realizo correctamente</b>,
-	                Recibira un correo comunicandole su id de seguimiento  si tiene cualquier problema dirijase a
-	                nuestra seccion de contacto. Gracias por su compra!'
-		);
-
 		$request=$this->getRequest();
 
-		return $this->indexAction(
+		$return = $this->indexAction(
 			($request->getLocale()) ? $request->getLocale() :$this->container->getParameter('locale')
 		);
+
+		$this->get('session')->getFlashBag()->add('success',
+			$this->get('translator')->trans('pago.finalizado')
+		);
+
+		return $return;
+
 	}
 
 	/**

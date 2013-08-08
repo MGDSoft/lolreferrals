@@ -10,6 +10,7 @@ portal:
     footer: LolReferrals.com tu web para ganar puntos del lol
 
 inicio:
+
     metas:
         title: inicio
         description: description
@@ -151,3 +152,14 @@ formularios:
                   placeholder: Código de seguridad
 
               submit: Enviar Mensaje
+
+pago:
+    finalizado: >
+        <b>Su pedido se realizo correctamente</b>,
+        Recibira un correo comunicandole su id de seguimiento  si tiene cualquier problema dirijase a
+        nuestra seccion de contacto. Gracias por su compra!
+    correo:
+        asunto: Pedido confirmacion
+        articulo: Su pago ha sido recibido correctamente. %articulo%
+        seguimiento: Puede seguir el estado de su pedido con el siguiente codigo %pedidoId%
+        extra: ""

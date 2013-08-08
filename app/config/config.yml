@@ -106,3 +106,4 @@ orderly_pay_pal_ipn:
             orm:
                 object_manager: doctrine.orm.entity_manager
                 classes: ~
+
