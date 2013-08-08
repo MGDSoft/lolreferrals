@@ -15,7 +15,7 @@ class SeguimientoController extends Controller
 {
 
 	/**
-     * @Route("/es/seguimiento/", name="seguimiento_es")
+     * @Route("/es/seguimiento/",defaults={"_locale" = "es"}, name="seguimiento_es")
 	 * @Route("/en/tracking/",defaults={"_locale" = "en"}, name="seguimiento_en")
      * @Template()
      */

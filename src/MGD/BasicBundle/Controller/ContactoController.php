@@ -16,7 +16,7 @@ class ContactoController extends Controller
 {
 
 	/**
-     * @Route("/es/contacto/", name="contacto_es")
+     * @Route("/es/contacto/",defaults={"_locale" = "es"}, name="contacto_es")
 	 * @Route("/en/contact/", name="contacto_en", defaults={"_locale" = "en"})
      * @Template()
      */

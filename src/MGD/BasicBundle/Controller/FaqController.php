@@ -13,7 +13,7 @@ class FaqController extends Controller
 
 	/**
      * @Route("/en/faq/",defaults={"_locale" = "en"}, name="faq_en")
-	 * @Route("/es/faq/", name="faq_es")
+	 * @Route("/es/faq/",defaults={"_locale" = "es"}, name="faq_es")
      * @Template()
      */
     public function indexAction()
