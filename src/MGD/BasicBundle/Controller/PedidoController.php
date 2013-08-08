@@ -29,24 +29,4 @@ class PedidoController extends Controller
 
     }
 
-	/**
-	 * @Route("/order/completed/", name="pago_completado")
-	 * @Template()
-	 */
-	public function completadoAction()
-	{
-		return array();
-	}
-
-	/**
-	 * @Route("/order/canceled/", name="pago_cancelado")
-	 * @Template()
-	 */
-	public function cancelAction()
-	{
-		return array();
-	}
-
-
-
 }
