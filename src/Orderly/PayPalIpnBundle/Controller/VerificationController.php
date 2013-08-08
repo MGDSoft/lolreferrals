@@ -74,7 +74,7 @@ class VerificationController extends Controller
             $this->paypal_ipn->saveOrder();
 
             // Now let's check what the payment status is and act accordingly
-            if ($this->paypal_ipn->getOrderStatus() == Ipn::PAID)
+            if ($this->paypal_ipn->getOrderStatus() == Ipn::PAID || $this->paypal_ipn->getOrderStatus() == Ipn::WAITING)
             {
 	            $this->log->info('Validado pago');
 
