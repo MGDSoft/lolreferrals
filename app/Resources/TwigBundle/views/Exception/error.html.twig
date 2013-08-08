@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>An Error Occurred: {{ status_text }}</title>
-</head>
-<body>
-<h1>Oops! An Error Occurred</h1>
-<h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
-</body>
-</html>
+{% extends "MGDBasicBundle::layout.html.twig" %}
+
+{% block title %}An Error Occurred: {{ status_text }}{% endblock %}
+{% block description %}An Error Occurred: {{ status_text }}{% endblock %}
+
+{% block body_principal %}
+    <br><br>
+    <h1>Oops! An Error Occurred</h1>
+    <br>
+    <img src="{{ asset('img/404.png') }}">
+    <br>
+    <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+{% endblock %}
+
+{% block aside_principal %}
+    <h3>Shhhhh!!!!!</h3>
+    Do not tell anyone that this page does not exist, or I kill you and your friends with a PENTA KILL.
+    <br>
+    <br>
+{% endblock %}

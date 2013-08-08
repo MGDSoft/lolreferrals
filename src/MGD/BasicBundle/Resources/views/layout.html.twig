@@ -28,6 +28,13 @@
                                 {% endif %}
                                 >
                     </a>
+                    <a href="{{ path('cambiar_lenguaje',{ '_locale' : 'de' }) }}">
+                        <img src="{{ asset('bundles/mgdbasic/images/german.png') }}"
+                                {% if "de" == app.request.locale %}
+                                    class="selected"
+                                {% endif %}
+                                >
+                    </a>
                 </div>
 
                 <a href="{{ path('home') }}">

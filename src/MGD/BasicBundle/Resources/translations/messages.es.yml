@@ -3,35 +3,34 @@ portal:
         inicio: Inicio
         encargar: Encargar
         preguntas:  Preguntas
-        reputacion: Reputacion
+        reputacion: Reputación
         seguimiento: Seguimiento
         contacto: Contacto
 
-    footer: LolReferrals.com tu web para ganar puntos del lol
+    footer: Copyright © 2013 Referralslol.com tu web para conseguir RP & IP. All Rights Reserved.
 
 inicio:
-
     metas:
-        title: inicio
-        description: description
+        title: Compra League of Legends referrals 2.0 | Baratos & Rápidos
+        description: Los más baratos League of Legends Referral
 
     aside:
-        titulo: Realiza tu pedido
-        slot_1: ~250 referrals al dia
-        slot_2: Referrals hasta nivel 10
-        slot_3: Precios baratos
-        slot_4: Seguimiento del pedido
-        slot_5: Referrals es mas rentable que RP!
+        titulo: Estadísticas de Referrals
+        slot_1: ~250 referrals al día.
+        slot_2: Referrals hasta nivel 10.
+        slot_3: Precios baratos.
+        slot_4: Seguimiento del pedido.
+        slot_5: Referrals son más rentables que RP!
 
 pedido:
     metas:
-            title: inicio
-            description: description
+            title: Encarga League of Legends Referrals 2.0
+            description: Compra tu paquete de League of Legends referral
     principal:
         titulo: El mejor servicio de referrals
         texto: >
-                 Contamos con el mejor sistema de referrals del mercado muy rápidos y con precios inmejorables.
-                 <br>Cuando usted encargue el pedido dispondra de un código de seguimiento en el cual podra ver el
+                 Contamos con el mejor sistema de referrals del mercado, muy rápidos y con precios inmejorables.
+                 <br>Cuando usted encargue el pedido dispondrá de un código de seguimiento (ID del pedido) en el cual podrá ver el
                  seguimiento del mismo.<br><br>
                  Pague mediante la confianza de paypal
         packs: Listado de packs
@@ -41,88 +40,84 @@ pedido:
     aside:
         titulo: Nuestros clientes lo aconsejan
         texto:  >
-                  Todos nuestros clientes quedan satisfechos, tenemos 100% de votos positivos en ebay.
+                  Todos nuestros clientes quedan satisfechos, tenemos 100% de votos positivos en eBay.
                   <br>Insuperable
 
 faq:
     metas:
-        title: inicio
-        description: description
+        title: Preguntas frecuentes | League of Legends Referrals 2.0
+        description: FAQ de League of Legends referral-service 2.0
 
     principal:
         titulo: Preguntas y respuestas
 
-        slot_1_title: What will I get with this?
-        slot_1_texto: Referral System Rewards: Riot Points, Influence Points and rare skins!
+        slot_1_title: Que recibiré con esto?
+        slot_1_texto: Premios del sistema de referidos: Riot Points, Puntos de Influencia y skins raros!
 
-        slot_2_title: How does this work?
-        slot_2_texto: We create the accounts you purchased using your referral link. Then we level them to 10 in a very short time.
+        slot_2_title: Como funciona?
+        slot_2_texto: Creamos las cuentas que has comprado usando tu código de referidos. Entonces procedemos a subirlas al nivel 10 en muy poco tiempo.
 
-        slot_3_title: Where can I get the referral link?
-        slot_3_texto: You can get the referral link here(linkear en el here http://leagueoflegends.com/rewards). Of course we also need your payment.
+        slot_3_title: Donde puedo conseguir el código de referidos?
+        slot_3_texto: Puedes conseguirlo <a href="http://leagueoflegends.com/rewards" target="_blank">aquí</a>. Por supuesto también necesitamos el pago.
 
-        slot_4_title: What server is it available on?
+        slot_4_title: En que servidores esta disponible?
         slot_4_texto: <ul><li>NA</li><li>EU West</li><li>EU East & Nordic</li><li>Brazil</li><li>Turkey</li></ul>
 
-        slot_5_title: How long does it take to level the accounts?
-        slot_5_texto: <ul><li>24 - 72 hours depending on the current queue.</li><li>We do about 200 referrals daily and we do our best to do all orders as fast as possible.</li></ul>
+        slot_5_title: Cuanto tardas en subir las cuentas al nivel 10?
+        slot_5_texto: <ul><li>24 - 72 horas dependiendo de la cola.</li><li>Hacemos unos 200 referidos diarios y hacemos lo mejor que podemos para acabar todos los pedidos lo más rápido posible.</li></ul>
 
-        slot_6_title: Do you start my referrals as soon as I make a purchase?
-        slot_6_texto: No, It will depend on the current queue.
+        slot_6_title: Empiezas mis referidos tan pronto como realizo el pago?
+        slot_6_texto: No, dependerá de la cola de pedidos.
 
-        slot_7_title: How long does it take for my rewards to show up?
-        slot_7_texto: 24 to 48 hours depending on riot and updating the information.
+        slot_7_title: Cuanto tardan los referidos en ser mostrados en la web de referidos?
+        slot_7_texto: 24 - 48 horas dependiendo del tiempo que tarda Riot en actualizar la información.
 
-        slot_8_title: Will my account be banned?
-        slot_8_texto: No One has been banned.
+        slot_8_title: Puede mi cuenta ser baneada?
+        slot_8_texto: Ninguna cuenta ha sido nunca baneada.
 
-        slot_9_title: Why are the accounts showing up as level 1 and  nonamed?
-        slot_9_texto: Because they haven't been fully updated by riot. Perfectly normal, allow between 24 and 48 hours.
+        slot_9_title: Por qué se muestran las cuentas en nivel 1 y sin nombre?
+        slot_9_texto: Porque no han sido actualizados completamente por Riot. Perfectamente normal, espera entre 24 y 48 horas.
 
-        slot_10_title: Why are most of the accounts level 10 but a few a different levels?
-        slot_10_texto: Because they haven't been fully updated by riot. Perfectly normal, allow between 24 and 48 hours.
+        slot_10_title: Por qué la mayoría de mis cuentas son nivel 10, pero hay unas pocas de otros niveles?
+        slot_10_texto: Porque no han sido actualizados completamente por Riot. Perfectamente normal, espera entre 24 y 48 horas.
 
-        slot_11_title: Do the Patches delay the leveling process?
-        slot_11_texto: Yes.
+        slot_11_title: Influyen los parches en el tiempo de subir las cuentas?
+        slot_11_texto: Si.
 
     aside:
-        titulo: Despues de leer.
+        titulo: Después de leer.
         texto: ¿Sigues teniendo preguntas? contacta con nosotros,
         link: en nuestra zona de contacto
 
 contacto:
 
     metas:
-            title: inicio
-            description: description
+            title: Información de contacto de www.referralslol.com
+            description: Información sobre League of Legends referral-service
 
     enviado: Mensaje enviado correctamente, en un breve periodo le contestaremos.
 
     principal:
         titulo: Contacta con nosotros
         texto: >
-                  Si tienes una empresa o eres un usuario profesional, visita el Apple Online Store para Empresas o
-                  llama al 900 812 683. El horario de atención es de lunes a viernes, de 09:00 a 18:00. El Apple Online
-                  Store para Empresas ofrece una gran variedad de servicios de negocio y financiación, además de un
-                  servicio de intercambio y ventas para desarrolladores.
-
+                  Aun tienes alguna pregunta sin respuesta?.<br>O tu código de referencia (ID) no funciona y no sabes cuando tu pedido estará finalizado?<br>No dudes en ponerte en contacto con nosotros!<br>Te contestaremos en 24horas!
     aside:
         titulo: Contacta con nosotros
-        texto: Para cualquier duda que tengas te atendera "nuestra mejor empleada" Mundo Ejecutivo.
+        texto: Para cualquier duda que tengas te atenderá "nuestro mejor empleado" Mundo Ejecutivo.
 
 seguimiento:
     metas:
-        title: inicio
-        description: description
+        title: Sigue tu pedido de League of Legends referrals 2.0
+        description: Seguimiento del pedido de League of Legends Referral-Service.
 
     principal:
         titulo: Seguimiento de los pedidos
         texto: >
-                  Escribiendo el id del pedido podra ver como va el estado de su pedido
+                  Escribiendo el ID del pedido podrá ver como va el estado de su pedido
 
     aside:
-        titulo: Titulo
-        texto: Texto
+        titulo: ¿Hay algun problema con el ID?
+        texto: Entonces contacte con nosotros en nuestra zona de contacto.
 
 formularios:
         seguimiento:
@@ -144,7 +139,7 @@ formularios:
                   label: Email *
               pedido:
                   placeholder: 'LOL2013080301273951fce92b28529'
-                  label: Código de referencia
+                  label: ID del Pedido
               mensaje:
                   placeholder: Escribe tu pregunta o problema
                   label: Mensaje *
@@ -152,14 +147,13 @@ formularios:
                   placeholder: Código de seguridad
 
               submit: Enviar Mensaje
-
 pago:
     finalizado: >
-        <b>Su pedido se realizo correctamente</b>,
-        Recibira un correo comunicandole su id de seguimiento  si tiene cualquier problema dirijase a
-        nuestra seccion de contacto. Gracias por su compra!
+        <b>Su pedido se realizó correctamente</b>,
+        Recibira un correo comunicándole su id de seguimiento  si tiene cualquier problema diríjase a
+        nuestra sección de contacto. ¡Gracias por su compra!
     correo:
-        asunto: Pedido confirmacion
+        asunto: Pedido confirmación
         articulo: Su pago ha sido recibido correctamente. %articulo%
-        seguimiento: Puede seguir el estado de su pedido con el siguiente codigo %pedidoId%
+        seguimiento: Puede seguir el estado de su pedido con el siguiente codigo : %pedidoId%
         extra: ""

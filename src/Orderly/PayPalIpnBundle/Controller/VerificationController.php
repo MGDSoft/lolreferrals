@@ -80,7 +80,7 @@ class VerificationController extends Controller
 	            $this->log->info('Validado pago');
 
 	            $refenciaPaypal = $this->paypal_ipn->getOrder()->getTxnId();
-	            
+
 	            $em = $this->getDoctrine()->getManager();
 	            if (!$em->getRepository('MGDBasicBundle:Pedido')->findOneByRefPaypal($refenciaPaypal))
 	            {
