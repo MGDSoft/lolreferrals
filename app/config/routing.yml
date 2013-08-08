@@ -13,6 +13,6 @@ _welcome:
     defaults: { _controller: MGDBasicBundle:Default:index, _locale: es  }
 
 OrderlyPayPalIpnBundleEmail:
-    resource: "@OrderlyPayPalIpnBundle/Controller/TwigNotificationEmailController.php"
+    resource: "@OrderlyPayPalIpnBundle/Controller/"
     type:     annotation
     prefix:   /ipn/
