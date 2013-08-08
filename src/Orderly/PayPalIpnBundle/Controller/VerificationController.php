@@ -44,7 +44,7 @@ class VerificationController extends Controller
 	 * @var Logger $log
 	 */
 	private $log;
-	
+
     /**
      * @Route("/verify_order",name="validacion_ipn")
      * @Template()
@@ -80,6 +80,8 @@ class VerificationController extends Controller
 		            $this->log->addCritical("No se ha insertado el pedido arreglarlo urgente");
 	            }
 
+	            $this->log->info('pedido insertado CORRECTAMENTE!');
+
 	            $this->enviarCorreo($pedido,$request->request->get('option_selection2'));
 	            $this->enviarCorreo($pedido,$this->container->getParameter('email_contacto')); //copia
             }
@@ -109,8 +111,11 @@ class VerificationController extends Controller
 				)
 			), 'text/html')
 		;
-		//send message
-		$this->get('mailer')->send($message);
+		
+		if (!$this->get('mailer')->send($message))
+		{
+			$this->log->addCritical("No se ha enviado el correo para $para, despues del pago");
+		}
 	}
 
 	private function  insertarBD()

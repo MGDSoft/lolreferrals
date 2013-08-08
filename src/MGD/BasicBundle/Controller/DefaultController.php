@@ -19,8 +19,6 @@ class DefaultController extends Controller
     {
 		$this->setLocale($_locale);
 
-	    $em = $this->getDoctrine()->getManager();
-
 	    $repository = $this->getDoctrine()
 		    ->getRepository('MGDBasicBundle:Noticia');
 
