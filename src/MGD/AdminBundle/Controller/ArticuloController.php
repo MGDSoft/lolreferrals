@@ -260,7 +260,7 @@ class ArticuloController extends Controller
 	private function setIpnVerificacionSiNoExiste(Articulo &$entity)
 	{
 
-		if (strpos('<input type="hidden" name="ipn_notify_url"',$entity->getPaypalHtml())=== false)
+		if (strpos($entity->getPaypalHtml(),'<input type="hidden" name="ipn_notify_url"')=== false)
 		{
 			$request = $this->getRequest();
 
