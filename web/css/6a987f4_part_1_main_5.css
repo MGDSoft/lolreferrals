@@ -350,9 +350,9 @@ nav a:hover {
   display: inline-block;
   width: 230px;
   text-align: center;
-  margin: 0 5px 20px 5px;
-  padding: 10px 10px;
-  border: 1px solid #999;
+  margin: 0 4px 20px 4px;
+  padding: 20px 0;
+  border: 1px solid #888;
   -webkit-border-top-right-radius: 10px;
   -webkit-border-bottom-right-radius: 10px;
   -webkit-border-bottom-left-radius: 10px;
@@ -390,7 +390,7 @@ nav a:hover {
   margin: 0 auto;
 }
 #contenedor-articulos img {
-  max-width: 100%;
+  max-width: 90%;
 }
 #contenedor-articulos input[type="image"] {
   margin-top: 20px;
