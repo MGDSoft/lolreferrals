@@ -14,6 +14,7 @@ class PedidoController extends Controller
 	/**
      * @Route("/en/order/",defaults={"_locale" = "en"}, name="pedido_en")
      * @Route("/es/encargar/",defaults={"_locale" = "es"}, name="pedido_es")
+	 * @Route("/de/bestellen/",defaults={"_locale" = "de"}, name="pedido_de")
      * @Template()
      */
     public function indexAction()

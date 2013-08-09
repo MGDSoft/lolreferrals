@@ -41,8 +41,7 @@ class Articulo
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="precio", type="float")
-	 * @Assert\Type(type="numeric")
+	 * @ORM\Column(name="precio", type="string", length=100))
 	 * @Assert\NotBlank()
 	 */
 	private $precio;
@@ -224,29 +223,7 @@ class Articulo
         return $this->paypalHtml;
     }
 
-    /**
-     * Set precio
-     *
-     * @param float $precio
-     *
-     * @return Articulo
-     */
-    public function setPrecio($precio)
-    {
-        $this->precio = $precio;
-    
-        return $this;
-    }
-
-    /**
-     * Get precio
-     *
-     * @return float 
-     */
-    public function getPrecio()
-    {
-        return $this->precio;
-    }
+   
 
 	public function __toString(){
 		return $this->nombre;
@@ -275,5 +252,28 @@ class Articulo
     public function getImagenPath()
     {
         return $this->imagenPath;
+    }
+
+    /**
+     * Set precio
+     *
+     * @param string $precio
+     * @return Articulo
+     */
+    public function setPrecio($precio)
+    {
+        $this->precio = $precio;
+    
+        return $this;
+    }
+
+    /**
+     * Get precio
+     *
+     * @return string 
+     */
+    public function getPrecio()
+    {
+        return $this->precio;
     }
 }

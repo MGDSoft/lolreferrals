@@ -18,6 +18,7 @@ class ContactoController extends Controller
 	/**
      * @Route("/es/contacto/",defaults={"_locale" = "es"}, name="contacto_es")
 	 * @Route("/en/contact/", name="contacto_en", defaults={"_locale" = "en"})
+	 * @Route("/de/kontakt/", name="contacto_de", defaults={"_locale" = "de"})
      * @Template()
      */
     public function indexAction(Request $request)

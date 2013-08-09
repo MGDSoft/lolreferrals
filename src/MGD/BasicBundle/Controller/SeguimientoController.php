@@ -17,6 +17,7 @@ class SeguimientoController extends Controller
 	/**
      * @Route("/es/seguimiento/",defaults={"_locale" = "es"}, name="seguimiento_es")
 	 * @Route("/en/tracking/",defaults={"_locale" = "en"}, name="seguimiento_en")
+	 * @Route("/de/verfolgung/",defaults={"_locale" = "de"}, name="seguimiento_de")
      * @Template()
      */
     public function indexAction(Request $request)
@@ -31,21 +32,23 @@ class SeguimientoController extends Controller
 
 		    $form->bind($request);
 
-		    $seguimientoId=$form->get('pedidoId')->getData();
+		    if ($form->isValid()) {
 
-		    if (!empty($seguimientoId))
-		    {
-			    if (!$seguimientos = $em->getRepository("MGDBasicBundle:PedidoEstados")->findByPedido($seguimientoId, array('fecha' => 'desc')))
+			    $seguimientoId=$form->get('pedidoId')->getData();
+
+			    if (!empty($seguimientoId))
 			    {
-				    $translated = $this->get('translator');
-				    $error = new FormError(
-					    $translated->trans("formularios.contacto.errors.codigo_referencia_no")
-				    );
-				    $form->get('pedidoId')->addError($error);
+				    if (!$seguimientos = $em->getRepository("MGDBasicBundle:PedidoEstados")->findByPedido($seguimientoId, array('fecha' => 'desc')))
+				    {
+					    $translated = $this->get('translator');
+					    $error = new FormError(
+						    $translated->trans("formularios.contacto.errors.codigo_referencia_no")
+					    );
+					    $form->get('pedidoId')->addError($error);
+				    }
+
 			    }
-
 		    }
-
 	    }
 
 	    return array(

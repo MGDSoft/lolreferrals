@@ -400,13 +400,41 @@ nav a:hover {
   display: inline-block;
   width: 230px;
   text-align: center;
-  margin: 0 10px 20px 10px;
+  margin: 0 7px 20px 7px;
+  padding: 10px 3px;
+  border: 1px solid #999;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -moz-border-radius-topleft: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  background: #f2f6f8;
+  background: -moz-linear-gradient(top,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#f2f6f8),color-stop(50%,#d8e1e7),color-stop(51%,#b5c6d0),color-stop(100%,#e0eff9));
+  background: -webkit-linear-gradient(top,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  background: -o-linear-gradient(top,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  background: -ms-linear-gradient(top,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  background: linear-gradient(to bottom,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f6f8',endColorstr='#e0eff9',GradientType=0);
 }
 #contenedor-articulos div.precio {
-  font-size: 42px;
+  font-size: 32px;
   color: #eebf59;
-  text-shadow: 1px 2px 2px #333;
-  padding: 15px 0;
+  text-shadow: 1px 2px 2px #222;
+  padding: 25px 0;
 }
 #contenedor-articulos table {
   margin: 0 auto;
@@ -416,6 +444,9 @@ nav a:hover {
 }
 #contenedor-articulos input[type="image"] {
   margin-top: 20px;
+}
+#contenedor-articulos input[type="text"] {
+  width: 95%;
 }
 
 .background-cover {
@@ -444,13 +475,41 @@ time {
   display: inline-block;
   width: 230px;
   text-align: center;
-  margin: 0 10px 20px 10px;
+  margin: 0 7px 20px 7px;
+  padding: 10px 3px;
+  border: 1px solid #999;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -moz-border-radius-topleft: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  background: #f2f6f8;
+  background: -moz-linear-gradient(top,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#f2f6f8),color-stop(50%,#d8e1e7),color-stop(51%,#b5c6d0),color-stop(100%,#e0eff9));
+  background: -webkit-linear-gradient(top,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  background: -o-linear-gradient(top,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  background: -ms-linear-gradient(top,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  background: linear-gradient(to bottom,#f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f6f8',endColorstr='#e0eff9',GradientType=0);
 }
 #contenedor-articulos div.precio {
-  font-size: 42px;
+  font-size: 32px;
   color: #eebf59;
-  text-shadow: 1px 2px 2px #333;
-  padding: 15px 0;
+  text-shadow: 1px 2px 2px #222;
+  padding: 25px 0;
 }
 #contenedor-articulos table {
   margin: 0 auto;
@@ -460,6 +519,9 @@ time {
 }
 #contenedor-articulos input[type="image"] {
   margin-top: 20px;
+}
+#contenedor-articulos input[type="text"] {
+  width: 95%;
 }
 
 .background-cover {

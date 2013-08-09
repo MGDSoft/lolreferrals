@@ -29,8 +29,6 @@ class Contacto
 	 */
 	private $pedido;
 
-	private $pedidoId;
-
     /**
      * @var string
      *

@@ -1,148 +1,151 @@
 portal:
     menu:
-        inicio: Home
-        encargar: Order
-        preguntas:  FAQ
-        reputacion: Feedback
-        seguimiento: Tracking
-        contacto: Contact
+        inicio: Startseite
+        encargar: Bestellen
+        preguntas:  Hilfe
+        reputacion: Bewertung
+        seguimiento: Verfolgung
+        contacto: Kontakt
 
-    footer: Copyright © 2013 Referralslol.com your website to earn RP & IP. All Rights Reserved.
+    footer: Copyright © 2013 Referralslol.com Deine web um RP & IP zu erhalten. All Rights Reserved.
 
 inicio:
     metas:
-        title: Buy League of Legends referrals 2.0 | Cheap & Fast
-        description: Cheapest League of Legends Referral
+        title: Kaufen Sie League of Legends referrals 2.0 | Günstig und Schnell
+        description: Die Billigsten League of Legends Referral
+
     aside:
-        titulo: Referral Stats
-        slot_1: ~250 referrals each day.
-        slot_2: Leveling referrals to level 10.
-        slot_3: Cheapest prices!
-        slot_4: Tracking of the order on our website!
-        slot_5: Referrals are much profitable than RP!
+        titulo: Referral Statistik 
+        slot_1: ~250 referrals am Tag
+        slot_2: Referrals bis level 10
+        slot_3: Günstige Preise
+        slot_4: Verfolgung der Bestellung
+        slot_5: Referrals sind billiger als RP!
 
 pedido:
     metas:
-        title: Order League of Legends Referrals 2.0
-        description: Purchase your League of Legends referral bundle
+            title: Bestell League of Legends Referrals 2.0
+            description: Kauf dein Leage of Legends referral paket
     principal:
-        titulo: Best referral service!
+        titulo: Der beste referrals Dienst
         texto: >
-                 We have the best league of legends referral-service in the market, fastest and with unbeatable prices.
-                 <br>When you purchase a referral bundle you'll receive an OrderID to track the order.
-                 <br><br>
-                 Pay by paypal confidence.
-        packs: All our referrals bundles
+                 Wir rechnen mit dem besten referrals System des Marktes, sehr schnelle und mit hervorragende Preise.
+                 <br>.Wenn sie eine Bestellung machen, wären sie, eine Verfolgungsnummer erhalten, mit welche sie immer wieder überprüfen können wie die Bestellung vorangeht<br><br>
+                 Bezahlen sie über den vertraungsvollen Paypalsystem.
+        packs: Angebote
         footer:
-            titulo: Safe payment with Paypal
+            titulo: Vertraungsvolle paypal Bezahlung
 
     aside:
-        titulo: Our clients suggest it!
+        titulo: Unsere Kunden empfhelen uns.
         texto:  >
-                  All our clients are satisfied  with our service, we have 100% positive feedback on eBay.
-                  <br>Unbeatable.
+                  Alle unsere Kunden bleiben zufrieden, wir haben 100% positive Stimmen auf Ebay .
+                  <br> Hervorragend
 
 faq:
     metas:
-        title: Frequently Asked Questions | League of Legends Referrals 2.0
-        description: FAQ of League of Legends referral-service 2.0
+        title: Häufige Fragen | League of Legends Referrals 2.0
+        description: FAQ über League of Legends referral-service 2.0
+
     principal:
-        titulo: Frequently Asked Questions
+        titulo: Fragen und Antworten
 
-        slot_1_title: What will I get with this?
-        slot_1_texto: Referral System Rewards: Riot Points, Influence Points and rare skins!
+        slot_1_title: Was werde ich damit erhalten?
+        slot_1_texto: Preise die man mit dem referral System erhält : Riot Points, Influence Punkte und seltene Skins!
 
-        slot_2_title: How does this work?
-        slot_2_texto: We create the accounts you purchased using your referral link. Then we level them to 10 in a very short time.
+        slot_2_title: Wie funktioniert es?
+        slot_2_texto: Wir erschaffen Kontos die du mit dein Refferalcode gekauft hast. Dann procedemos a subirlas al nivel 10 en muy poco tiempo.
 
-        slot_3_title: Where can I get the referral link?
-        slot_3_texto: You can get the referral link <a href="http://leagueoflegends.com/rewards" target="_blank">here</a>. Of course we also need your payment.
+        slot_3_title: Wo kann ich mein Referralkode erhalten?
+        slot_3_texto: Erhalten sie ihn sofort <a href="http://leagueoflegends.com/rewards" target="_blank">hier</a>. Selbstverständlich brauchen wir auch die Zahlung 
 
-        slot_4_title: What server is it available on?
+        slot_4_title: In welchen Servers ist der Kode vorhanden?
         slot_4_texto: <ul><li>NA</li><li>EU West</li><li>EU East & Nordic</li><li>Brazil</li><li>Turkey</li></ul>
 
-        slot_5_title: How long does it take to level the accounts?
-        slot_5_texto: <ul><li>24 - 72 hours depending on the current queue.</li><li>We do about 200 referrals daily and we do our best to do all orders as fast as possible.</li></ul>
+        slot_5_title: Wie viel dauert es, bis das Konto level 10 erreicht hat?
+        slot_5_texto: <ul><li>24 - 72 Stunden, es kommt drauf aun, wie lang die Warteliste im moment ist.</li><li>Wir machen ungefähr 200 Referrals am Tag und versuchen es so schnell wie möglich zu erledigen.</li></ul>
 
-        slot_6_title: Do you start my referrals as soon as I make a purchase?
-        slot_6_texto: No, It will depend on the current queue.
+        slot_6_title: Fangen sie mit meine Referralbestellung an so bald ich ihnen bezahlt habe?
+        slot_6_texto: Nein, es kommt drauf an, wie lang die Warteliste im moment ist.
 
-        slot_7_title: How long does it take for my rewards to show up?
-        slot_7_texto: 24 to 48 hours depending on riot and updating the information.
+        slot_7_title: Wie viel dauert es, bis die Referrals auf der Web gezeigt werden?
+        slot_7_texto: 24 - 48 Stunden es ist abhängig von der Zeit die Riot dauert die Information zu aktualisieren.
+        slot_8_title: Kann mein Konto gesperrt werden? 
+        slot_8_texto: Nie ist ein Konto gesperrt worden.
 
-        slot_8_title: Will my account be banned?
-        slot_8_texto: No One has been banned.
+        slot_9_title: Warum werden die Kontos auf level 1 und namenlos angezeigt?
+        slot_9_texto: Weil Riot sie noch nicht komplett aktualisiert hatt. Warten sie zwischen 24-48 Stunden.
 
-        slot_9_title: Why are the accounts showing up as level 1 and  nonamed?
-        slot_9_texto: Because they haven't been fully updated by riot. Perfectly normal, allow between 24 and 48 hours.
-
-        slot_10_title: Why are most of the accounts level 10 but a few a different levels?
-        slot_10_texto: Because they haven't been fully updated by riot. Perfectly normal, allow between 24 and 48 hours.
-
-        slot_11_title: Do the Patches delay the leveling process?
-        slot_11_texto: Yes.
+        slot_10_title: Warum sind die meisten Kontos level 10, aber andere noch nicht?
+        slot_10_texto: Weil Riot sie noch nicht komplett aktualisiert hatt. Warten sie zwischen 24-48 Stunden
+        slot_11_title: Ist die Zeit die man normalerweise dauert um ein Konto auf level 10 zu bringen, beeinflusst von den Patcherneuerungen des Spieles?
+        slot_11_texto: Ja.
 
     aside:
-        titulo: After reading...
-        texto: I still have a question, Where Can I contact you?
-        link: In our contact zone.
-
+        titulo: Nach dem Lesen
+        texto: ¿Haben sie noch Fragen? Setzen sie sich mit uns in Verbindung
+        link: Zu unserer Kontaktzone
 
 contacto:
+
     metas:
-        title: Contact information of www.referralslol.com
-        description: Information about League of Legends referral-service
-    enviado: Message sent correctly, we will reply in a short period of time.
+            title: Kontaktinformation von www.referralslol.com
+            description: Information über League of Legends referral-service
+
+    enviado: Nachricht gesendet, in kürzester Zeit, werden sie eine Antwort erhalten.
 
     principal:
-        titulo: Contact us
-        texto: >
-                  Do you still have any question without an answer?<br>Or is your OrderID not working and you don't know when your order will be done?<br>Don't hesitate and contact us!<br>We will reply you in 24hours!
-    aside:
-        titulo: Contact us!
-        texto: If you have any question "our best employee" Corporate Mundo will attend you.
+        titulo: Kontaktaufnahme
+        texto: > 
+                  Haben sie noch irgendeine Frage?<br>Funktioniert ihr Kode nicht, und sie wissen nicht wann seine Bestellung fertig werden wird?<br>Zweifeln sie nicht, und nehmen sie kontakt mit uns auf!<br> Wir werden spätestens in 24 Stunden antworten.
 
+    aside:
+        titulo: Kontaktaufnahme
+        texto: Wenn sie noch Fragen haben, wird unserer bester Angestellte "Corporate Mundo", diese beantworten.
 
 seguimiento:
     metas:
-        title: Track your order of League of Legends referrals 2.0
-        description: Tracking of the League of Legends Referral-Service order.
+        title: Verfolge deine Bestellung von Legends referrals 2.0
+        description: Verfolgung der Bestellung von League of Legends Referral-Service
+
     principal:
-        titulo: Tracking of the order
-        texto: >
-                  Fill it with the OrderID to see the state of your order.
+        titulo: Verfolgung der Bestellung
+        texto: > 
+                  Schreiben sie ihre ID Nummer um zu sehen, wie die Bestellung vorangeht.
+
     aside:
-        titulo: Any error with the ID?
-        texto: Then contact us in our contact zone.
+        titulo: Titulo
+        texto: Texto
 
 formularios:
         seguimiento:
-              seguimiento: "Tracking"
-              submit: Track of the order
-              estado: Status
-              fecha: Date
-              descripcion: Message
+              seguimiento: "Verfolgung"
+              submit: Verfolgung der Bestellung
+              estado: Zustand
+              fecha: Datum
+              descripcion: Nachricht
 
         contacto:
               errors:
-                  codigo_referencia_no: Order ID not exist.
+                  codigo_referencia_no: Der Referenzkode ist nicht vorhanden
 
               nombre:
-                  placeholder: Write your name
+                  placeholder: Schreiben Sie ihren Namen.
                   label: Name *
               email:
-                  placeholder: Write a valid Email
+                  placeholder: Schreiben Sie eine e-mail Adresse.
                   label: Email *
               pedido:
                   placeholder: 'LOL2013080301273951fce92b28529'
-                  label: OrderID
+                  label: Referenzkode
               mensaje:
-                  placeholder: Write your question or issue
-                  label: Message *
+                  placeholder: Schreiben Sie ihre Frage oder Problem
+                  label: Nachricht *
               captcha:
-                  placeholder: Captcha
+                  placeholder: Sicherheitskode
 
-              submit: Submit Message
+              submit: Nachricht senden.
+
 pago:
     finalizado: >
         <b>Your order has been performed correctly</b>,
