@@ -400,8 +400,8 @@ nav a:hover {
   display: inline-block;
   width: 230px;
   text-align: center;
-  margin: 0 7px 20px 7px;
-  padding: 10px 3px;
+  margin: 0 5px 20px 5px;
+  padding: 10px 10px;
   border: 1px solid #999;
   -webkit-border-top-right-radius: 10px;
   -webkit-border-bottom-right-radius: 10px;
@@ -440,7 +440,7 @@ nav a:hover {
   margin: 0 auto;
 }
 #contenedor-articulos img {
-  max-width: 230px;
+  max-width: 100%;
 }
 #contenedor-articulos input[type="image"] {
   margin-top: 20px;
@@ -475,8 +475,8 @@ time {
   display: inline-block;
   width: 230px;
   text-align: center;
-  margin: 0 7px 20px 7px;
-  padding: 10px 3px;
+  margin: 0 5px 20px 5px;
+  padding: 10px 10px;
   border: 1px solid #999;
   -webkit-border-top-right-radius: 10px;
   -webkit-border-bottom-right-radius: 10px;
@@ -515,7 +515,7 @@ time {
   margin: 0 auto;
 }
 #contenedor-articulos img {
-  max-width: 230px;
+  max-width: 100%;
 }
 #contenedor-articulos input[type="image"] {
   margin-top: 20px;
