@@ -94,7 +94,7 @@ class VerificationController extends Controller
 		            $this->log->info('pedido insertado CORRECTAMENTE!');
 
 		            $this->enviarCorreo($pedido,$request->request->get('option_selection2'));
-		            $this->enviarCorreo($pedido,$this->container->getParameter('email_contacto')); //copia
+		            $this->enviarCorreoAdmin($pedido,$this->container->getParameter('email_contacto')); //copia
 	            }else{
 		            $this->log->info("Ya existe el pedido en la bd con la referencia $refenciaPaypal!");
 	            }
@@ -116,12 +116,39 @@ class VerificationController extends Controller
 		//preparing message
 		$message = \Swift_Message::newInstance()
 			->setSubject($this->get('translator')->trans('pago.correo.asunto'))
-			->setFrom($this->container->getParameter('email_contacto'), 'TEST')
+			->setFrom($this->container->getParameter('email_contacto'), 'ReferralLol.com')
 			->setTo($para, $this->paypal_ipn->getOrder()->getFirstName() .' '. $this->paypal_ipn->getOrder()->getLastName())
 			->setBody($this->renderView('OrderlyPayPalIpnBundle:Default:confirmation_email.html.twig',
 				// Prepare the variables to populate the email template:
 				array(
 			        'pedido' => $pedido,
+				)
+			), 'text/html')
+		;
+
+		if (!$this->get('mailer')->send($message))
+		{
+			$this->log->addCritical("No se ha enviado el correo para $para, despues del pago");
+		}
+	}
+
+	private function  enviarCorreoAdmin(Pedido $pedido,$para)
+	{
+		$request = $this->get('request');
+		$referralsLink = $request->request->get('option_selection1');
+		$email = $request->request->get('option_selection2');
+
+		//preparing message
+		$message = \Swift_Message::newInstance()
+			->setSubject($this->get('translator')->trans('pago.correo.asunto'))
+			->setFrom($this->container->getParameter('email_contacto'), 'ReferralLol.com')
+			->setTo($para, $this->paypal_ipn->getOrder()->getFirstName() .' '. $this->paypal_ipn->getOrder()->getLastName())
+			->setBody($this->renderView('OrderlyPayPalIpnBundle:Default:confirmation_email_admin.html.twig',
+				// Prepare the variables to populate the email template:
+				array(
+					'pedido' => $pedido,
+					'referralsLink' => $referralsLink,
+					'email' => $email,
 				)
 			), 'text/html')
 		;
