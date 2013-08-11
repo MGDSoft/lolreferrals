@@ -17,9 +17,7 @@ class DefaultController extends Controller
      */
     public function indexAction($_locale)
     {
-		$this->setLocale($_locale);
-
-	    $repository = $this->getDoctrine()
+		$repository = $this->getDoctrine()
 		    ->getRepository('MGDBasicBundle:Noticia');
 
 	    /** @var Doctrine\ORM\QueryBuilder */
@@ -53,18 +51,18 @@ class DefaultController extends Controller
 
 	}
 
-	/**
-	*/
-	private function setLocale($locale)
-	{
-		/** @var $request Request */
-		$request=$this->getRequest();
-
-		if (!$request->getLocale())
-		{
-			$defaultLocale=$this->container->getParameter('locale');
-			$request->setLocale($defaultLocale);
-		}
-
-	}
+//	/**
+//	*/
+//	/*private function setLocale($locale)
+//	{
+//		/** @var $request Request */
+//		$request=$this->getRequest();
+//
+//		if (!$request->getLocale())
+//		{
+//			$defaultLocale=$this->container->getParameter('locale');
+//			$request->setLocale($defaultLocale);
+//		}
+//
+//	}*/
 }

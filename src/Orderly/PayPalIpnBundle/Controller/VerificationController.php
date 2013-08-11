@@ -47,7 +47,7 @@ class VerificationController extends Controller
 	private $log;
 
     /**
-     * @Route("/verify_order",name="validacion_ipn")
+     * @Route("/verify_order/{_locale}",name="validacion_ipn")
      * @Template()
      */
     public function indexAction()
