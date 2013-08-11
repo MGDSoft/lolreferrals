@@ -47,7 +47,7 @@ class PedidoController extends Controller
 			$baseUrl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
 
 			$redirectsPostPaypal='
-				    <input type="hidden" name="return" value="'.$baseUrl.$this->generateUrl('pagado').'">
+				    <input type="hidden" name="return" value="'.$baseUrl.$this->generateUrl('pagado',array('_locale' => $request->getLocale())).'">
 					<input type="hidden" name="cancel_return" value="'.$baseUrl.$this->generateUrl('home').'">
 					<input type="hidden" name="notify_url " value="'.$baseUrl.$this->generateUrl('validacion_ipn',array('_locale' => $request->getLocale())).'">
 					<input type="hidden" name="ipn_notify_url" value="'.$baseUrl.$this->generateUrl('validacion_ipn').'" />

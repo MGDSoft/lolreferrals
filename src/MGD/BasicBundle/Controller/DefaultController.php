@@ -32,7 +32,7 @@ class DefaultController extends Controller
     }
 
 	/**
-	 * @Route("/pay-success/", name="pagado")
+	 * @Route("/pay-success/{_locale}",requirements={"_locale" = "(en|es|de)"}, name="pagado")
 	 * @Template("MGDBasicBundle:Default:index.html.twig")
 	 */
 	public function pagadoAction()
