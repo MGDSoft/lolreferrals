@@ -158,5 +158,5 @@ pago:
     correo:
         asunto: Order Confirmation from www.referralslol.com
         articulo: Your purchase of %articulo% has been succesfully received.
-        seguimiento:You can follow the current state of your order with the following OrderID : %pedidoId%
+        seguimiento: You can follow the current state of your order with the following OrderID : %pedidoId%
         extra: Thanks for your purchase!
