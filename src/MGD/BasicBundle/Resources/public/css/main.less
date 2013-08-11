@@ -21,8 +21,7 @@ div.main-container{
 body {
     font-size: 1em;
     line-height: 1.4;
-    background: url('/img/background_500.jpg') no-repeat top center #e1e0de;
-    background-attachment: fixed;
+    background: #fff;
 }
 
 ::-moz-selection {
@@ -112,8 +111,11 @@ body {
 h1.title {
     font-size: 1.5em;
     padding-top: 10px;
-    display: inline-block;
-    width: 210px;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #logo {
@@ -165,7 +167,7 @@ nav a:hover {
 }
 
 #language {
-    margin-top: 17px;
+    margin-top: 6px;
     float: right;
 
     img {
@@ -181,6 +183,11 @@ nav a:hover {
 .main aside {
     color: white;
     padding: 0px 5% 10px;
+
+    img{
+        margin: 0 auto;
+        display: block;
+    }
 
     h3 {
         text-shadow: 1px 1px 1px @shadows-color;
@@ -215,11 +222,6 @@ nav a:hover {
     INTERMEDIATE: Menu
    ==================== */
 
-    body {
-        background: url('/img/background_900.jpg') no-repeat top center #e1e0de;
-        background-attachment: fixed;
-    }
-
     nav a {
         float: left;
         width: 16%;
@@ -249,7 +251,7 @@ nav a:hover {
     }
 }
 
-@media only screen and (min-width: 990px) {
+@media only screen and (min-width: 930px) {
 
     body {
         background: url('/img/background.jpg') no-repeat top center #e1e0de;
@@ -262,7 +264,7 @@ nav a:hover {
 
     #top {
         float: left;
-        width: 355px;
+        width: 300px;
     }
 
 /* ====================
@@ -306,7 +308,14 @@ nav a:hover {
 }
 
 @media only screen and (min-width: 1140px) {
+    #top {
 
+        width: 355px;
+    }
+
+    #language{
+        margin-top: 17px;
+    }
     h1.title {
         width: 240px;
         text-align: right;

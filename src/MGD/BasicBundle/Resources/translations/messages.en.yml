@@ -28,20 +28,22 @@ pedido:
     principal:
         titulo: Best referral service!
         texto: >
-                 We have the best league of legends referral-service in the market, fastest and with unbeatable prices.
-                 <br>When you purchase a referral bundle you'll receive an OrderID to track the order.
-                 <br><br>
-                 Pay by paypal confidence.
-
+                   We have the best league of legends referral-service in the market, fastest and with unbeatable prices.
+                   <br><br>When you purchase a referral bundle you'll receive an OrderID to track the order.
+                   <br><br>
+                   *Remember to send us your referral-link, without it we can't start your order. You can find it <a href="http://leagueoflegends.com/rewards" target="_blank">here</a>.
+                   <br><br>
+                   Pay by paypal confidence.
         packs: All our referrals bundles
         footer:
             titulo: Safe payment with Paypal
+        advertencia: Due to the nature of this product, no refund is accepted.
 
     aside:
         titulo: Our clients suggest it!
         texto:  >
                   All our clients are satisfied  with our service, we have 100% positive feedback on eBay.
-                  <br>Unbeatable.
+                  <br>Unbeatable!
 
 faq:
     metas:
@@ -72,7 +74,7 @@ faq:
         slot_7_texto: 24 to 48 hours depending on riot and updating the information.
 
         slot_8_title: Will my account be banned?
-        slot_8_texto: No One has been banned.
+        slot_8_texto: No One has been banned from the game but exists a low chance to be banned from the RAF.
 
         slot_9_title: Why are the accounts showing up as level 1 and  nonamed?
         slot_9_texto: Because they haven't been fully updated by riot. Perfectly normal, allow between 24 and 48 hours.
@@ -82,6 +84,9 @@ faq:
 
         slot_11_title: Do the Patches delay the leveling process?
         slot_11_texto: Yes.
+
+        slot_12_title: Do you accept any kind of refund?
+        slot_12_texto: Due to the intangible and non transferable nature of this product, no refund will be given.
 
     aside:
         titulo: After reading...
@@ -147,9 +152,9 @@ formularios:
 pago:
     finalizado: >
         <b>Your order has been performed correctly</b>,
-        You'll receive an email with the OrderID in it. If you have any problem refer to our contact section. Thank's for your purchase!
+        You'll receive an email with the OrderID in it. If you have any problem refer to our contact section. Thanks for your purchase!
     correo:
-        asunto: Order Confirmation
-        articulo: Your purchase has been succesfully received. %articulo%
-        seguimiento:You can follow the current state of your order with the following OrderID : %pedidoId%
-        extra: ""
+        asunto: Order Confirmation from www.referralslol.com
+        articulo: Your purchase of %articulo% has been succesfully received.
+        seguimiento: You can follow the current state of your order with the following OrderID : %pedidoId%
+        extra: Thanks for your purchase!

@@ -18,30 +18,32 @@ inicio:
         titulo: Estadísticas de Referrals
         slot_1: ~250 referrals al día.
         slot_2: Referrals hasta nivel 10.
-        slot_3: Precios baratos.
+        slot_3: ¡Los precios más baratos!
         slot_4: Seguimiento del pedido.
-        slot_5: Referrals son más rentables que RP!
+        slot_5: ¡Los Referrals son más rentables que RP!
 
 pedido:
     metas:
-            title: Encarga League of Legends Referrals 2.0
-            description: Compra tu paquete de League of Legends referral
+        title: Encarga League of Legends Referrals 2.0
+        description: Compra tu paquete de League of Legends referral
     principal:
-        titulo: El mejor servicio de referrals
+        titulo: ¡El mejor servicio de referrals!
         texto: >
-                 Contamos con el mejor sistema de referrals del mercado, muy rápidos y con precios inmejorables.
-                 <br>Cuando usted encargue el pedido dispondrá de un código de seguimiento (ID del pedido) en el cual podrá ver el
-                 seguimiento del mismo.<br><br>
-                 Pague mediante la confianza de paypal
+                  Contamos con el mejor sistema de referrals del mercado, muy rápidos y con precios inmejorables.<br><br>
+                  Cuando usted encargue el pedido dispondrá de un código de seguimiento (ID del pedido) en el cual podrá ver el
+                  seguimiento del mismo.<br><br>
+                  Recuerde que debes enviar el código de referidos, sin él no podemos empezar su pedido. Lo puedes encontrar <a href="http://leagueoflegends.com/rewards" target="_blank">aqui</a>.
+                  <br><br>
+                  ¡Pague mediante la confianza de paypal!
         packs: Listado de packs
         footer:
             titulo: Pago seguro con paypal
-
+    advertencia: Dada la naturaleza del producto, no se admite ningún tipo de devolución.
     aside:
-        titulo: Nuestros clientes lo aconsejan
+        titulo: ¡Nuestros clientes lo aconsejan!
         texto:  >
                   Todos nuestros clientes quedan satisfechos, tenemos 100% de votos positivos en eBay.
-                  <br>Insuperable
+                  <br>¡Insuperable!
 
 faq:
     metas:
@@ -51,43 +53,46 @@ faq:
     principal:
         titulo: Preguntas y respuestas
 
-        slot_1_title: Que recibiré con esto?
+        slot_1_title: ¿Que recibiré con esto?
         slot_1_texto: Premios del sistema de referidos: Riot Points, Puntos de Influencia y skins raros!
 
-        slot_2_title: Como funciona?
+        slot_2_title: ¿Como funciona?
         slot_2_texto: Creamos las cuentas que has comprado usando tu código de referidos. Entonces procedemos a subirlas al nivel 10 en muy poco tiempo.
 
-        slot_3_title: Donde puedo conseguir el código de referidos?
+        slot_3_title: ¿Donde puedo conseguir el código de referidos?
         slot_3_texto: Puedes conseguirlo <a href="http://leagueoflegends.com/rewards" target="_blank">aquí</a>. Por supuesto también necesitamos el pago.
 
-        slot_4_title: En que servidores esta disponible?
+        slot_4_title: ¿En que servidores esta disponible?
         slot_4_texto: <ul><li>NA</li><li>EU West</li><li>EU East & Nordic</li><li>Brazil</li><li>Turkey</li></ul>
 
-        slot_5_title: Cuanto tardas en subir las cuentas al nivel 10?
+        slot_5_title: ¿Cuanto tardas en subir las cuentas al nivel 10?
         slot_5_texto: <ul><li>24 - 72 horas dependiendo de la cola.</li><li>Hacemos unos 200 referidos diarios y hacemos lo mejor que podemos para acabar todos los pedidos lo más rápido posible.</li></ul>
 
-        slot_6_title: Empiezas mis referidos tan pronto como realizo el pago?
+        slot_6_title: ¿Empiezas mis referidos tan pronto como realizo el pago?
         slot_6_texto: No, dependerá de la cola de pedidos.
 
-        slot_7_title: Cuanto tardan los referidos en ser mostrados en la web de referidos?
+        slot_7_title: ¿Cuanto tardan los referidos en ser mostrados en la web de referidos?
         slot_7_texto: 24 - 48 horas dependiendo del tiempo que tarda Riot en actualizar la información.
 
-        slot_8_title: Puede mi cuenta ser baneada?
-        slot_8_texto: Ninguna cuenta ha sido nunca baneada.
+        slot_8_title: ¿Puede mi cuenta ser baneada?
+        slot_8_texto: Ninguna cuenta ha sido nunca baneada pero existe una pequeña probabilidad de ser baneado del programa de "RAF".
 
-        slot_9_title: Por qué se muestran las cuentas en nivel 1 y sin nombre?
+        slot_9_title: ¿Por qué se muestran las cuentas en nivel 1 y sin nombre?
         slot_9_texto: Porque no han sido actualizados completamente por Riot. Perfectamente normal, espera entre 24 y 48 horas.
 
-        slot_10_title: Por qué la mayoría de mis cuentas son nivel 10, pero hay unas pocas de otros niveles?
+        slot_10_title: ¿Por qué la mayoría de mis cuentas son nivel 10, pero hay unas pocas de otros niveles?
         slot_10_texto: Porque no han sido actualizados completamente por Riot. Perfectamente normal, espera entre 24 y 48 horas.
 
-        slot_11_title: Influyen los parches en el tiempo de subir las cuentas?
+        slot_11_title: ¿Influyen los parches en el tiempo de subir las cuentas?
         slot_11_texto: Si.
 
+        slot_12_title: ¿Se admite algun tipo de devolución?
+        slot_12_texto: Debido a la naturaleza intangible e intransferible de este producto no se devolverá el importe pagado por este.
+
     aside:
-        titulo: Después de leer.
+        titulo: Después de leer...
         texto: ¿Sigues teniendo preguntas? contacta con nosotros,
-        link: en nuestra zona de contacto
+        link: en nuestra zona de contacto.
 
 contacto:
 
@@ -100,9 +105,9 @@ contacto:
     principal:
         titulo: Contacta con nosotros
         texto: >
-                  Aun tienes alguna pregunta sin respuesta?.<br>O tu código de referencia (ID) no funciona y no sabes cuando tu pedido estará finalizado?<br>No dudes en ponerte en contacto con nosotros!<br>Te contestaremos en 24horas!
+                  ¿Aun tienes alguna pregunta sin respuesta?.<br>¿O tu código de referencia (ID) no funciona y no sabes cuando tu pedido estará finalizado?<br>¡No dudes en ponerte en contacto con nosotros!<br>¡Te contestaremos en 24horas!
     aside:
-        titulo: Contacta con nosotros
+        titulo: ¡Contacta con nosotros!
         texto: Para cualquier duda que tengas te atenderá "nuestro mejor empleado" Mundo Ejecutivo.
 
 seguimiento:
@@ -113,7 +118,7 @@ seguimiento:
     principal:
         titulo: Seguimiento de los pedidos
         texto: >
-                  Escribiendo el ID del pedido podrá ver como va el estado de su pedido
+                  Escribiendo el ID del pedido podrá ver como va el estado de su pedido.
 
     aside:
         titulo: ¿Hay algun problema con el ID?
@@ -121,7 +126,7 @@ seguimiento:
 
 formularios:
         seguimiento:
-              seguimiento: "Seguimiento"
+              seguimiento: Seguimiento
               submit: Seguimiento del pedido
               estado: Estado
               fecha: Fecha
@@ -129,7 +134,7 @@ formularios:
 
         contacto:
               errors:
-                  codigo_referencia_no: El Código de referencia no existe
+                  codigo_referencia_no: El Código de referencia no existe.
 
               nombre:
                   placeholder: Escribe tu nombre
@@ -149,11 +154,11 @@ formularios:
               submit: Enviar Mensaje
 pago:
     finalizado: >
-        <b>Su pedido se realizó correctamente</b>,
-        Recibira un correo comunicándole su id de seguimiento  si tiene cualquier problema diríjase a
-        nuestra sección de contacto. ¡Gracias por su compra!
+              <b>Su pedido se realizó correctamente</b>,
+              Recibira un correo comunicándole su id de seguimiento si tiene cualquier problema diríjase a
+              nuestra sección de contacto. ¡Gracias por su compra!
     correo:
-        asunto: Pedido confirmación
-        articulo: Su pago ha sido recibido correctamente. %articulo%
+        asunto: Confirmación de pedido en www.referralslol.com
+        articulo: Su pago de %articulo% sido recibido correctamente.
         seguimiento: Puede seguir el estado de su pedido con el siguiente codigo : %pedidoId%
-        extra: ""
+        extra: ¡Gracias por su compra!

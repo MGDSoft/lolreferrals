@@ -29,18 +29,20 @@ pedido:
     principal:
         titulo: Der beste referrals Dienst
         texto: >
-                 Wir rechnen mit dem besten referrals System des Marktes, sehr schnelle und mit hervorragende Preise.
-                 <br>.Wenn sie eine Bestellung machen, wären sie, eine Verfolgungsnummer erhalten, mit welche sie immer wieder überprüfen können wie die Bestellung vorangeht<br><br>
-                 Bezahlen sie über den vertraungsvollen Paypalsystem.
+                  Wir rechnen mit dem besten referrals System des Marktes, sehr schnelle und mit hervorragende Preise.
+                  <br>.Wenn sie eine Bestellung machen, wären sie, eine Verfolgungsnummer erhalten, mit welche sie immer wieder überprüfen können wie die Bestellung vorangeht<br>
+                  Erinnern Sie sich, dass Sie ihren Referralkode senden müssen, ohne ihn, können wir nicht ihre Bestellung nicht anfangen. Sie können ihren Kode <a href="http://leagueoflegends.com/rewards" target="_blank">hier</a> finden.
+                  <br><br>
+                  Bezahlen sie über den vertraungsvollen Paypalsystem.
         packs: Angebote
         footer:
             titulo: Vertraungsvolle paypal Bezahlung
-
+    advertencia: Wegen der Wesenart des Produktes, ist die Rückgabe dessen nicht zulässig.
     aside:
         titulo: Unsere Kunden empfhelen uns.
         texto:  >
                   Alle unsere Kunden bleiben zufrieden, wir haben 100% positive Stimmen auf Ebay .
-                  <br> Hervorragend
+                  <br>
 
 faq:
     metas:
@@ -77,9 +79,13 @@ faq:
         slot_9_texto: Weil Riot sie noch nicht komplett aktualisiert hatt. Warten sie zwischen 24-48 Stunden.
 
         slot_10_title: Warum sind die meisten Kontos level 10, aber andere noch nicht?
-        slot_10_texto: Weil Riot sie noch nicht komplett aktualisiert hatt. Warten sie zwischen 24-48 Stunden
+        slot_10_texto: Weil Riot sie noch nicht komplett aktualisiert hatt. Warten sie zwischen 24-48 Stunden.
+
         slot_11_title: Ist die Zeit die man normalerweise dauert um ein Konto auf level 10 zu bringen, beeinflusst von den Patcherneuerungen des Spieles?
         slot_11_texto: Ja.
+
+        slot_12_title: Ist es möglich in irgendeiner Form meine Bestellung zurückzugeben?
+        slot_12_texto: Wegen der Wesenart des Produktes, ist die Rückgabe und damit auch die Geldrückgabe nicht zulässig.
 
     aside:
         titulo: Nach dem Lesen
@@ -114,8 +120,8 @@ seguimiento:
                   Schreiben sie ihre ID Nummer um zu sehen, wie die Bestellung vorangeht.
 
     aside:
-        titulo: Titulo
-        texto: Texto
+        titulo: Haben Sie Probleme mit dem ID?
+        texto: Dann nehmen Sie kontakt mit uns auf.
 
 formularios:
         seguimiento:
@@ -145,13 +151,12 @@ formularios:
                   placeholder: Sicherheitskode
 
               submit: Nachricht senden.
-
 pago:
     finalizado: >
-        <b>Your order has been performed correctly</b>,
-        You'll receive an email with the OrderID in it. If you have any problem refer to our contact section. Thank's for your purchase!
+        <b>Ihre Bestellung wurde erfolgreich gesendet.</b>,
+        Sie werden eine E-mail bekommen welche Ihre VerfolgungsID enthält. Wenn sie irgendein Problem haben, nehmen sie Kontakt mit uns auf über unsere Kontaktzone. Vielen Dank für ihre Bestellung!
     correo:
-        asunto: Order Confirmation
-        articulo: Your purchase has been succesfully received. %articulo%
-        seguimiento:You can follow the current state of your order with the following OrderID : %pedidoId%
-        extra: ""
+        asunto: Bestellungs Bestätigung auf www.referralslol.com
+        articulo: Die Bezahlung von %articulo% wurde erfolgreich gesendet. 
+        seguimiento: Sie können ihre Bestellung mit dem nächsten code Verfolgen : %pedidoId%
+        extra: Vielen Dank für Ihren Einkauf!

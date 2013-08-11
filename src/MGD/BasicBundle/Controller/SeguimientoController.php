@@ -38,7 +38,7 @@ class SeguimientoController extends Controller
 
 			    if (!empty($seguimientoId))
 			    {
-				    if (!$seguimientos = $em->getRepository("MGDBasicBundle:PedidoEstados")->findByPedido($seguimientoId, array('fecha' => 'desc')))
+				    if (!$seguimientos = $em->getRepository("MGDBasicBundle:PedidoEstados")->findByPedido($seguimientoId))
 				    {
 					    $translated = $this->get('translator');
 					    $error = new FormError(
