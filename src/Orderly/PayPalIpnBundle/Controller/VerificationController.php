@@ -116,7 +116,7 @@ class VerificationController extends Controller
 		//preparing message
 		$message = \Swift_Message::newInstance()
 			->setSubject($this->get('translator')->trans('pago.correo.asunto'))
-			->setFrom($this->container->getParameter('email_contacto'), 'ReferralLol.com')
+			->setFrom($this->container->getParameter('email_app'), 'ReferralLol.com')
 			->setTo($para, $this->paypal_ipn->getOrder()->getFirstName() .' '. $this->paypal_ipn->getOrder()->getLastName())
 			->setBody($this->renderView('OrderlyPayPalIpnBundle:Default:confirmation_email.html.twig',
 				// Prepare the variables to populate the email template:
@@ -141,8 +141,8 @@ class VerificationController extends Controller
 		//preparing message
 		$message = \Swift_Message::newInstance()
 			->setSubject('Nuevo pedido '.$pedido)
-			->setFrom($this->container->getParameter('email_contacto'), 'ReferralLol.com')
-			->setTo($para, $this->paypal_ipn->getOrder()->getFirstName() .' '. $this->paypal_ipn->getOrder()->getLastName())
+			->setFrom($this->container->getParameter('email_app'), 'ReferralLol.com')
+			->setTo($this->container->getParameter('email_pedido'), $this->paypal_ipn->getOrder()->getFirstName() .' '. $this->paypal_ipn->getOrder()->getLastName())
 			->setBody($this->renderView('OrderlyPayPalIpnBundle:Default:confirmation_email_admin.html.twig',
 				// Prepare the variables to populate the email template:
 				array(
