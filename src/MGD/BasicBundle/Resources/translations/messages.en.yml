@@ -28,16 +28,17 @@ pedido:
     principal:
         titulo: Best referral service!
         texto: >
-                   We have the best league of legends referral-service in the market, fastest and with unbeatable prices.
-                   <br><br>When you purchase a referral bundle you'll receive an OrderID to track the order.
-                   <br><br>
-                   *Remember to send us your referral-link, without it we can't start your order. You can find it <a href="http://leagueoflegends.com/rewards" target="_blank">here</a>.
-                   <br><br>
-                   Pay by paypal confidence.
+                We have the best league of legends referral-service in the market, fastest and with unbeatable prices.
+                <br>When you purchase a referral bundle you'll receive an OrderID to track the order.
+                <br>
+                *Remember to send us your referral-link, without it we can't start your order. You can find it <a href="http://leagueoflegends.com/rewards" target="_blank">here</a>.
+                <br><br>
+                Pay by paypal confidence.
         packs: All our referrals bundles
         footer:
             titulo: Safe payment with Paypal
-        advertencia: Due to the nature of this product, no refund is accepted.
+
+    advertencia: Due to the nature of this product, no refund is accepted.
 
     aside:
         titulo: Our clients suggest it!
@@ -156,5 +157,5 @@ pago:
     correo:
         asunto: Order Confirmation from www.referralslol.com
         articulo: Your purchase of %articulo% has been succesfully received.
-        seguimiento: You can follow the current state of your order with the following OrderID : %pedidoId%
+        seguimiento:You can follow the current state of your order with the following OrderID : %pedidoId%
         extra: Thanks for your purchase!
