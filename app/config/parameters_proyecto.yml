@@ -1,6 +1,5 @@
 # This file is auto-generated during the composer install
 parameters:
-    moneda: "€"
     email_contacto: "miguelgd1985@gmail.com"
     email_pedido: "miguelgd1985@gmail.com"
     email_app: "miguelgd1985@gmail.com"

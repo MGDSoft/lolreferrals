@@ -26,8 +26,6 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    globals:
-        moneda: %moneda%
 
 # Assetic Configuration
 assetic:

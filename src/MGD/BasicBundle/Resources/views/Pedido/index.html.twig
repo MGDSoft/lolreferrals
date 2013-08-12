@@ -26,14 +26,14 @@
             <article class="articulo">
                 <img src="{{ articulo.imagenPath }}">
                 <div class="paypal">
-                    <div class="precio">{{ articulo.precio }}{{ moneda }}</div>
+                    <div class="precio">{{ articulo.precio }}</div>
                     {{ articulo.paypalHtml | raw }}
                 </div>
             </article>
 
         {% endfor %}
-        <div>
-            {{ 'pedido.advertencia' | trans }}
+        <div id="advertencia">
+            *{{ 'pedido.advertencia' | trans }}
         </div>
     </section>
 {% endblock %}
