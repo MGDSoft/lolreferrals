@@ -11,12 +11,17 @@ imports:
 #        result_cache_driver: apc
 #        query_cache_driver: apc
 
+parameters:
+    router.options.matcher.cache_class: ~
+    router.options.matcher_class: Symfony\Component\Routing\Matcher\ApacheUrlMatcher
+
+
 monolog:
     handlers:
         main:
             type:         fingers_crossed
             action_level: error
-            handler:      nested
+            handler:      grouped
         grouped:
             type:    group
             members: [streamed, buffered]
@@ -30,6 +35,6 @@ monolog:
         swift:
             type:       swift_mailer
             from_email: %email_app%
-            to_email:   %email_app%
-            subject:    An Error Occurregs_dir%/%kernel.environment%.log
-    level: debug
+            to_email:   %email_dev%
+            subject:    An Error Occurred!
+            level:      debug
