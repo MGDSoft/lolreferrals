@@ -626,12 +626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/CaptchaBundle.git",
-                "reference": "0b08b38cb03aee70c01703bc1cb823adefdbfa9e"
+                "reference": "0ab26cac8134847687eba371a3937d90eb9346e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/CaptchaBundle/zipball/0b08b38cb03aee70c01703bc1cb823adefdbfa9e",
-                "reference": "0b08b38cb03aee70c01703bc1cb823adefdbfa9e",
+                "url": "https://api.github.com/repos/Gregwar/CaptchaBundle/zipball/0ab26cac8134847687eba371a3937d90eb9346e6",
+                "reference": "0ab26cac8134847687eba371a3937d90eb9346e6",
                 "shasum": ""
             },
             "require": {
@@ -670,7 +670,7 @@
                 "spam",
                 "visual"
             ],
-            "time": "2013-08-07 13:46:23"
+            "time": "2013-08-08 12:38:09"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1089,12 +1089,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jordillonch/CrudGeneratorBundle.git",
-                "reference": "de9e30c24dcad5fc8e6b1879a9b75020b1731434"
+                "reference": "d4fec2afdc7776f49e4679a27ba70e1782c6c12a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jordillonch/CrudGeneratorBundle/zipball/de9e30c24dcad5fc8e6b1879a9b75020b1731434",
-                "reference": "de9e30c24dcad5fc8e6b1879a9b75020b1731434",
+                "url": "https://api.github.com/repos/jordillonch/CrudGeneratorBundle/zipball/d4fec2afdc7776f49e4679a27ba70e1782c6c12a",
+                "reference": "d4fec2afdc7776f49e4679a27ba70e1782c6c12a",
                 "shasum": ""
             },
             "require": {
@@ -1133,7 +1133,7 @@
                 "crud",
                 "generator"
             ],
-            "time": "2013-07-23 14:06:24"
+            "time": "2013-08-10 11:40:25"
         },
         {
             "name": "kriswallsmith/assetic",

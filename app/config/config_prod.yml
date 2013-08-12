@@ -12,9 +12,13 @@ imports:
 #        query_cache_driver: apc
 
 parameters:
+    analitycs: UA-43126689-1
     router.options.matcher.cache_class: ~
     router.options.matcher_class: Symfony\Component\Routing\Matcher\ApacheUrlMatcher
 
+twig:
+    globals:
+        analitycs: %analitycs%
 
 monolog:
     handlers:
