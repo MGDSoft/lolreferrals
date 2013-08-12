@@ -55,6 +55,7 @@ class VerificationController extends Controller
 	    $request = $this->get('request');
 
 	    $this->log = $this->get('logger');
+	    $this->log->addCritical("No se ha enviado el correo para , despues del pago");
 
 	    $this->log->info('all parametters GET '.print_r($request->query->all(),true));
 	    $this->log->info('all parametters POST '.print_r($request->request->all(),true));
@@ -87,7 +88,7 @@ class VerificationController extends Controller
 
 		            if (!$pedido = $this->insertarBD())
 		            {
-			            $this->log->addCritical("No se ha insertado el pedido arreglarlo urgente");
+			            $this->log->info("No se ha insertado el pedido arreglarlo urgente");
 			            return ;
 		            }
 
@@ -170,7 +171,7 @@ class VerificationController extends Controller
 
 		if (!$items = $this->paypal_ipn->getOrderItems())
 		{
-			$this->log->info('No contiene articulos el pedido');
+			$this->log->addCritical('No contiene articulos el pedido');
 			return false;
 		}
 
@@ -183,6 +184,12 @@ class VerificationController extends Controller
 		$email = $request->request->get('option_selection2');
 
 		$articulo = $em->getRepository('MGDBasicBundle:Articulo')->find($idArticulo);
+
+		if (!$articulo)
+		{
+			$this->log->addCritical('No existe el articulo con id '.$idArticulo);
+			return false;
+		}
 
 		$entity  = new Pedido();
 		$entity->setArticulo($articulo);
