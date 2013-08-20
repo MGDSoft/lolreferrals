@@ -4,6 +4,7 @@ app/logs/*
 web/bundles/
 web/js/
 web/css/
+bin/
 
 app/config/parameters.yml
 .idea
