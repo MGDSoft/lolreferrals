@@ -51,18 +51,4 @@ class DefaultController extends Controller
 
 	}
 
-//	/**
-//	*/
-//	/*private function setLocale($locale)
-//	{
-//		/** @var $request Request */
-//		$request=$this->getRequest();
-//
-//		if (!$request->getLocale())
-//		{
-//			$defaultLocale=$this->container->getParameter('locale');
-//			$request->setLocale($defaultLocale);
-//		}
-//
-//	}*/
 }

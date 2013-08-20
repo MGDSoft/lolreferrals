@@ -15,17 +15,13 @@ class LanguageController extends Controller {
 	 */
 	public function switchLanguageAction($_locale)
 	{
-		$request = $this->getRequest();
+        $request = $this->getRequest();
 
-		if (in_array($_locale,$this->languageDispo))
-		{
-			$request->setLocale($_locale);
-		}
+        if (in_array($_locale,$this->languageDispo))
+        {
+            $request->setLocale($_locale);
+        }
 
-		$referer_url = $request->headers->get('referer');
-
-		if ($referer_url != null) {
-			return $this->redirect($this->generateUrl('home') );
-		}
+        return $this->redirect($this->generateUrl('home') );
 	}
 }

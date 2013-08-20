@@ -16,6 +16,7 @@ class SeguimientoType extends AbstractType
     {
         $builder
 	        ->add('pedidoId','text',array(
+                'required' => true,
 		        'mapped' => false,
 		        'label'=> 'formularios.contacto.pedido.label',
 		        'attr' => array(

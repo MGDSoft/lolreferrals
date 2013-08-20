@@ -31,6 +31,7 @@ class ContactoController extends Controller
      */
     public function indexAction()
     {
+
         list($filterForm, $queryBuilder) = $this->filter();
 
 	    $queryBuilder->orderBy('e.fecha','DESC');

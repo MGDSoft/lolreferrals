@@ -24,7 +24,7 @@ class SeguimientoController extends Controller
     {
 	    $seguimientoId  =null;
 	    $seguimientos = array();
-	    $form   = $this->createForm(new SeguimientoType(), null);
+	    $form = $this->createForm(new SeguimientoType(), null);
 
 	    if ($request->getMethod() === 'POST')
 	    {

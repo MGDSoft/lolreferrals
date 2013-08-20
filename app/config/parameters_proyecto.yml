@@ -1,7 +1,7 @@
 # This file is auto-generated during the composer install
 parameters:
-    email_contacto: "miguelgd1985@gmail.com"
-    email_pedido: "miguelgd1985@gmail.com"
-    email_app: "miguelgd1985@gmail.com"
-    email_dev: "miguelgd1985@gmail.com"
+    email_contacto: "p3ter@troller.com"
+    email_pedido: "p3ter@troller.com"
+    email_app: "p3ter@troller.com"
+    email_dev: "p3ter@troller.com"
 

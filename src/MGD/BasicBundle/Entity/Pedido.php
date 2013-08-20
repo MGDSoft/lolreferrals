@@ -81,7 +81,9 @@ class Pedido
 
 	    if (isset($_SERVER['REMOTE_ADDR'])) {
 		    $this->ip = $_SERVER['REMOTE_ADDR'];
-	    }
+	    }else{
+            $this->ip = "CLI";
+        }
 
 	    $this->id = uniqid('LOL' . date("Ymdhis"));
 

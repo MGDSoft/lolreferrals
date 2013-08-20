@@ -5,6 +5,7 @@
  * Date: 27/07/13
  * Time: 17:23
  */
+namespace MGD\BasicBundle\DataFixtures;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;

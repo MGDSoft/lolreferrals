@@ -18,7 +18,7 @@ use MGD\AdminBundle\Form\ArticuloFilterType;
 /**
  * Articulo controller.
  *
- * @Route("/articulo")
+ * @Route("/articulo" )
  */
 class ArticuloController extends Controller
 {
