@@ -17,7 +17,7 @@ role :app,        domain, :primary => true       # This may be the same as your 
 set  :keep_releases,  3
 
 set :use_composer, true
-# set :update_vendrors, true
+set :update_vendrors, true
 
 # Be more verbose by uncommenting the following line
 logger.level = Logger::MAX_LEVEL

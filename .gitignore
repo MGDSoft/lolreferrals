@@ -5,6 +5,8 @@ web/bundles/
 web/js/
 web/css/
 bin/
+
+composer.lock
 .rsync_cache
 
 app/config/parameters.yml
