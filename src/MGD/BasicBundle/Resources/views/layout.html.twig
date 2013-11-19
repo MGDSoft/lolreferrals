@@ -16,27 +16,35 @@
 
 
                 <div id="language">
+                    {% spaceless %}
                     <a href="{{ path('cambiar_lenguaje',{ '_locale' : 'es' }) }}">
-                        <img src="{{ asset('bundles/mgdbasic/images/spain.png') }}"
-                            {% if "es" == app.request.locale %}
+
+                        <img src="{{ asset('bundles/mgdbasic/images/spain.png') }}"  alt="{{ 'portal.idiomas.espanol' | trans }}" title="{{ 'portal.idiomas.espanol' | trans }}"
+                                {%- if "es" == app.request.locale %}
                                 class="selected"
-                            {% endif %}
+                            {%- endif -%}
                                 >
+
                     </a>
                     <a href="{{ path('cambiar_lenguaje',{ '_locale' : 'en' }) }}">
-                        <img src="{{ asset('bundles/mgdbasic/images/unitedkingsom.png') }}"
-                                {% if "en" == app.request.locale %}
+
+                        <img src="{{ asset('bundles/mgdbasic/images/unitedkingsom.png') }}"  alt="{{ 'portal.idiomas.ingles' | trans }}" title="{{ 'portal.idiomas.ingles' | trans }}"
+                                {%- if "en" == app.request.locale %}
                                     class="selected"
-                                {% endif %}
+                                {%- endif -%}
                                 >
+
                     </a>
                     <a href="{{ path('cambiar_lenguaje',{ '_locale' : 'de' }) }}">
-                        <img src="{{ asset('bundles/mgdbasic/images/german.png') }}"
-                                {% if "de" == app.request.locale %}
+
+                        <img src="{{ asset('bundles/mgdbasic/images/german.png') }}"  alt="{{ 'portal.idiomas.aleman' | trans }}" title="{{ 'portal.idiomas.aleman' | trans }}"
+                                {%- if "de" == app.request.locale %}
                                     class="selected"
-                                {% endif %}
+                                {%- endif -%}
                                 >
+
                     </a>
+                    {% endspaceless %}
                 </div>
 
                 <a href="{{ path('home') }}">

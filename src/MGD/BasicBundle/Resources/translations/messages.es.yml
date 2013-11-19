@@ -7,6 +7,11 @@ portal:
         seguimiento: Seguimiento
         contacto: Contacto
 
+    idiomas:
+        ingles: Ingles
+        aleman: Alemán
+        espanol: Español
+
     footer: Copyright © 2013 Referralslol.com tu web para conseguir RP & IP. All Rights Reserved.
 
 inicio:
