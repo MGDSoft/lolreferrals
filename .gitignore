@@ -4,6 +4,7 @@ app/logs/*
 web/bundles/
 web/js/
 web/css/
+web/uploads/
 bin/
 
 composer.lock
