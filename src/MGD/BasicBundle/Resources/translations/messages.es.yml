@@ -169,4 +169,4 @@ pago:
         extra: ¡Gracias por su compra!
 
 common:
-    cola_actual: Cola actual: <span>"%dias%"</span> dias.
+    cola_actual: Cola actual: <span>%dias%</span> dias.

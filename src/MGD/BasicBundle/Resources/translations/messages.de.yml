@@ -168,4 +168,4 @@ pago:
         extra: Vielen Dank für Ihren Einkauf!
 
 common:
-    cola_actual: Current Queue: <span>"%dias%"</span> days.
+    cola_actual: Aktuelle Warteliste: <span>%dias%</span> days.

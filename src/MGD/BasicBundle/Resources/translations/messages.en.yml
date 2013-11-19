@@ -167,4 +167,4 @@ pago:
         extra: Thanks for your purchase!
 
 common:
-    cola_actual: Current Queue: <span>"%dias%"</span> days.
+    cola_actual: Current Queue: <span>%dias%</span> days.

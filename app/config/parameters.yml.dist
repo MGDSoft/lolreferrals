@@ -13,3 +13,12 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    email_contacto: "p3ter@troller.com"
+    email_pedido: "p3ter@troller.com"
+    email_app: "p3ter@troller.com"
+    email_dev: "p3ter@troller.com"
+
+    paypal_is_live: true
+    paypal_email: "payopal@payopal.com"
+    paypal_email_sandbox: "payopal@payopal.es"
