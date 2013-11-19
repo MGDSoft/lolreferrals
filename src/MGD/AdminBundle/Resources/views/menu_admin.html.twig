@@ -11,6 +11,7 @@
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
                         <li><a href="{{ path('estado') }}">Estados</a></li>
                         <li><a href="{{ path('articulo') }}">Articulos en venta</a></li>
+                        <li><a href="{{ path('cola_edit', { 'id': 1 }) }}">Cola</a></li>
                 </ul>
                 <ul class="span4">
                         <h3>Opciones de Usuarios</h3>

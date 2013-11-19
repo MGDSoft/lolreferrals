@@ -11,33 +11,33 @@ portal:
 
 inicio:
     metas:
-        title: Kaufen Sie League of Legends referrals 2.0 | Günstig und Schnell
-        description: Die Billigsten League of Legends Referral
+        title: LoL Referrals: Kaufen Sie League of Legends Referral Service
+        description: Die Billigsten LoL Referral | League of Legends Referrals  | League of Legends skins RP IP
 
     aside:
         titulo: Referral Statistik 
-        slot_1: ~250 referrals am Tag
-        slot_2: Referrals bis level 10
+        slot_1: ~350 referrals am Tag
+        slot_2: League of Legends Referrals bis level 10
         slot_3: Günstige Preise
         slot_4: Verfolgung der Bestellung
         slot_5: Referrals sind billiger als RP!
 
 pedido:
     metas:
-            title: Bestell League of Legends Referrals 2.0
-            description: Kauf dein Leage of Legends referral paket
+            title: LoL Referrals: Bestell League of Legends Referrals 2.0
+            description: Kauf dein Leage of Legends referral paket lol referrals
     principal:
         titulo: Der beste referrals Dienst
         texto: >
-                  Wir rechnen mit dem besten referrals System des Marktes, sehr schnelle und mit hervorragende Preise.
-                  <br>.Wenn sie eine Bestellung machen, wären sie, eine Verfolgungsnummer erhalten, mit welche sie immer wieder überprüfen können wie die Bestellung vorangeht<br>
-                  Erinnern Sie sich, dass Sie ihren Referralkode senden müssen, ohne ihn, können wir nicht ihre Bestellung nicht anfangen. Sie können ihren Kode <a href="http://leagueoflegends.com/rewards" target="_blank">hier</a> finden.
+                  Wir haben das beste und schnellste LOL-Referral-System auf dem Markt, noch dazu mit unschlagbaren Preisen.
+                  <br>.Wenn du eine Bestellung tätigst, erhältst du eine Bestell-ID, mit der du deine Bestellung verfolgen kannst.<br>
+                  Bitte denke daran, uns deine Referenz-Link zu übermitteln. Ohne diese können wir deinen Auftrag nicht entgegennehmen. Findest du <a href="http://leagueoflegends.com/rewards" target="_blank">hier</a> den Code.
                   <br><br>
-                  Bezahlen sie über den vertraungsvollen Paypalsystem.
+                  Bezahle sicher per Paypal.
         packs: Angebote
         footer:
             titulo: Vertraungsvolle paypal Bezahlung
-    advertencia: Wegen der Wesenart des Produktes, ist die Rückgabe dessen nicht zulässig.
+    advertencia: Aufgrund der Produktbeschaffenheit, ist die Rückgabe dessen nicht zulässig.
     aside:
         titulo: Unsere Kunden empfhelen uns.
         texto:  >
@@ -47,67 +47,68 @@ pedido:
 faq:
     metas:
         title: Häufige Fragen | League of Legends Referrals 2.0
-        description: FAQ über League of Legends referral-service 2.0
+        description: FAQ über League of Legends referral service 2.0
 
     principal:
         titulo: Fragen und Antworten
 
         slot_1_title: Was werde ich damit erhalten?
-        slot_1_texto: Preise die man mit dem referral System erhält : Riot Points, Influence Punkte und seltene Skins!
+        slot_1_texto: Preise, die man mit dem Referral-System erhält: Riot Points, Influence Punkte und seltene Skins!
 
         slot_2_title: Wie funktioniert es?
-        slot_2_texto: Wir erschaffen Kontos die du mit dein Refferalcode gekauft hast. Dann procedemos a subirlas al nivel 10 en muy poco tiempo.
+        slot_2_texto: Wir erstellen die Accounts, die du mit deinem Referrenz-Code erworben hast. Dann bringen wir sie binnen kürzester Zeit auf Level 10.
 
-        slot_3_title: Wo kann ich mein Referralkode erhalten?
-        slot_3_texto: Erhalten sie ihn sofort <a href="http://leagueoflegends.com/rewards" target="_blank">hier</a>. Selbstverständlich brauchen wir auch die Zahlung 
+        slot_3_title: Wo kann ich meinen Referral-Code erhalten?
+        slot_3_texto: Erhalte ihn sofort <a href="http://leagueoflegends.com/rewards" target="_blank">hier</a>. Selbstverständlich brauchen wir auch die Zahlung.
 
-        slot_4_title: In welchen Servers ist der Kode vorhanden?
+        slot_4_title: Auf welchen Servern ist der Code vorhanden?
         slot_4_texto: <ul><li>NA</li><li>EU West</li><li>EU East & Nordic</li><li>Brazil</li><li>Turkey</li></ul>
 
-        slot_5_title: Wie viel dauert es, bis das Konto level 10 erreicht hat?
-        slot_5_texto: <ul><li>24 - 72 Stunden, es kommt drauf aun, wie lang die Warteliste im moment ist.</li><li>Wir machen ungefähr 200 Referrals am Tag und versuchen es so schnell wie möglich zu erledigen.</li></ul>
+        slot_5_title: Wie lange dauert es, bis der Account Level 10 erreicht hat?
+        slot_5_texto: <ul><li>24-72 Stunden, es kommt darauf an, wir lang die Warteliste im Moment ist.</li><li>Wir machen ungefähr 250 Referrals am Tag und versuchen es, so schnell wie möglich zu erledigen.</li></ul>
 
-        slot_6_title: Fangen sie mit meine Referralbestellung an so bald ich ihnen bezahlt habe?
-        slot_6_texto: Nein, es kommt drauf an, wie lang die Warteliste im moment ist.
+        slot_6_title: Beginnen Sie meine Bestellung an, sobald ich bezahlt habe?
+        slot_6_texto: Nein, es kommt drauf an, wir lang die Warteliste im Moment ist.
 
-        slot_7_title: Wie viel dauert es, bis die Referrals auf der Web gezeigt werden?
-        slot_7_texto: 24 - 48 Stunden es ist abhängig von der Zeit die Riot dauert die Information zu aktualisieren.
-        slot_8_title: Kann mein Konto gesperrt werden? 
+        slot_7_title: Wie lange dauert es, bis die Referrals auf der Web gezeigt werden?
+        slot_7_texto: 24-48 Stunden, es ist abhängig von der Zeit, die Riot braucht, um die Information zu aktualisieren.
+
+        slot_8_title: Kann mein Account gesperrt werden?
         slot_8_texto: Nie ist ein Konto gesperrt worden.
 
-        slot_9_title: Warum werden die Kontos auf level 1 und namenlos angezeigt?
-        slot_9_texto: Weil Riot sie noch nicht komplett aktualisiert hatt. Warten sie zwischen 24-48 Stunden.
+        slot_9_title: Warum werde die Accounts auf Level 1 und namenlos angezeigt?
+        slot_9_texto: Weil Riot sie noch nicht komplett aktualisiert hat. Warte zwischen 24-48 Stunden.
 
         slot_10_title: Warum sind die meisten Kontos level 10, aber andere noch nicht?
-        slot_10_texto: Weil Riot sie noch nicht komplett aktualisiert hatt. Warten sie zwischen 24-48 Stunden.
+        slot_10_texto: Weil Riot sie noch nicht komplett aktualisiert hat. Warte zwischen 24-48 Stunden.
 
-        slot_11_title: Ist die Zeit die man normalerweise dauert um ein Konto auf level 10 zu bringen, beeinflusst von den Patcherneuerungen des Spieles?
+        slot_11_title: Verlangsamen die Patches den Level-Prozess?
         slot_11_texto: Ja.
 
-        slot_12_title: Ist es möglich in irgendeiner Form meine Bestellung zurückzugeben?
-        slot_12_texto: Wegen der Wesenart des Produktes, ist die Rückgabe und damit auch die Geldrückgabe nicht zulässig.
+        slot_12_title: Ist es möglich in irgendeine Form meine Bestellung zurückzuziehen?
+        slot_12_texto: Aufgrund der Produktbeschaffenheit, ist die Rückgabe dessen nicht zulässig.
 
     aside:
         titulo: Nach dem Lesen
-        texto: ¿Haben sie noch Fragen? Setzen sie sich mit uns in Verbindung
+        texto: Hast du noch Fragen? Setz dich mit uns in Verbindung!
         link: Zu unserer Kontaktzone
 
 contacto:
 
     metas:
             title: Kontaktinformation von www.referralslol.com
-            description: Information über League of Legends referral-service
+            description: Information über League of Legends referral service
 
     enviado: Nachricht gesendet, in kürzester Zeit, werden sie eine Antwort erhalten.
 
     principal:
         titulo: Kontaktaufnahme
         texto: > 
-                  Haben sie noch irgendeine Frage?<br>Funktioniert ihr Kode nicht, und sie wissen nicht wann seine Bestellung fertig werden wird?<br>Zweifeln sie nicht, und nehmen sie kontakt mit uns auf!<br> Wir werden spätestens in 24 Stunden antworten.
+                  Hast du noch irgendeine Frage?<br>Funktioniert dein Code nicht, und du weißt nicht, wann deine Bestellung fertig sein wird?<br>Zögere nicht, und nimm Kontakt mit uns auf!<br> Wir werden spätestens 24 Stunden später antworten.
 
     aside:
         titulo: Kontaktaufnahme
-        texto: Wenn sie noch Fragen haben, wird unserer bester Angestellte "Corporate Mundo", diese beantworten.
+        texto: Wenn du noch Fragen hast, wird unserer bester Angestellte "Corporate Mundo", diese beantworten.
 
 seguimiento:
     metas:
@@ -117,11 +118,11 @@ seguimiento:
     principal:
         titulo: Verfolgung der Bestellung
         texto: > 
-                  Schreiben sie ihre ID Nummer um zu sehen, wie die Bestellung vorangeht.
+                  Schreibe uns deine ID-Nummer, um zu sehen, wir die Bestellung vorangeht.
 
     aside:
-        titulo: Haben Sie Probleme mit dem ID?
-        texto: Dann nehmen Sie kontakt mit uns auf.
+        titulo: Hast du Probleme mit dem ID?
+        texto: Dann nimm Kontakt mit uns auf.
 
 formularios:
         seguimiento:
@@ -160,3 +161,6 @@ pago:
         articulo: Die Bezahlung von %articulo% wurde erfolgreich gesendet. 
         seguimiento: Sie können ihre Bestellung mit dem nächsten code Verfolgen : %pedidoId%
         extra: Vielen Dank für Ihren Einkauf!
+
+common:
+    cola_actual: Current Queue: <span>"%dias%"</span> days.

@@ -11,24 +11,24 @@ portal:
 
 inicio:
     metas:
-        title: Buy League of Legends referrals 2.0 | Cheap & Fast
-        description: Cheapest League of Legends Referral
+        title: LoL Referrals: Buy League of Legends Referrals | Cheapest LoL Referral
+        description: Fastest and cheapest referral on the market.Selling League of Legends referrals on the web Since 2012. Buy LoL referrals now. Cheapest than regular LoL RP.
     aside:
         titulo: Referral Stats
-        slot_1: ~250 referrals each day.
-        slot_2: Leveling referrals to level 10.
+        slot_1: ~350 referral each day.
+        slot_2: Leveling LoL Referrals to level 10.
         slot_3: Cheapest prices!
         slot_4: Tracking of the order on our website!
-        slot_5: Referrals are much profitable than RP!
+        slot_5: League of Legends Referral are much profitable than buying RP in the LoL store!
 
 pedido:
     metas:
-        title: Order League of Legends Referrals 2.0
-        description: Purchase your League of Legends referral bundle
+        title: Buy LoL referrals | League of Legends Referral
+        description: Buy LoL referrals on our website, Buy the cheapest League of Legends Referrals. 
     principal:
-        titulo: Best referral service!
+        titulo: Best League of Legends Referrals service!
         texto: >
-                We have the best league of legends referral-service in the market, fastest and with unbeatable prices.
+                We have the best League of Legends Referral service in the market, fastest and with unbeatable prices.
                 <br><br>
                 When you purchase a referral bundle you'll receive an OrderID to track the order.
                 <br><br>
@@ -50,7 +50,7 @@ pedido:
 faq:
     metas:
         title: Frequently Asked Questions | League of Legends Referrals 2.0
-        description: FAQ of League of Legends referral-service 2.0
+        description: LoL Referrals: FAQ of League of Legends Referrals.
     principal:
         titulo: Frequently Asked Questions
 
@@ -99,7 +99,7 @@ faq:
 contacto:
     metas:
         title: Contact information of www.referralslol.com
-        description: Information about League of Legends referral-service
+        description: Information about League of Legends Referrals service.
     enviado: Message sent correctly, we will reply in a short period of time.
 
     principal:
@@ -158,5 +158,8 @@ pago:
     correo:
         asunto: Order Confirmation from www.referralslol.com
         articulo: Your purchase of %articulo% has been succesfully received.
-        seguimiento: You can follow the current state of your order with the following OrderID : %pedidoId%
+        seguimiento: You can follow the current state of your order in "http://www.referralslol.com/en/tracking/" with the following OrderID : %pedidoId%
         extra: Thanks for your purchase!
+
+common:
+    cola_actual: Current Queue: <span>"%dias%"</span> days.

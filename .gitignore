@@ -5,6 +5,7 @@ web/bundles/
 web/js/
 web/css/
 bin/
+.rsync_cache
 
 app/config/parameters.yml
 .idea

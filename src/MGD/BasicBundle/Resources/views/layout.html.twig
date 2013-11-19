@@ -4,14 +4,16 @@
         'bundles/mgdbasic/css/*.less'
         'bundles/mgdbasic/css/normalize.min.css'
         'bundles/mgdbasic/css/bootstrap.min.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}" rel="stylesheet" media="screen" />
+        <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
     {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
+
     <div class="header-container">
         <header class="wrapper clearfix">
             <div id="top">
+
 
                 <div id="language">
                     <a href="{{ path('cambiar_lenguaje',{ '_locale' : 'es' }) }}">
@@ -77,14 +79,17 @@
     <div class="footer-container">
         <footer class="wrapper">
             <h3>{{ 'portal.footer' | trans }}</h3>
+            <section id="social">
+                {% include 'MGDBasicBundle:partials:social.html.twig' %}
+            </section>
         </footer>
     </div>
 
 {% endblock %}
 
-{% block javascript %}
-    {% javascripts 'bundles/mgdbasic/js/*.js'  %}
+{% block javascripts %}
+   {# {% javascripts 'bundles/mgdbasic/js/*.js'  %}
         <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {% endjavascripts %}#}
 
 {% endblock %}

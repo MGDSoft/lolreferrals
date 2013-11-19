@@ -26,9 +26,14 @@ class DefaultController extends Controller
 		    ->setMaxResults(5)
 		    ->getQuery();
 
-	    $noticias = $query->getResult();
+        $repoCola = $this->getDoctrine()
+            ->getRepository('MGDBasicBundle:Cola');
 
-	    return array('noticias'=>$noticias);
+        $queue = $repoCola->find(1);
+
+        $noticias = $query->getResult();
+
+	    return array('noticias'=>$noticias , 'queue' => $queue);
     }
 
 	/**

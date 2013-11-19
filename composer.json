@@ -7,6 +7,7 @@
         "psr-0": { "": "src/" }
     },
     "require": {
+        "symfony/icu": "1.0.*@dev",
         "php": ">=5.3.3",
         "symfony/symfony": "2.3.2",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
@@ -20,6 +21,7 @@
         "sensio/generator-bundle": "2.2.2",
         "incenteev/composer-parameter-handler": "~2.0",
 
+
         "leafo/lessphp": "v0.3.9",
         "gedmo/doctrine-extensions":      "dev-master",
         "jms/security-extra-bundle": "dev-master",
@@ -27,9 +29,9 @@
         "egeloen/ckeditor-bundle": "2.*",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/data-fixtures": "dev-master",
-        "raulfraile/ladybug-bundle": "v0.61",
+        "raulfraile/ladybug-bundle": "~1.0",
         "willdurand/faker-bundle": "*",
-        "gregwar/captcha-bundle": "dev-master"
+        "gregwar/captcha-bundle": "1.0.7"
 
 
     },

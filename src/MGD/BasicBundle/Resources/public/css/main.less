@@ -98,6 +98,29 @@ body {
     background: @base-color;
 }
 
+#social{
+
+    div.social{
+        margin-top: 20px;
+        display: block;
+        height: 40px;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        -ms-text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    p{
+        margin:0;
+    }
+
+    #skype_element img{
+        margin: 0px !important;
+        vertical-align: 0px !important;
+    }
+}
+
 .title {
     color: white;
     text-shadow: 2px 2px 1px @shadows-color;
@@ -258,6 +281,20 @@ nav a:hover {
 }
 
 @media only screen and (min-width: 930px) {
+    #social{
+
+        div.social{
+            width: 33%;
+            text-align: center;
+            display: inline-block;
+
+            p{
+                margin:0;
+            }
+
+        }
+
+    }
 
     body {
         background: url('/img/background.jpg') no-repeat top center #e1e0de;

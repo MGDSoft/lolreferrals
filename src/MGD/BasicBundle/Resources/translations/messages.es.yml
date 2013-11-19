@@ -11,28 +11,28 @@ portal:
 
 inicio:
     metas:
-        title: Compra League of Legends referrals 2.0 | Baratos & Rápidos
-        description: Los más baratos League of Legends Referral
+        title: LoL Referrals: Compra League of Legends Referrals | Baratos & Rápidos
+        description: Los League of Legends Referrals mas baratos del mercado. Vendiendo LoL Referrals desde 2012. Compralos ahora! Más baratos que comprarlos en la tienda.
 
     aside:
         titulo: Estadísticas de Referrals
-        slot_1: ~250 referrals al día.
-        slot_2: Referrals hasta nivel 10.
+        slot_1: ~350 referrals al día.
+        slot_2: Subimos League of Legends Referrals hasta nivel 10.
         slot_3: ¡Los precios más baratos!
         slot_4: Seguimiento del pedido.
-        slot_5: ¡Los Referrals son más rentables que RP!
+        slot_5: ¡Los League of Legends Referrals son más rentables que comprar RP en la tienda official de LoL!
 
 pedido:
     metas:
-        title: Encarga League of Legends Referrals 2.0
-        description: Compra tu paquete de League of Legends referral
+        title: Compra League of Legends Referrals | League of Legends Referral
+        description: Compra tu paquete de League of Legends referrala aqui, barato y fácil!
     principal:
-        titulo: ¡El mejor servicio de referrals!
+        titulo: ¡El mejor servicio de LoL referrals!
         texto: >
                   Contamos con el mejor sistema de referrals del mercado, muy rápidos y con precios inmejorables.<br><br>
                   Cuando usted encargue el pedido dispondrá de un código de seguimiento (ID del pedido) en el cual podrá ver el
                   seguimiento del mismo.<br><br>
-                  Recuerde que debes enviar el código de referidos, sin él no podemos empezar su pedido. Lo puedes encontrar <a href="http://leagueoflegends.com/rewards" target="_blank">aqui</a>.
+                  Recuerde que debes enviar el código de referidos, sin él no podemos empezar su pedido. Lo puedes encontrar <a href="http://leagueoflegends.com/rewards" target="_blank">aquí</a>.
                   <br><br>
                   ¡Pague mediante la confianza de paypal!
         packs: Listado de packs
@@ -53,25 +53,25 @@ faq:
     principal:
         titulo: Preguntas y respuestas
 
-        slot_1_title: ¿Que recibiré con esto?
+        slot_1_title: ¿Qué recibiré con esto?
         slot_1_texto: Premios del sistema de referidos: Riot Points, Puntos de Influencia y skins raros!
 
-        slot_2_title: ¿Como funciona?
+        slot_2_title: ¿Cómo funciona?
         slot_2_texto: Creamos las cuentas que has comprado usando tu código de referidos. Entonces procedemos a subirlas al nivel 10 en muy poco tiempo.
 
-        slot_3_title: ¿Donde puedo conseguir el código de referidos?
+        slot_3_title: ¿Dónde puedo conseguir el código de referidos?
         slot_3_texto: Puedes conseguirlo <a href="http://leagueoflegends.com/rewards" target="_blank">aquí</a>. Por supuesto también necesitamos el pago.
 
-        slot_4_title: ¿En que servidores esta disponible?
+        slot_4_title: ¿En qué servidores está disponible?
         slot_4_texto: <ul><li>NA</li><li>EU West</li><li>EU East & Nordic</li><li>Brazil</li><li>Turkey</li></ul>
 
-        slot_5_title: ¿Cuanto tardas en subir las cuentas al nivel 10?
+        slot_5_title: ¿Cuánto tardas en subir las cuentas al nivel 10?
         slot_5_texto: <ul><li>24 - 72 horas dependiendo de la cola.</li><li>Hacemos unos 200 referidos diarios y hacemos lo mejor que podemos para acabar todos los pedidos lo más rápido posible.</li></ul>
 
         slot_6_title: ¿Empiezas mis referidos tan pronto como realizo el pago?
         slot_6_texto: No, dependerá de la cola de pedidos.
 
-        slot_7_title: ¿Cuanto tardan los referidos en ser mostrados en la web de referidos?
+        slot_7_title: ¿Cuánto tardan los referidos en ser mostrados en la web de referidos?
         slot_7_texto: 24 - 48 horas dependiendo del tiempo que tarda Riot en actualizar la información.
 
         slot_8_title: ¿Puede mi cuenta ser baneada?
@@ -84,9 +84,9 @@ faq:
         slot_10_texto: Porque no han sido actualizados completamente por Riot. Perfectamente normal, espera entre 24 y 48 horas.
 
         slot_11_title: ¿Influyen los parches en el tiempo de subir las cuentas?
-        slot_11_texto: Si.
+        slot_11_texto: Sí.
 
-        slot_12_title: ¿Se admite algun tipo de devolución?
+        slot_12_title: ¿Se admite algún tipo de devolución?
         slot_12_texto: Debido a la naturaleza intangible e intransferible de este producto no se devolverá el importe pagado por este.
 
     aside:
@@ -98,14 +98,14 @@ contacto:
 
     metas:
             title: Información de contacto de www.referralslol.com
-            description: Información sobre League of Legends referral-service
+            description: Información sobre el servicio de League of Legends Referrals.
 
     enviado: Mensaje enviado correctamente, en un breve periodo le contestaremos.
 
     principal:
         titulo: Contacta con nosotros
         texto: >
-                  ¿Aun tienes alguna pregunta sin respuesta?.<br>¿O tu código de referencia (ID) no funciona y no sabes cuando tu pedido estará finalizado?<br>¡No dudes en ponerte en contacto con nosotros!<br>¡Te contestaremos en 24horas!
+                  ¿Aún tienes alguna pregunta sin respuesta?.<br>¿O tu código de referencia (ID) no funciona y no sabes cuando tu pedido estará finalizado?<br>¡No dudes en ponerte en contacto con nosotros!<br>¡Te contestaremos en 24horas!
     aside:
         titulo: ¡Contacta con nosotros!
         texto: Para cualquier duda que tengas te atenderá "nuestro mejor empleado" Mundo Ejecutivo.
@@ -121,7 +121,7 @@ seguimiento:
                   Escribiendo el ID del pedido podrá ver como va el estado de su pedido.
 
     aside:
-        titulo: ¿Hay algun problema con el ID?
+        titulo: ¿Hay algún problema con el ID?
         texto: Entonces contacte con nosotros en nuestra zona de contacto.
 
 formularios:
@@ -155,10 +155,13 @@ formularios:
 pago:
     finalizado: >
               <b>Su pedido se realizó correctamente</b>,
-              Recibira un correo comunicándole su id de seguimiento si tiene cualquier problema diríjase a
+              Recibirá un correo comunicándole su id de seguimiento si tiene cualquier problema diríjase a
               nuestra sección de contacto. ¡Gracias por su compra!
     correo:
         asunto: Confirmación de pedido en www.referralslol.com
         articulo: Su pago de %articulo% sido recibido correctamente.
-        seguimiento: Puede seguir el estado de su pedido con el siguiente codigo : %pedidoId%
+        seguimiento: Puede seguir el estado de su pedido con el siguiente código : %pedidoId%
         extra: ¡Gracias por su compra!
+
+common:
+    cola_actual: Cola actual: <span>"%dias%"</span> dias.
