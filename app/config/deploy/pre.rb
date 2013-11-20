@@ -1,7 +1,7 @@
 set :application, "referralslol"
 set :domain,      "#{application}.com"
 set :deploy_to,   "/var/www/vhosts/#{domain}/subdomains/donq"
-#set :app_path,    "app"
+set :app_path,    "app"
 set :user,        "referralslol"
 set :use_sudo,    false
 
