@@ -1,6 +1,6 @@
 set :application, "referralslol"
 set :domain,      "#{application}.com"
-set :deploy_to,   "/var/www/vhosts/#{domain}/subdomains/donq"
+set :deploy_to,   "/var/www/vhosts/#{domain}/httpdocs/deployer"
 set :app_path,    "app"
 set :user,        "referralslol"
 set :use_sudo,    false
@@ -17,7 +17,7 @@ role :app,        domain, :primary => true       # This may be the same as your 
 set  :keep_releases,  3
 
 set :use_composer, true
-# set :update_vendrors, true
+set :update_vendrors, true
 set :dump_assetic_assets, true
 
 # Be more verbose by uncommenting the following line

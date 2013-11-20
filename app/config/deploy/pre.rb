@@ -1,7 +1,7 @@
 set :application, "referralslol"
 set :domain,      "#{application}.com"
-set :deploy_to,   "/var/www/vhosts/#{domain}/subdomains/test"
-set :app_path,    "app"
+set :deploy_to,   "/var/www/vhosts/#{domain}/subdomains/donq"
+#set :app_path,    "app"
 set :user,        "referralslol"
 set :use_sudo,    false
 
@@ -17,10 +17,11 @@ role :app,        domain, :primary => true       # This may be the same as your 
 set  :keep_releases,  3
 
 set :use_composer, true
-set :update_vendrors, true
+# set :update_vendrors, true
+set :dump_assetic_assets, true
 
 # Be more verbose by uncommenting the following line
 logger.level = Logger::MAX_LEVEL
 
 set :shared_files,        ["app/config/parameters.yml"]
-set :shared_children,     [app_path + "/logs", web_path + "/uploads"]
+set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor"]
