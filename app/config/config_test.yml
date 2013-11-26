@@ -18,9 +18,11 @@ swiftmailer:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   %database_driver% #pdo_sqlite
+        driver:   pdo_sqlite
         memory:   true
         charset:  UTF8
+        path:     %kernel.root_dir%\test.db
+
         #host:     %database_host%
         #port:     %database_port%
         #dbname:   %database_name%test

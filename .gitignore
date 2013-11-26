@@ -1,4 +1,5 @@
 vendor
+app/test.db
 app/cache
 app/logs/*
 web/bundles/

@@ -82,9 +82,14 @@ class ContactoControllerTest extends FunctionalTestCase
             echo $usuario->getUsername()."\n";
         }*/
 
-    private function setValuesForm($crawler,$nombre = 'test',$email = TestData::email,$pedidoId = TestData::pedidoId
-        ,$mensaje = 'test',$captcha=true)
-    {
+    private function setValuesForm(
+        $crawler,
+        $nombre = 'test',
+        $email = TestData::email,
+        $pedidoId = TestData::pedidoId,
+        $mensaje = 'test',
+        $captcha = true
+    ){
         if ($captcha)
         {
             $session = $this->container->get('session');
