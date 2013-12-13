@@ -2,12 +2,14 @@
 
 namespace MGD\BasicBundle\Controller;
 
+use Doctrine\Common\Persistence\AbstractManagerRegistry;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\Entity\Pedido;
 use MGD\BasicBundle\Entity\Articulo;
 use MGD\BasicBundle\Form\PedidoType;
 
-use MGD\BasicBundle\PedidoPago;
+use MGD\BasicBundle\Listener\PedidoPagoListener;
+use Monolog\Logger;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -18,6 +20,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use JMS\DiExtraBundle\Annotation as DI;
+use Symfony\Component\Routing\Router;
+use Doctrine\ORM\EntityManager;
 
 class PedidoController extends Controller
 {
@@ -58,7 +62,7 @@ class PedidoController extends Controller
     protected $router;
 
     /**
-     * @var PedidoPago
+     * @var PedidoPagoListener
      *
      * @DI\Inject("pedido.pago")
      */
@@ -136,73 +140,11 @@ class PedidoController extends Controller
             return new RedirectResponse($url);
         }
 
-        $this->pagado($pedido);
-    }
+        $this->get('session')->getFlashBag()->add('success',
+            $this->get('translator')->trans('pago.finalizado')
+        );
 
-    private function pagado(Pedido $pedido)
-    {
-        $this->log->info('Validado pago');
-
-        //$refenciaPaypal = $this->paypal_ipn->getOrder()->getTxnId();
-
-        $estado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
-        $pedido->setEstado($estado);
-
-        $this->em->persist($pedido);
-        $this->em->flush();
-
-        $this->log->info('pedido insertado CORRECTAMENTE!');
-
-        $this->enviarCorreo($pedido);
-        $this->enviarCorreoAdmin($pedido); //copia
-
-    }
-
-    private function enviarCorreo(Pedido $pedido)
-    {
-        //preparing message
-        $message = \Swift_Message::newInstance()
-            ->setSubject($this->get('translator')->trans('pago.correo.asunto'))
-            ->setFrom($this->container->getParameter('email_app'), 'ReferralLol.com')
-            ->setTo($pedido->getEmail(), $pedido . " ". $pedido->getRefPaypal())
-            ->setBody($this->renderView('OrderlyPayPalIpnBundle:Default:confirmation_email.html.twig',
-                    // Prepare the variables to populate the email template:
-                    array(
-                        'pedido' => $pedido,
-                    )
-                ), 'text/html')
-        ;
-
-        if (!$this->get('mailer')->send($message))
-        {
-            $this->log->addCritical("No se ha enviado el correo para ".$pedido->getEmail().", despues del pago");
-        }
-    }
-
-    private function enviarCorreoAdmin(Pedido $pedido)
-    {
-        $referralsLink = $pedido->getReferralLink();
-        $email = $pedido->getEmail();
-
-        //preparing message
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Nuevo pedido '.$pedido)
-            ->setFrom($this->container->getParameter('email_app'), 'ReferralLol.com')
-            ->setTo($this->container->getParameter('email_pedido'), $pedido . " ". $pedido->getRefPaypal())
-            ->setBody($this->renderView('OrderlyPayPalIpnBundle:Default:confirmation_email_admin.html.twig',
-                    // Prepare the variables to populate the email template:
-                    array(
-                        'pedido' => $pedido,
-                        'referralsLink' => $referralsLink,
-                        'email' => $email,
-                    )
-                ), 'text/html')
-        ;
-
-        if (!$this->get('mailer')->send($message))
-        {
-            $this->log->addCritical("No se ha enviado el correo para ".$pedido->getEmail().", despues del pago");
-        }
+        return new RedirectResponse($this->router->generate('home'));
     }
 
     /**

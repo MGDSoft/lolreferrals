@@ -31,7 +31,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 
 
-class PedidoPago
+class PedidoPagoListener
 {
     /**
      * @var EntityPluginController

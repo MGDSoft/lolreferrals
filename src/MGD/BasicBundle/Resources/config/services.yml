@@ -6,5 +6,12 @@ services:
             -  { name: kernel.event_listener, event: kernel.response, method: onKernelRequest }
 
     pedido.pago:
-        class: MGD\BasicBundle\Listener\PedidoPago
+        class: MGD\BasicBundle\Listener\PedidoPagoListener
         arguments: [@payment.plugin_controller, @logger, @router]
+
+
+    pedido.pagado:
+        class: MGD\BasicBundle\Listener\PedidoPagadoListener
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: kernel.event_listener, event: payment.state_change, method: onPaymentStateChange }
