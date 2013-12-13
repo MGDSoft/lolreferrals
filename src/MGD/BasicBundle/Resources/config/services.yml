@@ -1,0 +1,10 @@
+services:
+    example.locale_listener:
+        class: MGD\BasicBundle\Listener\LocaleListener
+        arguments: [%locale%]
+        tags:
+            -  { name: kernel.event_listener, event: kernel.response, method: onKernelRequest }
+
+    pedido.pago:
+        class: MGD\BasicBundle\Listener\PedidoPago
+        arguments: [@payment.plugin_controller, @logger, @router]

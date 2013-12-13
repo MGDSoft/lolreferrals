@@ -20,6 +20,7 @@ class LanguageController extends Controller {
         if (in_array($_locale,$this->languageDispo))
         {
             $request->setLocale($_locale);
+            $request->getSession()->set('_locale',$_locale);
         }
 
         return $this->redirect($this->generateUrl('home') );

@@ -25,6 +25,8 @@ class AppKernel extends Kernel
 	        new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
 	        new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 	        new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+            new JMS\Payment\CoreBundle\JMSPaymentCoreBundle(),
+            new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
 
 
 	        new MGD\BasicBundle\MGDBasicBundle(),

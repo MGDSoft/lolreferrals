@@ -41,7 +41,7 @@ class Articulo
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="precio", type="string", length=100))
+	 * @ORM\Column(name="precio", type="float")
 	 * @Assert\NotBlank()
 	 */
 	private $precio;
@@ -59,6 +59,8 @@ class Articulo
 	 * @ORM\Column(name="imagen", type="string", length=255, nullable=true)
 	 */
 	private $imagenPath;
+
+    private $form;
 
 	/**
 	 * Get file.
@@ -276,4 +278,36 @@ class Articulo
     {
         return $this->precio;
     }
+
+    /**
+     * Set form
+     *
+     * @param string $form
+     * @return Articulo
+     */
+    public function setForm($form)
+    {
+        $this->form = $form;
+
+        return $this;
+    }
+
+    /**
+     * Get form
+     *
+     * @return string
+     */
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    /**
+     * Get prince in Dollar
+     */
+    public function getPrecioDolar()
+    {
+        return round( $this->getPrecio() * 1.3792,0);
+    }
+
 }

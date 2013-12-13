@@ -66,6 +66,15 @@ services:
 
 gregwar_captcha: ~
 
+jms_payment_core:
+    secret: %secret%
+
+jms_payment_paypal:
+    username: %paypal_api_username%
+    password: %paypal_api_password%
+    signature: %paypal_api_signature%
+    debug: %paypal_api_debug%
+
 orderly_pay_pal_ipn:
 
         # If set to false then service loads settings with "sandbox_" prefix

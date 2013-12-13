@@ -4,7 +4,6 @@ namespace MGD\BasicBundle\Controller;
 use MGD\BasicBundle\Entity\Contacto;
 use MGD\BasicBundle\Entity\Pedido;
 use MGD\BasicBundle\Form\ContactoType;
-use MGD\BasicBundle\Form\PedidoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;

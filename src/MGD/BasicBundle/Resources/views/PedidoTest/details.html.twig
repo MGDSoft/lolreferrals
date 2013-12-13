@@ -1,0 +1,31 @@
+{% extends "MGDBasicBundle::layout.html.twig" %}
+
+{% block title %}{{ 'pedido.metas.title' | trans }}{% endblock %}
+{% block description %}{{ 'pedido.metas.description' | trans }}{% endblock %}
+
+{% block body_principal %}
+
+    <form id="contacto" action="{{ path('payment_details', {'id': 1 }) }}" method="post">
+        {{ form_widget(form) }}
+
+        <input type="submit" class="btn btn-primary" value="{{ 'formularios.seguimiento.submit' | trans }}">
+
+    </form>
+
+{% endblock %}
+
+{% block central %}
+
+{% endblock %}
+
+{% block aside_principal %}
+
+    <h3>{{ 'pedido.aside.titulo' | trans }}</h3>
+    <p>{{ 'pedido.aside.texto' | trans | raw }}</p>
+    <br>
+    <a href="http://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid=donq18&ftab=AllFeedback&myworld=true" target="_blank">
+        <img src="{{ asset('img/ebay_2.jpg') }}">
+    </a>
+    <br><br>
+
+{% endblock %}

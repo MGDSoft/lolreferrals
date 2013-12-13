@@ -37,11 +37,6 @@ class LoadUsuariosData extends AbstractFixture implements OrderedFixtureInterfac
 
 	}
 
-	private function add ($username,$password,$salt,Rol $rol)
-	{
-		return array('username' => $username,'password' => $password,'salt' => $salt, 'rol' => $rol);
-	}
-
 	public function getOrder()
 	{
 		return 10; // the order in which fixtures will be loaded

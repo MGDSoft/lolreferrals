@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "abbab2d7b6fbf879e6086c62978ada7e",
+    "hash": "f38b7e20688dcd7d71473515637ed4b2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -300,12 +300,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "dfc0dc9a3f6258c878768218fe49cc092ea8a8d1"
+                "reference": "4a81be009d8437326acfcdd68888d1c5b8e2fb40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/dfc0dc9a3f6258c878768218fe49cc092ea8a8d1",
-                "reference": "dfc0dc9a3f6258c878768218fe49cc092ea8a8d1",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/4a81be009d8437326acfcdd68888d1c5b8e2fb40",
+                "reference": "4a81be009d8437326acfcdd68888d1c5b8e2fb40",
                 "shasum": ""
             },
             "require": {
@@ -348,7 +348,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2013-10-16 14:26:38"
+            "time": "2013-12-02 21:23:23"
         },
         {
             "name": "doctrine/dbal",
@@ -834,12 +834,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/l3pp4rd/DoctrineExtensions.git",
-                "reference": "1b940f2069fb897df61fb55d96d508db3851ced3"
+                "reference": "f78aec9a584fb7bd5ff234ba632ab76e7d221a60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/1b940f2069fb897df61fb55d96d508db3851ced3",
-                "reference": "1b940f2069fb897df61fb55d96d508db3851ced3",
+                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/f78aec9a584fb7bd5ff234ba632ab76e7d221a60",
+                "reference": "f78aec9a584fb7bd5ff234ba632ab76e7d221a60",
                 "shasum": ""
             },
             "require": {
@@ -906,7 +906,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2013-11-17 16:47:29"
+            "time": "2013-12-06 19:17:11"
         },
         {
             "name": "gregwar/captcha",
@@ -1012,30 +1012,32 @@
         },
         {
             "name": "incenteev/composer-parameter-handler",
-            "version": "v2.0.0",
+            "version": "v2.1.0",
             "target-dir": "Incenteev/ParameterHandler",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Incenteev/ParameterHandler.git",
-                "reference": "v2.0.0"
+                "reference": "143272a0a09c62616a3c8011fc165a10c6b35241"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Incenteev/ParameterHandler/zipball/v2.0.0",
-                "reference": "v2.0.0",
+                "url": "https://api.github.com/repos/Incenteev/ParameterHandler/zipball/143272a0a09c62616a3c8011fc165a10c6b35241",
+                "reference": "143272a0a09c62616a3c8011fc165a10c6b35241",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/yaml": ">=2.0,<3.0"
+                "symfony/yaml": "~2.0"
             },
             "require-dev": {
-                "composer/composer": "*"
+                "composer/composer": "1.0.*@dev",
+                "phpspec/prophecy-phpunit": "~1.0",
+                "symfony/filesystem": "~2.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -1058,20 +1060,20 @@
             "keywords": [
                 "parameters management"
             ],
-            "time": "2013-04-06 17:15:44"
+            "time": "2013-12-07 10:10:39"
         },
         {
             "name": "jdorn/sql-formatter",
-            "version": "v1.2.9",
+            "version": "v1.2.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jdorn/sql-formatter.git",
-                "reference": "v1.2.9"
+                "reference": "8859d664737492d313c34796731b35eca851b362"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/v1.2.9",
-                "reference": "v1.2.9",
+                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/8859d664737492d313c34796731b35eca851b362",
+                "reference": "8859d664737492d313c34796731b35eca851b362",
                 "shasum": ""
             },
             "require": {
@@ -1108,7 +1110,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2013-04-26 18:42:52"
+            "time": "2013-11-27 22:51:13"
         },
         {
             "name": "jms/aop-bundle",
@@ -1350,18 +1352,134 @@
             "time": "2012-11-18 18:08:43"
         },
         {
+            "name": "jms/payment-core-bundle",
+            "version": "1.0.0",
+            "target-dir": "JMS/Payment/CoreBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/JMSPaymentCoreBundle.git",
+                "reference": "9a7629f4be4489606f3bd0956728a887e2c2b855"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSPaymentCoreBundle/zipball/9a7629f4be4489606f3bd0956728a887e2c2b855",
+                "reference": "9a7629f4be4489606f3bd0956728a887e2c2b855",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mcrypt": "*",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/orm": "*",
+                "jms/aop-bundle": "*",
+                "jms/di-extra-bundle": "*",
+                "jms/payment-paypal-bundle": "*@dev",
+                "sensio/framework-extra-bundle": "*",
+                "symfony/browser-kit": "*",
+                "symfony/class-loader": "*",
+                "symfony/css-selector": "*",
+                "symfony/finder": "*",
+                "symfony/form": "*",
+                "symfony/process": "*",
+                "symfony/twig-bundle": "*",
+                "symfony/validator": "*",
+                "symfony/yaml": "*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\Payment\\CoreBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com",
+                    "homepage": "http://jmsyst.com",
+                    "role": "Developer of wrapped JMSSerializerBundle"
+                }
+            ],
+            "description": "This bundle is providing the foundation for various payment plugins.",
+            "homepage": "http://jmsyst.com/bundles/JMSPaymentCoreBundle",
+            "keywords": [
+                "payment"
+            ],
+            "time": "2013-08-14 16:55:50"
+        },
+        {
+            "name": "jms/payment-paypal-bundle",
+            "version": "1.0.0",
+            "target-dir": "JMS/Payment/PaypalBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/JMSPaymentPaypalBundle.git",
+                "reference": "5c58d9957814d83712b1e07a0acbf97c4f7d1f5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSPaymentPaypalBundle/zipball/5c58d9957814d83712b1e07a0acbf97c4f7d1f5b",
+                "reference": "5c58d9957814d83712b1e07a0acbf97c4f7d1f5b",
+                "shasum": ""
+            },
+            "require": {
+                "jms/payment-core-bundle": "~1.0",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.0"
+            },
+            "require-dev": {
+                "symfony/browser-kit": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "JMS\\Payment\\PaypalBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com",
+                    "homepage": "http://jmsyst.com",
+                    "role": "Developer of wrapped JMSSerializerBundle"
+                }
+            ],
+            "description": "Payment Bundle providing access to the PayPal API",
+            "homepage": "http://jmsyst.com/bundles/JMSPaymentPaypalBundle",
+            "keywords": [
+                "payment",
+                "paypal"
+            ],
+            "time": "2013-08-14 16:58:12"
+        },
+        {
             "name": "jms/security-extra-bundle",
             "version": "dev-master",
             "target-dir": "JMS/SecurityExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle.git",
-                "reference": "b342e02983e9cd522d9dce1c0dfeef27c8a25850"
+                "reference": "4e8a823093cf63fc21f57169d1b485c31bf5c798"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSSecurityExtraBundle/zipball/b342e02983e9cd522d9dce1c0dfeef27c8a25850",
-                "reference": "b342e02983e9cd522d9dce1c0dfeef27c8a25850",
+                "url": "https://api.github.com/repos/schmittjoh/JMSSecurityExtraBundle/zipball/4e8a823093cf63fc21f57169d1b485c31bf5c798",
+                "reference": "4e8a823093cf63fc21f57169d1b485c31bf5c798",
                 "shasum": ""
             },
             "require": {
@@ -1418,7 +1536,7 @@
                 "secure",
                 "security"
             ],
-            "time": "2013-11-06 16:12:19"
+            "time": "2013-12-06 16:24:35"
         },
         {
             "name": "jordillonch/crud-generator",
@@ -2331,16 +2449,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.0.2",
+            "version": "v5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "f3917ecef35a4e4d98b303eb9fee463bc983f379"
+                "reference": "32edc3b0de0fdc1b10f5c4912e8677b3f411a230"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/f3917ecef35a4e4d98b303eb9fee463bc983f379",
-                "reference": "f3917ecef35a4e4d98b303eb9fee463bc983f379",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/32edc3b0de0fdc1b10f5c4912e8677b3f411a230",
+                "reference": "32edc3b0de0fdc1b10f5c4912e8677b3f411a230",
                 "shasum": ""
             },
             "require": {
@@ -2376,7 +2494,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2013-08-30 12:35:21"
+            "time": "2013-12-03 13:33:24"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -2758,16 +2876,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.14.2",
+            "version": "v1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64"
+                "reference": "85e4ff98000157ff753d934b9f13659a953f5666"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/ca445842fcea4f844d68203ffa2d00f5e3cdea64",
-                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/85e4ff98000157ff753d934b9f13659a953f5666",
+                "reference": "85e4ff98000157ff753d934b9f13659a953f5666",
                 "shasum": ""
             },
             "require": {
@@ -2776,7 +2894,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14-dev"
+                    "dev-master": "1.15-dev"
                 }
             },
             "autoload": {
@@ -2803,26 +2921,26 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-10-30 08:20:53"
+            "time": "2013-12-06 07:47:10"
         },
         {
             "name": "willdurand/faker-bundle",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "target-dir": "Bazinga/Bundle/FakerBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaFakerBundle.git",
-                "reference": "aaf7f15e2d96c5ffdd1c322c9edc041768adfb92"
+                "reference": "626531e087f996b202c0c3d5e430953ea7a8955e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaFakerBundle/zipball/aaf7f15e2d96c5ffdd1c322c9edc041768adfb92",
-                "reference": "aaf7f15e2d96c5ffdd1c322c9edc041768adfb92",
+                "url": "https://api.github.com/repos/willdurand/BazingaFakerBundle/zipball/626531e087f996b202c0c3d5e430953ea7a8955e",
+                "reference": "626531e087f996b202c0c3d5e430953ea7a8955e",
                 "shasum": ""
             },
             "require": {
                 "fzaninotto/faker": "~1.1",
-                "symfony/framework-bundle": ">=2.0,<2.4-dev"
+                "symfony/framework-bundle": "~2.0"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -2847,7 +2965,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2013-08-13 21:37:42"
+            "time": "2013-12-05 15:47:22"
         }
     ],
     "packages-dev": [

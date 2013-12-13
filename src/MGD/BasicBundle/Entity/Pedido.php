@@ -31,9 +31,9 @@ class Pedido
     private $articulo;
 	/**
 	 * @ORM\ManyToOne(targetEntity="Estado", fetch="EAGER")
-	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
 	 */
-	private $estado;
+	private $estado=null;
 	/**
 	 * @var string
 	 *
@@ -58,7 +58,7 @@ class Pedido
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="ref_paypal", type="string", length=255)
+	 * @ORM\Column(name="ref_paypal", type="string", length=255,nullable=true)
 	 */
 	private $refPaypal;
 	/**
@@ -69,6 +69,19 @@ class Pedido
 	 */
 	private $fecha;
 
+    /**
+     * @var PaymentInstruction
+     *
+     * @ORM\OneToOne(targetEntity="JMS\Payment\CoreBundle\Entity\PaymentInstruction")
+     */
+    private $paymentInstruction;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(type="decimal", precision = 2)
+     */
+    private $total;
 
     /**
      * Constructor
@@ -88,6 +101,8 @@ class Pedido
 	    $this->id = uniqid('LOL' . date("Ymdhis"));
 
     }
+
+
 
     /**
      * Set ip
@@ -284,5 +299,55 @@ class Pedido
     public function getId()
     {
         return $this->id;
+    }
+
+
+
+    /**
+     * Set paymentInstruction
+     *
+     * @param \JMS\Payment\CoreBundle\Entity\PaymentInstruction $paymentInstruction
+     * @return Pedido
+     */
+    public function setPaymentInstruction(\JMS\Payment\CoreBundle\Entity\PaymentInstruction $paymentInstruction = null)
+    {
+        $this->paymentInstruction = $paymentInstruction;
+    
+        return $this;
+    }
+
+    /**
+     * Get paymentInstruction
+     *
+     * @return \JMS\Payment\CoreBundle\Entity\PaymentInstruction 
+     */
+    public function getPaymentInstruction()
+    {
+        return $this->paymentInstruction;
+    }
+
+
+
+    /**
+     * Set total
+     *
+     * @param float $total
+     * @return Pedido
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+    
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return float 
+     */
+    public function getTotal()
+    {
+        return $this->total;
     }
 }
