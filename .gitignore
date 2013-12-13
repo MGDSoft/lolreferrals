@@ -8,7 +8,6 @@ web/css/
 web/uploads/
 bin/
 
-composer.lock
 .rsync_cache
 
 app/config/parameters.yml

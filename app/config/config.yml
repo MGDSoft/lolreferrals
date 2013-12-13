@@ -74,24 +74,3 @@ jms_payment_paypal:
     password: %paypal_api_password%
     signature: %paypal_api_signature%
     debug: %paypal_api_debug%
-
-orderly_pay_pal_ipn:
-
-        # If set to false then service loads settings with "sandbox_" prefix
-        islive:  %paypal_is_live%
-
-        # Constants for the live environment (default settings in Configuration.php)
-        email:   %paypal_email%
-        url:     https://www.paypal.com/cgi-bin/webscr
-        debug:   %kernel.debug%
-
-        # Constants for the sandbox environment (default settings in Configuration.php)
-        sandbox_email:   %paypal_email_sandbox%
-        sandbox_url:     https://www.sandbox.paypal.com/cgi-bin/webscr
-        sandbox_debug:   true
-
-        drivers:
-            orm:
-                object_manager: doctrine.orm.entity_manager
-                classes: ~
-

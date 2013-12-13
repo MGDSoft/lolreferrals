@@ -32,7 +32,6 @@ class AppKernel extends Kernel
 	        new MGD\BasicBundle\MGDBasicBundle(),
 	        new MGD\FrameworkBundle\MGDFrameworkBundle(),
 	        new MGD\AdminBundle\MGDAdminBundle(),
-	        new Orderly\PayPalIpnBundle\OrderlyPayPalIpnBundle(),
 
         );
 

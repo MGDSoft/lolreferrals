@@ -1,24 +1,25 @@
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: lolreferrals
+    database_user: root
+    database_password: null
 
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: miguelgd1985@gmail.com
+    mailer_password: Makalister10
 
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    locale: en
+    secret: s3cr3t0pr0
 
-    email_contacto: "p3ter@troller.com"
-    email_pedido: "p3ter@troller.com"
-    email_app: "p3ter@troller.com"
-    email_dev: "p3ter@troller.com"
+    email_contacto: p3ter@troller.com
+    email_pedido: p3ter@troller.com
+    email_app: p3ter@troller.com
+    email_dev: p3ter@troller.com
 
-    paypal_is_live: true
-    paypal_email: "payopal@payopal.com"
-    paypal_email_sandbox: "payopal@payopal.es"
+    paypal_api_username: miguelgd_api1.mgdsoftware.es
+    paypal_api_password: 1375996100
+    paypal_api_signature: AgRXo3ihgSV2eBMxunVdm8QL1HVoAq2poslzWnrcbBIsWgOc5ZLVN1jY
+    paypal_api_debug: true
