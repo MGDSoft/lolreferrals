@@ -1,4 +1,4 @@
-            <div class="row" style="padding-bottom: 20px;margin-bottom: 50px;border-bottom: 1px dashed #ccc">
+            <div class="row">
                 <ul class="span4">
                     <h3>Opciones de la página</h3>
 
@@ -9,6 +9,7 @@
 
 
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <li><a href="{{ path('cupondescuento') }}">Cupones descuento</a></li>
                         <li><a href="{{ path('estado') }}">Estados</a></li>
                         <li><a href="{{ path('articulo') }}">Articulos en venta</a></li>
                         <li><a href="{{ path('cola_edit', { 'id': 1 }) }}">Cola</a></li>

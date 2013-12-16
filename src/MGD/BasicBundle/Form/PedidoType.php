@@ -10,6 +10,15 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PedidoType extends AbstractType
 {
+    private $name='mgd_basicbundle_pedidotype';
+
+    function __construct($id='')
+    {
+        $this->name .= $id;
+
+    }
+
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -18,18 +27,18 @@ class PedidoType extends AbstractType
     {
         $builder
             ->add('referralLink','text',array(
-                    'label'=> 'Referral-Link',
+                    'label'=> 'formularios.pedido.referral_link.label',
                     'attr' => array(
-                        'placeholder' => 'Url Referral-Link',
+                        'placeholder' => 'formularios.pedido.referral_link.placeholder',
                     ),
                     'constraints' => array(
                         new NotBlank(),
                     ),
                 ))
             ->add('email','email',array(
-                    'label'=> 'formularios.contacto.email.label',
+                    'label'=> 'formularios.pedido.email.label',
                     'attr' => array(
-                        'placeholder' => 'formularios.contacto.email.placeholder',
+                        'placeholder' => 'formularios.pedido.email.placeholder',
                     ),
                     'constraints' => array(
                         new NotBlank(),
@@ -55,6 +64,7 @@ class PedidoType extends AbstractType
      */
     public function getName()
     {
-        return 'mgd_adminbundle_pedidotype';
+
+        return $this->name ;
     }
 }

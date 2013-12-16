@@ -1,0 +1,5 @@
+input[type="radio"]
+{
+    float: left !important;
+    margin-right: 15px;
+}

@@ -38,6 +38,7 @@ class TestData extends AbstractFixture implements OrderedFixtureInterface
         $pedido->setId(self::pedidoId);
         $pedido->setArticulo($articulo);
         $pedido->setRefPaypal("RE123435ASd");
+        $pedido->setTotal(25);
         $pedido->setEmail(self::email);
         $pedido->setEstado($estado);
 

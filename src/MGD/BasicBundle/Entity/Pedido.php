@@ -24,16 +24,25 @@ class Pedido
      * @ORM\GeneratedValue(strategy="NONE")
      */
     private $id;
+
 	/**
 	 * @ORM\ManyToOne(targetEntity="Articulo", fetch="EAGER")
 	 * @ORM\JoinColumn(name="articulo_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
 	 */
     private $articulo;
+
 	/**
 	 * @ORM\ManyToOne(targetEntity="Estado", fetch="EAGER")
 	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
 	 */
-	private $estado=null;
+	private $estado;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CuponDescuento")
+     * @ORM\JoinColumn(name="cupon_id", referencedColumnName="id", nullable=true)
+     */
+    private $cuponDescuento;
+
 	/**
 	 * @var string
 	 *
@@ -228,7 +237,7 @@ class Pedido
 
 	public function __toString(){
 		return $this->articulo.', '.$this->fecha->format('Y-M-d H:i:s').', '.$this->email
-			.', estado Actual: '.$this->estado;
+			.', estado Actual: '.$this->estado.($this->cuponDescuento ? ", Descuento: ".$this->cuponDescuento: "");
 	}
 
     /**
@@ -350,4 +359,28 @@ class Pedido
     {
         return $this->total;
     }
+
+    /**
+     * Set cuponDescuento
+     *
+     * @param CuponDescuento $cuponDescuento
+     * @return Pedido
+     */
+    public function setCuponDescuento(CuponDescuento $cuponDescuento)
+    {
+        $this->cuponDescuento = $cuponDescuento;
+    
+        return $this;
+    }
+
+    /**
+     * Get cuponDescuento
+     *
+     * @return CuponDescuento
+     */
+    public function getCuponDescuento()
+    {
+        return $this->cuponDescuento;
+    }
+
 }

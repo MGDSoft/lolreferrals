@@ -1,17 +1,20 @@
 services:
-    example.locale_listener:
+    mgd_basic.locale_listener:
         class: MGD\BasicBundle\Listener\LocaleListener
         arguments: [%locale%]
         tags:
             -  { name: kernel.event_listener, event: kernel.response, method: onKernelRequest }
 
-    pedido.pago:
-        class: MGD\BasicBundle\Listener\PedidoPagoListener
+    pedido.pago_service:
+        class: MGD\BasicBundle\Service\PedidoPagoService
         arguments: [@payment.plugin_controller, @logger, @router]
-
 
     pedido.pagado:
         class: MGD\BasicBundle\Listener\PedidoPagadoListener
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@service_container]
         tags:
-            - { name: kernel.event_listener, event: payment.state_change, method: onPaymentStateChange }
+            - { name: kernel.event_listener, event: mgd.pedido_pagado, method: onPayment}
+
+    cupon_descuento.controller:
+        class:     MGD\BasicBundle\Controller\CuponDescuentoController
+        arguments: [@service_container]

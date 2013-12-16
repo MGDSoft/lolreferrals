@@ -6,9 +6,12 @@ use Doctrine\Common\Persistence\AbstractManagerRegistry;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\Entity\Pedido;
 use MGD\BasicBundle\Entity\Articulo;
+use MGD\BasicBundle\Entity\CuponDescuento;
+use MGD\BasicBundle\Event\PedidoPagadoEvent;
+use MGD\BasicBundle\Form\CuponDescuentoType;
 use MGD\BasicBundle\Form\PedidoType;
 
-use MGD\BasicBundle\Listener\PedidoPagoListener;
+use MGD\BasicBundle\Service\PedidoPagoService;
 use Monolog\Logger;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -23,6 +26,11 @@ use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\Routing\Router;
 use Doctrine\ORM\EntityManager;
 
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+
 class PedidoController extends Controller
 {
 
@@ -34,7 +42,7 @@ class PedidoController extends Controller
     protected  $request;
 
     /**
-     * @var AbstractManagerRegistry
+     * @var Session
      *
      * @DI\Inject
      */
@@ -62,11 +70,19 @@ class PedidoController extends Controller
     protected $router;
 
     /**
-     * @var PedidoPagoListener
+     * @var PedidoPagoService
      *
-     * @DI\Inject("pedido.pago")
+     * @DI\Inject("pedido.pago_service")
      */
     protected $pedidoPago;
+
+    /**
+     * @var CuponDescuentoController
+     *
+     * @DI\Inject("cupon_descuento.controller")
+     */
+    protected $cDescController;
+
 
 	/**
      * @Route("/en/order/",defaults={"_locale" = "en"}, name="pedido_en")
@@ -76,20 +92,59 @@ class PedidoController extends Controller
      */
     public function indexAction()
     {
+        $cuponDescuentoForm = $this->cDescController->indexForm();
+
 	    /** @var \MGD\BasicBundle\Entity\Articulo[] $articulos */
 	    $articulos = $this->em->getRepository("MGDBasicBundle:Articulo")->findAll();
 
+        $descuento = $this->getDescuentoSession();
 	    foreach($articulos as $articulo)
 	    {
-            $form = $this->createForm(new PedidoType(), null);
+            if ($descuento)
+                $articulo->setDescuento($descuento);
+
+            $form = $this->createForm(new PedidoType($articulo->getId()), null);
             $articulo->setForm($form->createView());
 	    }
 
-	    return array(
-		    'articulos' => $articulos,
-	    );
 
+	    return array(
+            'descuento' => $descuento,
+		    'articulos' => $articulos,
+            'cuponDescuentoForm' => $cuponDescuentoForm->createView(),
+	    );
     }
+
+    /**
+     * @return CuponDescuento
+     */
+    private function getDescuentoSession()
+    {
+        if (! $cuponDescuento = $this->getRequest()->getSession()->get('cuponDescuento'))
+            return null;
+
+        $serializer = $this->container->get('jms_serializer');
+
+        if (!$cuponDescuento = $serializer->deserialize($cuponDescuento,'MGD\BasicBundle\Entity\CuponDescuento', 'json'))
+            return null;
+
+
+        /** @var CuponDescuento $cuponDescuentoEntity */
+        $cuponDescuentoEntity = $this->em->merge($cuponDescuento);
+        $this->em->refresh($cuponDescuentoEntity);
+        if(!$cuponDescuentoEntity)
+            return null;
+
+        if (!$cuponDescuentoEntity->validarCupon())
+        {
+            $this->session->remove('cuponDescuento');
+
+            return null;
+        }
+
+        return $cuponDescuentoEntity;
+    }
+
 
     /**
      * @Route("/order/{articulo_id}/post", name="pedido_post")
@@ -100,19 +155,22 @@ class PedidoController extends Controller
     {
         $pedido = new Pedido();
 
-        $form = $this->createForm(new PedidoType(), $pedido);
+        $form = $this->createForm(new PedidoType($articulo->getId()), $pedido);
         $form->handleRequest($this->request);
 
-        if (!$form->isValid()) {
+        if (!$form->isValid())
             return $this->redirect($this->router->generate('pedido_'.$this->session->get('_locale')));
+
+
+        if (($cuponDescuento = $this->getDescuentoSession()) && $cuponDescuento->validarCupon())
+        {
+            $articulo->setDescuento($cuponDescuento);
+            $pedido->setCuponDescuento($cuponDescuento);
         }
 
         $pedido->setArticulo($articulo);
-        $estado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
-        $pedido->setEstado($estado);
-        // Aplicando descuento?¿
-
-        $pedido->setTotal($articulo->getPrecio());
+        $pedido->setEstado(null);
+        $pedido->setTotal($articulo->getPrecioReal());
 
         $instruction = $this->pedidoPago->generateInstructions($pedido);
 
@@ -121,12 +179,7 @@ class PedidoController extends Controller
         $this->em->persist($pedido);
         $this->em->flush();
 
-//        $this->completeAction($pedido);
-
-        // Continue with payment
-        return new RedirectResponse($this->router->generate('payment_complete_mgd', array(
-                'pedido_id' => $pedido->getId(),
-            )));
+        return $this->completeAction($pedido);
     }
 
     /**
@@ -136,13 +189,11 @@ class PedidoController extends Controller
     public function completeAction(Pedido $pedido)
     {
         if (($url = $this->pedidoPago->verifyPaymentCompleted($pedido))!== true)
-        {
             return new RedirectResponse($url);
-        }
 
-        $this->get('session')->getFlashBag()->add('success',
-            $this->get('translator')->trans('pago.finalizado')
-        );
+
+        $eventDispatcher = $this->get('event_dispatcher');
+        $eventDispatcher->dispatch('mgd.pedido_pagado',new PedidoPagadoEvent($pedido));
 
         return new RedirectResponse($this->router->generate('home'));
     }
@@ -152,7 +203,7 @@ class PedidoController extends Controller
      */
     public function cancelAction()
     {
-
+        return new RedirectResponse($this->router->generate('home'));
     }
 
 }

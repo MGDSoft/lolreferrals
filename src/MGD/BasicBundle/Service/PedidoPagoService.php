@@ -6,7 +6,7 @@
  * Time: 7:45
  */
 
-namespace MGD\BasicBundle\Listener;
+namespace MGD\BasicBundle\Service;
 
 use Doctrine\Common\Persistence\AbstractManagerRegistry;
 use Doctrine\ORM\EntityManager;
@@ -31,7 +31,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 
 
-class PedidoPagoListener
+class PedidoPagoService
 {
     /**
      * @var EntityPluginController
@@ -112,7 +112,7 @@ class PedidoPagoListener
             array(
                 sprintf('L_PAYMENTREQUEST_0_NAME%d', 0)   => $articulo->getNombre(),
                 sprintf('L_PAYMENTREQUEST_0_DESC%d', 0)   => $articulo->getNombre(),
-                sprintf('L_PAYMENTREQUEST_0_AMT%d', 0)    => $articulo->getPrecio(),
+                sprintf('L_PAYMENTREQUEST_0_AMT%d', 0)    => $pedido->getTotal(),
                 sprintf('L_PAYMENTREQUEST_0_QTY%d', 0)    => 1,
             )
         );

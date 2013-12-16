@@ -21,6 +21,7 @@ class PedidoEstadosType extends AbstractType
 		        'class' => 'MGDBasicBundle:Pedido',
 		        'query_builder' => function(EntityRepository $er){
 			        return $er->createQueryBuilder('p')
+                        ->where('p.estado is not null')
 				        ->orderBy('p.fecha', 'DESC')
 			            ->setMaxResults(20);
 		            },

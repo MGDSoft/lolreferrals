@@ -307,7 +307,36 @@ class Articulo
      */
     public function getPrecioDolar()
     {
-        return round( $this->getPrecio() * 1.3792,0);
+        return round( $this->getPrecioReal() * 1.3792,0);
+    }
+
+    /**
+     * @var CuponDescuento
+     */
+    private $descuento;
+
+    public function getDescuento(){
+        return $this->descuento;
+    }
+
+    public function setDescuento(CuponDescuento $descuento){
+        $this->descuento = $descuento;
+        return $this;
+    }
+
+    public function getPrecioReal()
+    {
+        if (!$this->descuento)
+        {
+            return $this->precio;
+        }
+
+        if ($this->descuento->getPorcentajeBoo())
+        {
+            return $this->precio - ($this->precio * $this->descuento->getValor() / 100);
+        }
+
+        return $this->precio - $this->descuento->getValor();
     }
 
 }

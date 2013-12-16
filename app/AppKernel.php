@@ -27,7 +27,7 @@ class AppKernel extends Kernel
 	        new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new JMS\Payment\CoreBundle\JMSPaymentCoreBundle(),
             new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
-
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
 	        new MGD\BasicBundle\MGDBasicBundle(),
 	        new MGD\FrameworkBundle\MGDFrameworkBundle(),

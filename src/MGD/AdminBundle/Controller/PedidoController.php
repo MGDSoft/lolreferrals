@@ -38,7 +38,9 @@ class PedidoController extends Controller
     {
         list($filterForm, $queryBuilder) = $this->filter();
 
-	    $queryBuilder->orderBy('e.fecha','DESC');
+        $queryBuilder
+            ->where('e.estado is not null')
+	        ->orderBy('e.fecha','DESC');
 
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 

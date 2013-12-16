@@ -8,18 +8,18 @@ parameters:
 
     mailer_transport: gmail
     mailer_host: null
-    mailer_user: miguelgd1985@gmail.com
-    mailer_password: Makalister10
+    mailer_user: masd985@gmail.com
+    mailer_password: masd985
 
     locale: en
     secret: s3cr3t0pr0
 
-    email_contacto: p3ter@troller.com
-    email_pedido: p3ter@troller.com
-    email_app: p3ter@troller.com
-    email_dev: p3ter@troller.com
+    email_contacto: masd985@gmail.com
+    email_pedido: masd985@gmail.com
+    email_app: masd985@gmail.com
+    email_dev: masd985@gmail.com
 
-    paypal_api_username: miguelgd_api1.mgdsoftware.es
-    paypal_api_password: 1375996100
-    paypal_api_signature: AgRXo3ihgSV2eBMxunVdm8QL1HVoAq2poslzWnrcbBIsWgOc5ZLVN1jY
+    paypal_api_username: masd985.mgdsoftware.es
+    paypal_api_password: 1373216100
+    paypal_api_signature: AgRXo3ohxZV2eBMxunVdm8QL1HVoAq2poslzWnrcbBIsWgOc5ZLVN1jY
     paypal_api_debug: true

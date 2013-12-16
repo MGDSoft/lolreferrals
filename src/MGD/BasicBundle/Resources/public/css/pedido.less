@@ -25,6 +25,17 @@
 #contenedor-articulos{
     clear: both;
 
+    #cola{
+        font-size: 18px;
+        text-align: center;
+        color: #111;
+        margin-top: 40px;
+
+        span{
+            color: #D13621;
+            text-shadow: 1px 1px 0 #000;
+        }
+    }
     .articulo{
 
         @media only screen and (max-width: 550px) {
@@ -70,9 +81,18 @@
     {
         margin-top: 20px;
     }
-    input[type="text"]
+    input[type="text"],input[type="email"],
     {
         width: 95%;
+    }
+    form{
+        margin: 0 auto;
+        width: 80%;
+
+        .paypal-img{
+            margin: 20px 0 10px;
+            border: 0;
+        }
     }
 
 }
@@ -82,14 +102,29 @@
     font-size: 0.8em;
 }
 
-#contenedor-articulos #cola{
-    font-size: 18px;
-    text-align: center;
-    color: #111;
-    margin-top: 40px;
+#descuento{
+    margin-top: 50px;
+    h2{
+        text-align: center;
+    }
+}
+#descuento{
+    form{
+        img{
+            margin-right: 15px;
+        }
+        input[type="submit"]
+        {
+            margin: 0;
+            margin-top: -10px;
+        }
+        div{
+            input{
+                margin-right: 15px;
+                width: 200px !important;
+            }
+            display: inline-block;
 
-    span{
-        color: #D13621;
-        text-shadow: 1px 1px 0 #000;
+        }
     }
 }

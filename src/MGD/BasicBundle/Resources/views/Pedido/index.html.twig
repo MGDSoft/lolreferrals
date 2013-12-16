@@ -9,13 +9,14 @@
         <header style="margin-bottom: 20px">
             <h1>{{ 'pedido.principal.titulo' | trans }}</h1>
             <p>{{ 'pedido.principal.texto' | trans | raw }}</p>
+            <img src="{{ asset('img/paypal.png') }}">
         </header>
-        <img src="{{ asset('img/paypal.png') }}">
     </article>
 
 {% endblock %}
 
 {% block central %}
+
     <section id="contenedor-articulos">
 
         <header>
@@ -26,13 +27,14 @@
             <article class="articulo">
                 <img src="{{ articulo.imagenPath }}">
                 <div class="paypal">
-                    <div class="precio">{{ articulo.precio }}&euro; ({{ articulo.getPrecioDolar() }}$)</div>
+                    <div class="precio">
+                        {{ articulo.precioReal| number_format }}&euro; ({{ articulo.precioDolar }}$)</div>
 
-
-                    <form id="contacto" action="{{ path('pedido_post', {'articulo_id': articulo.id }) }}" method="post">
+                    <form action="{{ path('pedido_post', {'articulo_id': articulo.id }) }}" method="post">
                         {{ form_widget(articulo.form) }}
 
-                        <input type="submit" class="btn btn-primary" value="{{ 'formularios.seguimiento.submit' | trans }}">
+                        <input type="submit" class="btn btn-primary" value="{{ 'formularios.pedido.submit' | trans }}">
+                        <img class="paypal-img" src="{{ asset('img/paypal-buy.gif') }}">
 
                     </form>
 
@@ -44,7 +46,16 @@
         <div id="advertencia">
             *{{ 'pedido.advertencia' | trans }}
         </div>
+
+        <section id="descuento">
+            <h2>{{ 'pedido.principal.activar_descuento' | trans }}{% if descuento %}, <span class="text-success">{{ descuento| raw }}</span>{% endif %}</h2>
+
+            {{ include('MGDBasicBundle:CuponDescuento:_index_form.html.twig', {form: cuponDescuentoForm}, with_context = false) }}
+
+        </section>
+
         {{ render(controller('MGDBasicBundle:Cola:showView')) }}
+
     </section>
 {% endblock %}
 
@@ -56,6 +67,10 @@
     <a href="http://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid=donq18&ftab=AllFeedback&myworld=true" target="_blank">
         <img src="{{ asset('img/ebay_2.jpg') }}">
     </a>
-    <br><br>
+    <br>
+
+
+
+    <br>
 
 {% endblock %}

@@ -29,13 +29,15 @@
 
     <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
     <script type="text/javascript">
-        Skype.ui({
-            "name": "chat",
-            "element": "skype_element",
-            "participants": ["referralslol"],
-            "imageSize": 32,
-            "imageColor" : "white"
-        });
+        window.onload=function(){
+            Skype.ui({
+                "name": "chat",
+                "element": "skype_element",
+                "participants": ["referralslol"],
+                "imageSize": 32,
+                "imageColor" : "white"
+            });
+        };
     </script>
 
 {% endblock %}

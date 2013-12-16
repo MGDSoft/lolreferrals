@@ -39,8 +39,8 @@
                 {{ form_rest(filterForm) }}
 
                 <p>
-                    <button type="submit" name="filter_action" value="filter">{{ 'views.index.filter'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-                    <button type="submit" name="filter_action" value="reset">{{ 'views.index.reset'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                    <button type="submit" class="btn btn-primary" name="filter_action" value="filter">{{ 'views.index.filter'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                    <button type="submit" class="btn btn-danger" name="filter_action" value="reset">{{ 'views.index.reset'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
                 </p>
             </form>
         </div>
@@ -57,6 +57,7 @@
             <th>Articulo</th>
             <th>Estado</th>
             <th>Refpaypal</th>
+            <th>Cupon</th>
             <th>Fecha</th>
             <th>Ip</th>
             <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
@@ -71,6 +72,7 @@
             <td>{{ entity.articulo }}</td>
             <td>{{ entity.estado }}</td>
             <td>{{ entity.refPaypal }}</td>
+            <td>{{ entity.cuponDescuento }}</td>
             <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
             <td>{{ entity.ip }}</td>
             <td>

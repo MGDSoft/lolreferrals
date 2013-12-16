@@ -40,6 +40,7 @@ pedido:
                 *Remember to send us your referral-link, without it we can't start your order. You can find it <a href="http://leagueoflegends.com/rewards" target="_blank">here</a>.
                 <br><br>
                 Pay by paypal confidence.
+        activar_descuento: Activate especial discount
         packs: All our referrals bundles
         footer:
             titulo: Safe payment with Paypal
@@ -156,6 +157,25 @@ formularios:
                   placeholder: Captcha
 
               submit: Submit Message
+
+        descuento:
+              codigo:
+                  label: Discount code
+                  placeholder: Write a valid discount code
+              submit: Get Discount!
+              activado: Code discount was activated. you've got %descuento% discount
+              errors:
+                  codigo_invalido: Invalid code
+
+        pedido:
+              email:
+                  placeholder: Write a valid Email
+                  label: Email *
+              referral_link:
+                  placeholder: Url Referral-Link
+                  label: Referral-Link *
+              submit: Comprar
+
 pago:
     finalizado: >
         <b>Your order has been performed correctly</b>,
