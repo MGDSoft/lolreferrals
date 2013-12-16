@@ -34,6 +34,7 @@ class Contacto
      *
      * @ORM\Column(name="email", type="string", length=255)
      * @Assert\Email()
+     * @Assert\NotBlank()
      */
     private $email;
 
@@ -72,7 +73,9 @@ class Contacto
 	{
 		if (isset($_SERVER['REMOTE_ADDR'])) {
 			$this->ip = $_SERVER['REMOTE_ADDR'];
-		}
+		}else{
+            $this->ip = "CLI";
+        }
 	}
 
 

@@ -11,6 +11,7 @@ namespace MGD\BasicBundle\Listener;
 
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\Entity\Pedido;
+use MGD\BasicBundle\Entity\PedidoEstados;
 use MGD\BasicBundle\Event\PedidoPagadoEvent;
 use Monolog\Logger;
 use Swift_Mailer;
@@ -89,6 +90,12 @@ class PedidoPagadoListener
         {
             $cupon->sumaUso();
         }
+
+        $pedidoEstados = new PedidoEstados();
+        $pedidoEstados->setEstado($estado);
+        $pedidoEstados->setPedido($pedido);
+
+        $this->em->persist($pedidoEstados);
 
         $this->em->flush();
         $this->enviarCorreo($pedido);

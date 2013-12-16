@@ -31,9 +31,14 @@ class Pedido
     private $articulo;
 	/**
 	 * @ORM\ManyToOne(targetEntity="Estado", fetch="EAGER")
-	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
 	 */
 	private $estado;
+    /**
+     * @ORM\OneToOne(targetEntity="CuponDescuento", fetch="EAGER")
+     * @ORM\JoinColumn(name="cupon_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+     */
+    private $cuponDescuento;
 	/**
 	 * @var string
 	 *
@@ -58,7 +63,7 @@ class Pedido
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="ref_paypal", type="string", length=255)
+	 * @ORM\Column(name="ref_paypal", type="string", length=255,nullable=true)
 	 */
 	private $refPaypal;
 	/**
@@ -69,6 +74,19 @@ class Pedido
 	 */
 	private $fecha;
 
+    /**
+     * @var PaymentInstruction
+     *
+     * @ORM\OneToOne(targetEntity="JMS\Payment\CoreBundle\Entity\PaymentInstruction")
+     */
+    private $paymentInstruction;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(type="decimal", precision = 2)
+     */
+    private $total;
 
     /**
      * Constructor
@@ -81,11 +99,15 @@ class Pedido
 
 	    if (isset($_SERVER['REMOTE_ADDR'])) {
 		    $this->ip = $_SERVER['REMOTE_ADDR'];
-	    }
+	    }else{
+            $this->ip = "CLI";
+        }
 
 	    $this->id = uniqid('LOL' . date("Ymdhis"));
 
     }
+
+
 
     /**
      * Set ip
@@ -282,5 +304,78 @@ class Pedido
     public function getId()
     {
         return $this->id;
+    }
+
+
+
+    /**
+     * Set paymentInstruction
+     *
+     * @param \JMS\Payment\CoreBundle\Entity\PaymentInstruction $paymentInstruction
+     * @return Pedido
+     */
+    public function setPaymentInstruction(\JMS\Payment\CoreBundle\Entity\PaymentInstruction $paymentInstruction = null)
+    {
+        $this->paymentInstruction = $paymentInstruction;
+    
+        return $this;
+    }
+
+    /**
+     * Get paymentInstruction
+     *
+     * @return \JMS\Payment\CoreBundle\Entity\PaymentInstruction 
+     */
+    public function getPaymentInstruction()
+    {
+        return $this->paymentInstruction;
+    }
+
+
+
+    /**
+     * Set total
+     *
+     * @param float $total
+     * @return Pedido
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+    
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return float 
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+    /**
+     * Set cuponDescuento
+     *
+     * @param \MGD\BasicBundle\Entity\CuponDescuento $cuponDescuento
+     * @return Pedido
+     */
+    public function setCuponDescuento(\MGD\BasicBundle\Entity\CuponDescuento $cuponDescuento = null)
+    {
+        $this->cuponDescuento = $cuponDescuento;
+    
+        return $this;
+    }
+
+    /**
+     * Get cuponDescuento
+     *
+     * @return \MGD\BasicBundle\Entity\CuponDescuento 
+     */
+    public function getCuponDescuento()
+    {
+        return $this->cuponDescuento;
     }
 }
