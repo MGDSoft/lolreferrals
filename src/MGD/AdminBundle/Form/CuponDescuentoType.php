@@ -5,6 +5,8 @@ namespace MGD\AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CuponDescuentoType extends AbstractType
 {
@@ -24,6 +26,17 @@ class CuponDescuentoType extends AbstractType
                 ))
             ->add('nUsos',null,array('label' => 'Nº de usos'))
             ->add('expiracionDate')
+            ->add('copias','number',array(
+                    'mapped' => false,
+                    'data' => 1,
+                    'constraints' => array(
+                        new NotBlank(),
+                        new Range(array(
+                                'min'        => 1,
+                                'max'        => 100,
+                        )),
+                    ),
+                ))
         ;
     }
 

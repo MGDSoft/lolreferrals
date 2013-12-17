@@ -18,7 +18,7 @@ class ArticuloType extends AbstractType
             ->add('nombre')
             ->add('precio')
 	        ->add('file')
-            ->add('paypalHtml');
+            ;
     }
 
     /**

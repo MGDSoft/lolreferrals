@@ -130,13 +130,25 @@ class CuponDescuentoController extends Controller
         $form = $this->createForm(new CuponDescuentoType(), $entity);
         $form->bind($request);
 
-        if ($form->isValid()) {
+        if ($form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
+
+            $copias = $form->get('copias')->getData();
+
+            for ($i=0;$i<$copias;$i++)
+            {
+                $entity->generateId();
+                $em->persist(clone $entity);
+            }
+
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            return $this->redirect($this->generateUrl('cupondescuento_show', array('id' => $entity->getId())));
+            if ($copias==1)
+                return $this->redirect($this->generateUrl('cupondescuento_show', array('id' => $entity->getId())));
+            else
+                return $this->redirect($this->generateUrl('cupondescuento'));
         }
 
         return array(

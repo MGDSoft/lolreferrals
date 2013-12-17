@@ -8,16 +8,17 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
+use Doctrine\ORM\QueryBuilder;
+use Lexik\Bundle\FormFilterBundle\Filter\ORM\Expr;
 
 class PedidoFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'filter_number_range')
+            ->add('id', 'filter_number')
             ->add('ip', 'filter_text')
 	        ->add('email', 'filter_text')
-            ->add('refPaypal', 'filter_text')
 	        ->add('estado', 'filter_entity',  array(
 			        'class' => 'MGDBasicBundle:Estado',
 			        'property' => 'nombre',

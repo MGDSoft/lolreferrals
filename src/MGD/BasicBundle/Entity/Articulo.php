@@ -159,15 +159,6 @@ class Articulo
 
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="paypal_html", type="text")
-     * @Assert\NotBlank()
-     */
-    private $paypalHtml;
-
-
-    /**
      * Get id
      *
      * @return integer 
@@ -201,31 +192,6 @@ class Articulo
         return $this->nombre;
     }
 
-    /**
-     * Set paypalHtml
-     *
-     * @param string $paypalHtml
-     *
-     * @return Articulo
-     */
-    public function setPaypalHtml($paypalHtml)
-    {
-        $this->paypalHtml = $paypalHtml;
-    
-        return $this;
-    }
-
-    /**
-     * Get paypalHtml
-     *
-     * @return string 
-     */
-    public function getPaypalHtml()
-    {
-        return $this->paypalHtml;
-    }
-
-   
 
 	public function __toString(){
 		return $this->nombre;
@@ -328,15 +294,19 @@ class Articulo
     {
         if (!$this->descuento)
         {
-            return $this->precio;
+            $precio = $this->precio;
+        }else if($this->descuento->getPorcentajeBoo()){
+            $precio = $this->precio - ($this->precio * $this->descuento->getValor() / 100);
+        }else{
+            $precio = $this->precio - $this->descuento->getValor();
         }
 
-        if ($this->descuento->getPorcentajeBoo())
+        if ($precio<5)
         {
-            return $this->precio - ($this->precio * $this->descuento->getValor() / 100);
+            return 5;
         }
 
-        return $this->precio - $this->descuento->getValor();
+        return $precio;
     }
 
 }

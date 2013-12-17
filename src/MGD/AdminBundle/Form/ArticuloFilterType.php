@@ -17,7 +17,6 @@ class ArticuloFilterType extends AbstractType
             ->add('id', 'filter_number_range')
             ->add('nombre', 'filter_text')
             ->add('precio', 'filter_number_range')
-            ->add('paypalHtml', 'filter_text')
         ;
 
         $listener = function(FormEvent $event)

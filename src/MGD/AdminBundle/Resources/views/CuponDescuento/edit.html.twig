@@ -10,6 +10,7 @@
 
 <form class="well" action="{{ path('cupondescuento_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     <input type="hidden" name="_method" value="PUT" />
+    {{ form_widget(edit_form.copias, { 'attr': {'style': 'display:none'}}) }}
     {{ form_widget(edit_form) }}
     <p>
         <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>

@@ -18,7 +18,8 @@ inicio:
     metas:
         title: LoL Referrals: Buy League of Legends Referrals | Cheapest LoL Referral
         description: Fastest and cheapest referral on the market.Selling League of Legends referrals on the web Since 2012. Buy LoL referrals now. Cheapest than regular LoL RP.
-    aside:
+    
+	aside:
         titulo: Referral Stats
         slot_1: ~350 referral each day.
         slot_2: Leveling LoL Referrals to level 10.
@@ -57,7 +58,8 @@ faq:
     metas:
         title: Frequently Asked Questions | League of Legends Referrals 2.0
         description: LoL Referrals: FAQ of League of Legends Referrals.
-    principal:
+    
+	principal:
         titulo: Frequently Asked Questions
 
         slot_1_title: What will I get with this?
@@ -101,31 +103,34 @@ faq:
         texto: I still have a question, Where Can I contact you?
         link: In our contact zone.
 
-
 contacto:
-    metas:
+    
+	metas:
         title: Contact information of www.referralslol.com
         description: Information about League of Legends Referrals service.
-    enviado: Message sent correctly, we will reply in a short period of time.
+    
+	enviado: Message sent correctly, we will reply in a short period of time.
 
     principal:
         titulo: Contact us
         texto: >
                   Do you still have any question without an answer?<br>Or is your OrderID not working and you don't know when your order will be done?<br>Don't hesitate and contact us!<br>We will reply you in 24hours!
-    aside:
+    
+	aside:
         titulo: Contact us!
         texto: If you have any question "our best employee" Corporate Mundo will attend you.
-
 
 seguimiento:
     metas:
         title: Track your order of League of Legends referrals 2.0
         description: Tracking of the League of Legends Referral-Service order.
-    principal:
+    
+	principal:
         titulo: Tracking of the order
         texto: >
                   Fill it with the OrderID to see the state of your order.
-    aside:
+    
+	aside:
         titulo: Any error with the ID?
         texto: Then contact us in our contact zone.
 
@@ -174,13 +179,13 @@ formularios:
               referral_link:
                   placeholder: Url Referral-Link
                   label: Referral-Link *
-              submit: Comprar
-
+              submit: Buy
 pago:
     finalizado: >
         <b>Your order has been performed correctly</b>,
         You'll receive an email with the OrderID in it. If you have any problem refer to our contact section. Thanks for your purchase!
-    correo:
+    
+	correo:
         asunto: Order Confirmation from www.referralslol.com
         articulo: Your purchase of %articulo% has been succesfully received.
         seguimiento: You can follow the current state of your order in "http://www.referralslol.com/en/tracking/" with the following OrderID : %pedidoId%

@@ -38,7 +38,7 @@ class Pedido
 	private $estado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CuponDescuento")
+     * @ORM\ManyToOne(targetEntity="CuponDescuento", fetch="EAGER")
      * @ORM\JoinColumn(name="cupon_id", referencedColumnName="id", nullable=true)
      */
     private $cuponDescuento;

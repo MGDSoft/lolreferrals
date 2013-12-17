@@ -76,7 +76,7 @@ class CuponDescuento
     function __construct()
     {
         $this->expiracionDate = new \DateTime('+6 month');
-        $this->id = uniqid('COD' . date("Ymdhis"));
+        $this->generateId();
     }
 
     public function __toString()
@@ -94,6 +94,16 @@ class CuponDescuento
     {
         return $this->id;
     }
+
+    /**
+     * Generate id
+     *
+     */
+    public function generateId()
+    {
+        $this->id = uniqid('COD' . date("Ymdhis"));
+    }
+
 
     /**
      * Set valor

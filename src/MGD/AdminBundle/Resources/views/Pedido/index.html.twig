@@ -34,8 +34,8 @@
             <form class="well" action="{{ path('pedido') }}" method="get" {{ form_enctype(filterForm) }}>
                 {{ form_row(filterForm.id) }}
                 {{ form_row(filterForm.ip) }}
-                {{ form_row(filterForm.refPaypal) }}
                 {{ form_row(filterForm.fecha) }}
+                {{ form_row(filterForm.cuponDescuento) }}
                 {{ form_rest(filterForm) }}
 
                 <p>
@@ -56,7 +56,6 @@
             <th>Referral Link</th>
             <th>Articulo</th>
             <th>Estado</th>
-            <th>Refpaypal</th>
             <th>Cupon</th>
             <th>Fecha</th>
             <th>Ip</th>
@@ -71,8 +70,7 @@
             <td>{{ entity.referralLink }}</td>
             <td>{{ entity.articulo }}</td>
             <td>{{ entity.estado }}</td>
-            <td>{{ entity.refPaypal }}</td>
-            <td>{{ entity.cuponDescuento }}</td>
+            <td>{{ entity.cuponDescuento | raw }}</td>
             <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
             <td>{{ entity.ip }}</td>
             <td>
