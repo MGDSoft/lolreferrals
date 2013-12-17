@@ -40,15 +40,15 @@ pedido:
                   Recuerde que debes enviar el código de referidos, sin él no podemos empezar su pedido. Lo puedes encontrar <a href="http://leagueoflegends.com/rewards" target="_blank">aquí</a>.
                   <br><br>
                   ¡Pague mediante la confianza de paypal!
-				  
+                  
         activar_descuento: Activar código de descuento especial
         packs: Listado de packs
         footer:
             titulo: Pago seguro con paypal
-			
+            
     advertencia: Dada la naturaleza del producto, no se admite ningún tipo de devolución.
     
-	aside:
+    aside:
         titulo: ¡Nuestros clientes lo aconsejan!
         texto:  >
                   Todos nuestros clientes quedan satisfechos, tenemos 100% de votos positivos en eBay.
@@ -106,8 +106,8 @@ faq:
 contacto:
 
     metas:
-		title: Información de contacto de www.referralslol.com
-		description: Información sobre el servicio de League of Legends Referrals.
+        title: Información de contacto de www.referralslol.com
+        description: Información sobre el servicio de League of Legends Referrals.
 
     enviado: Mensaje enviado correctamente, en un breve periodo le contestaremos.
 
@@ -116,7 +116,7 @@ contacto:
         texto: >
                   ¿Aún tienes alguna pregunta sin respuesta?.<br>¿O tu código de referencia (ID) no funciona y no sabes cuando tu pedido estará finalizado?<br>¡No dudes en ponerte en contacto con nosotros!<br>¡Te contestaremos en 24horas!
     
-	aside:
+    aside:
         titulo: ¡Contacta con nosotros!
         texto: Para cualquier duda que tengas te atenderá "nuestro mejor empleado" Mundo Ejecutivo.
 

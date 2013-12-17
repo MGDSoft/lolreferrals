@@ -39,16 +39,16 @@ pedido:
                   Bitte denke daran, uns deine Referenz-Link zu übermitteln. Ohne diese können wir deinen Auftrag nicht entgegennehmen. Findest du <a href="http://leagueoflegends.com/rewards" target="_blank">hier</a> den Code.
                   <br><br>
                   Bezahle sicher per Paypal.
-				  
-			  
+                  
+              
         activar_descuento: Speziellen Code aktivieren
         packs: Angebote
         footer:
             titulo: Vertraungsvolle paypal Bezahlung
     
-	advertencia: Aufgrund der Produktbeschaffenheit, ist die Rückgabe dessen nicht zulässig.
+    advertencia: Aufgrund der Produktbeschaffenheit, ist die Rückgabe dessen nicht zulässig.
     
-	aside:
+    aside:
         titulo: Unsere Kunden empfhelen uns.
         texto:  >
                   Alle unsere Kunden bleiben zufrieden, wir haben 100% positive Stimmen auf Ebay .
@@ -162,7 +162,7 @@ formularios:
                   placeholder: Sicherheitskode
 
               submit: Nachricht senden.
-			  
+              
         descuento:
               codigo:
                   label: Gutscheincodes
