@@ -15,7 +15,7 @@ matrix:
 before_script:
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar require symfony/framework-bundle:${SYMFONY_VERSION} --no-update
-    - php composer.phar update
+    - php composer.phar install
 
 script:
     - phpunit -c app/ --coverage-text
