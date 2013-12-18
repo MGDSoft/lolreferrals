@@ -14,12 +14,12 @@ use Symfony\Component\Form\FormError;
 class SeguimientoController extends Controller
 {
 
-	/**
-     * @Route("/es/seguimiento/",defaults={"_locale" = "es"}, name="seguimiento_es")
-	 * @Route("/en/tracking/",defaults={"_locale" = "en"}, name="seguimiento_en")
-	 * @Route("/de/verfolgung/",defaults={"_locale" = "de"}, name="seguimiento_de")
-     * @Template()
-     */
+    /**
+    * @Route("/es/seguimiento/",defaults={"_locale" = "es"}, name="seguimiento_es")
+    * @Route("/en/tracking/",defaults={"_locale" = "en"}, name="seguimiento_en")
+    * @Route("/de/verfolgung/",defaults={"_locale" = "de"}, name="seguimiento_de")
+    * @Template()
+    */
     public function indexAction(Request $request)
     {
 	    $seguimientoId  =null;

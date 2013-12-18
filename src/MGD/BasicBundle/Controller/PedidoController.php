@@ -84,12 +84,12 @@ class PedidoController extends Controller
     protected $cDescController;
 
 
-	/**
-     * @Route("/en/order/",defaults={"_locale" = "en"}, name="pedido_en")
-     * @Route("/es/comprar/",defaults={"_locale" = "es"}, name="pedido_es")
-	 * @Route("/de/bestellen/",defaults={"_locale" = "de"}, name="pedido_de")
-     * @Template()
-     */
+    /**
+    * @Route("/en/order/",defaults={"_locale" = "en"}, name="pedido_en")
+    * @Route("/es/comprar/",defaults={"_locale" = "es"}, name="pedido_es")
+    * @Route("/de/bestellen/",defaults={"_locale" = "de"}, name="pedido_de")
+    * @Template()
+    */
     public function indexAction()
     {
         $cuponDescuentoForm = $this->cDescController->indexForm();

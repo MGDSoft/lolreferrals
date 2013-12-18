@@ -22,7 +22,7 @@ class TestData extends AbstractFixture implements OrderedFixtureInterface
     const email = "prueba@prueba.com";
 
 	public function load(ObjectManager $manager)
-	{
+    {
         $articulo = new Articulo();
 
         $articulo->setImagenPath("");
@@ -52,11 +52,11 @@ class TestData extends AbstractFixture implements OrderedFixtureInterface
 
         $manager->flush();
 
-	}
+    }
 
-	public function getOrder()
-	{
-		return 99; // the order in which fixtures will be loaded
-	}
+    public function getOrder()
+    {
+        return 99; // the order in which fixtures will be loaded
+    }
 }
 
