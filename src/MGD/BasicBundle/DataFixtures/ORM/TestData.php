@@ -25,7 +25,6 @@ class TestData extends AbstractFixture implements OrderedFixtureInterface
 	{
         $articulo = new Articulo();
 
-        $articulo->setPaypalHtml("");
         $articulo->setImagenPath("");
         $articulo->setNombre("Pedido 1");
         $articulo->setPrecio("500$");
