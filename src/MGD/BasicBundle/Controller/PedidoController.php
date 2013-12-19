@@ -191,7 +191,6 @@ class PedidoController extends Controller
         if (($url = $this->pedidoPago->verifyPaymentCompleted($pedido))!== true)
             return new RedirectResponse($url);
 
-
         $eventDispatcher = $this->get('event_dispatcher');
         $eventDispatcher->dispatch('mgd.pedido_pagado',new PedidoPagadoEvent($pedido));
 

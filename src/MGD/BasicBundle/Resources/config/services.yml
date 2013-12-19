@@ -7,7 +7,7 @@ services:
 
     pedido.pago_service:
         class: MGD\BasicBundle\Service\PedidoPagoService
-        arguments: [@payment.plugin_controller, @logger, @router]
+        arguments: [@service_container]
 
     pedido.pagado:
         class: MGD\BasicBundle\Listener\PedidoPagadoListener

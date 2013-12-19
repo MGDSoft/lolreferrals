@@ -22,7 +22,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use JMS\Payment\CoreBundle\Plugin\Exception\Action\VisitUrl;
-
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -35,30 +36,38 @@ class PedidoPagoService
 {
     /**
      * @var EntityPluginController
-     *
-     * @DI\Inject("payment.plugin_controller")
      */
     protected $ppc;
 
     /**
      * @var Logger $log
-     *
-     * @DI\Inject("logger")
      */
     protected $log;
 
     /**
      * @var Router
      *
-     * @DI\Inject
      */
     protected $router;
 
-    function __construct(EntityPluginController $ppc,Logger $log,Router $router)
+    /**
+     * @var Session
+     *
+     */
+    protected $session;
+
+    /**
+     * @var Container
+     */
+    private $container;
+
+    function __construct(Container $container)
     {
-        $this->log = $log;
-        $this->ppc = $ppc;
-        $this->router = $router;
+        $this->container = $container;
+        $this->session = $container->get('session');
+        $this->log = $container->get('logger');
+        $this->ppc = $container->get('payment.plugin_controller');
+        $this->router = $container->get('router');
     }
 
 
@@ -156,6 +165,18 @@ class PedidoPagoService
 
             //throw new \RuntimeException('something was wrong');
         } else if (Result::STATUS_SUCCESS !== $result->getStatus()) {
+
+            if ($result->getReasonCode() == "10445" || $result->getReasonCode() == "10486")
+            {
+                $this->session->getFlashBag()->add('error','The price could not be charged. Payment failed due to a bad funding
+                    method (typically an invalid or maxed out credit card), choose other account/method to pay');
+
+                $this->log->addCritical("EmailUser: ".$pedido->getEmail().", Id: ".$pedido->getId().", Payment error: "
+                    .$result->getReasonCode());
+
+                return $this->router->generate('pedido_'.
+                    ($this->session->get('_locale') ? $this->session->get('_locale') : $this->container->getParameter('locale') ));
+            }
             throw new \RuntimeException('Transaction was not successful: '.$result->getReasonCode());
         }
 
