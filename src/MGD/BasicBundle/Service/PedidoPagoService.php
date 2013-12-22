@@ -166,7 +166,7 @@ class PedidoPagoService
             //throw new \RuntimeException('something was wrong');
         } else if (Result::STATUS_SUCCESS !== $result->getStatus()) {
 
-            if ($result->getReasonCode() == "10445" || $result->getReasonCode() == "10486")
+            if ($result->getReasonCode() == "10486")
             {
                 $this->session->getFlashBag()->add('error','The price could not be charged. Payment failed due to a bad funding
                     method (typically an invalid or maxed out credit card), choose other account/method to pay');
