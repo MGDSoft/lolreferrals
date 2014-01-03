@@ -108,16 +108,19 @@
 
         var childActive=el.getElementsByClassName("active");
         for(var i = 0, j=childActive.length; i<j; i++){
-            childActive[i].className = "";
+            if (childActive[i])
+                childActive[i].className = "";
         }
         obj.parentNode.className = "active";
-        var pagina = obj.innerText;
+        var pagina = obj.innerHTML;
 
         el = document.getElementById("bots");
         childActive = el.getElementsByClassName("activado");
         for(i = 0, j=childActive.length; i<j; i++){
-            childActive[i].className = "hidden";
+            if (childActive[i])
+                childActive[i].className = "hidden";
         }
+        debugger;
 
         el = document.getElementById("paginado" +pagina);
         el.className = "activado";
