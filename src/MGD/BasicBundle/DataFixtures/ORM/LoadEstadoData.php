@@ -18,11 +18,11 @@ class LoadUsuariosData extends AbstractFixture implements OrderedFixtureInterfac
 	public function load(ObjectManager $manager)
 	{
 		$estados = array(
-			array('nombre'=>'Cola'),
-			array('nombre'=>'Espera'),
-			array('nombre'=>'Fallo'),
-			array('nombre'=>'Proceso'),
-			array('nombre'=>'Finalizado'),
+			array('nombre'=>'Queue'),
+			array('nombre'=>'Waiting'),
+			array('nombre'=>'Failed'),
+			array('nombre'=>'Leveling accounts'),
+			array('nombre'=>'Completed'),
 		);
 
 		foreach ($estados as $estado) {

@@ -8,7 +8,10 @@
 
 namespace MGD\BasicBundle\Command;
 
+use Doctrine\ORM\EntityManager;
+use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\Entity\PedidoBots;
+use MGD\BasicBundle\Entity\PedidoEstados;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,6 +21,11 @@ use Symfony\Component\HttpKernel\Log\LoggerInterface;
 
 class BotsUpdateCommand extends ContainerAwareCommand
 {
+    /** @var EntityManager */
+    private $em;
+    /** @var LoggerInterface */
+    private $logger;
+
     protected function configure()
     {
         $this
@@ -29,9 +37,9 @@ class BotsUpdateCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
-        $em = $container->get("doctrine")->getManager();
-        /** @var $logger LoggerInterface */
-        $logger = $container->get('logger');
+        $this->em = $container->get("doctrine")->getManager();
+
+        $this->logger = $container->get('logger');
 
         $dir = $container->getParameter('bots_updated_dir').DIRECTORY_SEPARATOR;
 
@@ -41,7 +49,7 @@ class BotsUpdateCommand extends ContainerAwareCommand
 
             if (count($fileArr)!=2)
             {
-                $logger->critical("El fichero $file no contiene 2 valores");
+                $this->logger->critical("El fichero $file no contiene 2 valores");
                 continue;
             }
 
@@ -49,18 +57,39 @@ class BotsUpdateCommand extends ContainerAwareCommand
             $lvl=$fileArr[1];
 
             /** @var PedidoBots $pedidoBot */
-            if (!$pedidoBot = $em->getRepository("MGDBasicBundle:PedidoBots")->findOneByNombre($nombre))
+            if (!$pedidoBot = $this->em->getRepository("MGDBasicBundle:PedidoBots")->findOneByNombre($nombre))
             {
-                $logger->error("No se ha encontrado el bot con nombre $nombre");
+                $this->logger->error("No se ha encontrado el bot con nombre $nombre");
                 continue;
             }
 
             $pedidoBot->setLvl($lvl);
-            $logger->debug("Actualizado el bot $nombre al nivel $lvl");
+            $this->logger->debug("Actualizado el bot $nombre al nivel $lvl");
 
             unlink($file);
         }
 
-        $em->flush();
+        $this->em->flush();
+
+        $this->siPedidoFinalizadoCambiarEstado($pedidoBot);
     }
+
+    private function siPedidoFinalizadoCambiarEstado(PedidoBots $pedidoBot)
+    {
+        $pedido = $pedidoBot->getPedido();
+
+        if ($pedidoBot && $this->em->getRepository('MGDBasicBundle:PedidoBots')->isCompletedByPedido($pedido))
+        {
+            $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
+            $pedido->setEstado($estadoFinalizado);
+
+            $pedidoEstado  = new PedidoEstados();
+            $pedidoEstado->setEstado($estadoFinalizado);
+            $pedidoEstado->setPedido($pedido);
+
+            $this->em->persist($pedidoEstado);
+            $this->em->flush();
+        }
+    }
+
 }

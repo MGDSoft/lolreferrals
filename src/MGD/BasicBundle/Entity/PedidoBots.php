@@ -2,6 +2,7 @@
 
 namespace MGD\BasicBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -9,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * BotCuenta
  *
  * @ORM\Table(name="pedido_bots")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MGD\BasicBundle\Entity\PedidoBotsRepository")
  */
 class PedidoBots
 {
@@ -67,6 +68,11 @@ class PedidoBots
      */
     private $creadoDate;
 
+
+    function __construct()
+    {
+        $this->updateDate = new DateTime();
+    }
 
     /**
      * @param \MGD\BasicBundle\Entity\Pedido $pedido

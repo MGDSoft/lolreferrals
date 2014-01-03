@@ -11,7 +11,12 @@ namespace MGD\BasicBundle\DataConstants;
 
 class EstadoEnum {
 
-    const PendientePago = -1;
+    const PendientePago = -1; // useless
+
     const Cola = 1;
+    const Esperando = 2;
+    const Fallido = 3;
+    const Procesando = 4;
     const Finalizado = 5;
+
 }
