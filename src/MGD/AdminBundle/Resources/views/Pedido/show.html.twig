@@ -32,7 +32,7 @@
             <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fecha|date('Y-m-d H:i:s') }}</span>            </div>
         </div>
 
-    {% include('@MGDAdmin/Pedido/bots.html.twig') %}
+
 
     </fieldset>
 </form>
@@ -56,4 +56,6 @@
         </form>
     </div>
 </div>
+
+{% include('@MGDAdmin/Pedido/bots.html.twig') %}
 {% endblock %}

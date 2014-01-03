@@ -46,7 +46,7 @@ class PedidoBots
     /**
      * @var Pedido
      *
-     * @ORM\ManyToOne(targetEntity="Pedido", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Pedido", inversedBy="pedidoBots")
      * @ORM\JoinColumn(name="pedido_id", referencedColumnName="id")
      */
     private $pedido;

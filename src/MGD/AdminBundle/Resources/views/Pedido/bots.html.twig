@@ -1,5 +1,5 @@
 {% if entity.pedidoBots.count()>0 %}
-    <div class="row text-left" style="margin: 25px 0 ;font-weight: bold">
+    <div class="row text-left" style="margin: 25px 0 ;font-weight: bold;clear:both">
         <div class="offset1 span2">Nombre bot</div>
         <div class="span2">
             Progreso
@@ -7,16 +7,17 @@
         <div class="span2">Fecha Actualizado</div>
         <div class="span2">Fecha Creado</div>
     </div>
-{% endif %}
-{% for bot in entity.pedidoBots  %}
-    {# bott \MGD\BasicBundle\Entity\PedidoBots #}
 
-    <div class="row">
-        <div class="offset1 span2">{{ bot.nombre }}</div>
-        <div class=" span2 progress progress-striped active text-info" style="text-align: center">
-            <div class="bar" style="width: {{ bot.lvl*10 }}%;">lvl {{ bot.lvl }}</div> Pendiente
+    {% for bot in entity.pedidoBots  %}
+        {# bott \MGD\BasicBundle\Entity\PedidoBots #}
+
+        <div class="row">
+            <div class="offset1 span2">{{ loop.index }}. {{ bot.nombre }}</div>
+            <div class=" span2 progress progress-striped active text-info" style="text-align: center">
+                <div class="bar" style="width: {{ bot.lvl*10 }}%;">lvl {{ bot.lvl }}</div> Pendiente
+            </div>
+            <div class="span2">{{ bot.updateDate|date('Y-m-d H:i:s') }}</div>
+            <div class="span2">{{ bot.creadoDate|date('Y-m-d H:i:s') }}</div>
         </div>
-        <div class="span2">{{ bot.updateDate|date('Y-m-d H:i:s') }}</div>
-        <div class="span2">{{ bot.creadoDate|date('Y-m-d H:i:s') }}</div>
-    </div>
-{% endfor %}
+    {% endfor %}
+{% endif %}
