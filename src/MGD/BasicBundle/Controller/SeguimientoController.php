@@ -56,7 +56,7 @@ class SeguimientoController extends Controller
                     if ($bots)
                     {
                         $bots_n_per_page=20;
-                        $bots_n_pages=ceil($bots->count()/$bots_n_per_page);
+                        $bots_n_pages=ceil(($bots->count()+1)/$bots_n_per_page);
                     }
 			    }
 
