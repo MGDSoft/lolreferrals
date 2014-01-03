@@ -47,15 +47,7 @@
 
                     {% if bots.count()>0 %}
 
-                        <h4 id="accounts-progress">Accounts Progress</h4>
-
-                        <div id="botsPagination" class="pagination pagination-right">
-                            <ul>
-                                {% for i in 1..bots_n_pages %}
-                                    <li class="{% if i==1 %}active{% endif %}"><a href="#accounts-progress" class="pag-listen">{{ i }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                        <h4 id="accounts-progress">Accounts Progress </h4>
 
                         <table id="bots">
                             <tr>
@@ -86,6 +78,13 @@
                             {% endfor %}
                             </tbody>
                         </table>
+                        <div id="botsPagination" class="pagination pagination-right">
+                            <ul>
+                                {% for i in 1..bots_n_pages %}
+                                    <li class="{% if i==1 %}active{% endif %}"><a href="#accounts-progress" class="pag-listen">{{ i }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     {% endif %}
 
                 {% endif %}
