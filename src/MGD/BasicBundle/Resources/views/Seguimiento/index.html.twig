@@ -47,9 +47,17 @@
 
                     {% if bots.count()>0 %}
 
-                        <h4>Accounts Progress</h4>
+                        <h4 id="accounts-progress">Accounts Progress</h4>
 
-                        <table>
+                        <div id="botsPagination" class="pagination pagination-right">
+                            <ul>
+                                {% for i in 1..bots_n_pages %}
+                                    <li class="{% if i==1 %}active{% endif %}"><a href="#accounts-progress" class="pag-listen">{{ i }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <table id="bots">
                             <tr>
                                 <th>Nombre bot</th>
                                 <th>Progreso</th>
@@ -58,9 +66,16 @@
 
                             {% for bot in bots %}
                                 {# bott \MGD\BasicBundle\Entity\PedidoBots #}
-
+                                {% if loop.index is divisibleby(bots_n_per_page) %}
+                                    {% set pag_count = pag_count + 1 %}
+                                    </tbody>
+                                    <tbody id="paginado{{ pag_count }}" class="hidden">
+                                {% elseif loop.index == 1 %}
+                                    {% set pag_count = 1 %}
+                                    <tbody id="paginado{{ pag_count }}" class="activado">
+                                {% endif %}
                                 <tr>
-                                    <td>{{ bot.nombre }}</td>
+                                    <td>{{ loop.index }}. {{ bot.nombre }}</td>
                                     <td>
                                         <div class=" span2 progress progress-striped active text-info" style="text-align: center; margin-bottom: 0">
                                             <div class="bar" style="width: {{ bot.lvl*10 }}%;">lvl {{ bot.lvl }}</div> Pendiente
@@ -69,6 +84,7 @@
                                     <td>{{ bot.updateDate|date('Y-m-d H:i') }}</td>
                                 </tr>
                             {% endfor %}
+                            </tbody>
                         </table>
                     {% endif %}
 
@@ -76,6 +92,42 @@
         </section>
     </article>
 
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    function load() {
+        var el = document.getElementsByClassName("pag-listen");
+        for(var i = 0, j=el.length; i<j; i++){
+            el[i].addEventListener("click", function(){ cambiar_pagina(this);}, false);
+        }
+    }
+
+    function cambiar_pagina(obj)
+    {
+        var el = document.getElementById("botsPagination");
+
+        var childActive=el.getElementsByClassName("active");
+        for(var i = 0, j=childActive.length; i<j; i++){
+            childActive[i].className = "";
+        }
+        obj.parentNode.className = "active";
+        var pagina = obj.innerText;
+
+        el = document.getElementById("bots");
+        childActive = el.getElementsByClassName("activado");
+        for(i = 0, j=childActive.length; i<j; i++){
+            childActive[i].className = "hidden";
+        }
+
+        el = document.getElementById("paginado" +pagina);
+        el.className = "activado";
+
+    }
+
+    load();
+
+</script>
 {% endblock %}
 
 {% block aside_principal %}

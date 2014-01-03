@@ -57,12 +57,17 @@ class SeguimientoController extends Controller
 		    }
 	    }
 
+        $bots_n_per_page=20;
+
 	    return array(
 		    'seguimiento_form'   => $form->createView(),
 		    'seguimientos'   => $seguimientos,
             'pedido'   => $pedido,
             'bots'   => $bots,
+            'bots_n_pages' => ceil($bots->count()/$bots_n_per_page),
+            'bots_n_per_page' => $bots_n_per_page,
 		    'seguimientoId' => $seguimientoId,
+
 	    );
 
     }
