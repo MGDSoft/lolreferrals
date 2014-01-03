@@ -4,6 +4,7 @@ namespace MGD\BasicBundle\Controller;
 
 use MGD\BasicBundle\Entity\Contacto;
 use MGD\BasicBundle\Entity\Pedido;
+use MGD\BasicBundle\Entity\PedidoEstados;
 use MGD\BasicBundle\Form\SeguimientoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,7 +23,7 @@ class SeguimientoController extends Controller
     */
     public function indexAction(Request $request)
     {
-	    $seguimientoId  =null;
+	    $seguimientoId = $pedido = $bots =null;
 	    $seguimientos = array();
 	    $form = $this->createForm(new SeguimientoType(), null);
 
@@ -38,6 +39,7 @@ class SeguimientoController extends Controller
 
 			    if (!empty($seguimientoId))
 			    {
+                    /** @var PedidoEstados[] $seguimientos */
 				    if (!$seguimientos = $em->getRepository("MGDBasicBundle:PedidoEstados")->findByPedido($seguimientoId))
 				    {
 					    $translated = $this->get('translator');
@@ -45,7 +47,11 @@ class SeguimientoController extends Controller
 						    $translated->trans("formularios.contacto.errors.codigo_referencia_no")
 					    );
 					    $form->get('pedidoId')->addError($error);
-				    }
+				    }else{
+                        $pedido=$seguimientos[0]->getPedido();
+                        $bots=$pedido->getPedidoBots();
+                    }
+
 
 			    }
 		    }
@@ -54,6 +60,8 @@ class SeguimientoController extends Controller
 	    return array(
 		    'seguimiento_form'   => $form->createView(),
 		    'seguimientos'   => $seguimientos,
+            'pedido'   => $pedido,
+            'bots'   => $bots,
 		    'seguimientoId' => $seguimientoId,
 	    );
 

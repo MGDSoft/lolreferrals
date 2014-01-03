@@ -54,7 +54,6 @@ bazinga_faker:
             custom_formatters:
                 nombre: { method: randomElement, parameters: [['50 Referrals','250 Referrals','300 Referrals']] }
                 precio: { method: randomNumber, parameters: [50,400] }
-                paypalHtml: { method: sentence }
         MGD\FrameworkBundle\Entity\Usuario:
             number: 1
         MGD\BasicBundle\Entity\Estado:
@@ -69,6 +68,12 @@ bazinga_faker:
                 ip: { method: ipv4 }
         MGD\BasicBundle\Entity\PedidoEstados:
             number: 40
+        MGD\BasicBundle\Entity\PedidoBots:
+            number: 40
+            custom_formatters:
+                nombre: { method: uuid }
+                contrasena: { method: word }
+                lvl: { method: randomNumber, parameters: [0,10] }
         MGD\BasicBundle\Entity\Noticia:
             number: 30
             custom_formatters:

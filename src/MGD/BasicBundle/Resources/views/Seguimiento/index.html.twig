@@ -13,7 +13,7 @@
             </p>
 
         </header>
-        <section>
+        <section id="seguimiento">
             <br>
             <form id="contacto" action="{{ path('seguimiento_' ~ app.request.locale) }}" method="post">
                 {{ form_widget(seguimiento_form) }}
@@ -24,9 +24,11 @@
 
                 {% if seguimientos %}
                     <br>
-                    <h4>{{ 'formularios.seguimiento.seguimiento' | trans }}: {{ seguimientoId }}</h4>
+                    <h3>{{ 'formularios.seguimiento.seguimiento' | trans }}: {{ seguimientoId }}</h3>
 
-                    <table id="seguimiento">
+                    <h4>General Progress</h4>
+
+                    <table >
                     <tr>
                         <th>{{ 'formularios.seguimiento.estado' | trans }}</th>
                         <th>{{ 'formularios.seguimiento.fecha' | trans }}</th>
@@ -40,7 +42,35 @@
                             <td>{{ seguimiento.descripcion }}</td>
                         </tr>
                     {% endfor %}
+
                 </table>
+
+                    {% if bots.count()>0 %}
+
+                        <h4>Accounts Progress</h4>
+
+                        <table>
+                            <tr>
+                                <th>Nombre bot</th>
+                                <th>Progreso</th>
+                                <th>Fecha Actualizado</th>
+                            </tr>
+
+                            {% for bot in bots %}
+                                {# bott \MGD\BasicBundle\Entity\PedidoBots #}
+
+                                <tr>
+                                    <td>{{ bot.nombre }}</td>
+                                    <td>
+                                        <div class=" span2 progress progress-striped active text-info" style="text-align: center; margin-bottom: 0">
+                                            <div class="bar" style="width: {{ bot.lvl*10 }}%;">lvl {{ bot.lvl }}</div> Pendiente
+                                        </div>
+                                    </td>
+                                    <td>{{ bot.updateDate|date('Y-m-d H:i') }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
 
                 {% endif %}
         </section>

@@ -2,8 +2,11 @@
 
 namespace MGD\AdminBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\Entity\Estado;
+use MGD\BasicBundle\Entity\PedidoBots;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -211,6 +214,8 @@ class PedidoController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        /* @var Pedido $entity */
+
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
@@ -267,6 +272,8 @@ class PedidoController extends Controller
 
         if ($editForm->isValid()) {
             $em->persist($entity);
+            $this->insertarBots($editForm, $entity, $em);
+
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
@@ -275,11 +282,67 @@ class PedidoController extends Controller
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }
 
+        /* @var Pedido $entity */
+
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
+    }
+
+    private function insertarBots($editForm, Pedido $pedido, $em)
+    {
+        /** @var Form $file*/
+        $file=$editForm['bots'];
+        if ($file->getViewData())
+        {
+            /** @var PedidoBots[] $bots */
+            $bots = $em->getRepository('MGDBasicBundle:PedidoBots')->findByPedido($pedido->getId());
+
+            $dir=sys_get_temp_dir();
+            $fileName=date("Y-m-d_H-i-s").".txt";
+            $file->getData()->move($dir, $fileName);
+
+            $file = file($dir . DIRECTORY_SEPARATOR . $fileName);
+            foreach($file as $line)
+            {
+                $arr = explode(":",trim($line));
+                if (isset($arr[0]) && isset($arr[1]))
+                {
+                    $flag = false;
+                    $nombreBot=$arr[0];
+                    $passwordBot=$arr[1];
+                    /** @var ArrayCollection $bots  */
+                    foreach ($bots as $key=>$bot)
+                    {
+                        if ($bot->getNombre()==$nombreBot)
+                        {
+                            $flag = true;
+                            unset($bots[$key]);
+                            break;
+                        }
+                    }
+
+                    if ($flag)
+                        continue;
+
+                    $pedidoBots = new PedidoBots();
+
+                    $pedidoBots->setNombre($nombreBot);
+                    $pedidoBots->setContrasena($passwordBot);
+                    $pedidoBots->setPedido($pedido);
+
+                    $em->persist($pedidoBots);
+
+                }
+            }
+
+            foreach ($bots as $bot)
+            {
+                $em->remove($bot);
+            }
+        }
     }
 
     /**

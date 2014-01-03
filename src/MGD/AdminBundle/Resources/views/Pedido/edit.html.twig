@@ -16,7 +16,7 @@
     </p>
 </form>
 
-<div>
+<div class="row">
     <div class="float-left">
         <a class="btn" href="{{ path('pedido') }}">
             {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
@@ -30,4 +30,6 @@
         </form>
     </div>
 </div>
+
+{% include('@MGDAdmin/Pedido/bots.html.twig') %}
 {% endblock %}

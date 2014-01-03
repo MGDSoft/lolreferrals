@@ -25,7 +25,12 @@ class PedidoType extends AbstractType
 	        ->add('fecha','datetime', array(
 			        'attr'=> array('class' => 'div-date'),
 		        )
-	        );
+	        )
+            ->add('bots','file',array(
+                'mapped' => false,
+                'required' => false
+            ))
+        ;
 
     }
 

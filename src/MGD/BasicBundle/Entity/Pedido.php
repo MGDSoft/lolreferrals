@@ -7,6 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Util\SecureRandom;
+use MGD\BasicBundle\Entity\BotCuenta;
 
 /**
  * Pedido
@@ -58,12 +59,20 @@ class Pedido
 	 */
 	private $referralLink;
 
+    /**
+     * @var BotCuenta[]
+     *
+     * @ORM\OneToMany(targetEntity="PedidoBots", mappedBy="pedido")
+     */
+    private $pedidoBots;
+
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="ip", type="string", length=39)
 	 */
 	private $ip;
+
 	/**
 	 * @var string
 	 *
@@ -109,6 +118,8 @@ class Pedido
 
 	    $this->id = uniqid('LOL' . date("Ymdhis"));
 
+
+        $this->pedidoBots = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -383,4 +394,19 @@ class Pedido
         return $this->cuponDescuento;
     }
 
+    /**
+     * @param \MGD\BasicBundle\Entity\BotCuenta[] $pedidoBots
+     */
+    public function setPedidoBots($pedidoBots)
+    {
+        $this->pedidoBots = $pedidoBots;
+    }
+
+    /**
+     * @return \MGD\BasicBundle\Entity\BotCuenta[]
+     */
+    public function getPedidoBots()
+    {
+        return $this->pedidoBots;
+    }
 }
