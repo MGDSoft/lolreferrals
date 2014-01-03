@@ -55,7 +55,7 @@ class SeguimientoControllerTest extends FunctionalTestCase
 
         $crawler = $this->client->submit($form);
 
-        $this->assertTrue($crawler->filter('table#seguimiento')->count() == 1);
+        $this->assertTrue($crawler->filter('#seguimiento')->count() == 1);
 
     }
 

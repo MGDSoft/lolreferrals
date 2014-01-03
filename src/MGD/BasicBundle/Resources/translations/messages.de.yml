@@ -141,6 +141,16 @@ formularios:
               estado: Zustand
               fecha: Datum
               descripcion: Nachricht
+              
+              progreso_general: Allgemeine Fortschritt
+              bots_progreso: Fortschritt Konto
+              
+              bots:
+                  nombre: Name Bot
+                  progreso: Fortschritt
+                  fecha_actualizado: Update Datum
+                  lvl: Stufe
+                  pendiente: Pending
 
         contacto:
               errors:

@@ -134,6 +134,7 @@ seguimiento:
         titulo: ¿Hay algún problema con el ID?
         texto: Entonces contacte con nosotros en nuestra zona de contacto.
 
+
 formularios:
         seguimiento:
               seguimiento: Seguimiento
@@ -141,6 +142,16 @@ formularios:
               estado: Estado
               fecha: Fecha
               descripcion: Mensaje
+
+              progreso_general: Progreso General
+              bots_progreso: Progreso de cuentas
+
+              bots:
+                  nombre: Nombre bot
+                  progreso: Progreso
+                  fecha_actualizado: Fecha Actualizado
+                  lvl: Nivel
+                  pendiente: Pendiente
 
         contacto:
               errors:

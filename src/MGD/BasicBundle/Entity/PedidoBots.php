@@ -55,7 +55,7 @@ class PedidoBots
      * @var \DateTime
      *
      * @ORM\Column(name="update_date", type="datetime")
-     * @Gedmo\Timestampable(on="update",on="create")
+     * @Gedmo\Timestampable(on="change", field={"lvl"})
      */
     private $updateDate;
 

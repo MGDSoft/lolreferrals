@@ -26,7 +26,7 @@
                     <br>
                     <h3>{{ 'formularios.seguimiento.seguimiento' | trans }}: {{ seguimientoId }}</h3>
 
-                    <h4>General Progress</h4>
+                    <h4>{{ 'formularios.seguimiento.progreso_general' | trans }}</h4>
 
                     <table >
                     <tr>
@@ -47,13 +47,13 @@
 
                     {% if bots.count()>0 %}
 
-                        <h4 id="accounts-progress">Accounts Progress </h4>
+                        <h4>{{ 'formularios.seguimiento.bots_progreso' | trans }}</h4>
 
                         <table id="bots">
                             <tr>
-                                <th>Nombre bot</th>
-                                <th>Progreso</th>
-                                <th>Fecha Actualizado</th>
+                                <th>{{ 'formularios.seguimiento.bots.nombre' | trans }}</th>
+                                <th>{{ 'formularios.seguimiento.bots.progreso' | trans }}</th>
+                                <th>{{ 'formularios.seguimiento.bots.fecha_actualizado' | trans }}</th>
                             </tr>
 
                             {% for bot in bots %}
@@ -70,7 +70,10 @@
                                     <td>{{ loop.index }}. {{ bot.nombre }}</td>
                                     <td>
                                         <div class=" span2 progress progress-striped active text-info" style="text-align: center; margin-bottom: 0">
-                                            <div class="bar" style="width: {{ bot.lvl*10 }}%;">lvl {{ bot.lvl }}</div> Pendiente
+                                            <div class="bar" style="width: {{ bot.lvl*10 }}%;">
+                                                {{ 'formularios.seguimiento.bots.lvl' | trans }} {{ bot.lvl }}
+                                            </div>
+                                            {{ 'formularios.seguimiento.bots.pendiente' | trans }}
                                         </div>
                                     </td>
                                     <td>{{ bot.updateDate|date('Y-m-d H:i') }}</td>

@@ -142,6 +142,16 @@ formularios:
               fecha: Date
               descripcion: Message
 
+              progreso_general: General progress
+              bots_progreso: Accounts progress
+
+              bots:
+                  nombre: Bot name
+                  progreso: Progress
+                  fecha_actualizado: Updated
+                  lvl: Lvl
+                  pendiente: Pending
+
         contacto:
               errors:
                   codigo_referencia_no: Order ID not exist.
