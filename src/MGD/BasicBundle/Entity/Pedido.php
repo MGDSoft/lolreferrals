@@ -60,7 +60,7 @@ class Pedido
 	private $referralLink;
 
     /**
-     * @var BotCuenta[]
+     * @var PedidoBots[]
      *
      * @ORM\OneToMany(targetEntity="PedidoBots", mappedBy="pedido")
      */
@@ -395,7 +395,7 @@ class Pedido
     }
 
     /**
-     * @param \MGD\BasicBundle\Entity\BotCuenta[] $pedidoBots
+     * @param \MGD\BasicBundle\Entity\PedidoBots[] $pedidoBots
      */
     public function setPedidoBots($pedidoBots)
     {
@@ -403,10 +403,31 @@ class Pedido
     }
 
     /**
-     * @return \MGD\BasicBundle\Entity\BotCuenta[]
+     * @return \MGD\BasicBundle\Entity\PedidoBots[]
      */
     public function getPedidoBots()
     {
         return $this->pedidoBots;
+    }
+
+    public function getPedidoBotsState()
+    {
+        if ($this->pedidoBots->count()>0)
+        {
+            $esperando=$finalizado=$corriendo=0;
+            foreach ($this->pedidoBots as $bot)
+            {
+                if ($bot->getLvl()==10)
+                    $finalizado++;
+                elseif ($bot->getLvl()!=0)
+                    $corriendo++;
+                else
+                    $esperando++;
+            }
+
+            return "que-$esperando lvl-$corriendo comp-$finalizado";
+        }
+
+        return false;
     }
 }

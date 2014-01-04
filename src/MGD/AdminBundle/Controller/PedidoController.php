@@ -48,6 +48,8 @@ class PedidoController extends Controller
             ->andWhere('e.estado is not null')
 	        ->orderBy('e.fecha','DESC');
 
+        /** @var Pedido[] $entities */
+
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
         return array(

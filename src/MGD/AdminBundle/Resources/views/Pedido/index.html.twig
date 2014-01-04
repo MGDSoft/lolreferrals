@@ -56,6 +56,7 @@
             <th>Articulo</th>
             <th>Estado</th>
             <th>Cupon</th>
+            <th>Bots</th>
             <th>Fecha</th>
             <th>Ip</th>
             <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
@@ -70,6 +71,11 @@
             <td>{{ entity.articulo }}</td>
             <td>{{ entity.estado }}</td>
             <td>{{ entity.cuponDescuento | raw }}</td>
+            <td>
+                {% if  entity.pedidoBots is not null %}
+                    {{ entity.getPedidoBotsState() | raw }}
+                {% endif %}
+            </td>
             <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
             <td>{{ entity.ip }}</td>
             <td>
