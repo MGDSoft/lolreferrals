@@ -425,7 +425,7 @@ class Pedido
                     $esperando++;
             }
 
-            return "que-$esperando lvl-$corriendo comp-$finalizado";
+            return "q-$esperando<br>lvl-$corriendo<br>comp-$finalizado";
         }
 
         return false;
