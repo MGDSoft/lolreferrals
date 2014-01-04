@@ -142,14 +142,15 @@ formularios:
               estado: Estado
               fecha: Fecha
               descripcion: Mensaje
+              desbloquear_premios: Recuerda que Riot necesita 24/48h para actualizar las cuentas en la página de refer-a-friend. ¡Cuando su pedido finalice entra <ahref="http://leagueoflegends.com/rewards" target="_blank">aquí</a> para desbloquear las recompensas!
 
               progreso_general: Progreso General
               bots_progreso: Progreso de cuentas
 
               bots:
-                  nombre: Nombre bot
+                  nombre: Nombre cuenta
                   progreso: Progreso
-                  fecha_actualizado: Fecha Actualizado
+                  fecha_actualizado: Ultima actualización
                   lvl: Nivel
                   pendiente: Pendiente
 
