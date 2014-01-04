@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\Entity\Estado;
 use MGD\BasicBundle\Entity\PedidoBots;
+use MGD\BasicBundle\Service\PedidoPagoService;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -153,6 +154,13 @@ class PedidoController extends Controller
 
 	        $estado = $em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
 	        $entity->setEstado($estado);
+
+            $entity->setTotal($entity->getArticulo()->getPrecio());
+
+            /** @var PedidoPagoService $pagoService */
+            $pagoService = $this->get("pedido.pago_service");
+            $instruction = $pagoService->generateInstructions($entity);
+            $entity->setPaymentInstruction($instruction);
 
 	        $em->persist($entity);
 
