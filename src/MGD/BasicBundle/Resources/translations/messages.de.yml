@@ -141,7 +141,7 @@ formularios:
               estado: Zustand
               fecha: Datum
               descripcion: Nachricht
-              desbloquear_premios: Remember Riot needs 24h/48h to update the accounts into the refer-a-friend website. Also enter <ahref="http://leagueoflegends.com/rewards" target="_blank">here</a> to redeem your rewards when the order is complete!
+              desbloquear_premios: Remember Riot needs 24h/48h to update the accounts into the refer-a-friend website. Also enter <a href="http://leagueoflegends.com/rewards" target="_blank">here</a> to redeem your rewards when the order is complete!
               
               progreso_general: Allgemeine Fortschritt
               bots_progreso: Fortschritt Konto
