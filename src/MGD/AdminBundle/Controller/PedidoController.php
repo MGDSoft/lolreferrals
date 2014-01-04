@@ -343,17 +343,6 @@ class PedidoController extends Controller
                 $em->remove($bot);
             }
 
-            if ($pedido->getEstado()->getId() == EstadoEnum::Cola)
-            {
-                $estadoProcesando = $em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Procesando);
-                $pedido->setEstado($estadoProcesando);
-
-                $pedidoEstado  = new PedidoEstados();
-                $pedidoEstado->setEstado($estadoProcesando);
-                $pedidoEstado->setPedido($pedido);
-
-                $em->persist($pedidoEstado);
-            }
         }
     }
 

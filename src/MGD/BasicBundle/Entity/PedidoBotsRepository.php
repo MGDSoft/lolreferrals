@@ -29,4 +29,21 @@ class PedidoBotsRepository extends EntityRepository
 
         return $result> 0 ? false: true;
     }
+
+    public function isFirstLvlByPedido(Pedido $pedido)
+    {
+        $result = $this->getEntityManager()
+            ->createQuery('
+            SELECT count(p.nombre)
+            FROM MGDBasicBundle:PedidoBots p
+            WHERE
+                p.lvl > :lvl
+                AND p.pedido = :pedido
+
+            ')
+            ->setParameters(array('lvl' => 0, 'pedido' => $pedido))
+            ->getSingleScalarResult();
+
+        return $result == 1 ? true : false;
+    }
 }

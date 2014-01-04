@@ -10,6 +10,8 @@ namespace MGD\BasicBundle\Command;
 
 use Doctrine\ORM\EntityManager;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
+use MGD\BasicBundle\Entity\Estado;
+use MGD\BasicBundle\Entity\Pedido;
 use MGD\BasicBundle\Entity\PedidoBots;
 use MGD\BasicBundle\Entity\PedidoEstados;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -71,7 +73,12 @@ class BotsUpdateCommand extends ContainerAwareCommand
 
         $this->em->flush();
 
-        $this->siPedidoFinalizadoCambiarEstado($pedidoBot);
+        if (isset($pedidoBot))
+        {
+            $this->siPedidoFinalizadoCambiarEstado($pedidoBot);
+            $this->siPedidoElPrimeroCambiarEstado($pedidoBot);
+        }
+
     }
 
     private function siPedidoFinalizadoCambiarEstado(PedidoBots $pedidoBot)
@@ -83,13 +90,33 @@ class BotsUpdateCommand extends ContainerAwareCommand
             $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
             $pedido->setEstado($estadoFinalizado);
 
-            $pedidoEstado  = new PedidoEstados();
-            $pedidoEstado->setEstado($estadoFinalizado);
-            $pedidoEstado->setPedido($pedido);
-
-            $this->em->persist($pedidoEstado);
-            $this->em->flush();
+            $this->changeState($pedido,$estadoFinalizado);
         }
+    }
+
+    private function siPedidoElPrimeroCambiarEstado(PedidoBots $pedidoBot)
+    {
+        $pedido = $pedidoBot->getPedido();
+
+        if ($pedidoBot && $pedido->getEstado()->getId() == EstadoEnum::Cola && $this->em->getRepository('MGDBasicBundle:PedidoBots')->isFirstLvlByPedido($pedido))
+        {
+            $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Procesando);
+            $pedido->setEstado($estadoFinalizado);
+
+            $this->changeState($pedido,$estadoFinalizado);
+        }
+    }
+
+    private function changeState(Pedido $pedido,Estado $estado)
+    {
+        $pedido->setEstado($estado);
+
+        $pedidoEstado  = new PedidoEstados();
+        $pedidoEstado->setEstado($estado);
+        $pedidoEstado->setPedido($pedido);
+
+        $this->em->persist($pedidoEstado);
+        $this->em->flush();
     }
 
 }
