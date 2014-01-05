@@ -98,7 +98,9 @@ class BotsUpdateCommand extends ContainerAwareCommand
     {
         $pedido = $pedidoBot->getPedido();
 
-        if ($pedidoBot && $pedido->getEstado()->getId() == EstadoEnum::Cola && $this->em->getRepository('MGDBasicBundle:PedidoBots')->isFirstLvlByPedido($pedido))
+        if ($pedidoBot
+            && $pedido->getEstado()->getId() == EstadoEnum::Cola
+            && $this->em->getRepository('MGDBasicBundle:PedidoBots')->countMayorLvlByPedido($pedido, 0) > 0 )
         {
             $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Procesando);
             $pedido->setEstado($estadoFinalizado);

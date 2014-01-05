@@ -46,4 +46,20 @@ class PedidoBotsRepository extends EntityRepository
 
         return $result == 1 ? true : false;
     }
+
+    public function countMayorLvlByPedido(Pedido $pedido,$lvl =0)
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+            SELECT count(p.nombre)
+            FROM MGDBasicBundle:PedidoBots p
+            WHERE
+                p.lvl > :lvl
+                AND p.pedido = :pedido
+
+            ')
+            ->setParameters(array('lvl' => $lvl, 'pedido' => $pedido))
+            ->getSingleScalarResult();
+
+    }
 }
