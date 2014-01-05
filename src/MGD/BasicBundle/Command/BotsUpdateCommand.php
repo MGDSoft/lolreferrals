@@ -72,11 +72,8 @@ class BotsUpdateCommand extends ContainerAwareCommand
 
             $this->em->flush();
 
-            if (isset($pedidoBot))
-            {
-                $this->siPedidoFinalizadoCambiarEstado($pedidoBot);
-                $this->siPedidoElPrimeroCambiarEstado($pedidoBot);
-            }
+            $this->siPedidoFinalizadoCambiarEstado($pedidoBot);
+            $this->siPedidoElPrimeroCambiarEstado($pedidoBot);
         }
 
     }
