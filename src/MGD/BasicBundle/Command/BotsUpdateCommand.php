@@ -69,14 +69,14 @@ class BotsUpdateCommand extends ContainerAwareCommand
             $this->logger->debug("Actualizado el bot $nombre al nivel $lvl");
 
             unlink($file);
-        }
 
-        $this->em->flush();
+            $this->em->flush();
 
-        if (isset($pedidoBot))
-        {
-            $this->siPedidoFinalizadoCambiarEstado($pedidoBot);
-            $this->siPedidoElPrimeroCambiarEstado($pedidoBot);
+            if (isset($pedidoBot))
+            {
+                $this->siPedidoFinalizadoCambiarEstado($pedidoBot);
+                $this->siPedidoElPrimeroCambiarEstado($pedidoBot);
+            }
         }
 
     }
