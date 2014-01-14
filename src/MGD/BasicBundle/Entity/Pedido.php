@@ -28,13 +28,13 @@ class Pedido
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Articulo", fetch="EAGER")
-	 * @ORM\JoinColumn(name="articulo_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+	 * @ORM\JoinColumn(name="articulo_id", referencedColumnName="id", nullable=false)
 	 */
     private $articulo;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Estado", fetch="EAGER")
-	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=true)
 	 */
 	private $estado;
 
@@ -62,7 +62,7 @@ class Pedido
     /**
      * @var PedidoBots[]
      *
-     * @ORM\OneToMany(targetEntity="PedidoBots", mappedBy="pedido")
+     * @ORM\OneToMany(targetEntity="PedidoBots", mappedBy="pedido", cascade={"remove"}, orphanRemoval=true)
      */
     private $pedidoBots;
 
@@ -90,7 +90,7 @@ class Pedido
     /**
      * @var PaymentInstruction
      *
-     * @ORM\OneToOne(targetEntity="JMS\Payment\CoreBundle\Entity\PaymentInstruction")
+     * @ORM\OneToOne(targetEntity="JMS\Payment\CoreBundle\Entity\PaymentInstruction" , cascade={"remove"}, orphanRemoval=true)
      */
     private $paymentInstruction;
 

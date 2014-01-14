@@ -24,4 +24,4 @@ parameters:
     paypal_api_signature: AgRXo3ohxZV2eBMxunVdm8QL1HVoAq2poslzWnrcbBIsWgOc5ZLVN1jY
     paypal_api_debug: true
 
-    bots_updated_dir: C:\lol_dir_bots
+    bots_updated_dir: /dev/mgd/lol/bots
