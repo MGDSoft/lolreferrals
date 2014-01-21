@@ -400,7 +400,7 @@ class PedidoController extends Controller
 
         $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-        return $this->redirect($this->generateUrl('pedido_edit',['id'=>$pedido->getId()]));
+        return $this->redirect($this->generateUrl('pedido_edit',array('id'=>$pedido->getId())));
     }
 
     /**
