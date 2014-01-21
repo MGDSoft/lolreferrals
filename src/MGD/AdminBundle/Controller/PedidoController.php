@@ -398,6 +398,38 @@ class PedidoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->getRepository('MGDBasicBundle:PedidoBots')->updateAllLvlsByPedido($pedido->getId(), $lvl);
 
+        if ($pedido->getEstado()->getId() != EstadoEnum::Finalizado && $lvl == 10 )
+        {
+            $estadoFinalizado = $em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
+
+            $pedido->setEstado($estadoFinalizado);
+
+            $pedidoEstado = new PedidoEstados();
+
+            $pedidoEstado->setEstado($estadoFinalizado);
+            $pedidoEstado->setPedido($pedido);
+
+            $em->persist($pedido);
+            $em->persist($pedidoEstado);
+
+            $em->flush();
+
+        }else if($pedido->getEstado()->getId() == EstadoEnum::Finalizado && $lvl != 10){
+
+            $estadoCola = $em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
+            $pedido->setEstado($estadoCola);
+
+            $pedidoEstado = new PedidoEstados();
+
+            $pedidoEstado->setEstado($estadoCola);
+            $pedidoEstado->setPedido($pedido);
+
+            $em->persist($pedido);
+            $em->persist($pedidoEstado);
+
+            $em->flush();
+        }
+
         $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
         return $this->redirect($this->generateUrl('pedido_edit',array('id'=>$pedido->getId())));
