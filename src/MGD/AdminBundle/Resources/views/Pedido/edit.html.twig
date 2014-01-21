@@ -29,6 +29,14 @@
             <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
         </form>
     </div>
+    {% if entity.pedidoBots.count()>0 %}
+        <div class="float-left">
+            <a class="btn btn-success" href="{{ path('pedido_update_bots', { 'id': entity.id, 'lvl': 10 }) }}">Bots Completed</a>
+        </div>
+        <div class="float-left">
+            <a class="btn btn-info" href="{{ path('pedido_update_bots', { 'id': entity.id, 'lvl': 0 }) }}">Bots Starter</a>
+        </div>
+    {% endif %}
 </div>
 
 {% include('@MGDAdmin/Pedido/bots.html.twig') %}

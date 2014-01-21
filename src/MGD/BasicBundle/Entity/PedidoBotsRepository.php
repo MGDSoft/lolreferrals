@@ -3,7 +3,7 @@
 namespace MGD\BasicBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-
+use MGD\BasicBundle\Entity\Pedido;
 
 /**
  * PedidoBots
@@ -61,5 +61,18 @@ class PedidoBotsRepository extends EntityRepository
             ->setParameters(array('lvl' => $lvl, 'pedido' => $pedido))
             ->getSingleScalarResult();
 
+    }
+
+    public function updateAllLvlsByPedido($pedido_id, $lvl)
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+            UPDATE MGDBasicBundle:PedidoBots p
+            SET p.lvl = :lvl
+            WHERE
+               p.pedido = :pedido
+            ')
+            ->setParameters(array('lvl' => $lvl, 'pedido' => $pedido_id))
+            ->execute();
     }
 }

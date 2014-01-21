@@ -22,6 +22,7 @@ use MGD\BasicBundle\Entity\PedidoEstados;
 use MGD\AdminBundle\Form\PedidoType;
 use MGD\AdminBundle\Form\PedidoFilterType;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Pedido controller.
@@ -383,6 +384,23 @@ class PedidoController extends Controller
         }
 
         return $this->redirect($this->generateUrl('pedido'));
+    }
+
+    /**
+     * Deletes a PedidoEstados entity.
+     *
+     * @Route("/{id}/{lvl}", name="pedido_update_bots")
+     * @ParamConverter("id", class="MGDBasicBundle:Pedido", options={"id" = "id"})
+     * @Method("GET")
+     */
+    public function updateBotsAction(Pedido $pedido, $lvl)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository('MGDBasicBundle:PedidoBots')->updateAllLvlsByPedido($pedido->getId(), $lvl);
+
+        $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
+
+        return $this->redirect($this->generateUrl('pedido_edit',['id'=>$pedido->getId()]));
     }
 
     /**
