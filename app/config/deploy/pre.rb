@@ -24,4 +24,4 @@ set :dump_assetic_assets, true
 logger.level = Logger::MAX_LEVEL
 
 set :shared_files,        ["app/config/parameters.yml"]
-set :shared_children,     [app_path + "/logs", web_path + "/uploads"]
+set :shared_children,     [app_path + "/logs", web_path + "/uploads", web_path + "/sessions"]
