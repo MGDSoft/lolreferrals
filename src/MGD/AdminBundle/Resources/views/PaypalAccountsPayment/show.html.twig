@@ -1,0 +1,34 @@
+{% extends 'MGDAdminBundle::layout_admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - PaypalAccountsPayment {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+<h1>PaypalAccountsPayment</h1>
+
+<form class="form-horizontal">
+    <fieldset>        <div class="control-group">
+            <label class="control-label">Id</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Precio</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.precio }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Descripcion</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.descripcion }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Fecha</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fecha|date('Y-m-d H:i:s') }}</span>            </div>
+        </div>    </fieldset>
+</form>
+
+<div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('paypalaccountspayments') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+</div>
+{% endblock %}

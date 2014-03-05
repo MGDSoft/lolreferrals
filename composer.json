@@ -30,7 +30,7 @@
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/data-fixtures": "dev-master",
         "raulfraile/ladybug-bundle": "~1.0",
-        "willdurand/faker-bundle": "*",
+        "willdurand/faker-bundle": "1.1.*",
         "gregwar/captcha-bundle": "1.0.7",
         "jms/payment-paypal-bundle": "1.0.0",
         "jms/payment-core-bundle": "1.0.*",

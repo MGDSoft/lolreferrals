@@ -15,6 +15,9 @@ use \MGD\BasicBundle\Entity\Estado;
 
 class LoadUsuariosData extends AbstractFixture implements OrderedFixtureInterface
 {
+    /**
+     * {@inheritDoc}
+     */
 	public function load(ObjectManager $manager)
 	{
 		$estados = array(
@@ -36,7 +39,9 @@ class LoadUsuariosData extends AbstractFixture implements OrderedFixtureInterfac
 		$manager->flush();
 
 	}
-
+    /**
+     * {@inheritDoc}
+     */
 	public function getOrder()
 	{
 		return 10; // the order in which fixtures will be loaded

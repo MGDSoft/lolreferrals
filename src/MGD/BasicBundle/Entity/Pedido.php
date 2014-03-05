@@ -97,7 +97,7 @@ class Pedido
     /**
      * @var float
      *
-     * @ORM\Column(type="decimal", precision = 2)
+     * @ORM\Column(type="decimal", scale=2, precision=6)
      */
     private $total;
 
@@ -429,5 +429,28 @@ class Pedido
         }
 
         return false;
+    }
+
+    /**
+     * Add pedidoBots
+     *
+     * @param \MGD\BasicBundle\Entity\PedidoBots $pedidoBots
+     * @return Pedido
+     */
+    public function addPedidoBot(\MGD\BasicBundle\Entity\PedidoBots $pedidoBots)
+    {
+        $this->pedidoBots[] = $pedidoBots;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pedidoBots
+     *
+     * @param \MGD\BasicBundle\Entity\PedidoBots $pedidoBots
+     */
+    public function removePedidoBot(\MGD\BasicBundle\Entity\PedidoBots $pedidoBots)
+    {
+        $this->pedidoBots->removeElement($pedidoBots);
     }
 }

@@ -1,0 +1,55 @@
+{% extends 'MGDAdminBundle::layout_admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - PaypalAccount {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+<h1>PaypalAccount</h1>
+
+<form class="form-horizontal">
+    <fieldset>        <div class="control-group">
+            <label class="control-label">Id</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Name</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.name }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Apiusername</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.apiUsername }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Apipassword</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.apiPassword }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Apisignature</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.apiSignature }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Preciopararotar</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.dineroParaRotar }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Active</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.active }}</span>            </div>
+        </div>    </fieldset>
+</form>
+
+<div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('paypalaccount') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <div class="float-left">
+        <a class="btn btn-primary" href="{{ path('paypalaccount_edit', { 'id': entity.id }) }}">
+            {{ 'views.recordactions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <div class="float-left">
+        <form action="{{ path('paypalaccount_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

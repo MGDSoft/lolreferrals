@@ -20,7 +20,9 @@ class TestData extends AbstractFixture implements OrderedFixtureInterface
 {
     const pedidoId = "REFLOL12345";
     const email = "prueba@prueba.com";
-
+    /**
+     * {@inheritDoc}
+     */
 	public function load(ObjectManager $manager)
     {
         $articulo = new Articulo();
@@ -53,7 +55,9 @@ class TestData extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
 
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public function getOrder()
     {
         return 99; // the order in which fixtures will be loaded

@@ -17,6 +17,8 @@ class DefaultController extends Controller
      */
     public function indexAction($_locale)
     {
+
+
 		$repository = $this->getDoctrine()
 		    ->getRepository('MGDBasicBundle:Noticia');
 

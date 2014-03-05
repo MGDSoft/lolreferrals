@@ -30,7 +30,7 @@ security:
                 path: /admin/logout
                 target: /
             remember_me:
-                key: MiClaveSegura
+                key: %secret%
                 lifetime: 1800
                 path: /.*
                 domain: ~
@@ -43,6 +43,8 @@ security:
         - { path: ^/admin/rol, roles: [ROLE_SUPER_ADMIN]}
         - { path: ^/admin/articulo, roles: [ROLE_SUPER_ADMIN]}
         - { path: ^/admin/estado, roles: [ROLE_SUPER_ADMIN]}
+        - { path: ^/admin/paypalaccount, roles: [ROLE_SUPER_ADMIN]}
+        - { path: ^/admin/paypalaccountspayments, roles: [ROLE_SUPER_ADMIN]}
         - { path: ^/admin, roles: [ROLE_LECTOR,ROLE_EDITOR,ROLE_ADMIN,ROLE_SUPER_ADMIN]}
         - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

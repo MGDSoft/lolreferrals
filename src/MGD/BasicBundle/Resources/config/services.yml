@@ -9,8 +9,14 @@ services:
         class: MGD\BasicBundle\Service\PedidoPagoService
         arguments: [@service_container]
 
-    pedido.pagado:
-        class: MGD\BasicBundle\Listener\PedidoPagadoListener
+    pedido.finalizarPago:
+        class: MGD\BasicBundle\Listener\FinalizarPagoListener
+        arguments: [@service_container]
+        tags:
+            - { name: kernel.event_listener, event: mgd.pedido_pagado, method: onPayment}
+
+    mgd_basic.paypal_account_listener:
+        class: MGD\BasicBundle\Listener\PaypalPalccountListener
         arguments: [@service_container]
         tags:
             - { name: kernel.event_listener, event: mgd.pedido_pagado, method: onPayment}
@@ -18,3 +24,18 @@ services:
     cupon_descuento.controller:
         class:     MGD\BasicBundle\Controller\CuponDescuentoController
         arguments: [@service_container]
+
+    entity.paypal_account.listener:
+        class: MGD\BasicBundle\Listener\Entity\PaypalAccountEntityListener
+        arguments: [@service_container]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postFlush }
+
+    entity.paypal_accounts_payments.listener:
+        class: MGD\BasicBundle\Listener\Entity\PaypalAccountsPaymentEntityListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist}
+
+

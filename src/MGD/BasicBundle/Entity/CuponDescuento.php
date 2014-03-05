@@ -256,4 +256,30 @@ class CuponDescuento
 
         return true;
     }
+
+    /**
+     * Set id
+     *
+     * @param string $id
+     * @return CuponDescuento
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    
+        return $this;
+    }
+
+    /**
+     * Set creadoDate
+     *
+     * @param \DateTime $creadoDate
+     * @return CuponDescuento
+     */
+    public function setCreadoDate($creadoDate)
+    {
+        $this->creadoDate = $creadoDate;
+    
+        return $this;
+    }
 }

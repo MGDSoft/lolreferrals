@@ -15,6 +15,9 @@ use MGD\BasicBundle\Entity\Cola;
 
 class LoadColaData extends AbstractFixture implements OrderedFixtureInterface
 {
+    /**
+     * {@inheritDoc}
+     */
 	public function load(ObjectManager $manager)
 	{
         $cola=new Cola();
@@ -27,7 +30,9 @@ class LoadColaData extends AbstractFixture implements OrderedFixtureInterface
 	}
 
 
-
+    /**
+     * {@inheritDoc}
+     */
 	public function getOrder()
 	{
 		return 20; // the order in which fixtures will be loaded

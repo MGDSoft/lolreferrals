@@ -16,6 +16,11 @@ before_script:
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar require symfony/framework-bundle:${SYMFONY_VERSION} --no-update
     - php composer.phar install
+    - cp app/config/parameters.yml.dist /app/config/parameters.yml
 
 script:
     - phpunit -c app/ --coverage-text
+    - php app/console doctrine:database:create
+    - php app/console doctrine:schema:create
+    - php app/console doctrine:fixtures:load
+    - php app/console faker:populate
