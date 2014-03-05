@@ -119,6 +119,8 @@ class PaypalAccountEntityListener
         if (!file_put_contents($this->parametersFile,$yaml))
             return false;
 
+        $this->clearCache();
+
         return true;
     }
 
@@ -126,6 +128,13 @@ class PaypalAccountEntityListener
     {
         $dumper = new Dumper();
         return $dumper->dump($parameters,2,0);
+    }
+
+    private function clearCache()
+    {
+        $input = new \Symfony\Component\Console\Input\ArgvInput(array('console','cache:clear'));
+        $application = new \Symfony\Bundle\FrameworkBundle\Console\Application($this->container->get('kernel'));
+        $application->run($input);
     }
 
     private function getParameters()

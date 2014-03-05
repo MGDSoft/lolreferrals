@@ -5,17 +5,17 @@ LoL Referrals proyect
 
 This is a proyect development in Symfony 2, I did it to improve my speed development and make a "gift" to a friend.
 
-== Install ==
+ Install
+==========================================
 
+        - composer install
 
-    - composer install
+        // Configure parameters
 
-    * Configure parameters
-
-    - php app/console doctrine:database:create
-    - php app/console doctrine:schema:create
-    - php app/console doctrine:fixtures:load
-    - php app/console faker:populate
+        - php app/console doctrine:database:create
+        - php app/console doctrine:schema:create
+        - php app/console doctrine:fixtures:load
+        - php app/console faker:populate
 
 
 

@@ -21,8 +21,8 @@ class PaypalAccountSelectCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('paypal:account:select')
-            ->setDescription('Select Account')
+            ->setName('paypal:account:set')
+            ->setDescription('Set valid account')
             ->addArgument('name', InputArgument::REQUIRED, 'Name Paypal')
         ;
     }
