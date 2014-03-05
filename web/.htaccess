@@ -67,5 +67,3 @@ Header set X-UA-Compatible "IE=Edge,chrome=1"
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
 </ifmodule>
-
-php_flag session.auto_start 0

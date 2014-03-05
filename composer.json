@@ -27,7 +27,7 @@
         "jordillonch/crud-generator": "dev-master#d73b3c7aced44b19f663132dfdfb464451e2f9a7",
 
         "egeloen/ckeditor-bundle": "2.*",
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "doctrine/data-fixtures": "dev-master",
         "raulfraile/ladybug-bundle": "~1.0",
         "willdurand/faker-bundle": "1.1.*",
@@ -35,8 +35,6 @@
         "jms/payment-paypal-bundle": "1.0.0",
         "jms/payment-core-bundle": "1.0.*",
         "jms/serializer-bundle": "dev-master"
-
-
     },
     "scripts": {
         "post-install-cmd": [

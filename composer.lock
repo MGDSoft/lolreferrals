@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "73192e1a2ec3c1058a87ba6ac30b34bc",
+    "hash": "177a7707b07162ce86e9a9e90b70af97",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -486,17 +486,17 @@
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
-            "version": "dev-master",
+            "version": "v2.2.0",
             "target-dir": "Doctrine/Bundle/FixturesBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
-                "reference": "351bcc4de9ff58bac8d72bb3ef0b7481377bb25e"
+                "reference": "c811f96f0cf83b997e3a3ed037cac729bbe3e803"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/351bcc4de9ff58bac8d72bb3ef0b7481377bb25e",
-                "reference": "351bcc4de9ff58bac8d72bb3ef0b7481377bb25e",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/c811f96f0cf83b997e3a3ed037cac729bbe3e803",
+                "reference": "c811f96f0cf83b997e3a3ed037cac729bbe3e803",
                 "shasum": ""
             },
             "require": {
@@ -508,7 +508,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -542,7 +542,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2014-02-22 15:01:12"
+            "time": "2013-09-05 11:23:37"
         },
         {
             "name": "doctrine/inflector",
@@ -3132,55 +3132,6 @@
             "time": "2014-02-13 10:19:29"
         },
         {
-            "name": "unifik/database-config-bundle",
-            "version": "dev-master",
-            "target-dir": "Unifik/DatabaseConfigBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/egzakt/UnifikDatabaseConfigBundle.git",
-                "reference": "a97394cf7c136a7c657e634ae854923ac7aa21c4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/egzakt/UnifikDatabaseConfigBundle/zipball/a97394cf7c136a7c657e634ae854923ac7aa21c4",
-                "reference": "a97394cf7c136a7c657e634ae854923ac7aa21c4",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/symfony": "~2.1"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "Unifik\\DatabaseConfigBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Hubert Perron",
-                    "email": "hubert.perron@gmail.com"
-                },
-                {
-                    "name": "Frédéric Hamelin",
-                    "email": "fredhamelin91@gmail.com"
-                }
-            ],
-            "description": "Allows management of Symfony's container configuration from the database",
-            "homepage": "https://github.com/egzakt/UnifikDatabaseConfigBundle",
-            "keywords": [
-                "config",
-                "container",
-                "database",
-                "symfony",
-                "unifik"
-            ],
-            "time": "2014-01-29 15:19:09"
-        },
-        {
             "name": "willdurand/faker-bundle",
             "version": "1.1.0",
             "target-dir": "Bazinga/Bundle/FakerBundle",
@@ -3242,10 +3193,8 @@
         "gedmo/doctrine-extensions": 20,
         "jms/security-extra-bundle": 20,
         "jordillonch/crud-generator": 20,
-        "doctrine/doctrine-fixtures-bundle": 20,
         "doctrine/data-fixtures": 20,
-        "jms/serializer-bundle": 20,
-        "unifik/database-config-bundle": 20
+        "jms/serializer-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

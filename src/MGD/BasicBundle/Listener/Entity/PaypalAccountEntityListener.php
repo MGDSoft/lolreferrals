@@ -90,9 +90,11 @@ class PaypalAccountEntityListener
     {
         if (!$this->entity->getActive())
             return true;
-        else
+        else if ($this->container->getParameter('paypal_api_username')!=$this->entity->getApiUsername())
+        {
             if ($this->modifyApiPayPalAccountParameters($this->entity))
                 $this->log->addInfo("Modificado cuenta de paypal para usuario ".$this->entity->getName());
+        }
 
         if(!$ppAccountlastActive=$this->em->getRepository('MGDBasicBundle:PaypalAccount')->getOneByActive())
             return true;
