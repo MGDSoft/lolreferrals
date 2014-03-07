@@ -43,15 +43,16 @@ abstract class FunctionalTestCase extends WebTestCase {
         self::$application = $application;
     }
 
-    private static function createDatabase($application) {
-        echo "Creando BD ... \n";
+    private static function createDatabase($application)
+    {
         self::executeCommand($application, "doctrine:schema:drop", array("--force" => true , "--env"=>'test'));
         self::executeCommand($application, "doctrine:database:create", array("--env" => 'test'));
         self::executeCommand($application, "doctrine:schema:create", array("--env" => 'test'));
         self::executeCommand($application, "doctrine:fixtures:load", array("-n" => true, "--env"=>'test'));
         //self::executeCommand($application, "doctrine:fixtures:load", array("--fixtures" => __DIR__ . "/../DataFixtures/ORM/test", "-n" => true));
-        echo "Finalizado creacion de BD \n";
     }
+
+
 
     private static function loadFixtures($FileToLoad){
         self::executeCommand(self::$application, "doctrine:fixtures:load", array("--fixtures" => $FileToLoad, "-n" => true));

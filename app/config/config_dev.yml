@@ -57,7 +57,7 @@ bazinga_faker:
         MGD\BasicBundle\Entity\Estado:
             number: 1
             custom_formatters:
-                nombre: { method: word }
+                nombre: { method: word, unique: true }
 
         MGD\BasicBundle\Entity\Pedido:
             number: 20
@@ -87,7 +87,7 @@ bazinga_faker:
                 id: { method: uuid }
 
         MGD\BasicBundle\Entity\PaypalAccount:
-            number: 1
+            number: 6
             custom_formatters:
                 name: { method: word, unique: true }
                 apiUsername: { method: email, unique: true }

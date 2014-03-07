@@ -14,6 +14,7 @@ use Doctrine\ORM\Event\PostFlushEventArgs;
 use MGD\BasicBundle\Entity\PaypalAccount;
 use Monolog\Logger;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Dumper;
 
@@ -46,9 +47,25 @@ class PaypalAccountEntityListener
     private $entity;
 
     /**
+     * It cant do flush in events persist or update, this array save entities to persist in event postFlush
+     *
      * @var array
      */
     private $postPersist=array();
+
+    /**
+     * Required when many entities are persist in the same time, save last Max order
+     *
+     * @var integer
+     */
+    private $postPersistOrder;
+
+    /**
+     * Required when many entities are persist in the same time, save last active account
+     *
+     * @var PaypalAccount
+     */
+    private $postPersistActive;
 
     public function __construct(ContainerInterface $container)
     {
@@ -63,7 +80,6 @@ class PaypalAccountEntityListener
             return false;
 
         $this->uniqueActive();
-
     }
 
     public  function prePersist(LifecycleEventArgs $args)
@@ -96,7 +112,19 @@ class PaypalAccountEntityListener
                 $this->log->addInfo("Modificado cuenta de paypal para usuario ".$this->entity->getName());
         }
 
-        if(!$ppAccountlastActive=$this->em->getRepository('MGDBasicBundle:PaypalAccount')->getOneByActive())
+        $this->modifyLastActive();
+
+        $this->postPersistActive = $this->entity;
+    }
+
+    private function modifyLastActive()
+    {
+        if ($this->postPersistActive)
+            $ppAccountlastActive=$this->postPersistActive;
+        elseif(!$ppAccountlastActive=$this->em->getRepository('MGDBasicBundle:PaypalAccount')->getOneByActive())
+            $ppAccountlastActive=null;
+
+        if (!$ppAccountlastActive)
             return true;
 
         if ($ppAccountlastActive->getApiUsername()==$this->entity->getApiUsername() || !$ppAccountlastActive->getActive())
@@ -104,11 +132,14 @@ class PaypalAccountEntityListener
 
         $ppAccountlastActive->setActive(false);
         $this->postPersist[]=$ppAccountlastActive;
-
     }
 
     private function modifyApiPayPalAccountParameters(PaypalAccount $ppAccount)
     {
+        // Ugly but necesary...
+        if ($this->container->get('kernel')->getEnvironment()=='test')
+            return true;
+
         $parameters = $this->getParameters();
 
         $parameters['parameters']['paypal_api_username'] = $ppAccount->getApiUsername();
@@ -134,9 +165,12 @@ class PaypalAccountEntityListener
 
     private function clearCache()
     {
-        $input = new \Symfony\Component\Console\Input\ArgvInput(array('console','cache:clear'));
-        $application = new \Symfony\Bundle\FrameworkBundle\Console\Application($this->container->get('kernel'));
-        $application->run($input);
+        $process = new Process('php app/console cache:clear --no-optional-warmers --env='.$this->container->get('kernel')->getEnvironment());
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new \RuntimeException($process->getErrorOutput());
+        }
     }
 
     private function getParameters()
@@ -147,12 +181,16 @@ class PaypalAccountEntityListener
 
     protected function setOrder()
     {
-        if ($nextAcc = $this->em->getRepository('MGDBasicBundle:PaypalAccount')->getMaxOrder($this->entity))
-            $order=$nextAcc->getOrder()+1;
+        if ($this->postPersistOrder)
+            $order = $this->postPersistOrder + 1;
+        elseif ($order = $this->em->getRepository('MGDBasicBundle:PaypalAccount')->getMaxOrderN())
+            $order++;
         else
             $order=1;
 
-        $this->entity->setOrder($order);
+        $this->postPersistOrder= $order;
+        $this->entity->setOrderN($order);
+
     }
 
     /**

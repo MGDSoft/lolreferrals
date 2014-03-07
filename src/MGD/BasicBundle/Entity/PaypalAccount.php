@@ -78,7 +78,7 @@ class PaypalAccount
      *
      * @ORM\Column(name="order_n", type="integer")
      */
-    private $order;
+    private $orderN=0;
 
     /**
      * @var boolean
@@ -303,34 +303,35 @@ class PaypalAccount
         return $this->dineroAgregadoTotal;
     }
 
-    /**
-     * Set order
-     *
-     * @param integer $order
-     * @return PaypalAccount
-     */
-    public function setOrder($order)
-    {
-        $this->order = $order;
-    
-        return $this;
-    }
-
-    /**
-     * Get order
-     *
-     * @return integer 
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
-
+   
     public function getPorcentajeRestante()
     {
         if (! $this->active)
             return "";
 
         return round($this->dineroAgregado/$this->dineroParaRotar,4)*100;
+    }
+
+    /**
+     * Set orderN
+     *
+     * @param integer $orderN
+     * @return PaypalAccount
+     */
+    public function setOrderN($orderN)
+    {
+        $this->orderN = $orderN;
+    
+        return $this;
+    }
+
+    /**
+     * Get orderN
+     *
+     * @return integer 
+     */
+    public function getOrderN()
+    {
+        return $this->orderN;
     }
 }

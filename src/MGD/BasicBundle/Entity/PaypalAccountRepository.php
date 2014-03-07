@@ -14,18 +14,22 @@ use MGD\BasicBundle\Entity\Pedido;
 class PaypalAccountRepository extends EntityRepository
 {
 
+
     /**
-     * @return PaypalAccount
+     * @param PaypalAccount $diferentTo
+     * @return mixed
      */
-    public function getOneByActive()
+    public function getOneByActive(PaypalAccount $diferentTo = null)
     {
-        return $this->getEntityManager()
-            ->createQuery('
-            SELECT p
+        $sql="SELECT p
             FROM MGDBasicBundle:PaypalAccount p
             WHERE
-                p.active = true
-            ')
+                p.active = true"
+            . ($diferentTo ? ' AND p.id <> ' . $diferentTo->getId() : '')
+        ;
+
+        return $this->getEntityManager()
+            ->createQuery($sql)
             ->getOneOrNullResult();
             ;
     }
@@ -42,12 +46,12 @@ class PaypalAccountRepository extends EntityRepository
             SELECT p
             FROM MGDBasicBundle:PaypalAccount p
             WHERE
-                p.order > :order
-            ORDER BY p.order ASC
+                p.orderN > :order
+            ORDER BY p.orderN ASC
             ')
             ->setFirstResult(0)
             ->setMaxResults(1)
-            ->setParameters(array('order' => $ppAcc->getOrder()))
+            ->setParameters(array('order' => $ppAcc->getOrderN()))
             ->getOneOrNullResult();
         ;
 
@@ -68,28 +72,44 @@ class PaypalAccountRepository extends EntityRepository
             ->createQuery('
             SELECT p
             FROM MGDBasicBundle:PaypalAccount p
-            ORDER BY p.order ASC
+            ORDER BY p.orderN ASC
             ')
             ->setFirstResult(0)
             ->setMaxResults(1)
-            ->getOneOrNullResult();
+            ->getOneOrNullResult()
+        ;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getMaxOrderN()
+    {
+        return
+            $this->getEntityManager()
+                ->createQuery('
+                SELECT max(p.orderN)
+                FROM MGDBasicBundle:PaypalAccount p
+                ')
+                ->getSingleScalarResult()
         ;
     }
 
     /**
      * @return PaypalAccount
      */
-    public function getMaxOrder()
+    public function getOneMaxOrderN()
     {
-        return $this->getEntityManager()
-            ->createQuery('
-            SELECT p
-            FROM MGDBasicBundle:PaypalAccount p
-            ORDER BY p.order DESC
-            ')
-            ->setFirstResult(0)
-            ->setMaxResults(1)
-            ->getOneOrNullResult();
+        return
+            $this->getEntityManager()
+                ->createQuery('
+                SELECT p
+                FROM MGDBasicBundle:PaypalAccount p
+                ORDER BY p.orderN DESC
+                ')
+                ->setFirstResult(0)
+                ->setMaxResults(1)
+                ->getOneOrNullResult()
         ;
     }
 
