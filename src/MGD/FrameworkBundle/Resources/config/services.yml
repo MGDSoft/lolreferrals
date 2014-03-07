@@ -1,0 +1,4 @@
+services:
+    mgd_framework.command_service:
+        class: MGD\FrameworkBundle\Service\CommandsService
+        arguments: [@service_container]

@@ -11,7 +11,7 @@ use MGD\BasicBundle\Entity\PaypalAccountsPayment;
 use MGD\BasicBundle\Tests\Entity\TestPaypalAccountHelper;
 use MGD\FrameworkBundle\Tests\KernelAwareTest;
 
-class PaypalAccountEntityListenerTest extends KernelAwareTest
+class PaypalAccountsPaymentEntityListenerTest extends KernelAwareTest
 {
 
     public function testSumMoneyToAccount()

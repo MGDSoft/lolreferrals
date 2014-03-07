@@ -12,9 +12,9 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\PostFlushEventArgs;
 use MGD\BasicBundle\Entity\PaypalAccount;
+use MGD\FrameworkBundle\Service\CommandsService;
 use Monolog\Logger;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Dumper;
 
@@ -136,10 +136,6 @@ class PaypalAccountEntityListener
 
     private function modifyApiPayPalAccountParameters(PaypalAccount $ppAccount)
     {
-        // Ugly but necesary...
-        if ($this->container->get('kernel')->getEnvironment()=='test')
-            return true;
-
         $parameters = $this->getParameters();
 
         $parameters['parameters']['paypal_api_username'] = $ppAccount->getApiUsername();
@@ -149,10 +145,19 @@ class PaypalAccountEntityListener
         if(!$yaml = $this->createYaml($parameters))
             return false;
 
+        if ($this->container->get('kernel')->getEnvironment()=='test')
+        {
+            // Ugly but necesary... for funcional Tests
+            // Nothing
+            return true;
+        }
+
         if (!file_put_contents($this->parametersFile,$yaml))
             return false;
 
-        $this->clearCache();
+        /** @var CommandsService $commandsService */
+        $commandsService=$this->container->get('mgd_framework.command_service');
+        $commandsService->clearCache();
 
         return true;
     }
@@ -161,16 +166,6 @@ class PaypalAccountEntityListener
     {
         $dumper = new Dumper();
         return $dumper->dump($parameters,2,0);
-    }
-
-    private function clearCache()
-    {
-        $process = new Process('php app/console cache:clear --no-optional-warmers --env='.$this->container->get('kernel')->getEnvironment());
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new \RuntimeException($process->getErrorOutput());
-        }
     }
 
     private function getParameters()
