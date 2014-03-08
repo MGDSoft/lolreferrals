@@ -11,7 +11,7 @@ class AppKernelDev extends AppKernel
     public function getCacheDir()
     {
         if (in_array($this->environment, array('dev', 'test'))) {
-            return '/tmp/mgd/lol/cache' .  $this->environment;
+            return '/tmp/mgd/lol/cache/' .  $this->environment;
         }
 
         return parent::getCacheDir();

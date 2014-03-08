@@ -1,0 +1,240 @@
+{% extends 'MGDAdminBundle::layout_admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'Estadisticas'}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+    <div class="container">
+        <div class="row" style="text-align: center">
+            <form>
+                    <input type="date" class="span2" name="date-ini" value="{{ dateFromTimestamp }}">
+                    <input type="date" class="span2" name="date-end" value="{{ dateUntilTimestamp }}">
+
+                    <input type="submit" class="btn btn-primary" style="margin-top: -10px;">
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span12" id="chart-main"></div>
+        </div>
+
+        <div class="row top-buffer" style="margin-top: 40px">
+            <div class="span4" id="chart-money-acc-pay"></div>
+            <div class="span4" id="chart-money-acc-exp-sum"></div>
+            <div class="span4" id="chart-money-acc-exp"></div>
+        </div>
+    </div>
+
+    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <script src="{{ asset('vendors/high_charts/highcharts.js') }}"></script>
+    <script src="{{ asset('vendors/high_charts/modules/exporting.js') }}"></script>
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            $('#chart-main').highcharts({
+                chart: {
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: 'Resumen de estado'
+                },
+                xAxis: {
+                    categories: [
+                        {% for ped in pedidos %}
+                            "{{ ped.mes }}"
+                            {% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ],
+                    minPadding: 500
+                },
+                yAxis: {
+                    title: {
+                        enabled: false
+                    }
+                },
+                plotOptions: {
+                    area: {
+
+                        marker: {
+                            enabled: false,
+                            symbol: 'circle',
+                            radius: 2,
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: 'Dinero ganado',
+                        type: 'column',
+                        data: [
+                            {% for ped in pedidos %}
+                                [ {{ ped.ganado }} ]
+                                {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        ]
+                    },
+                    {
+                        name: 'Nº Prod. Vendidos',
+                        type: 'spline',
+                        data: [
+                            {% for ped in pedidos %}
+                                [ {{ ped.pedidos_n }} ]
+                                {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        ]
+                    },
+                    {
+                        name: 'Gastos',
+                        data: [
+                            {% for ex in expensesCommon %}
+                                [ {{ ex.gastos }} ]
+                                {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        ]
+                    }
+                ]
+            });
+        });
+
+        $(function () {
+            $('#chart-money-acc-pay').highcharts({
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: 'Cuentas paypal GANADO'
+                },
+                subtitle: {
+                    text: 'Dinero para cada cuenta de paypal'
+                },
+                xAxis: {
+                    categories: [
+                        {% for pay in paymentsByAccount[0] %}
+                            "{{ pay.mes }}"
+                            {% if not loop.last %},{% endif %}
+                        {% endfor %}
+                        ],
+                        tickInterval: 3
+                },
+                yAxis: {
+                    title: {
+                        enabled: false
+                    }
+                },
+                series: [
+                {% for payArr in paymentsByAccount %}
+                    {
+                        name: '{{ payArr[0].paypal_account_name}}',
+                        data: [
+                            {% for pay in payArr %}
+                                [ {{ pay.ganado }} ]
+                                {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        ]
+                    }{% if not loop.last %},{% endif %}
+
+                {% endfor %}
+                ]
+            });
+        });
+
+        $(function () {
+            $('#chart-money-acc-exp').highcharts({
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: 'Cuentas paypal GASTOS'
+                },
+                subtitle: {
+                    text: 'Dinero para cada cuenta de paypal'
+                },
+                xAxis: {
+                    categories: [
+                        {% for pay in expensesByAccount[0] %}
+                        "{{ pay.mes }}"
+                        {% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ],
+                    tickInterval: 3
+                },
+                yAxis: {
+                    title: {
+                        enabled: false
+                    }
+                },
+                series: [
+                    {% for payArr in expensesByAccount %}
+                    {
+                        name: '{{ payArr[0].paypal_account_name}}',
+                        data: [
+                            {% for pay in payArr %}
+                            [ {{ pay.ganado }} ]
+                            {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        ]
+                    }{% if not loop.last %},{% endif %}
+
+                    {% endfor %}
+                ]
+            });
+        });
+
+        $(function () {
+            $('#chart-money-acc-exp-sum').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Ganado Neto'
+                },
+                subtitle: {
+                    text: 'Ganacias - Gastos'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: '#000000',
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Cuentas',
+                    data: [
+                        {% for exp in expensesByAccountSum %}
+                            ['{{ exp.name }}', {{ exp.ganado }}]
+                            {% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
+                }]
+
+            });
+        });
+
+
+
+
+    </script>
+{% endblock %}

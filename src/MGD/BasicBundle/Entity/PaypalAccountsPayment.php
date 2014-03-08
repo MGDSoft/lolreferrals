@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * PaypalAccountsPayment
  *
  * @ORM\Table(name="paypal_accounts_payment")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MGD\BasicBundle\Entity\PaypalAccountsPaymentRepository")
  */
 class PaypalAccountsPayment
 {
