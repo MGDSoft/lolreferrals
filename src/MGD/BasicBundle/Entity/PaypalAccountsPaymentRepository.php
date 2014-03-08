@@ -22,10 +22,10 @@ class PaypalAccountsPaymentRepository extends EntityRepository
      */
     public function getRowsExpensesByFecha($dateFromTimestamp=null,$dateUntilTimestamp=null)
     {
-        $sql="SELECT sum(p.precio) as gastos, DATE_FORMAT(p.fecha,'%Y-%m') as mes
+        $sql="SELECT sum(p.precio)*(-1)  as gastos, DATE_FORMAT(p.fecha,'%Y-%m') as mes
               FROM paypal_accounts_payment as p
               WHERE
-                p.precio > 0 "
+                p.precio < 0 "
             .($dateFromTimestamp && $dateUntilTimestamp ? " AND p.fecha BETWEEN '$dateFromTimestamp' AND '$dateUntilTimestamp' ": '').
             "
               GROUP BY mes
@@ -146,7 +146,7 @@ class PaypalAccountsPaymentRepository extends EntityRepository
      */
     public function getRowsExpensesToUsersByFecha($dateFromTimestamp,$dateUntilTimestamp)
     {
-        $sql="SELECT sum(p.precio) as ganado, DATE_FORMAT(p.fecha,'%Y-%m') as mes, p.paypal_account_id
+        $sql="SELECT sum(p.precio)*(-1) as ganado, DATE_FORMAT(p.fecha,'%Y-%m') as mes, p.paypal_account_id
               FROM paypal_accounts_payment as p
               WHERE
                 p.precio < 0

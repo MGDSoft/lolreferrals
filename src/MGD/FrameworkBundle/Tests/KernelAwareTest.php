@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Process\Process;
 
-require_once dirname(__DIR__).'/../../../app/AppKernelDev.php';
+require_once dirname(__DIR__).'/../../../app/AppKernel.php';
 
 /**
  * Test case class helpful with Entity tests requiring the database interaction.
@@ -34,7 +34,7 @@ abstract class KernelAwareTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->kernel = new \AppKernelDev('test', true);
+        $this->kernel = new \AppKernel('test', true);
         $this->kernel->boot();
 
         $this->container = $this->kernel->getContainer();

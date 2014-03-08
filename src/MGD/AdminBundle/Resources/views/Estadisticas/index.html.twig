@@ -88,21 +88,21 @@
                         ]
                     },
                     {
-                        name: 'Nº Prod. Vendidos',
-                        type: 'spline',
-                        data: [
-                            {% for ped in pedidos %}
-                                [ {{ ped.pedidos_n }} ]
-                                {% if not loop.last %},{% endif %}
-                            {% endfor %}
-                        ]
-                    },
-                    {
                         name: 'Gastos',
                         data: [
                             {% for ex in expensesCommon %}
                                 [ {{ ex.gastos }} ]
                                 {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        ]
+                    },
+                    {
+                        name: 'Nº Prod. Vendidos',
+                        type: 'spline',
+                        data: [
+                            {% for ped in pedidos %}
+                            [ {{ ped.pedidos_n }} ]
+                            {% if not loop.last %},{% endif %}
                             {% endfor %}
                         ]
                     }

@@ -60,14 +60,14 @@ class EstadisticasController extends Controller
         $expensesByAccount = $em->getRepository('MGDBasicBundle:PaypalAccountsPayment')
             ->getRowsExpensesToUsersByFecha($dateFromTimestampString,$dateUntilTimestampString);
 
+        $expensesByAccountSum = $em->getRepository('MGDBasicBundle:PaypalAccountsPayment')
+            ->getRowsSumPaymentsToUsersByFecha($dateFromTimestampString,$dateUntilTimestampString);
+
         $expensesCommon = $em->getRepository('MGDBasicBundle:PaypalAccountsPayment')
             ->getRowsExpensesByFecha($dateFromTimestampString,$dateUntilTimestampString);
 
         $pedidos = $em->getRepository('MGDBasicBundle:Pedido')
             ->getRowsPaymentsToUsersByMonth($dateFromTimestampString,$dateUntilTimestampString);
-
-        $expensesByAccountSum = $em->getRepository('MGDBasicBundle:PaypalAccountsPayment')
-            ->getRowsSumPaymentsToUsersByFecha($dateFromTimestampString,$dateUntilTimestampString);
 
 
         return array(
@@ -75,9 +75,10 @@ class EstadisticasController extends Controller
             'dateUntilTimestamp' => $dateUntilTimestamp->format('Y-m-d'),
             'paymentsByAccount' => $paymentsByAccount,
             'expensesByAccount' => $expensesByAccount,
+            'expensesByAccountSum' => $expensesByAccountSum,
+
             'pedidos' => $pedidos,
             'expensesCommon' => $expensesCommon,
-            'expensesByAccountSum' => $expensesByAccountSum,
         );
     }
 
