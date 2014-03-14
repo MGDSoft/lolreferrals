@@ -52,10 +52,11 @@
         <tr>
             <th>Id</th>
             <th>Email</th>
-            <th>Referral Link</th>
-            <th>Articulo</th>
+            <th>N Refs.</th>
+            <th>Precio Rango</th>
             <th>Estado</th>
             <th>Cupon</th>
+            <th>Total</th>
             <th>Bots</th>
             <th>Fecha</th>
             <th>Ip</th>
@@ -67,10 +68,11 @@
         <tr>
             <td><a href="{{ path('pedido_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.email }}</td>
-            <td>{{ entity.referralLink }}</td>
-            <td>{{ entity.articulo }}</td>
+            <td>{{ entity.nReferidos }}</td>
+            <td>{{ entity.precioRango }}</td>
             <td>{{ entity.estado }}</td>
             <td>{{ entity.cuponDescuento | raw }}</td>
+            <td>{{ entity.total }}</td>
             <td>
                 {% if  entity.pedidoBots is not null %}
                     {{ entity.getPedidoBotsState() | raw }}

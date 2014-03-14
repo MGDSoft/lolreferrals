@@ -10,10 +10,12 @@ use Symfony\Component\Validator\ExecutionContext;
 /**
  * Articulo
  *
+ *
  * @ORM\Table(name="articulo")
  * @ORM\HasLifecycleCallbacks
  * @Assert\Callback(methods={"validateFile"})
  * @ORM\Entity()
+ * @deprecated This table has been removed by Precio
  */
 class Articulo
 {

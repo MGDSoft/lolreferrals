@@ -18,31 +18,72 @@
 {% block central %}
 
     <section id="contenedor-articulos">
-
         <header>
             <h2>{{ 'pedido.principal.packs' | trans }}</h2>
         </header>
-        <br>
-        {% for articulo in articulos %}
+        <div>
+            <div id="table-rangos">
+                <table>
+                    <tr><th colspan="2">Rango de precios por unidad</th></tr>
+                    {% set actRange = 0 %}
+                    {% for rango in precioRangos %}
+                        <tr id="rango-{{ rango.limite }}">
+                            <td>{{ actRange }} - {{ rango.limite }}</td>
+                            <td>{{ rango.precio }}&euro;</td>
+                        </tr>
+                        {% set actRange = rango.limite-1 %}
+                    {% endfor %}
+                </table>
+            </div>
             <article class="articulo">
-                <img src="{{ articulo.imagenPath }}">
-                <div class="paypal">
-                    <div class="precio">
-                        {{ articulo.precioReal| number_format }}&euro; ({{ articulo.precioDolar }}$)</div>
+                <form action="{{ path('pedido_post') }}" method="post">
+                    <div id="teemo">
+                        <div class="row-fluid">
+                            <div class="span5">
+                                <div>
+                                    {{ form_label(pedidoForm.nReferidos) }}
+                                    {{ form_errors(pedidoForm.nReferidos) }}
+                                    <div>
 
-                    <form action="{{ path('pedido_post', {'articulo_id': articulo.id }) }}" method="post">
-                        {{ form_widget(articulo.form) }}
+                                        <div class="span8">
+                                            <input type="range" min="10" id="range" onchange="document.getElementById('mgd_basicbundle_pedidotype_nReferidos').value=document.getElementById('range').value;calculatePrice()" max="600" value="{{ nReferidosStart }}" style="width: 100%;margin-top: 4px;">
+                                        </div>
 
-                        <input type="submit" class="btn btn-primary" value="{{ 'formularios.pedido.submit' | trans }}">
-                        <img class="paypal-img" src="{{ asset('img/paypal-buy.gif') }}">
+                                        <div class="span4">
+                                            {{ form_widget(pedidoForm.nReferidos, {'attr': {'style': 'margin-left:5px ;width:40px','onchange':'calculatePrice()'}, }) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ form_rest(pedidoForm) }}
 
-                    </form>
+                            </div>
 
+                            <div class="offset1 span6">
+                                <div id="rewards">
 
-                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-top: 40px">
+                            <div class="span9">
+                                <div>
+                                    <span id="precio_total" class="text-warning"></span>
+                                    <span id="precio_descuento" class="text-success"></span>
+                                    <span id="precio_descuento_total" class="text-info"></span>
+                                </div>
+
+                                <input type="submit" class="btn-primary btn-block btn-large" value="Buy this order!" style="margin-top: 13px;">
+                            </div>
+                            <div class="span3">
+                                <img class="paypal-img" src="{{ asset('img/paypal-buy.gif') }}">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
             </article>
 
-        {% endfor %}
+        </div>
         <div id="advertencia">
             *{{ 'pedido.advertencia' | trans }}
         </div>
@@ -73,4 +114,113 @@
 
     <br>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var previous;
+        var precio=[];
+        {% for rango in precioRangos %}
+            precio[{{ loop.index-1 }}] = { limite: {{ rango.limite }} , precio: {{ rango.precio }} };
+        {% endfor %}
+        var descuento= {% if descuento %} { valor: {{ descuento.valor }}, porcentaje: {% if descuento.porcentajeBoo %}true{% else %}false{% endif %} } {% else %} null {% endif %};
+
+        function onchange()
+        {
+            document.getElementById('mgd_basicbundle_pedidotype_nReferidos').value=document.getElementById('range').value;
+            calculatePrice();
+        }
+
+        function calculatePrice()
+        {
+            var val, last, total, descu;
+            val = document.getElementById("mgd_basicbundle_pedidotype_nReferidos").value;
+            last = precio[0];
+            for (var i = 0; i < precio.length; ++i)
+            {
+                if (precio[i] != null)
+                {
+                    if (val >= precio[i].limite)
+                    {
+                        last = precio[i];
+                    }
+                }
+            }
+            total = val*last.precio;
+            document.getElementById("precio_total").innerHTML= Math.round(total* 100) / 100 + "&euro;";
+
+            if (descuento)
+            {
+                if (descuento.porcentaje)
+                {
+                    descu= total * descuento.valor /100;
+                }else{
+                    descu= descuento.valor;
+                }
+
+                document.getElementById("precio_descuento").innerHTML= (Math.round(descu * 100) / 100) * -1 + "&euro;";
+                document.getElementById("precio_descuento_total").innerHTML=" = " + Math.round((total - descu)*100) / 100 + "&euro;";
+            }
+
+            selectTable(last)
+            calculateRewards(val)
+        }
+
+        function calculateRewards(nReferidos)
+        {
+            var rewards="<table style='text-align: left'>";
+
+            rewards+="<tr><td><img src='/img/rewards/rp_icon.png' width='26' height='26'></td><td>Riot Points</td><td style='font-weight: bold'>"+calculateRiotPoints(nReferidos)+"</td></tr>";
+            rewards+="<tr><td><img src='/img/rewards/ip_icon.png' width='26' height='26'></td><td>Influence Points</td><td style='font-weight: bold'>"+((nReferidos*250)+2500)+"</td></tr>";
+            rewards+="<tr><td><img src='/img/rewards/b_forum_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title - Rune Page </td></tr>";
+            if (nReferidos>=25)
+            {
+                rewards+="<tr><td><img src='/img/rewards/warwick_icon.png' width='26' height='26'></td><td colspan='2'>Exclusive Grey Warwick Skin, Warwick</td></tr>";
+                rewards+="<tr><td><img src='/img/rewards/b_senior_icon.png' width='26' height='26'></td><td colspan='2'>Champion and Senior Recruiter Forum Title</td></tr>";
+            }
+            if (nReferidos>=50)
+            {
+                rewards+="<tr><td><img src='/img/rewards/twitch_icon.png' width='26' height='26'></td><td colspan='2'>Medieval Twitch </td></tr>";
+            }
+            if (nReferidos>=100)
+            {
+                rewards+="<tr><td><img src='/img/rewards/b_master_icon.png' width='26' height='26'></td><td colspan='2'>Master Recruiter Forum Title </td></tr>";
+            }
+            rewards+="</table>";
+
+            document.getElementById("rewards").innerHTML=rewards;
+        }
+
+        function calculateRiotPoints(nReferidos)
+        {
+            if (nReferidos >= 10 && nReferidos<50)
+            {
+                return 975;
+            }else if(nReferidos >= 50 && nReferidos<75){
+                return 2975;
+            }else if(nReferidos >= 75 && nReferidos<100){
+                return 6975;
+            }else if(nReferidos>=100){
+                nReferidos-=100;
+                return 16975 + (Math.floor(nReferidos/50)*5000)
+            }
+        }
+
+        function selectTable(itemRange)
+        {
+            if (previous)
+            {
+                previous.className="";
+                previous=null;
+            }
+
+            if (previous=document.getElementById("rango-"+itemRange.limite))
+            {
+                previous.className="selected"
+            }
+        }
+
+        calculatePrice();
+    </script>
 {% endblock %}

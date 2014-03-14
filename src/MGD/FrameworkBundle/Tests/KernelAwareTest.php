@@ -79,16 +79,17 @@ abstract class KernelAwareTest extends \PHPUnit_Framework_TestCase
 
     protected function loadFixtures()
     {
-        $this->executeCommand("php ".$this->kernel->getRootDir() ."/console doctrine:fixtures:load --env=test --no-interaction");
+        $this->executeCommand("doctrine:fixtures:load --no-interaction");
     }
 
-    private function executeCommand($command)
+    private  function executeCommand($command)
     {
-        $process = new Process($command);
+        $process = new Process("php ".$this->kernel->getRootDir() ."/console $command --env=test ");
         $process->run();
 
         if (!$process->isSuccessful()) {
             throw new \RuntimeException($process->getErrorOutput());
         }
     }
+
 }

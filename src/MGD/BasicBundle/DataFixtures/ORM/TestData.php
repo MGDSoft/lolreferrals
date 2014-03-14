@@ -15,6 +15,7 @@ use MGD\BasicBundle\Entity\Articulo;
 use \MGD\BasicBundle\Entity\Estado;
 use MGD\BasicBundle\Entity\Pedido;
 use MGD\BasicBundle\Entity\PedidoEstados;
+use MGD\BasicBundle\Entity\PrecioRango;
 
 class TestData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -25,6 +26,7 @@ class TestData extends AbstractFixture implements OrderedFixtureInterface
      */
 	public function load(ObjectManager $manager)
     {
+        /*
         $articulo = new Articulo();
 
         $articulo->setImagenPath("");
@@ -32,28 +34,25 @@ class TestData extends AbstractFixture implements OrderedFixtureInterface
         $articulo->setPrecio("500$");
 
         $manager->persist($articulo);
+        */
 
-        $estado = $manager->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
+        /*$precioRango = new PrecioRango();
+        $precioRango->setPrecio(5.2);
+        $precioRango->setLimite(999);
+
+        $manager->persist($precioRango);
 
         $pedido = new Pedido();
+        $pedido->setNReferidos(10);
         $pedido->setId(self::pedidoId);
-        $pedido->setArticulo($articulo);
+        $pedido->setPrecioRango($precioRango);
+        //$pedido->setArticulo($articulo);
         $pedido->setRefPaypal("RE123435ASd");
-        $pedido->setTotal(25);
+
         $pedido->setEmail(self::email);
-        $pedido->setEstado($estado);
 
         $manager->persist($pedido);
-
-        $pedidoEstado= new PedidoEstados();
-        $pedidoEstado->setPedido($pedido);
-        $pedidoEstado->setDescripcion("desc");
-        $pedidoEstado->setEstado($estado);
-
-        $manager->persist($pedidoEstado);
-
-        $manager->flush();
-
+        $manager->flush();*/
     }
     /**
      * {@inheritDoc}

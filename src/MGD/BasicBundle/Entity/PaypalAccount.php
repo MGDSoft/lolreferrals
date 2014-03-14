@@ -83,7 +83,7 @@ class PaypalAccount
     /**
      * @var boolean
      *
-     * @ORM\Column(name="active_boo", type="boolean", nullable=true)
+     * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active=false;
 

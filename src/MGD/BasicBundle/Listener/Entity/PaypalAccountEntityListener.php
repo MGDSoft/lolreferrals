@@ -185,7 +185,6 @@ class PaypalAccountEntityListener
 
         $this->postPersistOrder= $order;
         $this->entity->setOrderN($order);
-
     }
 
     /**
@@ -203,8 +202,7 @@ class PaypalAccountEntityListener
                 $em->persist($obj);
 
             $em->flush();
+            $this->postPersist = array();
         }
-
-        $this->needsFlush = false;
     }
 } 

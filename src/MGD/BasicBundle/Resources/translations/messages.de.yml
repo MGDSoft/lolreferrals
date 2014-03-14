@@ -190,6 +190,10 @@ formularios:
               referral_link:
                   placeholder: Url Referral-Link
                   label: Referral-Link *
+              n_referidos:
+                  label: Anzahl der Überweisungen
+
+
               submit: kaufen
 pago:
     finalizado: >
@@ -197,7 +201,7 @@ pago:
         Sie werden eine E-mail bekommen welche Ihre VerfolgungsID enthält. Wenn sie irgendein Problem haben, nehmen sie Kontakt mit uns auf über unsere Kontaktzone. Vielen Dank für ihre Bestellung!
     correo:
         asunto: Bestellungs Bestätigung auf www.referralslol.com
-        articulo: Die Bezahlung von %articulo% wurde erfolgreich gesendet. 
+        articulo: Die Bezahlung von %nReferidos% referrals wurde erfolgreich gesendet.
         seguimiento: Sie können ihre Bestellung mit dem nächsten code Verfolgen : %pedidoId%
         extra: Vielen Dank für Ihren Einkauf!
 

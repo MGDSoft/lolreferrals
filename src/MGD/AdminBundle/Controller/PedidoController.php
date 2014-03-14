@@ -155,26 +155,8 @@ class PedidoController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-	        $estado = $em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
-	        $entity->setEstado($estado);
-
-            $entity->setTotal($entity->getArticulo()->getPrecio());
-
-            /** @var PedidoPagoService $pagoService */
-            $pagoService = $this->get("pedido.pago_service");
-            $instruction = $pagoService->generateInstructions($entity);
-            $entity->setPaymentInstruction($instruction);
-
 	        $em->persist($entity);
-
             $em->flush();
-
-	        $pedidoEstados  = new PedidoEstados();
-	        $pedidoEstados->setEstado($estado);
-	        $pedidoEstados->setPedido($entity);
-	        $em->persist($pedidoEstados);
-
-	        $em->flush();
 
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 

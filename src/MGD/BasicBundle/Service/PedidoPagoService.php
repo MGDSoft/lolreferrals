@@ -113,19 +113,15 @@ class PedidoPagoService
         // Checkout parameters
         $checkout_params = array();
 
-
-        $articulo = $pedido->getArticulo();
-
         $checkout_params = array_merge(
             $checkout_params,
             array(
-                sprintf('L_PAYMENTREQUEST_0_NAME%d', 0)   => $articulo->getNombre(),
-                sprintf('L_PAYMENTREQUEST_0_DESC%d', 0)   => $articulo->getNombre(),
+                sprintf('L_PAYMENTREQUEST_0_NAME%d', 0)   => $pedido->getNReferidos() . ' Referrals',
+                sprintf('L_PAYMENTREQUEST_0_DESC%d', 0)   => 'Referrals',
                 sprintf('L_PAYMENTREQUEST_0_AMT%d', 0)    => $pedido->getTotal(),
                 sprintf('L_PAYMENTREQUEST_0_QTY%d', 0)    => 1,
             )
         );
-
 
         // Include payments data in the order
         $checkout_params = array_merge(

@@ -48,7 +48,7 @@ class PedidoBots
      * @var Pedido
      *
      * @ORM\ManyToOne(targetEntity="Pedido", inversedBy="pedidoBots")
-     * @ORM\JoinColumn(name="pedido_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="pedido_id", referencedColumnName="id", nullable=false)
      */
     private $pedido;
 
@@ -69,9 +69,12 @@ class PedidoBots
     private $creadoDate;
 
 
-    function __construct()
+    function __construct($pedido=null,$nombre='',$contrasena='')
     {
         $this->updateDate = new DateTime();
+        $this->pedido=$pedido;
+        $this->contrasena=$contrasena;
+        $this->nombre=$nombre;
     }
 
     /**

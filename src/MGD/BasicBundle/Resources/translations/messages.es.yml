@@ -191,6 +191,9 @@ formularios:
               referral_link:
                   placeholder: Url Referral-Link
                   label: Referral-Link *
+              n_referidos:
+                  label: Numero de referidos
+
               submit: Comprar
 pago:
     finalizado: >
@@ -199,7 +202,7 @@ pago:
               nuestra sección de contacto. ¡Gracias por su compra!
     correo:
         asunto: Confirmación de pedido en www.referralslol.com
-        articulo: Su pago de %articulo% sido recibido correctamente.
+        articulo: Su pago de %nReferidos% referidos ha sido recibido correctamente.
         seguimiento: Puede seguir el estado de su pedido con el siguiente código : %pedidoId%
         extra: ¡Gracias por su compra!
 

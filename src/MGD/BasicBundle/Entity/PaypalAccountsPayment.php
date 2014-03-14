@@ -25,13 +25,13 @@ class PaypalAccountsPayment
 
     /**
      * @ORM\ManyToOne(targetEntity="Pedido")
-     * @ORM\JoinColumn(name="pedido_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="pedido_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
      */
     private $pedido;
 
     /**
      * @ORM\ManyToOne(targetEntity="PaypalAccount", fetch="EAGER")
-     * @ORM\JoinColumn(name="paypal_account_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="paypal_account_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     private $paypalAccount;
 

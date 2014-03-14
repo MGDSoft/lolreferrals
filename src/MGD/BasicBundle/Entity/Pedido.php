@@ -3,17 +3,16 @@
 namespace MGD\BasicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Util\SecureRandom;
-use MGD\BasicBundle\Entity\BotCuenta;
 
 /**
  * Pedido
  *
  * @ORM\Table(name="pedido")
  * @ORM\Entity(repositoryClass="MGD\BasicBundle\Entity\PedidoRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Pedido
 {
@@ -27,12 +26,21 @@ class Pedido
     private $id;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Articulo", fetch="EAGER")
-	 * @ORM\JoinColumn(name="articulo_id", referencedColumnName="id", nullable=false)
+	 * @ORM\ManyToOne(targetEntity="PrecioRango", fetch="EAGER")
+	 * @ORM\JoinColumn(name="precio_rango_id", referencedColumnName="id", nullable=true)
 	 */
-    private $articulo;
+    private $precioRango;
 
-	/**
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="n_referidos", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Range(min = "10")
+     */
+    private $nReferidos;
+
+    /**
 	 * @ORM\ManyToOne(targetEntity="Estado", fetch="EAGER")
 	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=true)
 	 */
@@ -49,6 +57,7 @@ class Pedido
 	 *
 	 * @ORM\Column(name="email", type="string", length=100)
 	 * @Assert\Email()
+     * @Assert\NotBlank()
 	 */
 	private $email;
 
@@ -56,13 +65,14 @@ class Pedido
 	 * @var string
 	 *
 	 * @ORM\Column(name="referral_link", type="string", length=255,nullable=true)
+     * @Assert\NotBlank()
 	 */
 	private $referralLink;
 
     /**
      * @var PedidoBots[]
      *
-     * @ORM\OneToMany(targetEntity="PedidoBots", mappedBy="pedido", cascade={"remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="PedidoBots", mappedBy="pedido", cascade={"remove","persist"}, orphanRemoval=true)
      */
     private $pedidoBots;
 
@@ -83,7 +93,6 @@ class Pedido
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="fecha", type="datetime")
-	 * @Gedmo\Timestampable(on="create")
 	 */
 	private $fecha;
 
@@ -106,18 +115,17 @@ class Pedido
      */
     public function __construct()
     {
-	    $this->estado = EstadoEnum::Cola;
-
 	    $this->fecha = new \DateTime();
 
-	    if (isset($_SERVER['REMOTE_ADDR'])) {
+	    if (isset($_SERVER['REMOTE_ADDR'])){
 		    $this->ip = $_SERVER['REMOTE_ADDR'];
-	    }else{
+	    }else if (php_sapi_name() == "cli"){
             $this->ip = "CLI";
+        }else{
+            $this->ip = "UNKNOWN";
         }
 
 	    $this->id = uniqid('LOL' . date("Ymdhis"));
-
 
         $this->pedidoBots = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -175,30 +183,6 @@ class Pedido
 
 
     /**
-     * Set articulo
-     *
-     * @param \MGD\BasicBundle\Entity\Articulo $articulo
-     *
-     * @return Pedido
-     */
-    public function setArticulo(\MGD\BasicBundle\Entity\Articulo $articulo = null)
-    {
-        $this->articulo = $articulo;
-    
-        return $this;
-    }
-
-    /**
-     * Get articulo
-     *
-     * @return \MGD\BasicBundle\Entity\Articulo 
-     */
-    public function getArticulo()
-    {
-        return $this->articulo;
-    }
-
-    /**
      * Set fecha
      *
      * @param \DateTime $fecha
@@ -246,8 +230,9 @@ class Pedido
         return $this->estado;
     }
 
-	public function __toString(){
-		return $this->articulo.', '.$this->fecha->format('Y-M-d H:i:s').', '.$this->email
+	public function __toString()
+    {
+		return $this->total .', '.$this->fecha->format('Y-M-d H:i:s').', '.$this->email
 			.', estado Actual: '.$this->estado.($this->cuponDescuento ? ", Descuento: ".$this->cuponDescuento: "");
 	}
 
@@ -410,6 +395,42 @@ class Pedido
         return $this->pedidoBots;
     }
 
+    /**
+     * @ORM\PreUpdate
+     * @ORM\PrePersist
+     *
+     * @return float|null
+     */
+    public function calculatePrice()
+    {
+        if (!$this->precioRango)
+        {
+            return null;
+        }
+
+        $valor = $this->getPrecioRango()->getPrecio() * $this->nReferidos;
+
+        if ($cuponDescuento = $this->getCuponDescuento())
+        {
+            if ($cuponDescuento->getPorcentajeBoo())
+            {
+                $valor -= ($valor * $cuponDescuento->getValor() / 100);
+            }else{
+                $valor -= $cuponDescuento->getValor();
+            }
+        }
+
+        if ($valor < 5)
+        {
+            $this->total = 5;
+
+        }else{
+            $this->total = $valor;
+        }
+
+        return true;
+    }
+
     public function getPedidoBotsState()
     {
         if ($this->pedidoBots->count()>0)
@@ -452,5 +473,52 @@ class Pedido
     public function removePedidoBot(\MGD\BasicBundle\Entity\PedidoBots $pedidoBots)
     {
         $this->pedidoBots->removeElement($pedidoBots);
+    }
+
+
+    /**
+     * Set nReferidos
+     *
+     * @param integer $nReferidos
+     * @return Pedido
+     */
+    public function setNReferidos($nReferidos)
+    {
+        $this->nReferidos = $nReferidos;
+    
+        return $this;
+    }
+
+    /**
+     * Get nReferidos
+     *
+     * @return integer 
+     */
+    public function getNReferidos()
+    {
+        return $this->nReferidos;
+    }
+
+    /**
+     * Set precioRango
+     *
+     * @param \MGD\BasicBundle\Entity\PrecioRango $precioRango
+     * @return Pedido
+     */
+    public function setPrecioRango(\MGD\BasicBundle\Entity\PrecioRango $precioRango = null)
+    {
+        $this->precioRango = $precioRango;
+    
+        return $this;
+    }
+
+    /**
+     * Get precioRango
+     *
+     * @return \MGD\BasicBundle\Entity\PrecioRango 
+     */
+    public function getPrecioRango()
+    {
+        return $this->precioRango;
     }
 }

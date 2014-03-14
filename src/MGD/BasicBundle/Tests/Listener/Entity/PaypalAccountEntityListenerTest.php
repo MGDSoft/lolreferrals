@@ -12,7 +12,7 @@ use MGD\FrameworkBundle\Tests\KernelAwareTest;
 
 class PaypalAccountEntityListenerTest extends KernelAwareTest
 {
-    public function testAutoOrderN()
+    public function testAutoOrderNOK()
     {
         $paypalAccount = new PaypalAccount();
         $paypalAccount2 = new PaypalAccount();
@@ -40,7 +40,7 @@ class PaypalAccountEntityListenerTest extends KernelAwareTest
         $this->assertEquals(3,$paypalAccount3->getOrderN());
     }
 
-    public function testUniqueActive()
+    public function testUniqueActiveOK()
     {
         $paypalAccount = new PaypalAccount();
         $paypalAccount2 = new PaypalAccount();

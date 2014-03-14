@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PedidoType extends AbstractType
@@ -26,25 +27,25 @@ class PedidoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('nReferidos','integer',array(
+                    'label'=> 'formularios.pedido.n_referidos.label',
+                    'attr' => array(
+                        'placeholder' => 'formularios.pedido.n_referidos.placeholder',
+                    )
+                ))
             ->add('referralLink','text',array(
                     'label'=> 'formularios.pedido.referral_link.label',
                     'attr' => array(
                         'placeholder' => 'formularios.pedido.referral_link.placeholder',
-                    ),
-                    'constraints' => array(
-                        new NotBlank(),
-                    ),
+                    )
                 ))
             ->add('email','email',array(
                     'label'=> 'formularios.pedido.email.label',
                     'attr' => array(
                         'placeholder' => 'formularios.pedido.email.placeholder',
-                    ),
-                    'constraints' => array(
-                        new NotBlank(),
-                        new Email(),
-                    ),
+                    )
                 ))
+
         ;
 
     }

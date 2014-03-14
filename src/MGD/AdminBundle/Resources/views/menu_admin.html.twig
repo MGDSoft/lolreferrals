@@ -10,7 +10,7 @@
                     </li>
 
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
-                        <li><a href="{{ path('articulo') }}">Articulos en venta</a></li>
+                        <li><a href="{{ path('preciorango') }}">Rango de Precios</a></li>
                         <li><a href="{{ path('cupondescuento') }}">Cupones descuento</a></li>
                         <li><a href="{{ path('cola_edit', { 'id': 1 }) }}">Cola</a></li>
                         <li><a href="{{ path('paypalaccount') }}">Cuentas de Paypal</a> /

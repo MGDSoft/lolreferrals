@@ -14,7 +14,7 @@ use MGD\FrameworkBundle\Tests\KernelAwareTest;
 class PaypalAccountsPaymentEntityListenerTest extends KernelAwareTest
 {
 
-    public function testSumMoneyToAccount()
+    public function testSumMoneyToAccountOK()
     {
         $paypalAccount = new PaypalAccount();
 
@@ -50,7 +50,7 @@ class PaypalAccountsPaymentEntityListenerTest extends KernelAwareTest
 
     }
 
-    public function testRotateIfExceedLimitPaypalAccount()
+    public function testRotateIfExceedLimitPaypalAccountOK()
     {
         $paypalAccount = new PaypalAccount();
         $paypalAccount2 = new PaypalAccount();

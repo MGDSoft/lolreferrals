@@ -13,7 +13,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use \MGD\BasicBundle\DataConstants\EstadoEnum;
 use \MGD\BasicBundle\Entity\Estado;
 
-class LoadUsuariosData extends AbstractFixture implements OrderedFixtureInterface
+class LoadEstadoData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}

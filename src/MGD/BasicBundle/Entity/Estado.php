@@ -95,7 +95,8 @@ class Estado
         return $this->descripcionAdmin;
     }
 
-	public function __toString(){
+	public function __toString()
+    {
 		return $this->nombre;
 	}
 }

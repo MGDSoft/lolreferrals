@@ -91,12 +91,6 @@ class FinalizarPagoListener
             $cupon->sumaUso();
         }
 
-        $pedidoEstados = new PedidoEstados();
-        $pedidoEstados->setEstado($estado);
-        $pedidoEstados->setPedido($pedido);
-
-        $this->em->persist($pedidoEstados);
-
         $this->em->flush();
         $this->enviarCorreo($pedido);
         $this->enviarCorreoAdmin($pedido);

@@ -6,6 +6,9 @@
         'bundles/mgdbasic/css/bootstrap.min.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
     {% endstylesheets %}
+    <!--[if lte IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+    <![endif]-->
 {% endblock %}
 
 {% block body %}
@@ -97,8 +100,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-   {# {% javascripts 'bundles/mgdbasic/js/*.js'  %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}#}
+
 
 {% endblock %}

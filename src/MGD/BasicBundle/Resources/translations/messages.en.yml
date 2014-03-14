@@ -190,6 +190,9 @@ formularios:
               referral_link:
                   placeholder: Url Referral-Link
                   label: Referral-Link *
+              n_referidos:
+                  label: Number of referrals
+
               submit: Buy
 pago:
     finalizado: >
@@ -198,7 +201,7 @@ pago:
     
     correo:
         asunto: Order Confirmation from www.referralslol.com
-        articulo: Your purchase of %articulo% has been succesfully received.
+        articulo: Your purchase of %nReferidos% referrals has been succesfully received.
         seguimiento: You can follow the current state of your order in "http://www.referralslol.com/en/tracking/" with the following OrderID : %pedidoId%
         extra: Thanks for your purchase!
 

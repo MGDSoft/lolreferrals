@@ -15,10 +15,11 @@ class PedidoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-	        ->add('articulo', 'entity', array(
-		        'class' => 'MGDBasicBundle:Articulo',
-		        'property' => 'nombre',
+	        ->add('precioRango', 'entity', array(
+		        'class' => 'MGDBasicBundle:PrecioRango',
+		        'property' => 'limite',
 	        ))
+            ->add('nReferidos')
 	        ->add('referralLink')
 	        ->add('email')
 	        ->add('refPaypal')
@@ -31,7 +32,6 @@ class PedidoType extends AbstractType
                 'required' => false
             ))
         ;
-
     }
 
     /**

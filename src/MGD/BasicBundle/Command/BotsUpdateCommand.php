@@ -69,13 +69,12 @@ class BotsUpdateCommand extends ContainerAwareCommand
             $this->logger->debug("Actualizado el bot $nombre al nivel $lvl");
 
             unlink($file);
-
             $this->em->flush();
-
             $this->siPedidoFinalizadoCambiarEstado($pedidoBot);
             $this->siPedidoElPrimeroCambiarEstado($pedidoBot);
         }
 
+        $this->em->flush();
     }
 
     private function siPedidoFinalizadoCambiarEstado(PedidoBots $pedidoBot)
@@ -86,8 +85,7 @@ class BotsUpdateCommand extends ContainerAwareCommand
         {
             $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
             $pedido->setEstado($estadoFinalizado);
-
-            $this->changeState($pedido,$estadoFinalizado);
+            $this->em->persist($pedido);
         }
     }
 
@@ -101,21 +99,8 @@ class BotsUpdateCommand extends ContainerAwareCommand
         {
             $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Procesando);
             $pedido->setEstado($estadoFinalizado);
-
-            $this->changeState($pedido,$estadoFinalizado);
+            $this->em->persist($pedido);
         }
-    }
-
-    private function changeState(Pedido $pedido,Estado $estado)
-    {
-        $pedido->setEstado($estado);
-
-        $pedidoEstado  = new PedidoEstados();
-        $pedidoEstado->setEstado($estado);
-        $pedidoEstado->setPedido($pedido);
-
-        $this->em->persist($pedidoEstado);
-        $this->em->flush();
     }
 
 }
