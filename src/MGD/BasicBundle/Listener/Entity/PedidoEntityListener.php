@@ -188,9 +188,9 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
      */
     public function getSubscribedEvents()
     {
-        return [
+        return array(
             'onFlush',
             'postFlush'
-        ];
+        );
     }
 }
