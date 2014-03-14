@@ -40,7 +40,7 @@ class SeguimientoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MGD\BasicBundle\Entity\Pedido'
+            //'data_class' => 'MGD\BasicBundle\Entity\Pedido'
         ));
     }
 
