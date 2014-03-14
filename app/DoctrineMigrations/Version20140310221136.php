@@ -48,10 +48,10 @@ class Version20140310221136 extends AbstractMigration implements ContainerAwareI
         $this->addSql("DROP INDEX IDX_C4EC16CE2DBC2FC9 ON pedido");
         $this->addSql("ALTER TABLE pedido ADD precio_rango_id INT DEFAULT NULL, CHANGE articulo_id n_referidos INT NOT NULL");
 
-        $this->addSql("INSERT INTO `precio_rango`(`id`, `precio`, `limite`) VALUES (1,0.05,150)");
-        $this->addSql("UPDATE `pedido` SET `precio_rango`=1`");
-
+        $this->addSql("INSERT INTO `precio_rango`(`id`, `precio`, `limite`) VALUES (1,0.5,150)");
         $this->addSql("ALTER TABLE pedido ADD CONSTRAINT FK_C4EC16CE101DEF4D FOREIGN KEY (precio_rango_id) REFERENCES precio_rango (id)");
+        $this->addSql("UPDATE `pedido` SET `precio_rango_id`=1");
+
         $this->addSql("CREATE INDEX IDX_C4EC16CE101DEF4D ON pedido (precio_rango_id)");
 
         $username=$this->container->getParameter("paypal_api_username");

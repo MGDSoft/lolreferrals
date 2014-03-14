@@ -55,6 +55,11 @@ class CuponDescuentoController
     {
         $form = $this->formFactory->create(new CuponDescuentoType());
 
+        if (!$this->request->get('mgd_basicbundle_cupondescuentotype'))
+        {
+            return $form;
+        }
+
         $form->handleRequest($this->request);
 
         if ($form->isValid())

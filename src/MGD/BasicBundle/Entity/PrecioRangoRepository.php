@@ -15,7 +15,7 @@ class PrecioRangoRepository extends EntityRepository
             SELECT p
                 FROM MGDBasicBundle:PrecioRango p
             WHERE
-                p.limite > :limite
+                p.limite >= :limite
 
             ORDER BY p.limite ASC
             ')

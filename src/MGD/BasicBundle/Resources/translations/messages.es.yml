@@ -45,6 +45,8 @@ pedido:
         packs: Listado de packs
         footer:
             titulo: Pago seguro con paypal
+
+        precios_por_unidad: Precio por unidad
             
     advertencia: Dada la naturaleza del producto, no se admite ningún tipo de devolución.
     

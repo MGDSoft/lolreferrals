@@ -46,6 +46,8 @@ pedido:
         footer:
             titulo: Safe payment with Paypal
 
+        precios_por_unidad: Price range per unit
+
     advertencia: Due to the nature of this product, no refund is accepted.
 
     aside:

@@ -45,6 +45,8 @@ pedido:
         packs: Angebote
         footer:
             titulo: Vertraungsvolle paypal Bezahlung
+
+        precios_por_unidad: Einheitspreise
     
     advertencia: Aufgrund der Produktbeschaffenheit, ist die Rückgabe dessen nicht zulässig.
     

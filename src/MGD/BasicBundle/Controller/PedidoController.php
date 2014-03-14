@@ -105,7 +105,7 @@ class PedidoController extends Controller
 
         $form   = $this->createForm(new PedidoType(), $pedido);
 
-        if ($request->getMethod() === 'POST')
+        if ($request->getMethod() === 'POST' && $request->request->get('mgd_basicbundle_pedidotype') )
         {
             $form->handleRequest($request);
 
@@ -123,6 +123,7 @@ class PedidoController extends Controller
             'cuponDescuentoForm' => $cuponDescuentoForm->createView(),
 	    );
     }
+
 
     /**
      * @return CuponDescuento
