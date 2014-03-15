@@ -1,85 +1,140 @@
 <?php
-/**
- * Created by lol.
- * User: PC
- * Date: 17/08/13
- * Time: 21:14
- */
 
 namespace MGD\FrameworkBundle\Tests;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Client;
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Process\Process;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\Routing\Router;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 
-abstract class FunctionalTestCase extends WebTestCase {
+/**
+ * Test case class helpful with Entity tests requiring the database interaction.
+ * For regular entity tests it's better to extend standard \PHPUnit_Framework_TestCase instead.
+ */
+abstract class FunctionalTestCase extends WebTestCase
+{
+    /**
+     * @var EntityManager
+     */
+    protected $em;
 
-    /** @var Client */
-    protected $client;
-
-    /** @var Router */
-    protected $router;
-
-    /** @var ObjectManager */
-    protected $om;
-
-    /** @var ContainerInterface */
+    /**
+     * @var Container
+     */
     protected $container;
 
-    /** @var Application */
-    protected static $application;
+    /**
+     * @var Client
+     */
+    protected $client;
 
-    protected static function initialize() {
-        self::createClient();
-        $application = new Application(static::$kernel);
+    /**
+     * @var Router
+     */
+    protected $router;
 
-        $application->setAutoExit(false);
-
-        self::createDatabase($application);
-        self::$application = $application;
-    }
-
-    private static function createDatabase($application)
+    /**
+     * @return null
+     */
+    public function setUp()
     {
-        self::executeCommand($application, "doctrine:schema:drop", array("--force" => true , "--env"=>'test'));
-        self::executeCommand($application, "doctrine:database:create", array("--env" => 'test'));
-        self::executeCommand($application, "doctrine:schema:create", array("--env" => 'test'));
-        self::executeCommand($application, "doctrine:fixtures:load", array("-n" => true, "--env"=>'test'));
-        //self::executeCommand($application, "doctrine:fixtures:load", array("--fixtures" => __DIR__ . "/../DataFixtures/ORM/test", "-n" => true));
-    }
-
-
-
-    private static function loadFixtures($FileToLoad){
-        self::executeCommand(self::$application, "doctrine:fixtures:load", array("--fixtures" => $FileToLoad, "-n" => true));
-    }
-
-    private static function executeCommand($application, $command, Array $options = array()) {
-        $options["-e"] = "test";
-        $options["-q"] = null;
-        $options = array_merge($options, array('command' => $command));
-        return $application->run(new ArrayInput($options));
-    }
-
-    public function setUp() {
-        $this->populateVariables();
-    }
-
-    protected function populateVariables() {
-        $this->client = static::createClient();
+        $this->client = $this->createClient();
         $this->client->followRedirects();
         $this->client->enableProfiler();
 
-        $container = static::$kernel->getContainer();
+        $this->container = self::$kernel->getContainer();
+        $this->em = $this->container->get('doctrine')->getManager();
+        $this->om = $this->container->get('doctrine');
+        $this->router = $this->container->get('router');
 
-        $this->om = $container->get('doctrine');
-        $this->router = $container->get('router');
+        $this->generateSchema();
 
-        $this->container = $container;
+        parent::setUp();
+    }
+
+
+    /**
+     * @return null
+     */
+    protected function generateSchema()
+    {
+        $metadatas = $this->getMetadatas();
+
+        if (!empty($metadatas)) {
+            $tool = new \Doctrine\ORM\Tools\SchemaTool($this->em);
+            $tool->dropSchema($metadatas);
+            $tool->createSchema($metadatas);
+        }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getMetadatas()
+    {
+        return $this->em->getMetadataFactory()->getAllMetadata();
+    }
+
+    /**
+     * One Fixture
+     *
+     * @param FixtureInterface $fix
+     */
+    protected function loadFixture(FixtureInterface $fix)
+    {
+        $loader = new Loader();
+        $loader->addFixture($fix);
+        $this->executeFixtures($loader);
+    }
+
+    /**
+     * Load and execute fixtures from a main bundle
+     *
+     */
+    protected function loadFixturesGeneral()
+    {
+        $this->loadFixturesFromDirectory( __DIR__.'/../../BasicBundle/DataFixtures/ORM');
+    }
+
+    /**
+     * Load and execute fixtures from a directory
+     *
+     * @param string $directory
+     *
+     */
+    protected function loadFixturesFromDirectory($directory)
+    {
+        $loader = new Loader();
+        $loader->loadFromDirectory($directory);
+        $this->executeFixtures($loader);
+    }
+
+    /**
+     * Executes fixtures
+     *
+     * @param \Doctrine\Common\DataFixtures\Loader $loader
+     */
+    protected function executeFixtures(Loader $loader)
+    {
+        $purger = new ORMPurger($this->em);
+        $executor = new ORMExecutor($this->em, $purger);
+        $executor->execute($loader->getFixtures());
+    }
+
+    private  function executeCommand($command)
+    {
+        $process = new Process("php ".$this->kernel->getRootDir() ."/console $command --env=test ");
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new \RuntimeException($process->getErrorOutput());
+        }
     }
 
     protected function mostrarHtml($crawler)
@@ -91,7 +146,6 @@ abstract class FunctionalTestCase extends WebTestCase {
         }
 
         echo $html;
-
     }
 
 }

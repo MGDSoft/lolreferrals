@@ -7,6 +7,7 @@ namespace MGD\BasicBundle\Tests\Listener\Entity;
 
 
 use MGD\BasicBundle\DataConstants\EstadoEnum;
+use MGD\BasicBundle\DataFixtures\ORM\LoadEstadoData;
 use MGD\BasicBundle\Entity\CuponDescuento;
 use MGD\BasicBundle\Entity\PaypalAccount;
 use MGD\BasicBundle\Entity\PaypalAccountsPayment;
@@ -15,6 +16,7 @@ use MGD\BasicBundle\Entity\PrecioRango;
 use MGD\BasicBundle\Tests\Entity\TestPaypalAccountHelper;
 use MGD\BasicBundle\Tests\Entity\TestPedidoHelper;
 use MGD\FrameworkBundle\Tests\KernelAwareTest;
+use \Doctrine\Common\DataFixtures\Loader;
 
 class PedidoEntityListenerTest extends KernelAwareTest
 {
@@ -28,7 +30,8 @@ class PedidoEntityListenerTest extends KernelAwareTest
     public function setUp()
     {
         parent::setUp();
-        $this->loadFixtures();
+
+        $this->loadFixture(new LoadEstadoData());
 
         $this->precioRango = new PrecioRango();
         $this->precioRango

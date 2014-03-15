@@ -3,21 +3,19 @@
 namespace MGD\BasicBundle\Tests\Controller;
 
 use Fixtures\Bundles\AnnotationsBundle\Entity\Test;
+use MGD\BasicBundle\DataFixtures\ORM\LoadTestData;
 use MGD\FrameworkBundle\Tests\FunctionalTestCase;
-use MGD\BasicBundle\DataFixtures\TestData;
+
 
 class SeguimientoControllerTest extends FunctionalTestCase
 {
     private $url;
 
-    public static function setUpBeforeClass()
-    {
-        self::initialize();
-    }
-
     public function setUp()
     {
         parent::setUp();
+
+        $this->loadFixturesGeneral();
         $this->url = $this->router->generate('seguimiento_es');
     }
 
@@ -59,7 +57,7 @@ class SeguimientoControllerTest extends FunctionalTestCase
 
     }
 
-    private function setValuesForm($crawler,$pedidoId = TestData::pedidoId,$captcha=true)
+    private function setValuesForm($crawler, $pedidoId = LoadTestData::PEDIDO_ID, $captcha=true)
     {
         if ($captcha)
         {

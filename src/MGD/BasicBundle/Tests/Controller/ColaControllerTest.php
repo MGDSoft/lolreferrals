@@ -2,30 +2,24 @@
 
 namespace MGD\BasicBundle\Tests\Controller;
 
+use MGD\BasicBundle\DataFixtures\ORM\LoadColaData;
 use MGD\FrameworkBundle\Tests\FunctionalTestCase;
 
 class ColaControllerTest extends FunctionalTestCase
 {
     private $url;
 
-    public static function setUpBeforeClass()
-    {
-        self::initialize();
-    }
-
     public function setUp()
     {
         parent::setUp();
+        $this->loadFixture(new LoadColaData());
         $this->url = $this->router->generate('contacto_es');
     }
 
     public function testCompleteScenario()
     {
-        // Create a new client to browse the application
-        $client = static::createClient();
-
         // Create a new entry in the database
-        $crawler = $client->request('GET', $this->router->generate('home',array('locale'=>'en')));
+        $crawler = $this->client->request('GET', $this->router->generate('home',array('locale'=>'en')));
 
         // Check data in the show view
         $this->assertEquals('Current Queue: 2 days.',
@@ -33,7 +27,7 @@ class ColaControllerTest extends FunctionalTestCase
         );
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', $this->router->generate('pedido_en'));
+        $crawler = $this->client->request('GET', $this->router->generate('pedido_en'));
 
         // Check data in the show view
         $this->assertEquals('Current Queue: 2 days.',

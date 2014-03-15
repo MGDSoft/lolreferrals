@@ -2,22 +2,19 @@
 
 namespace MGD\BasicBundle\Tests\Controller;
 
-use Fixtures\Bundles\AnnotationsBundle\Entity\Test;
+use MGD\BasicBundle\Entity\Estado;
 use MGD\FrameworkBundle\Tests\FunctionalTestCase;
-use MGD\BasicBundle\DataFixtures\TestData;
+use MGD\BasicBundle\DataFixtures\ORM\LoadTestData;
+
 
 class ContactoControllerTest extends FunctionalTestCase
 {
     private $url;
 
-    public static function setUpBeforeClass()
-    {
-        self::initialize();
-    }
-
     public function setUp()
     {
         parent::setUp();
+        $this->loadFixturesGeneral();
         $this->url = $this->router->generate('contacto_es');
     }
 
@@ -42,6 +39,8 @@ class ContactoControllerTest extends FunctionalTestCase
 
         $crawler = $this->client->submit($form);
 
+        //$this->mostrarHtml($crawler);
+
         $this->assertTrue($crawler->filter('div.alert-success')->count() < 1);
         $this->assertTrue($crawler->filterXPath('//form[@id="contacto"]//ul')->count() == 1);
 
@@ -53,18 +52,9 @@ class ContactoControllerTest extends FunctionalTestCase
 
         $form = $this->setValuesForm($crawler);
 
-
         $crawler = $this->client->submit($form);
 
-        /*
-        $repository = $this->om->getRepository('MGDBasicBundle:Pedido');
-        $pedidos = $repository->findAll();
-
-        foreach ($pedidos as $pedido)
-        {
-            echo $pedido->getId()."\n";
-        }
-        */
+        //$this->mostrarHtml($crawler);
         $this->assertTrue($crawler->filter('div.alert-success')->count() == 1);
 
         $mailCollector = $this->client->getProfile()->getCollector('swiftmailer');
@@ -73,23 +63,15 @@ class ContactoControllerTest extends FunctionalTestCase
         $this->assertEquals(1, $mailCollector->getMessageCount());
     }
 
-    /*
-        $repository = $this->om->getRepository('MGDFrameworkBundle:Usuario');
-        $usuarios = $repository->findAll();
-
-        foreach ($usuarios as $usuario)
-        {
-            echo $usuario->getUsername()."\n";
-        }*/
-
     private function setValuesForm(
         $crawler,
         $nombre = 'test',
-        $email = TestData::email,
-        $pedidoId = TestData::pedidoId,
+        $email = LoadTestData::EMAIL,
+        $pedidoId = LoadTestData::PEDIDO_ID,
         $mensaje = 'test',
         $captcha = true
     ){
+
         if ($captcha)
         {
             $session = $this->container->get('session');

@@ -4,6 +4,7 @@ namespace MGD\BasicBundle\Command;
 
 use Ivory\CKEditorBundle\Exception\Exception;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
+use MGD\BasicBundle\DataFixtures\ORM\LoadEstadoData;
 use MGD\BasicBundle\Entity\Pedido;
 use MGD\BasicBundle\Entity\PedidoBots;
 use MGD\BasicBundle\Entity\PrecioRango;
@@ -22,7 +23,7 @@ class BotsUpdateCommandTest extends KernelAwareTest
     public function setUp()
     {
         parent::setUp();
-        $this->loadFixtures();
+        $this->loadFixture(new LoadEstadoData());
 
         $precioRango = new PrecioRango();
         $precioRango
@@ -40,6 +41,7 @@ class BotsUpdateCommandTest extends KernelAwareTest
 
     public function testRunOk()
     {
+
         $this->pedido->addPedidoBot(new PedidoBots($this->pedido,'Trolo'));
         $this->pedido->addPedidoBot(new PedidoBots($this->pedido,'Jacinto'));
         $this->pedido->addPedidoBot(new PedidoBots($this->pedido,'Jose'));
@@ -93,6 +95,7 @@ class BotsUpdateCommandTest extends KernelAwareTest
         $application->add(new BotsUpdateCommand());
 
         $command = $application->find('bots:scanner');
+
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName()));
     }
