@@ -31,6 +31,8 @@ class PedidoType extends AbstractType
                     'label'=> 'formularios.pedido.n_referidos.label',
                     'attr' => array(
                         'placeholder' => 'formularios.pedido.n_referidos.placeholder',
+                        'min'=> '10',
+                        'max' => '400',
                     )
                 ))
             ->add('referralLink','text',array(

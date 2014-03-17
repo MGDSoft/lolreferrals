@@ -36,7 +36,7 @@ class Pedido
      *
      * @ORM\Column(name="n_referidos", type="integer")
      * @Assert\NotBlank()
-     * @Assert\Range(min = "10")
+     * @Assert\Range(min = 10,max = 400)
      */
     private $nReferidos;
 

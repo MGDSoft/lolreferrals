@@ -25,13 +25,21 @@
             <div id="table-rangos">
                 <table>
                     <tr><th colspan="2">{{ 'pedido.principal.precios_por_unidad' | trans }}</th></tr>
-                    {% set actRange = 0 %}
+                    {% set actRange = 10 %}
                     {% for rango in precioRangos %}
+                        {% if  (rango.limite == 10 or rango.limite == 50 or rango.limite == 100 or rango.limite == 150) %}
                         <tr id="rango-{{ rango.limite }}">
-                            <td>{{ actRange }} - {{ rango.limite }}</td>
-                            <td>{{ rango.precio }}&euro;</td>
+                            <td>
+                                {% if actRange == rango.limite %}
+                                    {{ rango.limite }}
+                                {% else %}
+                                    {{ actRange }} - {{ rango.limite }}
+                                {% endif %}
+                            </td>
+                            <td>&#x2248; {{ rango.precio }}&euro; ({{ (rango.precio * eurosToDollars) |number_format(1, '.', ',') }}$)</td>
                         </tr>
                         {% set actRange = rango.limite + 1 %}
+                        {% endif %}
                     {% endfor %}
                 </table>
             </div>
@@ -47,7 +55,7 @@
 
                                         <div class="span8">
                                             <!--[if !lt IE 10]><!-->
-                                            <input type="range" min="10" id="range" onchange="document.getElementById('mgd_basicbundle_pedidotype_nReferidos').value=document.getElementById('range').value;calculatePrice()" max="600" value="{{ nReferidosStart }}" style="width: 100%;margin-top: 4px;">
+                                            <input type="range" min="10" id="range" onchange="document.getElementById('mgd_basicbundle_pedidotype_nReferidos').value=document.getElementById('range').value;calculatePrice()" oninput="document.getElementById('mgd_basicbundle_pedidotype_nReferidos').value=document.getElementById('range').value;calculatePrice()" max="400" value="{{ nReferidosStart }}" style="width: 100%;margin-top: 4px;">
                                             <!--<![endif]-->
                                         </div>
 
@@ -61,12 +69,13 @@
                             </div>
 
                             <div id="block-rewards" class="offset1 span6">
+                                <h2>Rewards</h2>
                                 <div id="rewards">
 
                                 </div>
                             </div>
                         </div>
-                        <div class="row-fluid" style="margin-top: 40px">
+                        <div class="row-fluid" style="margin-top: 30px">
                             <div id="box-submit" class="span9">
                                 <div>
                                     <span id="precio_total" class="text-warning"></span>
@@ -121,7 +130,9 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+
         var previous;
+        var euroToDollar={{ eurosToDollars }};
         var precio=[];
         {% for rango in precioRangos %}
             precio[{{ loop.index-1 }}] = { limite: {{ rango.limite }} , precio: {{ rango.precio }} };
@@ -154,11 +165,9 @@
                     }
                 }
             }
-            console.log(last);
-            console.log(val);
 
             total = val*last.precio;
-            document.getElementById("precio_total").innerHTML= Math.round(total* 100) / 100 + "&euro;";
+            document.getElementById("precio_total").innerHTML= Math.round(total* 100) / 100 + "&euro; (" + Math.round(total*euroToDollar* 100) / 100 + " $)" ;
 
             if (descuento)
             {
@@ -183,20 +192,28 @@
 
             rewards+="<tr><td><img src='/img/rewards/rp_icon.png' width='26' height='26'></td><td>Riot Points</td><td style='font-weight: bold'>"+calculateRiotPoints(nReferidos)+"</td></tr>";
             rewards+="<tr><td><img src='/img/rewards/ip_icon.png' width='26' height='26'></td><td>Influence Points</td><td style='font-weight: bold'>"+((nReferidos*250)+2500)+"</td></tr>";
-            rewards+="<tr><td><img src='/img/rewards/b_forum_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title - Rune Page </td></tr>";
+            rewards+="<tr><td><img src='/img/rewards/b_forum_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title</td></tr>";
+            rewards+="<tr><td><img src='/img/rewards/runepage_icon.png' width='26' height='26'></td><td colspan='2'>Rune Page</td></tr>";
+
+            if (nReferidos<25)
+            {
+                rewards+="<tr><td><img src='/img/rewards/b_recruit_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title</td></tr>";
+            }else if (nReferidos>=25 && nReferidos<100){
+                rewards+="<tr><td><img src='/img/rewards/b_senior_icon.png' width='26' height='26'></td><td colspan='2'>Senior Recruiter Forum Title</td></tr>";
+            }else if(nReferidos>=100){
+                rewards+="<tr><td><img src='/img/rewards/b_master_icon.png' width='26' height='26'></td><td colspan='2'>Master Recruiter Forum Title </td></tr>";
+            }
+
+
             if (nReferidos>=25)
             {
-                rewards+="<tr><td><img src='/img/rewards/warwick_icon.png' width='26' height='26'></td><td colspan='2'>Exclusive Grey Warwick Skin, Warwick</td></tr>";
-                rewards+="<tr><td><img src='/img/rewards/b_senior_icon.png' width='26' height='26'></td><td colspan='2'>Champion and Senior Recruiter Forum Title</td></tr>";
+                rewards+="<tr><td><img src='/img/rewards/warwick_icon.png' width='26' height='26'></td><td colspan='2'>Exclusive Grey Warwick Skin</td></tr>";
             }
             if (nReferidos>=50)
             {
                 rewards+="<tr><td><img src='/img/rewards/twitch_icon.png' width='26' height='26'></td><td colspan='2'>Medieval Twitch </td></tr>";
             }
-            if (nReferidos>=100)
-            {
-                rewards+="<tr><td><img src='/img/rewards/b_master_icon.png' width='26' height='26'></td><td colspan='2'>Master Recruiter Forum Title </td></tr>";
-            }
+
             rewards+="</table>";
 
             document.getElementById("rewards").innerHTML=rewards;

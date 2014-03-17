@@ -115,7 +115,10 @@ class PedidoController extends Controller
             }
         }
 
+        $eurosToDollars=1.39;
+
 	    return array(
+            'eurosToDollars' => $eurosToDollars,
             'nReferidosStart' => $nReferidosStart,
             'pedidoForm' => $form->createView(),
             'descuento' => $descuento,
