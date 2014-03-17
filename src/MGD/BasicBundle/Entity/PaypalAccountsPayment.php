@@ -82,20 +82,6 @@ class PaypalAccountsPayment
     }
 
     /**
-     * Set precio
-     *
-     * @param float $precio
-     * @return PaypalAccountsPayment
-     */
-    public function setPrecioPaypalNeto($precio)
-    {
-        $paypal = $precio * (3.4 / 100) + 0.35;
-        $this->precio = $precio - $paypal;
-
-        return $this;
-    }
-
-    /**
      * Get precio
      *
      * @return float 

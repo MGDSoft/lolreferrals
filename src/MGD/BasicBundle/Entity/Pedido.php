@@ -232,7 +232,7 @@ class Pedido
 
 	public function __toString()
     {
-		return $this->total .', '.$this->fecha->format('Y-M-d H:i:s').', '.$this->email
+		return $this->nReferidos.' refs '. $this->total .'eur, '.$this->fecha->format('Y-M-d H:i:s').', '.$this->email
 			.', estado Actual: '.$this->estado.($this->cuponDescuento ? ", Descuento: ".$this->cuponDescuento: "");
 	}
 
@@ -393,6 +393,18 @@ class Pedido
     public function getPedidoBots()
     {
         return $this->pedidoBots;
+    }
+
+    /**
+     * Set precio
+     *
+     * @return float
+     */
+    public function getPrecioPaypalNeto()
+    {
+        $paypal = $this->total * (3.4 / 100) + 0.35;
+        return number_format($this->total - $paypal, 2, '.', '');
+
     }
 
     /**

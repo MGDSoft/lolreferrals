@@ -131,6 +131,12 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
 
     protected function createAccPPPayment(Pedido $pedido)
     {
+        if (!$pedido->getEstado())
+        {
+            // temp order
+            return true;
+        }
+
         if (!$ppAccountActive = $this->em->getRepository('MGDBasicBundle:PaypalAccount')->findOneByActive(true))
         {
             $this->logger->addCritical('No hay cuenta activa!');
@@ -146,7 +152,7 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
 
         if ($pedido->getPaymentInstruction())
         {
-            $ppAccountPayment->setPrecioPaypalNeto($pedido->getTotal());
+            $ppAccountPayment->setPrecio($pedido->getPrecioPaypalNeto());
         }else{
             $ppAccountPayment->setPrecio($pedido->getTotal());
         }
@@ -162,10 +168,15 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
         /** @var PaypalAccountsPayment $accPay */
         if (!$accPay = $this->em->getRepository('MGDBasicBundle:PaypalAccountsPayment')->findOneByPedido($pedido))
         {
+            if ($pedido->getFecha()->getTimestamp() > (new \DateTime('2014-03-16 00:00:00'))->getTimestamp() )
+            {
+                $this->createAccPPPayment($pedido);
+            }
+
             return true;
         }
 
-        if ($accPay->getPrecio() == $pedido->getTotal())
+        if ($accPay->getPrecio() == $pedido->getTotal() || $accPay->getPrecio() == $pedido->getPrecioPaypalNeto())
         {
             return true;
         }

@@ -6,6 +6,7 @@
 namespace MGD\BasicBundle\Tests\Listener\Entity;
 
 
+use JMS\Payment\CoreBundle\Entity\PaymentInstruction;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\DataFixtures\ORM\LoadEstadoData;
 use MGD\BasicBundle\Entity\CuponDescuento;
@@ -136,6 +137,51 @@ class PedidoEntityListenerTest extends KernelAwareTest
 
         $pedido = $this->em->getRepository('MGDBasicBundle:Pedido')->find($pedido->getId());
         $this->assertEquals(EstadoEnum::Finalizado, $pedido->getEstado()->getId());
+    }
+
+    public function testAddStateOKWithPaymentInstruction()
+    {
+        $ppAcc= new PaypalAccount();
+
+        TestPaypalAccountHelper::setValues($ppAcc,true);
+
+        $this->em->persist($ppAcc);
+        $this->em->flush();
+
+        $pedido = new Pedido();
+
+        TestPedidoHelper::setValues($pedido,$this->precioRango,2);
+
+        $paymentInstructions=new PaymentInstruction(1,1,1);
+        $this->em->persist($paymentInstructions);
+
+        $pedido->setPaymentInstruction($paymentInstructions);
+        $this->em->persist($pedido);
+        $this->em->flush();
+
+        $pay = $this->em->getRepository("MGDBasicBundle:PaypalAccountsPayment")->findByPedido($pedido);
+        $this->assertEmpty($pay);
+
+        $estadoCola = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
+        $pedido->setEstado($estadoCola);
+        $this->em->persist($pedido);
+        $this->em->flush();
+
+        $pay = $this->em->getRepository("MGDBasicBundle:PaypalAccountsPayment")->findByPedido($pedido);
+
+        $this->assertNotEmpty($pay);
+        $precio=5.2*2;
+        $result=number_format($precio-(($precio* (3.4 / 100)) + 0.35), 2, '.', '');
+        $this->assertEquals($result,$pay[0]->getPrecio());
+
+
+        $pay = $this->em->getRepository("MGDBasicBundle:PaypalAccountsPayment")->findByPedido($pedido);
+        $pedido->setEmail('trucha');
+        $this->em->persist($pedido);
+        $this->em->flush();
+
+        $this->assertEquals($result,$pay[0]->getPrecio());
+
     }
 
     public function testModifyPaypalAccountsOK()
