@@ -32,7 +32,7 @@
                             <td>
                                 {{ rango.limite }}
                             </td>
-                            <td>&#x2248; {{ (rango.precio*rango.limite)|number_format(1, '.', ',') }}&euro; ({{ (rango.precio* rango.limite * eurosToDollars) |number_format(1, '.', ',') }}$)</td>
+                            <td>{{ (rango.precio*rango.limite)|number_format(1, '.', ',') }}&euro; ({{ (rango.precio* rango.limite * eurosToDollars) |number_format(1, '.', ',') }}$)</td>
                         </tr>
                         {% set actRange = rango.limite + 1 %}
                         {% endif %}

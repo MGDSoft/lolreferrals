@@ -190,7 +190,7 @@ formularios:
                   placeholder: Schreiben Sie eine gültige E-Mail
                   label: E-Mail *
               referral_link:
-                  placeholder: Url Referral-Link
+                  placeholder: 'leagueoflegends.com/?ref=4a54ce5'
                   label: Referral-Link *
               n_referidos:
                   label: Anzahl der Überweisungen

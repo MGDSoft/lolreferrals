@@ -191,7 +191,7 @@ formularios:
                   placeholder: Escribe un correo valido
                   label: Correo *
               referral_link:
-                  placeholder: Url Referral-Link
+                  placeholder: 'leagueoflegends.com/?ref=4a54ce5'
                   label: Referral-Link *
               n_referidos:
                   label: Numero de referidos
