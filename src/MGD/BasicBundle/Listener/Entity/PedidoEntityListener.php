@@ -168,7 +168,8 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
         /** @var PaypalAccountsPayment $accPay */
         if (!$accPay = $this->em->getRepository('MGDBasicBundle:PaypalAccountsPayment')->findOneByPedido($pedido))
         {
-            if ($pedido->getFecha()->getTimestamp() > (new \DateTime('2014-03-16 00:00:00'))->getTimestamp() )
+            $dateUpdateArticulos=new \DateTime('2014-03-16 00:00:00');
+            if ($pedido->getFecha()->getTimestamp() > $dateUpdateArticulos->getTimestamp() )
             {
                 $this->createAccPPPayment($pedido);
             }
