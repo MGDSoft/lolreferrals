@@ -167,7 +167,7 @@
             }
 
             total = val*last.precio;
-            document.getElementById("precio_total").innerHTML= Math.round(total* 100) / 100 + "&euro; (" + Math.round(total*euroToDollar* 100) / 100 + " $)" ;
+            document.getElementById("precio_total").innerHTML= Math.round(total* 100) / 100 + "&euro; (" + Math.round(total*euroToDollar* 100) / 100 + "$)" ;
 
             if (descuento)
             {
@@ -190,7 +190,7 @@
         {
             var rewards="<table>";
 
-            rewards+="<tr><td><img src='/img/rewards/rp_icon.png' width='26' height='26'></td><td>Riot Points</td><td style='font-weight: bold'>"+calculateRiotPoints(nReferidos)+"</td></tr>";
+            rewards+="<tr><td width='35'><img src='/img/rewards/rp_icon.png' width='26' height='26'></td><td>Riot Points</td><td style='font-weight: bold'>"+calculateRiotPoints(nReferidos)+"</td></tr>";
             rewards+="<tr><td><img src='/img/rewards/ip_icon.png' width='26' height='26'></td><td>Influence Points</td><td style='font-weight: bold'>"+((nReferidos*250)+2500)+"</td></tr>";
             rewards+="<tr><td><img src='/img/rewards/b_forum_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title</td></tr>";
             rewards+="<tr><td><img src='/img/rewards/runepage_icon.png' width='26' height='26'></td><td colspan='2'>Rune Page</td></tr>";

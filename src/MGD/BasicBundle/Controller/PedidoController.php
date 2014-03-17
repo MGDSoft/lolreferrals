@@ -94,7 +94,7 @@ class PedidoController extends Controller
     public function indexAction(Request $request)
     {
         $cuponDescuentoForm = $this->cDescController->indexForm();
-        $nReferidosStart=150;
+        $nReferidosStart=100;
 	    /** @var \MGD\BasicBundle\Entity\PrecioRango[] $precioRangos */
         $precioRangos = $this->em->getRepository("MGDBasicBundle:PrecioRango")->findBy(array(),array('limite'=> 'ASC'));
 

@@ -193,7 +193,7 @@ formularios:
                   placeholder: Url Referral-Link
                   label: Referral-Link *
               n_referidos:
-                  label: Number of referrals
+                  label: Amount
 
               submit: Buy
 pago:
