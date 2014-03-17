@@ -42,11 +42,11 @@ pedido:
                   ¡Pague mediante la confianza de paypal!
                   
         activar_descuento: Activar código de descuento especial
-        packs: Listado de packs
+        packs: League of Legends Referidos Opciones!
         footer:
             titulo: Pago seguro con paypal
 
-        precios_por_unidad: Precio por unidad
+        precios_por_unidad: Packs comunes
             
     advertencia: Dada la naturaleza del producto, no se admite ningún tipo de devolución.
     

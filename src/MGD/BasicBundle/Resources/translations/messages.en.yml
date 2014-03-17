@@ -42,11 +42,11 @@ pedido:
                 <br><br>
                 Pay by paypal confidence.
         activar_descuento: Activate especial discount
-        packs: All our referrals bundles
+        packs: League of Legends Referrals Options!
         footer:
             titulo: Safe payment with Paypal
 
-        precios_por_unidad: Price range per unit
+        precios_por_unidad: Common Packs
 
     advertencia: Due to the nature of this product, no refund is accepted.
 

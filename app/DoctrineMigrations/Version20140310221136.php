@@ -48,9 +48,33 @@ class Version20140310221136 extends AbstractMigration implements ContainerAwareI
         $this->addSql("DROP INDEX IDX_C4EC16CE2DBC2FC9 ON pedido");
         $this->addSql("ALTER TABLE pedido ADD precio_rango_id INT DEFAULT NULL, CHANGE articulo_id n_referidos INT NOT NULL");
 
-        $this->addSql("INSERT INTO `precio_rango`(`id`, `precio`, `limite`) VALUES (1,0.5,150)");
+        $this->addSql("INSERT INTO `precio_rango` (`id`, `precio`, `limite`) VALUES
+(1, 0.7, 10),
+(2, 0.68, 13),
+(3, 0.66, 16),
+(4, 0.64, 19),
+(5, 0.62, 22),
+(6, 0.6, 25),
+(7, 0.58, 28),
+(8, 0.56, 31),
+(9, 0.54, 34),
+(10, 0.52, 37),
+(11, 0.5, 40),
+(12, 0.48, 43),
+(13, 0.47, 46),
+(14, 0.46, 50),
+(15, 0.45, 56),
+(16, 0.44, 62),
+(17, 0.43, 69),
+(18, 0.42, 76),
+(19, 0.41, 90),
+(20, 0.4, 100),
+(21, 0.39, 150),
+(22, 0.39, 200),
+(23, 0.38, 400);
+");
         $this->addSql("ALTER TABLE pedido ADD CONSTRAINT FK_C4EC16CE101DEF4D FOREIGN KEY (precio_rango_id) REFERENCES precio_rango (id)");
-        $this->addSql("UPDATE `pedido` SET `precio_rango_id`=1");
+        $this->addSql("UPDATE `pedido` SET `precio_rango_id`=20"); // 100 referrals
 
         $this->addSql("CREATE INDEX IDX_C4EC16CE101DEF4D ON pedido (precio_rango_id)");
 
@@ -64,6 +88,7 @@ class Version20140310221136 extends AbstractMigration implements ContainerAwareI
         );
 
         $this->addSql("ALTER TABLE pedido_bots CHANGE pedido_id pedido_id VARCHAR(30) NOT NULL");
+
     }
 
     public function down(Schema $schema)

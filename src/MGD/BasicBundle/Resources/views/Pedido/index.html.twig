@@ -30,13 +30,9 @@
                         {% if  (rango.limite == 10 or rango.limite == 50 or rango.limite == 100 or rango.limite == 150) %}
                         <tr id="rango-{{ rango.limite }}">
                             <td>
-                                {% if actRange == rango.limite %}
-                                    {{ rango.limite }}
-                                {% else %}
-                                    {{ actRange }} - {{ rango.limite }}
-                                {% endif %}
+                                {{ rango.limite }}
                             </td>
-                            <td>&#x2248; {{ rango.precio }}&euro; ({{ (rango.precio * eurosToDollars) |number_format(1, '.', ',') }}$)</td>
+                            <td>&#x2248; {{ (rango.precio*rango.limite)|number_format(1, '.', ',') }}&euro; ({{ (rango.precio* rango.limite * eurosToDollars) |number_format(1, '.', ',') }}$)</td>
                         </tr>
                         {% set actRange = rango.limite + 1 %}
                         {% endif %}
@@ -182,8 +178,8 @@
                 document.getElementById("precio_descuento_total").innerHTML=" = " + Math.round((total - descu)*100) / 100 + "&euro;";
             }
 
-            selectTable(last)
-            calculateRewards(val)
+            selectTable(val);
+            calculateRewards(val);
         }
 
         function calculateRewards(nReferidos)
@@ -234,7 +230,7 @@
             }
         }
 
-        function selectTable(itemRange)
+        function selectTable(nReferidos)
         {
             if (previous)
             {
@@ -242,8 +238,9 @@
                 previous=null;
             }
 
-            if (previous=document.getElementById("rango-"+itemRange.limite))
+            if ((nReferidos == 50 || nReferidos == 10 || nReferidos == 100 || nReferidos == 150)  && document.getElementById("rango-"+nReferidos))
             {
+                previous=document.getElementById("rango-"+nReferidos);
                 previous.className="selected"
             }
         }
