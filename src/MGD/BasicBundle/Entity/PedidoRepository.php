@@ -25,6 +25,7 @@ class PedidoRepository extends EntityRepository
                 "
             .($dateFromTimestamp && $dateUntilTimestamp ? " WHERE fecha BETWEEN '$dateFromTimestamp' AND '$dateUntilTimestamp' ": '').
             "
+            WHERE estado_id IS NOT NULL
               GROUP BY mes
               ORDER BY fecha ASC
             "
