@@ -193,7 +193,7 @@ formularios:
                   placeholder: 'leagueoflegends.com/?ref=4a54ce5'
                   label: Referral-Link *
               n_referidos:
-                  label: Amount
+                  label: Amount of Referrals
 
               submit: Buy
 pago:
