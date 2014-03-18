@@ -22,9 +22,11 @@ class PedidoRepository extends EntityRepository
     {
         $sql="SELECT sum(total) as ganado, count(id) as pedidos_n, DATE_FORMAT(fecha,'%Y-%m') as mes
                 FROM `pedido`
+                WHERE estado_id IS NOT NULL
                 "
-            .($dateFromTimestamp && $dateUntilTimestamp ? " WHERE fecha BETWEEN '$dateFromTimestamp' AND '$dateUntilTimestamp' ": '').
+            .($dateFromTimestamp && $dateUntilTimestamp ? " AND fecha BETWEEN '$dateFromTimestamp' AND '$dateUntilTimestamp' ": '').
             "
+
               GROUP BY mes
               ORDER BY fecha ASC
             "

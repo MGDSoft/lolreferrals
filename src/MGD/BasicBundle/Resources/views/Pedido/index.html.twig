@@ -27,7 +27,7 @@
                     <tr><th colspan="2">{{ 'pedido.principal.precios_por_unidad' | trans }}</th></tr>
                     {% set actRange = 10 %}
                     {% for rango in precioRangos %}
-                        {% if  (rango.limite == 10 or rango.limite == 50 or rango.limite == 100 or rango.limite == 150) %}
+                        {% if  (rango.limite == 10 or rango.limite == 50 or rango.limite == 100 or rango.limite == 150 or rango.limite == 200 or rango.limite == 300 or rango.limite == 400) %}
                         <tr id="rango-{{ rango.limite }}">
                             <td>
                                 {{ rango.limite }}
@@ -238,7 +238,7 @@
                 previous=null;
             }
 
-            if ((nReferidos == 50 || nReferidos == 10 || nReferidos == 100 || nReferidos == 150)  && document.getElementById("rango-"+nReferidos))
+            if ((nReferidos == 50 || nReferidos == 10 || nReferidos == 100 || nReferidos == 150 || nReferidos == 200 || nReferidos == 300 || nReferidos == 400)  && document.getElementById("rango-"+nReferidos))
             {
                 previous=document.getElementById("rango-"+nReferidos);
                 previous.className="selected"
