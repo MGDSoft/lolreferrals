@@ -440,6 +440,8 @@ class Pedido
             $this->total = $valor;
         }
 
+        $this->total = number_format($this->total, 2, '.', '');
+
         return true;
     }
 
