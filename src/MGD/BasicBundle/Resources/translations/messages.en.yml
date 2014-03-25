@@ -190,10 +190,10 @@ formularios:
                   placeholder: Write a valid Email
                   label: Email *
               referral_link:
-                  placeholder: 'leagueoflegends.com/?ref=4a54ce5'
+                  placeholder: '...leagueoflegends.com/?ref=4a54ce5'
                   label: Referral-Link *
               n_referidos:
-                  label: Amount
+                  label: Amount of Referrals
 
               submit: Buy
 pago:
