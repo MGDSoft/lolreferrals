@@ -234,7 +234,7 @@ common:
 
 correo:
 
-    from_txt: ReferralLol.com
+    from_txt: ReferralsLol.com
 
     pago:
         asunto: Bestellungs Bestätigung auf www.referralslol.com

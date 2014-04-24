@@ -235,7 +235,7 @@ pago:
 
 correo:
 
-    from_txt: ReferralLol.com
+    from_txt: ReferralsLol.com
 
     pago:
         asunto: Order Confirmation from www.referralslol.com
