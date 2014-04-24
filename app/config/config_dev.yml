@@ -45,58 +45,56 @@ bazinga_faker:
     locale: gb_GB
     orm: doctrine
     entities:
-        MGD\BasicBundle\Entity\Articulo:
-            number: 3
-            custom_formatters:
-                nombre: { method: randomElement, parameters: [['50 Referrals','250 Referrals','300 Referrals']] }
-                precio: { method: randomNumber, parameters: [50,400] }
+
+# Bundle crashed text() can only generate text of at least 5 characters
 
         MGD\FrameworkBundle\Entity\Usuario:
             number: 1
 
-        MGD\BasicBundle\Entity\Estado:
-            number: 1
-            custom_formatters:
-                nombre: { method: word, unique: true }
-
-        MGD\BasicBundle\Entity\Pedido:
-            number: 20
-            custom_formatters:
-                id: { method: uuid }
-                referralLink: { method: uuid }
-                ip: { method: ipv4 }
-
-        MGD\BasicBundle\Entity\PedidoEstados:
-            number: 40
-
-        MGD\BasicBundle\Entity\PedidoBots:
-            number: 40
-            custom_formatters:
-                nombre: { method: uuid }
-                contrasena: { method: word }
-                lvl: { method: randomNumber, parameters: [0,10] }
-        MGD\BasicBundle\Entity\Noticia:
-            number: 30
-            custom_formatters:
-                titulo: { method: sentence }
-                noticia: { method: text }
-
-        MGD\BasicBundle\Entity\CuponDescuento:
-            number: 30
-            custom_formatters:
-                id: { method: uuid }
-
-        MGD\BasicBundle\Entity\PaypalAccount:
-            number: 6
-            custom_formatters:
-                name: { method: word, unique: true }
-                apiUsername: { method: email, unique: true }
-                apiPassword: { method: word }
-                apiSignature: { method: word }
-
-
-        MGD\BasicBundle\Entity\PaypalAccountsPayment:
-            number: 10
+#        MGD\BasicBundle\Entity\Estado:
+#            number: 1
+#            custom_formatters:
+#                nombre: { method: word, unique: true }
+#
+#        MGD\BasicBundle\Entity\Pedido:
+#            number: 20
+#            custom_formatters:
+#                id: { method: uuid }
+#                referralLink: { method: uuid }
+#                ip: { method: ipv4 }
+#
+#        MGD\BasicBundle\Entity\PedidoEstados:
+#            number: 40
+#
+#        MGD\BasicBundle\Entity\PedidoBots:
+#            number: 40
+#            custom_formatters:
+#                nombre: { method: uuid }
+#                contrasena: { method: word }
+#                lvl: { method: randomNumber, parameters: [0,10] }
+#
+#        MGD\BasicBundle\Entity\Noticia:
+#            number: 30
+#            custom_formatters:
+#                titulo: { method: sentence }
+#                noticia: { method: text }
+#
+#        MGD\BasicBundle\Entity\CuponDescuento:
+#            number: 30
+#            custom_formatters:
+#                id: { method: uuid }
+#
+#        MGD\BasicBundle\Entity\PaypalAccount:
+#            number: 6
+#            custom_formatters:
+#                name: { method: word, unique: true }
+#                apiUsername: { method: email, unique: true }
+#                apiPassword: { method: word }
+#                apiSignature: { method: word }
+#
+#
+#        MGD\BasicBundle\Entity\PaypalAccountsPayment:
+#            number: 10
 
 
 

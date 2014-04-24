@@ -382,13 +382,7 @@ class PedidoController extends Controller
 
             $pedido->setEstado($estadoFinalizado);
 
-            $pedidoEstado = new PedidoEstados();
-
-            $pedidoEstado->setEstado($estadoFinalizado);
-            $pedidoEstado->setPedido($pedido);
-
             $em->persist($pedido);
-            $em->persist($pedidoEstado);
 
             $em->flush();
 
@@ -397,13 +391,7 @@ class PedidoController extends Controller
             $estadoCola = $em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
             $pedido->setEstado($estadoCola);
 
-            $pedidoEstado = new PedidoEstados();
-
-            $pedidoEstado->setEstado($estadoCola);
-            $pedidoEstado->setPedido($pedido);
-
             $em->persist($pedido);
-            $em->persist($pedidoEstado);
 
             $em->flush();
         }
