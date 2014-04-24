@@ -13,33 +13,34 @@ class LoadEstadoData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * {@inheritDoc}
      */
-	public function load(ObjectManager $manager)
-	{
-		$estados = array(
-			array('nombre'=>'Queue'),
-			array('nombre'=>'Waiting'),
-			array('nombre'=>'Failed'),
-			array('nombre'=>'Leveling accounts'),
-			array('nombre'=>'Completed'),
-		);
+    public function load(ObjectManager $manager)
+    {
+        $estados = array(
+            array('nombre' => 'Queue'),
+            array('nombre' => 'Waiting'),
+            array('nombre' => 'Failed'),
+            array('nombre' => 'Leveling accounts'),
+            array('nombre' => 'Completed'),
+        );
 
-		foreach ($estados as $estado) {
+        foreach ($estados as $estado) {
 
-			$entidad = new Estado();
+            $entidad = new Estado();
 
-			$entidad->setNombre($estado['nombre']);
+            $entidad->setNombre($estado['nombre']);
 
-			$manager->persist($entidad);
-		}
-		$manager->flush();
+            $manager->persist($entidad);
+        }
+        $manager->flush();
 
-	}
+    }
+
     /**
      * {@inheritDoc}
      */
-	public function getOrder()
-	{
-		return 10; // the order in which fixtures will be loaded
-	}
+    public function getOrder()
+    {
+        return 10; // the order in which fixtures will be loaded
+    }
 }
 

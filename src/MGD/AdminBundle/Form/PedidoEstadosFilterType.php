@@ -15,27 +15,30 @@ class PedidoEstadosFilterType extends AbstractType
     {
         $builder
             ->add('id', 'filter_number_range')
-	        ->add('estado', 'filter_entity',  array(
-			        'class' => 'MGDBasicBundle:Estado',
-			        'property' => 'nombre',
-		        )
-	        )
+            ->add(
+                'estado',
+                'filter_entity',
+                array(
+                    'class'    => 'MGDBasicBundle:Estado',
+                    'property' => 'nombre',
+                )
+            )
             ->add('descripcion', 'filter_text')
-            ->add('fecha', 'filter_date_range')
+            ->add('fecha', 'filter_date_range');
 
-        ;
-
-        $listener = function(FormEvent $event)
-        {
+        $listener = function (FormEvent $event) {
             // Is data empty?
             foreach ($event->getData() as $data) {
-                if(is_array($data)) {
+                if (is_array($data)) {
                     foreach ($data as $subData) {
-                        if(!empty($subData)) return;
+                        if (!empty($subData)) {
+                            return;
+                        }
                     }
-                }
-                else {
-                    if(!empty($data)) return;
+                } else {
+                    if (!empty($data)) {
+                        return;
+                    }
                 }
             }
 

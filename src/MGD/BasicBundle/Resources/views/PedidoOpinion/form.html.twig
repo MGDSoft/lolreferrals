@@ -1,0 +1,10 @@
+
+<form id="contacto" action="{{ path('order_opinion_update', { pedidoId: pedido.id }) }}" method="post">
+
+    <img src="{{ gravatar( pedido_opinion_form.email.vars.value , 100, 'g', 'mm', true) }}" style="float: right" />
+
+    {{ form_widget(pedido_opinion_form) }}
+
+    <input type="submit" class="btn btn-primary" value="{{ 'formularios.opinion.submit' | trans }}">
+
+</form>

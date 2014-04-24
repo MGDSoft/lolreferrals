@@ -80,7 +80,7 @@ class FinalizarPagoListener
         $pedido = $pedidoEvent->getPedido();
 
         $this->session->getFlashBag()->add('success',
-            $this->translator->trans('pago.finalizado')
+            $this->translator->trans('pago.finalizado', array(), null, $pedido->getLanguage())
         );
 
         $estado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
@@ -103,13 +103,14 @@ class FinalizarPagoListener
     {
         //preparing message
         $message = \Swift_Message::newInstance()
-            ->setSubject($this->translator->trans('pago.correo.asunto'))
+            ->setSubject($this->translator->trans('correo.pago.asunto', array(), null, $pedido->getLanguage()))
             ->setFrom($this->container->getParameter('email_app'), 'ReferralLol.com')
-            ->setTo($pedido->getEmail(), $pedido . " ". $pedido->getRefPaypal())
-            ->setBody($this->templating->render('MGDBasicBundle:Pedido:confirmation_email.html.twig',
+            ->setTo($pedido->getEmail())
+            ->setBody($this->templating->render('MGDBasicBundle:Mails/OrderEnd:confirmation_email.html.twig',
                     // Prepare the variables to populate the email template:
                     array(
                         'pedido' => $pedido,
+                        'lang' => $pedido->getLanguage(),
                     )
                 ), 'text/html'
             )
@@ -131,7 +132,7 @@ class FinalizarPagoListener
             ->setSubject('Nuevo pedido '.$pedido)
             ->setFrom($this->container->getParameter('email_app'), 'ReferralLol.com')
             ->setTo($this->container->getParameter('email_pedido'), $pedido . " ". $pedido->getRefPaypal())
-            ->setBody($this->templating->render('MGDBasicBundle:Pedido:confirmation_email_admin.html.twig',
+            ->setBody($this->templating->render('MGDBasicBundle:Mails/OrderEnd:confirmation_email_admin.html.twig',
                     // Prepare the variables to populate the email template:
                     array(
                         'pedido' => $pedido,

@@ -1,0 +1,13 @@
+<html>
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"  font-family='verdana'>
+<br>
+{% trans with {'%nReferidos%': pedido.nReferidos} into lang %}correo.pago.articulo{% endtrans %}
+<br>
+<br>
+{% trans with {'%pedidoId%': pedido.id} into lang %}correo.pago.seguimiento{% endtrans %}
+<br><br>
+{% trans into lang %}correo.pago.extra{% endtrans %}
+<br><br>
+<b>{{ render(controller('MGDBasicBundle:Cola:showView')) }}</b>
+</body>
+</html>

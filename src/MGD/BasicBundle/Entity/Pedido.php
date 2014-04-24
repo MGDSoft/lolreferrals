@@ -25,10 +25,10 @@ class Pedido
      */
     private $id;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="PrecioRango", fetch="EAGER")
-	 * @ORM\JoinColumn(name="precio_rango_id", referencedColumnName="id", nullable=true)
-	 */
+    /**
+     * @ORM\ManyToOne(targetEntity="PrecioRango", fetch="EAGER")
+     * @ORM\JoinColumn(name="precio_rango_id", referencedColumnName="id", nullable=true)
+     */
     private $precioRango;
 
     /**
@@ -41,10 +41,10 @@ class Pedido
     private $nReferidos;
 
     /**
-	 * @ORM\ManyToOne(targetEntity="Estado", fetch="EAGER")
-	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=true)
-	 */
-	private $estado;
+     * @ORM\ManyToOne(targetEntity="Estado", fetch="EAGER")
+     * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=true)
+     */
+    private $estado;
 
     /**
      * @ORM\ManyToOne(targetEntity="CuponDescuento", fetch="EAGER")
@@ -52,22 +52,22 @@ class Pedido
      */
     private $cuponDescuento;
 
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="email", type="string", length=100)
-	 * @Assert\Email()
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100)
+     * @Assert\Email()
      * @Assert\NotBlank()
-	 */
-	private $email;
+     */
+    private $email;
 
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="referral_link", type="string", length=255,nullable=true)
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="referral_link", type="string", length=255,nullable=true)
      * @Assert\NotBlank()
-	 */
-	private $referralLink;
+     */
+    private $referralLink;
 
     /**
      * @var PedidoBots[]
@@ -76,25 +76,25 @@ class Pedido
      */
     private $pedidoBots;
 
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="ip", type="string", length=39)
-	 */
-	private $ip;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ip", type="string", length=39)
+     */
+    private $ip;
 
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="ref_paypal", type="string", length=255,nullable=true)
-	 */
-	private $refPaypal;
-	/**
-	 * @var \DateTime
-	 *
-	 * @ORM\Column(name="fecha", type="datetime")
-	 */
-	private $fecha;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ref_paypal", type="string", length=255,nullable=true)
+     */
+    private $refPaypal;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime")
+     */
+    private $fecha;
 
     /**
      * @var PaymentInstruction
@@ -104,6 +104,13 @@ class Pedido
     private $paymentInstruction;
 
     /**
+     * @var PedidoOpinion
+     *
+     * @ORM\OneToOne(targetEntity="PedidoOpinion" , cascade={"remove"}, orphanRemoval=true)
+     */
+    private $opinion;
+
+    /**
      * @var float
      *
      * @ORM\Column(type="decimal", scale=2, precision=6)
@@ -111,25 +118,40 @@ class Pedido
     private $total;
 
     /**
+     * It will be modified in EntityListener catching current queue
+     *
+     * @var integer
+     *
+     * @ORM\Column(name="n_remaining_queue", type="integer")
+     */
+    private $remainingQueue = 999;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=2)
+     */
+    private $language='en';
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-	    $this->fecha = new \DateTime();
+        $this->fecha = new \DateTime();
 
-	    if (isset($_SERVER['REMOTE_ADDR'])){
-		    $this->ip = $_SERVER['REMOTE_ADDR'];
-	    }else if (php_sapi_name() == "cli"){
+        if (isset($_SERVER['REMOTE_ADDR'])) {
+            $this->ip = $_SERVER['REMOTE_ADDR'];
+        } else if (php_sapi_name() == "cli") {
             $this->ip = "CLI";
-        }else{
+        } else {
             $this->ip = "UNKNOWN";
         }
 
-	    $this->id = uniqid('LOL' . date("Ymdhis"));
+        $this->id = uniqid('LOL' . date("Ymdhis"));
 
         $this->pedidoBots = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
 
     /**
@@ -142,14 +164,14 @@ class Pedido
     public function setIp($ip)
     {
         $this->ip = $ip;
-    
+
         return $this;
     }
 
     /**
      * Get ip
      *
-     * @return string 
+     * @return string
      */
     public function getIp()
     {
@@ -166,20 +188,19 @@ class Pedido
     public function setRefPaypal($refPaypal)
     {
         $this->refPaypal = $refPaypal;
-    
+
         return $this;
     }
 
     /**
      * Get refPaypal
      *
-     * @return string 
+     * @return string
      */
     public function getRefPaypal()
     {
         return $this->refPaypal;
     }
-	
 
 
     /**
@@ -192,14 +213,14 @@ class Pedido
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
-    
+
         return $this;
     }
 
     /**
      * Get fecha
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFecha()
     {
@@ -216,25 +237,26 @@ class Pedido
     public function setEstado(\MGD\BasicBundle\Entity\Estado $estado = null)
     {
         $this->estado = $estado;
-    
+
         return $this;
     }
 
     /**
      * Get estado
      *
-     * @return \MGD\BasicBundle\Entity\Estado 
+     * @return \MGD\BasicBundle\Entity\Estado
      */
     public function getEstado()
     {
         return $this->estado;
     }
 
-	public function __toString()
+    public function __toString()
     {
-		return $this->nReferidos.' refs '. $this->total .'eur, '.$this->fecha->format('Y-M-d H:i:s').', '.$this->email
-			.', estado Actual: '.$this->estado.($this->cuponDescuento ? ", Descuento: ".$this->cuponDescuento: "");
-	}
+        return $this->nReferidos . ' refs ' . $this->total . 'eur, ' . $this->fecha->format(
+            'Y-M-d H:i:s'
+        ) . ', ' . $this->email . ', estado Actual: ' . $this->estado . ($this->cuponDescuento ? ", Descuento: " . $this->cuponDescuento : "");
+    }
 
     /**
      * Set email
@@ -245,14 +267,14 @@ class Pedido
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -268,14 +290,14 @@ class Pedido
     public function setReferralLink($referralLink)
     {
         $this->referralLink = $referralLink;
-    
+
         return $this;
     }
 
     /**
      * Get referralLink
      *
-     * @return string 
+     * @return string
      */
     public function getReferralLink()
     {
@@ -292,20 +314,19 @@ class Pedido
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
         return $this->id;
     }
-
 
 
     /**
@@ -317,20 +338,19 @@ class Pedido
     public function setPaymentInstruction(\JMS\Payment\CoreBundle\Entity\PaymentInstruction $paymentInstruction = null)
     {
         $this->paymentInstruction = $paymentInstruction;
-    
+
         return $this;
     }
 
     /**
      * Get paymentInstruction
      *
-     * @return \JMS\Payment\CoreBundle\Entity\PaymentInstruction 
+     * @return \JMS\Payment\CoreBundle\Entity\PaymentInstruction
      */
     public function getPaymentInstruction()
     {
         return $this->paymentInstruction;
     }
-
 
 
     /**
@@ -342,14 +362,14 @@ class Pedido
     public function setTotal($total)
     {
         $this->total = $total;
-    
+
         return $this;
     }
 
     /**
      * Get total
      *
-     * @return float 
+     * @return float
      */
     public function getTotal()
     {
@@ -365,7 +385,7 @@ class Pedido
     public function setCuponDescuento(CuponDescuento $cuponDescuento)
     {
         $this->cuponDescuento = $cuponDescuento;
-    
+
         return $this;
     }
 
@@ -415,28 +435,24 @@ class Pedido
      */
     public function calculatePrice()
     {
-        if (!$this->precioRango)
-        {
+        if (!$this->precioRango) {
             return null;
         }
 
         $valor = $this->getPrecioRango()->getPrecio() * $this->nReferidos;
 
-        if ($cuponDescuento = $this->getCuponDescuento())
-        {
-            if ($cuponDescuento->getPorcentajeBoo())
-            {
+        if ($cuponDescuento = $this->getCuponDescuento()) {
+            if ($cuponDescuento->getPorcentajeBoo()) {
                 $valor -= ($valor * $cuponDescuento->getValor() / 100);
-            }else{
+            } else {
                 $valor -= $cuponDescuento->getValor();
             }
         }
 
-        if ($valor < 5)
-        {
+        if ($valor < 5) {
             $this->total = 5;
 
-        }else{
+        } else {
             $this->total = $valor;
         }
 
@@ -447,15 +463,13 @@ class Pedido
 
     public function getPedidoBotsState()
     {
-        if ($this->pedidoBots->count()>0)
-        {
-            $esperando=$finalizado=$corriendo=0;
-            foreach ($this->pedidoBots as $bot)
-            {
-                if ($bot->getLvl()==10)
-                    $finalizado++;
-                elseif ($bot->getLvl()!=0)
+        if ($this->pedidoBots->count() > 0) {
+            $esperando = $finalizado = $corriendo = 0;
+            foreach ($this->pedidoBots as $bot) {
+                if ($bot->getLvl() == 10)
+                    $finalizado++; elseif ($bot->getLvl() != 0) {
                     $corriendo++;
+                }
                 else
                     $esperando++;
             }
@@ -475,7 +489,7 @@ class Pedido
     public function addPedidoBot(\MGD\BasicBundle\Entity\PedidoBots $pedidoBots)
     {
         $this->pedidoBots[] = $pedidoBots;
-    
+
         return $this;
     }
 
@@ -499,14 +513,14 @@ class Pedido
     public function setNReferidos($nReferidos)
     {
         $this->nReferidos = $nReferidos;
-    
+
         return $this;
     }
 
     /**
      * Get nReferidos
      *
-     * @return integer 
+     * @return integer
      */
     public function getNReferidos()
     {
@@ -522,17 +536,80 @@ class Pedido
     public function setPrecioRango(\MGD\BasicBundle\Entity\PrecioRango $precioRango = null)
     {
         $this->precioRango = $precioRango;
-    
+
         return $this;
     }
 
     /**
      * Get precioRango
      *
-     * @return \MGD\BasicBundle\Entity\PrecioRango 
+     * @return \MGD\BasicBundle\Entity\PrecioRango
      */
     public function getPrecioRango()
     {
         return $this->precioRango;
     }
+
+    /**
+     * @param int $remainingQueue
+     */
+    public function setRemainingQueue($remainingQueue)
+    {
+        $this->remainingQueue = $remainingQueue;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRemainingQueue()
+    {
+        return $this->remainingQueue;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRemainingQueueDiff()
+    {
+        $actual= new \DateTime();
+        $timeLeft=$this->getFecha()->diff($actual);
+
+        $remainingQueue = $this->getRemainingQueue() - $timeLeft->days;
+        //$remainingQueue = ($remainingQueue < 0 ? 0 : $remainingQueue);
+
+        return $remainingQueue;
+    }
+
+    /**
+     * @param \MGD\BasicBundle\Entity\PedidoOpinion $opinion
+     */
+    public function setOpinion($opinion)
+    {
+        $this->opinion = $opinion;
+    }
+
+    /**
+     * @return \MGD\BasicBundle\Entity\PedidoOpinion
+     */
+    public function getOpinion()
+    {
+        return $this->opinion;
+    }
+
+    /**
+     * @param string $language
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
 }

@@ -202,11 +202,34 @@ pago:
               <b>Su pedido se realizó correctamente</b>,
               Recibirá un correo comunicándole su id de seguimiento si tiene cualquier problema diríjase a
               nuestra sección de contacto. ¡Gracias por su compra!
-    correo:
+
+common:
+    cola_actual: Cola actual: <span>%dias%</span> dias.
+
+correo:
+
+    from_txt: ReferralLol.com
+
+    pago:
         asunto: Confirmación de pedido en www.referralslol.com
         articulo: Su pago de %nReferidos% referidos ha sido recibido correctamente.
         seguimiento: Puede seguir el estado de su pedido con el siguiente código : %pedidoId%
         extra: ¡Gracias por su compra!
 
-common:
-    cola_actual: Cola actual: <span>%dias%</span> dias.
+    estado_change_4:
+        asunto: Your order of %nReferidos% has just started.
+        msg: >
+              Hello %email%,<br><br>
+              We inform you that we already started your order.<br>
+              It will take about 24-36h from now to be completed.<br>
+              Remember to use our tracking system (www.referralslol.com/en/tracking) with your OrderID: %pedidoId% to follow the process of the order.<br><br>
+              Regards, www.referralslol.com
+
+    estado_change_5:
+        asunto: Your order of %nReferidos% is now completed.
+        msg: >
+              Hello %email%,<br><br>
+              We inform you that we already finished your order.<br>
+              Take into account that Riot needs about 24h to fully update all the accounts in their website, also make sure you redeem all the rewards in www.leagueoflegends/rewards/ (make sure you are logged in and also in the correct server (EUW/NA/EUNE...))<br>
+              Remember you can give us your opinion from our service in our tracking system, we will appreciate it!<br><br>
+              Regards, www.referralslol.com

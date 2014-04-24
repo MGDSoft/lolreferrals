@@ -1,0 +1,22 @@
+<section id="block-opinions">
+    <h3>Customers opinions</h3>
+    {% for opinion in opinions %}
+        <article>
+            {% if not loop.first %}
+                <hr>
+            {% endif %}
+            <div class="user">
+                <img src="{{ gravatar( opinion.email, 70, 'g', 'mm', true) }}" />
+                <b>{{ opinion.name }}</b>
+            </div>
+
+            <div>
+                <p>
+                    {{ opinion.text }}
+
+                    <em>{{ opinion.created |date('Y-m-d H:i:s') }}</em>
+                </p>
+            </div>
+        </article>
+    {% endfor %}
+</section>

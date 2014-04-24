@@ -23,11 +23,11 @@ class Noticia
      */
     private $id;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="\MGD\FrameworkBundle\Entity\Usuario", fetch="EAGER")
-	 * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id", nullable=false)
-	 */
-	private $usuario;
+    /**
+     * @ORM\ManyToOne(targetEntity="\MGD\FrameworkBundle\Entity\Usuario", fetch="EAGER")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id", nullable=false)
+     */
+    private $usuario;
 
     /**
      * @var string
@@ -65,7 +65,7 @@ class Noticia
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -82,14 +82,14 @@ class Noticia
     public function setTitulo($titulo)
     {
         $this->titulo = $titulo;
-    
+
         return $this;
     }
 
     /**
      * Get titulo
      *
-     * @return string 
+     * @return string
      */
     public function getTitulo()
     {
@@ -106,14 +106,14 @@ class Noticia
     public function setNoticia($noticia)
     {
         $this->noticia = $noticia;
-    
+
         return $this;
     }
 
     /**
      * Get noticia
      *
-     * @return string 
+     * @return string
      */
     public function getNoticia()
     {
@@ -130,14 +130,14 @@ class Noticia
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
-    
+
         return $this;
     }
 
     /**
      * Get fecha
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFecha()
     {
@@ -154,20 +154,19 @@ class Noticia
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
         return $this->slug;
     }
-
 
 
     /**

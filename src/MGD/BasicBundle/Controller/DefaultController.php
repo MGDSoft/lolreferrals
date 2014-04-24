@@ -19,43 +19,39 @@ class DefaultController extends Controller
     {
 
 
-		$repository = $this->getDoctrine()
-		    ->getRepository('MGDBasicBundle:Noticia');
+        $repository = $this->getDoctrine()->getRepository('MGDBasicBundle:Noticia');
 
-	    /** @var Doctrine\ORM\QueryBuilder */
-	    $query = $repository->createQueryBuilder('n')
-		    ->orderBy('n.fecha', 'DESC')
-		    ->setMaxResults(5)
-		    ->getQuery();
+        /** @var Doctrine\ORM\QueryBuilder */
+        $query = $repository->createQueryBuilder('n')->orderBy('n.fecha', 'DESC')->setMaxResults(5)->getQuery();
 
-        $repoCola = $this->getDoctrine()
-            ->getRepository('MGDBasicBundle:Cola');
+        $repoCola = $this->getDoctrine()->getRepository('MGDBasicBundle:Cola');
 
         $queue = $repoCola->find(1);
 
         $noticias = $query->getResult();
 
-	    return array('noticias'=>$noticias , 'queue' => $queue);
+        return array('noticias' => $noticias, 'queue' => $queue);
     }
 
-	/**
-	 * @Route("/pay-success/{_locale}",requirements={"_locale" = "(en|es|de)"}, name="pagado")
-	 * @Template("MGDBasicBundle:Default:index.html.twig")
-	 */
-	public function pagadoAction()
-	{
-		$request=$this->getRequest();
+    /**
+     * @Route("/pay-success/{_locale}",requirements={"_locale" = "(en|es|de)"}, name="pagado")
+     * @Template("MGDBasicBundle:Default:index.html.twig")
+     */
+    public function pagadoAction()
+    {
+        $request = $this->getRequest();
 
-		$return = $this->indexAction(
-			($request->getLocale()) ? $request->getLocale() :$this->container->getParameter('locale')
-		);
+        $return = $this->indexAction(
+            ($request->getLocale()) ? $request->getLocale() : $this->container->getParameter('locale')
+        );
 
-		$this->get('session')->getFlashBag()->add('success',
-			$this->get('translator')->trans('pago.finalizado')
-		);
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            $this->get('translator')->trans('pago.finalizado')
+        );
 
-		return $return;
+        return $return;
 
-	}
+    }
 
 }

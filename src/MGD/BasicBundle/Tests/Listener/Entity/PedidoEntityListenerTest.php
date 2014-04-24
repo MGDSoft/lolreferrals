@@ -18,6 +18,7 @@ use MGD\BasicBundle\Tests\Entity\TestPaypalAccountHelper;
 use MGD\BasicBundle\Tests\Entity\TestPedidoHelper;
 use MGD\FrameworkBundle\Tests\KernelAwareTest;
 use \Doctrine\Common\DataFixtures\Loader;
+use MGD\BasicBundle\DataFixtures\ORM\LoadColaData;
 
 class PedidoEntityListenerTest extends KernelAwareTest
 {
@@ -32,7 +33,7 @@ class PedidoEntityListenerTest extends KernelAwareTest
     {
         parent::setUp();
 
-        $this->loadFixture(new LoadEstadoData());
+        $this->loadArrFixtures(array(new LoadColaData(), new LoadEstadoData()));
 
         $this->precioRango = new PrecioRango();
         $this->precioRango
@@ -211,6 +212,18 @@ class PedidoEntityListenerTest extends KernelAwareTest
         $this->assertEquals(5.2, $pedido->getTotal());
         $this->assertEquals(5.2, $ppAcc->getDineroAgregado());
         $this->assertEquals(5.2, $ppAcc->getDineroAgregadoTotal());
+    }
+
+    public function testSetRemainingQueue()
+    {
+        $pedido = new Pedido();
+
+        TestPedidoHelper::setValues($pedido,$this->precioRango);
+        $this->em->persist($pedido);
+        $this->em->flush();
+
+        $this->assertEquals(LoadColaData::DAYS, $pedido->getRemainingQueue());
+
     }
 
 

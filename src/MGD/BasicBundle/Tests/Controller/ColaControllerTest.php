@@ -12,7 +12,7 @@ class ColaControllerTest extends FunctionalTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->loadFixture(new LoadColaData());
+        $this->loadFixturesGeneral();
         $this->url = $this->router->generate('contacto_es');
     }
 

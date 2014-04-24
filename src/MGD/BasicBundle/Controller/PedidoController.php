@@ -39,7 +39,7 @@ class PedidoController extends Controller
      *
      * @DI\Inject
      */
-    protected  $request;
+    protected $request;
 
     /**
      * @var Session
@@ -85,46 +85,47 @@ class PedidoController extends Controller
 
 
     /**
-    * @Route("/en/order/",defaults={"_locale" = "en"}, name="pedido_en")
-    * @Route("/es/comprar/",defaults={"_locale" = "es"}, name="pedido_es")
-    * @Route("/de/bestellen/",defaults={"_locale" = "de"}, name="pedido_de")
-    * @Route("/order/post/", name="pedido_post")
-    * @Template()
-    */
+     * @Route("/en/order/",defaults={"_locale" = "en"}, name="pedido_en")
+     * @Route("/es/comprar/",defaults={"_locale" = "es"}, name="pedido_es")
+     * @Route("/de/bestellen/",defaults={"_locale" = "de"}, name="pedido_de")
+     * @Route("/order/post/", name="pedido_post")
+     * @Template()
+     */
     public function indexAction(Request $request)
     {
         $cuponDescuentoForm = $this->cDescController->indexForm();
-        $nReferidosStart=100;
-	    /** @var \MGD\BasicBundle\Entity\PrecioRango[] $precioRangos */
-        $precioRangos = $this->em->getRepository("MGDBasicBundle:PrecioRango")->findBy(array(),array('limite'=> 'ASC'));
+        $nReferidosStart = 100;
+        /** @var \MGD\BasicBundle\Entity\PrecioRango[] $precioRangos */
+        $precioRangos = $this->em->getRepository("MGDBasicBundle:PrecioRango")->findBy(
+            array(),
+            array('limite' => 'ASC')
+        );
 
         $descuento = $this->getDescuentoSession();
 
         $pedido = new Pedido();
         $pedido->setNReferidos($nReferidosStart);
 
-        $form   = $this->createForm(new PedidoType(), $pedido);
+        $form = $this->createForm(new PedidoType(), $pedido);
 
-        if ($request->getMethod() === 'POST' && $request->request->get('mgd_basicbundle_pedidotype') )
-        {
+        if ($request->getMethod() === 'POST' && $request->request->get('mgd_basicbundle_pedidotype')) {
             $form->handleRequest($request);
 
-            if ($form->isValid())
-            {
+            if ($form->isValid()) {
                 return $this->pedidoPostAction($pedido);
             }
         }
 
-        $eurosToDollars=1.39;
+        $eurosToDollars = 1.39;
 
-	    return array(
-            'eurosToDollars' => $eurosToDollars,
-            'nReferidosStart' => $nReferidosStart,
-            'pedidoForm' => $form->createView(),
-            'descuento' => $descuento,
-		    'precioRangos' => $precioRangos,
+        return array(
+            'eurosToDollars'     => $eurosToDollars,
+            'nReferidosStart'    => $nReferidosStart,
+            'pedidoForm'         => $form->createView(),
+            'descuento'          => $descuento,
+            'precioRangos'       => $precioRangos,
             'cuponDescuentoForm' => $cuponDescuentoForm->createView(),
-	    );
+        );
     }
 
 
@@ -133,22 +134,29 @@ class PedidoController extends Controller
      */
     private function getDescuentoSession()
     {
-        if (! $cuponDescuento = $this->getRequest()->getSession()->get('cuponDescuento'))
+        if (!$cuponDescuento = $this->getRequest()->getSession()->get('cuponDescuento')) {
             return null;
+        }
 
         $serializer = $this->container->get('jms_serializer');
 
-        if (!$cuponDescuento = $serializer->deserialize($cuponDescuento,'MGD\BasicBundle\Entity\CuponDescuento', 'json'))
+        if (!$cuponDescuento = $serializer->deserialize(
+            $cuponDescuento,
+            'MGD\BasicBundle\Entity\CuponDescuento',
+            'json'
+            )
+        ) {
             return null;
+        }
 
         /** @var CuponDescuento $cuponDescuentoEntity */
         $cuponDescuentoEntity = $this->em->merge($cuponDescuento);
         $this->em->refresh($cuponDescuentoEntity);
-        if(!$cuponDescuentoEntity)
+        if (!$cuponDescuentoEntity) {
             return null;
+        }
 
-        if (!$cuponDescuentoEntity->validarCupon())
-        {
+        if (!$cuponDescuentoEntity->validarCupon()) {
             $this->session->remove('cuponDescuento');
 
             return null;
@@ -160,14 +168,12 @@ class PedidoController extends Controller
 
     public function pedidoPostAction(Pedido $pedido)
     {
-        if (($cuponDescuento = $this->getDescuentoSession()) && $cuponDescuento->validarCupon())
-        {
+        if (($cuponDescuento = $this->getDescuentoSession()) && $cuponDescuento->validarCupon()) {
             $pedido->setCuponDescuento($cuponDescuento);
         }
 
-        if (!$precioRango=$this->em->getRepository("MGDBasicBundle:PrecioRango")->getRowByNReferidos($pedido->getNReferidos()))
-        {
-            $this->log->addCritical("No hay rango para ".$pedido->getNReferidos());
+        if (!$precioRango = $this->em->getRepository("MGDBasicBundle:PrecioRango")->getRowByNReferidos($pedido->getNReferidos())){
+            $this->log->addCritical("No hay rango para " . $pedido->getNReferidos());
         }
 
         $pedido->setPrecioRango($precioRango);
@@ -188,13 +194,14 @@ class PedidoController extends Controller
      */
     public function completeAction(Pedido $pedido)
     {
-        if (($url = $this->pedidoPago->verifyPaymentCompleted($pedido))!== true)
+        if (($url = $this->pedidoPago->verifyPaymentCompleted($pedido)) !== true) {
             return new RedirectResponse($url);
+        }
 
         $eventDispatcher = $this->get('event_dispatcher');
-        $eventDispatcher->dispatch('mgd.pedido_pagado',new PedidoPagadoEvent($pedido));
+        $eventDispatcher->dispatch('mgd.pedido_pagado', new PedidoPagadoEvent($pedido));
 
-        return new RedirectResponse($this->router->generate('home'));
+        return new RedirectResponse($this->router->generate('home', array('_locale' => $pedido->getLanguage())));
     }
 
     /**

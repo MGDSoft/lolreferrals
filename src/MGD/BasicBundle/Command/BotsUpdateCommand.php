@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by lol.
- * User: PC
- * Date: 20/11/13
- * Time: 14:12
- */
 
 namespace MGD\BasicBundle\Command;
 

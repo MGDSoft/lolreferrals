@@ -6,6 +6,7 @@
 namespace MGD\BasicBundle\Listener\Entity;
 
 
+use Container;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -19,7 +20,11 @@ use MGD\BasicBundle\Entity\PedidoEstados;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use MGD\FrameworkBundle\Listener\Entity\EntityListenerAssistEvents;
 use Monolog\Logger;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Bundle\TwigBundle\Debug\TimedTwigEngine;
+use Swift_Mailer;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PedidoEntityListener extends EntityListenerAssistEvents implements EventSubscriber
 {
@@ -31,7 +36,7 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
     /**
      * @var Logger
      */
-    private $logger;
+    private $log;
 
     /**
      * @var Pedido[]
@@ -43,10 +48,28 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
      */
     private $pedidoUpdated=array();
 
+    /**
+     * @var Translator
+     */
+    private $translator;
+
+    /**
+     * @var Container
+     */
+    private $container;
+
+    /**
+     * @var Swift_Mailer
+     */
+    private $mailer;
+
 
     function __construct(ContainerInterface $container)
     {
-        $this->logger = $container->get('logger');
+        $this->container = $container;
+        $this->log = $container->get('logger');
+        $this->translator = $container->get('translator');
+        $this->mailer = $container->get('mailer');
     }
 
     public function onFlush(OnFlushEventArgs  $eventArgs)
@@ -76,14 +99,16 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
 
         foreach ($this->pedidoInserted as $entity)
         {
-                $this->createHistoryStates($entity);
-                $this->createAccPPPayment($entity);
+            $this->setLanguage($entity);
+            $this->createHistoryStates($entity);
+            $this->createAccPPPayment($entity);
+            $this->setRemainingQueue($entity);
         }
 
         foreach ($this->pedidoUpdated AS $entity)
         {
-                $this->createHistoryStates($entity);
-                $this->modifyValueFromPaypalAccount($entity);
+            $this->createHistoryStates($entity);
+            $this->modifyValueFromPaypalAccount($entity);
         }
 
         if ($this->pedidoUpdated || $this->pedidoInserted )
@@ -92,6 +117,19 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
             $this->em->flush();
         }
 
+    }
+
+    protected function setLanguage(Pedido $pedido)
+    {
+        /** @var SessionInterface $session */
+        $session = $this->container->get('session');
+
+        if (!$locale = $session->get('_locale'))
+        {
+            $locale = $this->container->getParameter('locale');
+        }
+
+        $pedido->setLanguage($locale);
     }
 
     protected function createHistoryStates(Pedido $pedido)
@@ -105,7 +143,7 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
 
             if(!$estado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola))
             {
-                $this->logger->addCritical('No hay estado en cola!');
+                $this->log->addCritical('No hay estado en cola!');
                 return true;
             }
 
@@ -126,7 +164,46 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
         $pedidoEstados->setEstado($pedido->getEstado());
         $pedidoEstados->setPedido($pedido);
 
+        // Pending....
+        //$pedidoEstados->setDescripcion($pedido->getEstado()->getDescripcionAdmin());
+
         $this->em->persist($pedidoEstados);
+
+        if ($pedido->getEstado()->getId() == EstadoEnum::Procesando || $pedido->getEstado()->getId() == EstadoEnum::Finalizado)
+        {
+            $this->sendEmailSwitchingEstado($pedido);
+        }
+    }
+
+    private function sendEmailSwitchingEstado(Pedido $pedido)
+    {
+        $template = $this->container->get('templating');
+        $estadoId=$pedido->getEstado()->getId();
+
+        $message = \Swift_Message::newInstance()->setSubject(
+                $this->translator->trans(
+                    "correo.estado_change_$estadoId.asunto",
+                    array('%nReferidos%' => $pedido->getNReferidos()),
+                    null,
+                    $pedido->getLanguage()
+                )
+            )
+            ->setFrom($this->container->getParameter('email_app'), $this->translator->trans("correo.from_txt", array(), null, $pedido->getLanguage()))
+            ->setTo($pedido->getEmail())
+            ->setBody($template->render("MGDBasicBundle:Mails/PedidoEstado:changing_state_$estadoId.html.twig",
+                    // Prepare the variables to populate the email template:
+                    array(
+                        'pedido' => $pedido,
+                        'lang' => $pedido->getLanguage(),
+                    )
+                ), 'text/html'
+            )
+        ;
+
+        if (!$this->mailer->send($message))
+        {
+            $this->log->addCritical("No se ha enviado el correo para ".$pedido->getEmail()." despues del cambio de estado del pedido ". $pedido->getId());
+        }
     }
 
     protected function createAccPPPayment(Pedido $pedido)
@@ -139,7 +216,7 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
 
         if (!$ppAccountActive = $this->em->getRepository('MGDBasicBundle:PaypalAccount')->findOneByActive(true))
         {
-            $this->logger->addCritical('No hay cuenta activa!');
+            $this->log->addCritical('No hay cuenta activa!');
             return true;
         }
 
@@ -191,6 +268,20 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
 
         $this->em->persist($accPay);
         $this->em->persist($acc);
+    }
+
+    protected function setRemainingQueue(Pedido $pedido)
+    {
+        $repoCola = $this->em->getRepository('MGDBasicBundle:Cola');
+
+        $queue = $repoCola->find(1);
+
+        if (!$queue)
+            $pedido->setRemainingQueue(0);
+        else
+            $pedido->setRemainingQueue($queue->getDays());
+
+        $this->em->persist($pedido);
     }
 
     /**

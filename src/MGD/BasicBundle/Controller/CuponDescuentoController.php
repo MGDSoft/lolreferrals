@@ -55,35 +55,39 @@ class CuponDescuentoController
     {
         $form = $this->formFactory->create(new CuponDescuentoType());
 
-        if (!$this->request->get('mgd_basicbundle_cupondescuentotype'))
-        {
+        if (!$this->request->get('mgd_basicbundle_cupondescuentotype')) {
             return $form;
         }
 
         $form->handleRequest($this->request);
 
-        if ($form->isValid())
-        {
+        if ($form->isValid()) {
             /** @var Translator $translated */
             $translated = $this->container->get('translator');
 
-            if (!$cuponDescuento = $this->em->getRepository("MGDBasicBundle:CuponDescuento")->find($form->get('id')->getData()))
-            {
-                $form->get('id')->addError(new FormError( $translated->trans("formularios.descuento.errors.codigo_invalido")));
+            if (!$cuponDescuento = $this->em->getRepository("MGDBasicBundle:CuponDescuento")->find(
+                $form->get('id')->getData()
+            )
+            ) {
+                $form->get('id')->addError(
+                    new FormError($translated->trans("formularios.descuento.errors.codigo_invalido"))
+                );
 
                 return $form;
             }
 
-            if (!$cuponDescuento->validarCupon())
-            {
-                $form->get('id')->addError(new FormError( $translated->trans("formularios.descuento.errors.codigo_invalido")));
+            if (!$cuponDescuento->validarCupon()) {
+                $form->get('id')->addError(
+                    new FormError($translated->trans("formularios.descuento.errors.codigo_invalido"))
+                );
 
                 return $form;
             }
 
             $this->serializarObj($cuponDescuento);
-            $this->request->getSession()->getFlashBag()->add('success',
-                $translated->trans('formularios.descuento.activado',array('%descuento%' => $cuponDescuento))
+            $this->request->getSession()->getFlashBag()->add(
+                'success',
+                $translated->trans('formularios.descuento.activado', array('%descuento%' => $cuponDescuento))
             );
         }
 
@@ -91,13 +95,12 @@ class CuponDescuentoController
     }
 
 
-
     protected function serializarObj($obj)
     {
         $serializer = $this->container->get('jms_serializer');
         $out = $serializer->serialize($obj, 'json');
 
-        $this->request->getSession()->set('cuponDescuento',$out);
+        $this->request->getSession()->set('cuponDescuento', $out);
     }
 
 }

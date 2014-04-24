@@ -14,23 +14,28 @@ class SeguimientoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-	        ->add('pedidoId','text',array(
+        $builder->add(
+            'pedidoId',
+            'text',
+            array(
                 'required' => true,
-		        'mapped' => false,
-		        'label'=> 'formularios.contacto.pedido.label',
-		        'attr' => array(
-			        'placeholder' => 'formularios.contacto.pedido.placeholder',
-		        ),
-	        ))
-	        ->add('captcha', 'captcha',array(
-		        'label'=> false,
-		        'attr' => array(
-			        'class' => 'captcha',
-			        'placeholder' => 'formularios.contacto.captcha.placeholder',
-		        ),
-	        ))
-        ;
+                'mapped'   => false,
+                'label'    => 'formularios.contacto.pedido.label',
+                'attr'     => array(
+                    'placeholder' => 'formularios.contacto.pedido.placeholder',
+                ),
+            )
+        )->add(
+                'captcha',
+                'captcha',
+                array(
+                    'label' => false,
+                    'attr'  => array(
+                        'class'       => 'captcha',
+                        'placeholder' => 'formularios.contacto.captcha.placeholder',
+                    ),
+                )
+            );
 
     }
 
@@ -39,9 +44,10 @@ class SeguimientoType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            //'data_class' => 'MGD\BasicBundle\Entity\Pedido'
-        ));
+        $resolver->setDefaults(
+            array(//'data_class' => 'MGD\BasicBundle\Entity\Pedido'
+            )
+        );
     }
 
     /**

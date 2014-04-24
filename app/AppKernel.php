@@ -8,6 +8,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+            // Symfony default bundles
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -17,22 +18,25 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+            // Vendor bundles
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-	        new JMS\AopBundle\JMSAopBundle(),
-	        new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-	        new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-	        new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
-	        new JordiLlonch\Bundle\CrudGeneratorBundle\JordiLlonchCrudGeneratorBundle(),
-	        new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-	        new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-	        new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+            new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
+            new JordiLlonch\Bundle\CrudGeneratorBundle\JordiLlonchCrudGeneratorBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new JMS\Payment\CoreBundle\JMSPaymentCoreBundle(),
             new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
 
-	        new MGD\BasicBundle\MGDBasicBundle(),
-	        new MGD\FrameworkBundle\MGDFrameworkBundle(),
-	        new MGD\AdminBundle\MGDAdminBundle(),
+            // My bundles
+            new MGD\BasicBundle\MGDBasicBundle(),
+            new MGD\FrameworkBundle\MGDFrameworkBundle(),
+            new MGD\AdminBundle\MGDAdminBundle(),
 
         );
 
@@ -40,8 +44,8 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-	        $bundles[] = new Bazinga\Bundle\FakerBundle\BazingaFakerBundle();
-	        $bundles[] = new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle();
+            $bundles[] = new Bazinga\Bundle\FakerBundle\BazingaFakerBundle();
+            $bundles[] = new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle();
         }
 
         return $bundles;

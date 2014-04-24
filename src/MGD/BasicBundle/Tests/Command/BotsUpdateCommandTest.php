@@ -23,7 +23,7 @@ class BotsUpdateCommandTest extends KernelAwareTest
     public function setUp()
     {
         parent::setUp();
-        $this->loadFixture(new LoadEstadoData());
+        $this->loadOnlyOneFixture(new LoadEstadoData());
 
         $precioRango = new PrecioRango();
         $precioRango

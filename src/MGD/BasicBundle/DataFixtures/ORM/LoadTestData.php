@@ -20,7 +20,7 @@ class LoadTestData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * {@inheritDoc}
      */
-	public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
 
         /*$articulo = new Articulo();
@@ -50,6 +50,7 @@ class LoadTestData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($pedido);
         $manager->flush();
     }
+
     /**
      * {@inheritDoc}
      */

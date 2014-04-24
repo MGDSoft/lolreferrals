@@ -6,23 +6,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 
-class LanguageController extends Controller {
+class LanguageController extends Controller
+{
 
-	private $languageDispo= array('es','en');
+    private $languageDispo = array('es', 'en');
 
-	/**
-	 * @Route("/language/change/{_locale}/", defaults={"_locale" = "en"}, name="cambiar_lenguaje")
-	 */
-	public function switchLanguageAction($_locale)
-	{
+    /**
+     * @Route("/language/change/{_locale}/", defaults={"_locale" = "en"}, name="cambiar_lenguaje")
+     */
+    public function switchLanguageAction($_locale)
+    {
         $request = $this->getRequest();
 
-        if (in_array($_locale,$this->languageDispo))
-        {
+        if (in_array($_locale, $this->languageDispo)) {
             $request->setLocale($_locale);
-            $request->getSession()->set('_locale',$_locale);
+            $request->getSession()->set('_locale', $_locale);
         }
 
-        return $this->redirect($this->generateUrl('home') );
-	}
+        return $this->redirect($this->generateUrl('home'));
+    }
 }

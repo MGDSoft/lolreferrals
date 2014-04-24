@@ -16,14 +16,17 @@ class PedidoFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'filter_number')
+            ->add('id', 'filter_text')
             ->add('ip', 'filter_text')
-	        ->add('email', 'filter_text')
-	        ->add('estado', 'filter_entity',  array(
-			        'class' => 'MGDBasicBundle:Estado',
-			        'property' => 'nombre',
-		        )
-	        )
+            ->add('email', 'filter_text')
+            ->add(
+                'estado',
+                'filter_entity',
+                array(
+                    'class'    => 'MGDBasicBundle:Estado',
+                    'property' => 'nombre',
+                )
+            )
             ->add('fecha', 'filter_date_range')
         ;
 

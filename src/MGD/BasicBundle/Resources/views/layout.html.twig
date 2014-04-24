@@ -1,10 +1,13 @@
 {% extends "::base.html.twig" %}
 {% block stylesheets %}
     {% stylesheets
-        'bundles/mgdbasic/css/*.less'
-        'bundles/mgdbasic/css/normalize.min.css'
-        'bundles/mgdbasic/css/bootstrap.min.css' %}
+        'bundles/mgdbasic/css/*.less'%}
         <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
+    {% endstylesheets %}
+    {% stylesheets
+    'bundles/mgdbasic/css/normalize.min.css'
+    'bundles/mgdbasic/css/bootstrap.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" media="screen" />
     {% endstylesheets %}
     <!--[if lte IE 9]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
@@ -16,7 +19,6 @@
     <div class="header-container">
         <header class="wrapper clearfix">
             <div id="top">
-
 
                 <div id="language">
                     {% spaceless %}

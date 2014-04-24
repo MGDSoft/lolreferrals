@@ -33,21 +33,21 @@ class PedidoEstadosController extends Controller
     {
         list($filterForm, $queryBuilder) = $this->filter();
 
-	    $queryBuilder->orderBy('e.fecha','DESC');
+        $queryBuilder->orderBy('e.fecha', 'DESC');
 
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
         return array(
-            'entities' => $entities,
-            'pagerHtml' => $pagerHtml,
+            'entities'   => $entities,
+            'pagerHtml'  => $pagerHtml,
             'filterForm' => $filterForm->createView(),
         );
     }
 
     /**
-    * Create filter form and process filter request.
-    *
-    */
+     * Create filter form and process filter request.
+     *
+     */
     protected function filter()
     {
         $request = $this->getRequest();
@@ -77,12 +77,12 @@ class PedidoEstadosController extends Controller
             // Get filter from session
             if ($session->has('PedidoEstadosControllerFilter')) {
                 $filterData = $session->get('PedidoEstadosControllerFilter');
-	            try{
-		            $filterForm = $this->createForm(new PedidoEstadosFilterType(), $filterData);
-	            }catch (\Exception $e){
-		            // empty values
-		            return array($filterForm, $queryBuilder);
-	            }
+                try {
+                    $filterForm = $this->createForm(new PedidoEstadosFilterType(), $filterData);
+                } catch (\Exception $e) {
+                    // empty values
+                    return array($filterForm, $queryBuilder);
+                }
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
@@ -91,9 +91,9 @@ class PedidoEstadosController extends Controller
     }
 
     /**
-    * Get results from paginator and get paginator view.
-    *
-    */
+     * Get results from paginator and get paginator view.
+     *
+     */
     protected function paginator($queryBuilder)
     {
         // Paginator
@@ -105,19 +105,22 @@ class PedidoEstadosController extends Controller
 
         // Paginator - route generator
         $me = $this;
-        $routeGenerator = function($page) use ($me)
-        {
+        $routeGenerator = function ($page) use ($me) {
             return $me->generateUrl('pedidoestados', array('page' => $page));
         };
 
         // Paginator - view
         $translator = $this->get('translator');
         $view = new TwitterBootstrapView();
-        $pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
-            'proximity' => 3,
-            'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
-            'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
-        ));
+        $pagerHtml = $view->render(
+            $pagerfanta,
+            $routeGenerator,
+            array(
+                'proximity'    => 3,
+                'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
+                'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
+            )
+        );
 
         return array($entities, $pagerHtml);
     }
@@ -131,22 +134,21 @@ class PedidoEstadosController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity  = new PedidoEstados();
+        $entity = new PedidoEstados();
         $form = $this->createForm(new PedidoEstadosType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
 
-	        $pedido = $entity->getPedido();
-	        $pedido->setEstado($entity->getEstado());
-	        $em->persist($pedido);
+            $pedido = $entity->getPedido();
+            $pedido->setEstado($entity->getEstado());
+            $em->persist($pedido);
 
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            return $this->redirect($this->generateUrl('pedidoestados_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('pedidoestados'));
         }
 
         return array(
@@ -165,7 +167,7 @@ class PedidoEstadosController extends Controller
     public function newAction()
     {
         $entity = new PedidoEstados();
-        $form   = $this->createForm(new PedidoEstadosType(), $entity);
+        $form = $this->createForm(new PedidoEstadosType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -301,9 +303,6 @@ class PedidoEstadosController extends Controller
      */
     private function createDeleteForm($id)
     {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
+        return $this->createFormBuilder(array('id' => $id))->add('id', 'hidden')->getForm();
     }
 }

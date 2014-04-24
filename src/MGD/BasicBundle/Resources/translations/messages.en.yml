@@ -136,6 +136,10 @@ seguimiento:
         titulo: Any error with the ID?
         texto: Then contact us in our contact zone.
 
+    opiniones:
+        titulo: Publish your opinion from our service help us to be greater!
+        descripcion: The email only will be used with gravatar image and it never will be public.
+
 formularios:
         seguimiento:
               seguimiento: "Tracking"
@@ -146,6 +150,7 @@ formularios:
               desbloquear_premios: Remember Riot needs 24h/48h to update the accounts into the refer-a-friend website. Also enter <a href="http://leagueoflegends.com/rewards" target="_blank">here</a> to redeem your rewards when the order is complete!
 
               progreso_general: General progress
+              cola_pendiente: Remaining queue: %dias% days
               bots_progreso: Accounts progress
 
               bots:
@@ -154,6 +159,12 @@ formularios:
                   fecha_actualizado: Last update
                   lvl: Lvl
                   pendiente: Pending
+
+              tus_datos:
+                  titulo: Data of your Order
+                  email: Email used
+                  referral_link: Referral link
+                  n_referidos: Amount
 
         contacto:
               errors:
@@ -196,16 +207,55 @@ formularios:
                   label: Amount of Referrals
 
               submit: Buy
+
+        opinion:
+              name:
+                  placeholder: Write your name
+                  label: Name
+              email:
+                  placeholder: Write a gravatar email
+                  label: Gravatar Email
+              text:
+                  placeholder: Write your opinion...
+                  label: Your opinion
+
+              submit: Your opinion is important for us!
+
+
+common:
+    cola_actual: Current Queue: <span>%dias%</span> days.
+
 pago:
     finalizado: >
         <b>Your order has been performed correctly</b>,
         You'll receive an email with the OrderID in it. If you have any problem refer to our contact section. Thanks for your purchase!
-    
-    correo:
+
+correo:
+
+    from_txt: ReferralLol.com
+
+    pago:
         asunto: Order Confirmation from www.referralslol.com
         articulo: Your purchase of %nReferidos% referrals has been succesfully received.
         seguimiento: You can follow the current state of your order in "http://www.referralslol.com/en/tracking/" with the following OrderID : %pedidoId%
         extra: Thanks for your purchase!
 
-common:
-    cola_actual: Current Queue: <span>%dias%</span> days.
+    estado_change_4:
+        asunto: Your order of %nReferidos% has just started.
+        msg: >
+              Hello %email%,<br><br>
+              We inform you that we already started your order.<br>
+              It will take about 24-36h from now to be completed.<br>
+              Remember to use our tracking system (www.referralslol.com/en/tracking) with your OrderID: %pedidoId% to follow the process of the order.<br><br>
+              Regards, www.referralslol.com
+
+    estado_change_5:
+        asunto: Your order of %nReferidos% is now completed.
+        msg: >
+              Hello %email%,<br><br>
+              We inform you that we already finished your order.<br>
+              Take into account that Riot needs about 24h to fully update all the accounts in their website, also make sure you redeem all the rewards in www.leagueoflegends/rewards/ (make sure you are logged in and also in the correct server (EUW/NA/EUNE...))<br>
+              Remember you can give us your opinion from our service in our tracking system, we will appreciate it!<br><br>
+              Regards, www.referralslol.com
+
+

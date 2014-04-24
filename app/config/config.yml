@@ -71,6 +71,8 @@ services:
 
 gregwar_captcha: ~
 
+ornicar_gravatar: ~
+
 jms_payment_core:
     secret: %secret%
 

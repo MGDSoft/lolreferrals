@@ -19,7 +19,6 @@ class PedidoType extends AbstractType
 
     }
 
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options

@@ -37,7 +37,8 @@
         "gregwar/captcha-bundle": "1.0.7",
         "jms/payment-paypal-bundle": "1.0.0",
         "jms/payment-core-bundle": "1.0.*",
-        "jms/serializer-bundle": "dev-master"
+        "jms/serializer-bundle": "dev-master",
+        "ornicar/gravatar-bundle" : "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

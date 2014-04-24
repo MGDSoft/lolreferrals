@@ -201,11 +201,34 @@ pago:
     finalizado: >
         <b>Ihre Bestellung wurde erfolgreich gesendet.</b>,
         Sie werden eine E-mail bekommen welche Ihre VerfolgungsID enthält. Wenn sie irgendein Problem haben, nehmen sie Kontakt mit uns auf über unsere Kontaktzone. Vielen Dank für ihre Bestellung!
-    correo:
+
+common:
+    cola_actual: Aktuelle Warteliste: <span>%dias%</span> days.
+
+correo:
+
+    from_txt: ReferralLol.com
+
+    pago:
         asunto: Bestellungs Bestätigung auf www.referralslol.com
         articulo: Die Bezahlung von %nReferidos% referrals wurde erfolgreich gesendet.
         seguimiento: Sie können ihre Bestellung mit dem nächsten code Verfolgen : %pedidoId%
         extra: Vielen Dank für Ihren Einkauf!
 
-common:
-    cola_actual: Aktuelle Warteliste: <span>%dias%</span> days.
+    estado_change_4:
+        asunto: Your order of %nReferidos% has just started.
+        msg: >
+              Hello %email%,<br><br>
+              We inform you that we already started your order.<br>
+              It will take about 24-36h from now to be completed.<br>
+              Remember to use our tracking system (www.referralslol.com/en/tracking) with your OrderID: %pedidoId% to follow the process of the order.<br><br>
+              Regards, www.referralslol.com
+
+    estado_change_5:
+        asunto: Your order of %nReferidos% is now completed.
+        msg: >
+              Hello %email%,<br><br>
+              We inform you that we already finished your order.<br>
+              Take into account that Riot needs about 24h to fully update all the accounts in their website, also make sure you redeem all the rewards in www.leagueoflegends/rewards/ (make sure you are logged in and also in the correct server (EUW/NA/EUNE...))<br>
+              Remember you can give us your opinion from our service in our tracking system, we will appreciate it!<br><br>
+              Regards, www.referralslol.com

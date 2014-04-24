@@ -24,6 +24,7 @@ use MGD\AdminBundle\Form\PedidoFilterType;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
+
 /**
  * Pedido controller.
  *
@@ -45,25 +46,23 @@ class PedidoController extends Controller
 
         /** @var \Doctrine\ORM\QueryBuilder $queryBuilder */
 
-        $queryBuilder
-            ->andWhere('e.estado is not null')
-	        ->orderBy('e.fecha','DESC');
+        $queryBuilder->andWhere('e.estado is not null')->orderBy('e.fecha', 'DESC');
 
         /** @var Pedido[] $entities */
 
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
         return array(
-            'entities' => $entities,
-            'pagerHtml' => $pagerHtml,
-            'filterForm' => $filterForm->createView(),
+            'entities'   => $entities,
+            'pagerHtml'  => $pagerHtml,
+            'filterForm' => $filterForm->createView()
         );
     }
 
     /**
-    * Create filter form and process filter request.
-    *
-    */
+     * Create filter form and process filter request.
+     *
+     */
     protected function filter()
     {
         $request = $this->getRequest();
@@ -93,12 +92,12 @@ class PedidoController extends Controller
             // Get filter from session
             if ($session->has('PedidoControllerFilter')) {
                 $filterData = $session->get('PedidoControllerFilter');
-	            try{
-		            $filterForm = $this->createForm(new PedidoFilterType(), $filterData);
-	            }catch (\Exception $e){
-		            // empty values
-		            return array($filterForm, $queryBuilder);
-	            }
+                try {
+                    $filterForm = $this->createForm(new PedidoFilterType(), $filterData);
+                } catch (\Exception $e) {
+                    // empty values
+                    return array($filterForm, $queryBuilder);
+                }
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
@@ -107,9 +106,9 @@ class PedidoController extends Controller
     }
 
     /**
-    * Get results from paginator and get paginator view.
-    *
-    */
+     * Get results from paginator and get paginator view.
+     *
+     */
     protected function paginator($queryBuilder)
     {
         // Paginator
@@ -121,19 +120,22 @@ class PedidoController extends Controller
 
         // Paginator - route generator
         $me = $this;
-        $routeGenerator = function($page) use ($me)
-        {
+        $routeGenerator = function ($page) use ($me) {
             return $me->generateUrl('pedido', array('page' => $page));
         };
 
         // Paginator - view
         $translator = $this->get('translator');
         $view = new TwitterBootstrapView();
-        $pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
-            'proximity' => 3,
-            'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
-            'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
-        ));
+        $pagerHtml = $view->render(
+            $pagerfanta,
+            $routeGenerator,
+            array(
+                'proximity'    => 3,
+                'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
+                'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
+            )
+        );
 
         return array($entities, $pagerHtml);
     }
@@ -148,14 +150,14 @@ class PedidoController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity  = new Pedido();
+        $entity = new Pedido();
         $form = $this->createForm(new PedidoType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-	        $em->persist($entity);
+            $em->persist($entity);
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
@@ -180,7 +182,7 @@ class PedidoController extends Controller
     public function newAction()
     {
         $entity = new Pedido();
-        $form   = $this->createForm(new PedidoType(), $entity);
+        $form = $this->createForm(new PedidoType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -286,39 +288,35 @@ class PedidoController extends Controller
 
     private function insertarBots($editForm, Pedido $pedido, $em)
     {
-        /** @var Form $file*/
-        $file=$editForm['bots'];
-        if ($file->getViewData())
-        {
+        /** @var Form $file */
+        $file = $editForm['bots'];
+        if ($file->getViewData()) {
             /** @var PedidoBots[] $bots */
             $bots = $em->getRepository('MGDBasicBundle:PedidoBots')->findByPedido($pedido->getId());
 
-            $dir=sys_get_temp_dir();
-            $fileName=date("Y-m-d_H-i-s").".txt";
+            $dir = sys_get_temp_dir();
+            $fileName = date("Y-m-d_H-i-s") . ".txt";
             $file->getData()->move($dir, $fileName);
 
             $file = file($dir . DIRECTORY_SEPARATOR . $fileName);
-            foreach($file as $line)
-            {
-                $arr = explode(":",trim($line));
-                if (isset($arr[0]) && isset($arr[1]))
-                {
+            foreach ($file as $line) {
+                $arr = explode(":", trim($line));
+                if (isset($arr[0]) && isset($arr[1])) {
                     $flag = false;
-                    $nombreBot=$arr[0];
-                    $passwordBot=$arr[1];
-                    /** @var ArrayCollection $bots  */
-                    foreach ($bots as $key=>$bot)
-                    {
-                        if ($bot->getNombre()==$nombreBot)
-                        {
+                    $nombreBot = $arr[0];
+                    $passwordBot = $arr[1];
+                    /** @var ArrayCollection $bots */
+                    foreach ($bots as $key => $bot) {
+                        if ($bot->getNombre() == $nombreBot) {
                             $flag = true;
                             unset($bots[$key]);
                             break;
                         }
                     }
 
-                    if ($flag)
+                    if ($flag) {
                         continue;
+                    }
 
                     $pedidoBots = new PedidoBots();
 
@@ -331,8 +329,7 @@ class PedidoController extends Controller
                 }
             }
 
-            foreach ($bots as $bot)
-            {
+            foreach ($bots as $bot) {
                 $em->remove($bot);
             }
 
@@ -380,8 +377,7 @@ class PedidoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->getRepository('MGDBasicBundle:PedidoBots')->updateAllLvlsByPedido($pedido->getId(), $lvl);
 
-        if ($pedido->getEstado()->getId() != EstadoEnum::Finalizado && $lvl == 10 )
-        {
+        if ($pedido->getEstado()->getId() != EstadoEnum::Finalizado && $lvl == 10) {
             $estadoFinalizado = $em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
 
             $pedido->setEstado($estadoFinalizado);
@@ -396,7 +392,7 @@ class PedidoController extends Controller
 
             $em->flush();
 
-        }else if($pedido->getEstado()->getId() == EstadoEnum::Finalizado && $lvl != 10){
+        } else if ($pedido->getEstado()->getId() == EstadoEnum::Finalizado && $lvl != 10) {
 
             $estadoCola = $em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
             $pedido->setEstado($estadoCola);
@@ -414,7 +410,7 @@ class PedidoController extends Controller
 
         $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-        return $this->redirect($this->generateUrl('pedido_edit',array('id'=>$pedido->getId())));
+        return $this->redirect($this->generateUrl('pedido_edit', array('id' => $pedido->getId())));
     }
 
     /**
@@ -426,9 +422,6 @@ class PedidoController extends Controller
      */
     private function createDeleteForm($id)
     {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
+        return $this->createFormBuilder(array('id' => $id))->add('id', 'hidden')->getForm();
     }
 }

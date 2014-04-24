@@ -22,24 +22,24 @@ class PedidoEstados
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	/**
-	 * @ORM\ManyToOne(targetEntity="Pedido", fetch="EAGER")
-	 * @ORM\JoinColumn(name="pedido_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
-	 */
+    /**
+     * @ORM\ManyToOne(targetEntity="Pedido", fetch="EAGER")
+     * @ORM\JoinColumn(name="pedido_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     */
     private $pedido;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="Estado", fetch="EAGER")
-	 * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
-	 */
+    /**
+     * @ORM\ManyToOne(targetEntity="Estado", fetch="EAGER")
+     * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     */
     private $estado;
 
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="descripcion", type="text", nullable=true)
-	 */
-	private $descripcion = null;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text", nullable=true)
+     */
+    private $descripcion = null;
 
     /**
      * @var \DateTime
@@ -53,20 +53,20 @@ class PedidoEstados
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
 
-    
+
     /**
      * Constructor
      */
     public function __construct()
     {
-	    $this->fecha = new \DateTime();
+        $this->fecha = new \DateTime();
     }
 
     /**
@@ -79,21 +79,21 @@ class PedidoEstados
     public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
-    
+
         return $this;
     }
 
     /**
      * Get descripcion
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcion()
     {
         return $this->descripcion;
     }
 
-   
+
     /**
      * Set estado
      *
@@ -104,14 +104,14 @@ class PedidoEstados
     public function setEstado(\MGD\BasicBundle\Entity\Estado $estado = null)
     {
         $this->estado = $estado;
-    
+
         return $this;
     }
 
     /**
      * Get estado
      *
-     * @return \MGD\BasicBundle\Entity\Estado 
+     * @return \MGD\BasicBundle\Entity\Estado
      */
     public function getEstado()
     {
@@ -128,14 +128,14 @@ class PedidoEstados
     public function setPedido(\MGD\BasicBundle\Entity\Pedido $pedido = null)
     {
         $this->pedido = $pedido;
-    
+
         return $this;
     }
 
     /**
      * Get pedido
      *
-     * @return \MGD\BasicBundle\Entity\Pedido 
+     * @return \MGD\BasicBundle\Entity\Pedido
      */
     public function getPedido()
     {
@@ -152,14 +152,14 @@ class PedidoEstados
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
-    
+
         return $this;
     }
 
     /**
      * Get fecha
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFecha()
     {

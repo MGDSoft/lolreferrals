@@ -5,6 +5,7 @@ namespace MGD\FrameworkBundle\Tests;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\ORM\EntityManager;
+use Swift_Mailer;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Process\Process;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
@@ -19,7 +20,7 @@ require_once dirname(__DIR__).'/../../../app/AppKernel.php';
 abstract class KernelAwareTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var AppKernel
+     * @var \AppKernel
      */
     protected $kernel;
 
@@ -108,10 +109,26 @@ abstract class KernelAwareTest extends \PHPUnit_Framework_TestCase
      *
      * @param FixtureInterface $fix
      */
-    protected function loadFixture(FixtureInterface $fix)
+    protected function loadOnlyOneFixture(FixtureInterface $fix)
     {
         $loader = new Loader();
         $loader->addFixture($fix);
+        $this->executeFixtures($loader);
+    }
+
+    /**
+     * Multiple Fixtures
+     *
+     * @param FixtureInterface[] $fixtures
+     */
+    protected function loadArrFixtures(array $fixtures)
+    {
+        $loader = new Loader();
+
+        foreach ($fixtures as $fix){
+            $loader->addFixture($fix);
+        }
+
         $this->executeFixtures($loader);
     }
 
@@ -128,7 +145,7 @@ abstract class KernelAwareTest extends \PHPUnit_Framework_TestCase
         $executor->execute($loader->getFixtures());
     }
 
-    private  function executeCommand($command)
+    private function executeCommand($command)
     {
         $process = new Process("php ".$this->kernel->getRootDir() ."/console $command --env=test ");
         $process->run();

@@ -10,27 +10,29 @@ use MGD\BasicBundle\Entity\Cola;
 
 class LoadColaData extends AbstractFixture implements OrderedFixtureInterface
 {
+    const DAYS = 2;
+
     /**
      * {@inheritDoc}
      */
-	public function load(ObjectManager $manager)
-	{
-        $cola=new Cola();
-        $cola->setDays(2);
+    public function load(ObjectManager $manager)
+    {
+        $cola = new Cola();
+        $cola->setDays(self::DAYS);
         $cola->setText("");
 
         $manager->persist($cola);
 
-		$manager->flush();
-	}
+        $manager->flush();
+    }
 
 
     /**
      * {@inheritDoc}
      */
-	public function getOrder()
-	{
-		return 20; // the order in which fixtures will be loaded
-	}
+    public function getOrder()
+    {
+        return 20; // the order in which fixtures will be loaded
+    }
 }
 
