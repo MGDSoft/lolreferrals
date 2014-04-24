@@ -100,11 +100,11 @@
 </table>
     </div>
 
-    <div class="span4">
+    <div class="span6">
     {{ pagerHtml|raw }}
     </div>
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-        <div class="span8">
+        <div class="span6">
         <a class="btn btn-primary likepaginator" href="{{ path('pedido_new') }}">
             {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} Pedido
         </a>
