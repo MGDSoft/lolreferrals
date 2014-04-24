@@ -2,9 +2,15 @@
                 <ul class="span4">
                     <h3>Opciones de la página</h3>
 
+
                     <li><a href="{{ path('noticia') }}">Noticias</a></li>
-                    <li><a href="{{ path('contacto') }}">Preguntas de clientes</a></li>
-                    <li><a href="{{ path('pedido') }}">Pedidos</a> /
+                    <li>
+                        <a href="{{ path('contacto') }}">Preguntas de clientes</a> /
+                        <a href="{{ path('pedidoopinion') }}">Opiniones</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('pedido') }}">Pedidos</a> /
                         <a href="{{ path('pedidoestados') }}">Estado de pedidos</a> /
                         <a href="{{ path('estado') }}">Estados posibles</a>
                     </li>

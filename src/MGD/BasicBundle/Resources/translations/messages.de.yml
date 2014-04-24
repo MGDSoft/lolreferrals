@@ -136,6 +136,11 @@ seguimiento:
         titulo: Hast du Probleme mit dem ID?
         texto: Dann nimm Kontakt mit uns auf.
 
+# pending to translate
+    opinion:
+        titulo: Publish your opinion from our service help us to be greater!
+        descripcion: The email only will be used with gravatar image and it never will be public.
+
 formularios:
         seguimiento:
               seguimiento: "Verfolgung"
@@ -146,6 +151,9 @@ formularios:
               desbloquear_premios: Remember Riot needs 24h/48h to update the accounts into the refer-a-friend website. Also enter <a href="http://leagueoflegends.com/rewards" target="_blank">here</a> to redeem your rewards when the order is complete!
               
               progreso_general: Allgemeine Fortschritt
+# pending to translate
+              cola_pendiente: Remaining queue: %dias% days
+
               bots_progreso: Fortschritt Konto
               
               bots:
@@ -154,6 +162,13 @@ formularios:
                   fecha_actualizado: Update Datum
                   lvl: Stufe
                   pendiente: Pending
+
+# pending to translate
+              tus_datos:
+                  titulo: Data of your Order
+                  email: Email used
+                  referral_link: Referral link
+                  n_referidos: Amount
 
         contacto:
               errors:
@@ -194,9 +209,24 @@ formularios:
                   label: Referral-Link *
               n_referidos:
                   label: Anzahl der Überweisungen
-
-
               submit: kaufen
+
+# pending to translate
+        opinion:
+              msg_ok: Thanks for your support!
+              locked: Your message has been locked :(
+              name:
+                  placeholder: Write your name
+                  label: Name
+              email:
+                  placeholder: Write a gravatar email
+                  label: Gravatar Email
+              text:
+                  placeholder: Write your opinion...
+                  label: Your opinion
+
+              submit: Your opinion is important for us!
+
 pago:
     finalizado: >
         <b>Ihre Bestellung wurde erfolgreich gesendet.</b>,
@@ -204,6 +234,7 @@ pago:
 
 common:
     cola_actual: Aktuelle Warteliste: <span>%dias%</span> days.
+
 
 correo:
 
@@ -215,6 +246,7 @@ correo:
         seguimiento: Sie können ihre Bestellung mit dem nächsten code Verfolgen : %pedidoId%
         extra: Vielen Dank für Ihren Einkauf!
 
+# pending to translate
     estado_change_4:
         asunto: Your order of %nReferidos% has just started.
         msg: >
@@ -224,6 +256,7 @@ correo:
               Remember to use our tracking system (www.referralslol.com/en/tracking) with your OrderID: %pedidoId% to follow the process of the order.<br><br>
               Regards, www.referralslol.com
 
+# pending to translate
     estado_change_5:
         asunto: Your order of %nReferidos% is now completed.
         msg: >

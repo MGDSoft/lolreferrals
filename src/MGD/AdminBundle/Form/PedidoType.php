@@ -15,18 +15,18 @@ class PedidoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-	        ->add('precioRango', 'entity', array(
-		        'class' => 'MGDBasicBundle:PrecioRango',
-		        'property' => 'limite',
-	        ))
+            ->add('precioRango', 'entity', array(
+                'class' => 'MGDBasicBundle:PrecioRango',
+                'property' => 'limite',
+            ))
             ->add('nReferidos')
-	        ->add('referralLink')
-	        ->add('email')
-	        ->add('refPaypal')
-	        ->add('fecha','datetime', array(
-			        'attr'=> array('class' => 'div-date'),
-		        )
-	        )
+            ->add('referralLink')
+            ->add('email')
+            ->add('refPaypal')
+            ->add('fecha','datetime', array(
+                    'attr'=> array('class' => 'div-date'),
+                )
+            )
             ->add('bots','file',array(
                 'mapped' => false,
                 'required' => false

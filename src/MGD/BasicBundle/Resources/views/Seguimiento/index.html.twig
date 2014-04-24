@@ -115,12 +115,16 @@
 
                     {% endif %}
 
-                    <h4>{{ 'seguimiento.opiniones.titulo' | trans }}</h4>
-                    <p>
-                        {{ 'seguimiento.opiniones.descripcion' | trans }}
-                    </p>
-                    {{ render(controller('MGDBasicBundle:PedidoOpinion:update', { pedidoId: pedido.id })) }}
-
+                    {% if pedido.opinion and pedido.opinion.locked %}
+                        <br>
+                        <h3 class="text-error">{{ 'formularios.opinion.locked' | trans }}</h3>
+                    {% else %}
+                        <h4>{{ 'seguimiento.opinion.titulo' | trans }}</h4>
+                        <p>
+                            {{ 'seguimiento.opinion.descripcion' | trans }}
+                        </p>
+                        {{ render(controller('MGDBasicBundle:PedidoOpinion:update', { pedidoId: pedido.id })) }}
+                    {% endif %}
                 {% endif %}
         </section>
     </article>
@@ -170,6 +174,8 @@
     <h3>{{ 'seguimiento.aside.titulo' | trans }}</h3>
     <p>{{ 'seguimiento.aside.texto' | trans | raw }}</p>
 
-    {{ render(controller('MGDBasicBundle:PedidoOpinion:list')) }}
+    <br>
+    <img src="{{ asset('img/tracking.jpg') }}">
+    <br><br>
 
 {% endblock %}

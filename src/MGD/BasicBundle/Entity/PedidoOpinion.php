@@ -54,6 +54,13 @@ class PedidoOpinion
     private $text;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $locked = false;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
@@ -192,5 +199,29 @@ class PedidoOpinion
     public function getPedido()
     {
         return $this->pedido;
+    }
+
+
+    /**
+     * Set locked
+     *
+     * @param boolean $locked
+     * @return PedidoOpinion
+     */
+    public function setLocked($locked)
+    {
+        $this->locked = $locked;
+    
+        return $this;
+    }
+
+    /**
+     * Get locked
+     *
+     * @return boolean 
+     */
+    public function getLocked()
+    {
+        return $this->locked;
     }
 }

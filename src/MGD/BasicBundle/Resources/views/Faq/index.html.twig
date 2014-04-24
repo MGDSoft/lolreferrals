@@ -55,6 +55,7 @@
     <p>{{ 'faq.aside.texto' | trans | raw }}
         <a style="color: white;font-weight: bold" href="{{ path('contacto_' ~ app.request.locale) }}">{{ 'faq.aside.link' | trans }}</a>
     </p>
-    <br>
+
+    {{ render(controller('MGDBasicBundle:PedidoOpinion:list')) }}
 
 {% endblock %}

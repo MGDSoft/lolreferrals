@@ -106,7 +106,7 @@ class Pedido
     /**
      * @var PedidoOpinion
      *
-     * @ORM\OneToOne(targetEntity="PedidoOpinion" , cascade={"remove"}, orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="PedidoOpinion", mappedBy="pedido", cascade={"remove"}, orphanRemoval=true)
      */
     private $opinion;
 

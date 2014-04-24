@@ -34,6 +34,11 @@ class PedidoOpinionController extends Controller
         }
         $sessions = $request->getSession();
 
+        if ($pedido->getOpinion() && $pedido->getOpinion()->getLocked())
+        {
+            throw new Exception('This form is locked');
+        }
+
         if ($pedido->getId() != $sessions->get('tracking_id_remember'))
         {
             throw new Exception('Required permissions');
@@ -58,6 +63,8 @@ class PedidoOpinionController extends Controller
                 $em->persist($pedidoOpinion);
                 $em->flush();
 
+                $this->get('session')->getFlashBag()->add('success',$this->get('translator')->trans('formularios.opinion.msg_ok'));
+
             }else{
 
                 $this->get('session')->getFlashBag()->add('danger',$form->getErrorsAsString());
@@ -81,7 +88,7 @@ class PedidoOpinionController extends Controller
     public function listAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $opinions = $em->getRepository('MGDBasicBundle:PedidoOpinion')->findBy(array(), array('created'=>'DESC'), 5);
+        $opinions = $em->getRepository('MGDBasicBundle:PedidoOpinion')->findBy(array('locked'=>false), array('created'=>'DESC'), 5);
 
         return array(
             'opinions' => $opinions

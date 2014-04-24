@@ -136,6 +136,11 @@ seguimiento:
         titulo: ¿Hay algún problema con el ID?
         texto: Entonces contacte con nosotros en nuestra zona de contacto.
 
+# pending to translate
+    opinion:
+        titulo: Publish your opinion from our service help us to be greater!
+        descripcion: The email only will be used with gravatar image and it never will be public.
+
 
 formularios:
         seguimiento:
@@ -147,6 +152,9 @@ formularios:
               desbloquear_premios: Recuerda que Riot necesita 24/48h para actualizar las cuentas en la página de refer-a-friend. ¡Cuando su pedido finalice entra <a href="http://leagueoflegends.com/rewards" target="_blank">aquí</a> para desbloquear las recompensas!
 
               progreso_general: Progreso General
+# pending to translate
+              cola_pendiente: Remaining queue: %dias% days
+
               bots_progreso: Progreso de cuentas
 
               bots:
@@ -155,6 +163,13 @@ formularios:
                   fecha_actualizado: Ultima actualización
                   lvl: Nivel
                   pendiente: Pendiente
+
+# pending to translate
+              tus_datos:
+                  titulo: Data of your Order
+                  email: Email used
+                  referral_link: Referral link
+                  n_referidos: Amount
 
         contacto:
               errors:
@@ -197,6 +212,23 @@ formularios:
                   label: Numero de referidos
 
               submit: Comprar
+
+# pending to translate
+        opinion:
+              msg_ok: Thanks for your support!
+              locked: Your message has been locked :(
+              name:
+                  placeholder: Write your name
+                  label: Name
+              email:
+                  placeholder: Write a gravatar email
+                  label: Gravatar Email
+              text:
+                  placeholder: Write your opinion...
+                  label: Your opinion
+
+              submit: Your opinion is important for us!
+
 pago:
     finalizado: >
               <b>Su pedido se realizó correctamente</b>,
@@ -216,6 +248,7 @@ correo:
         seguimiento: Puede seguir el estado de su pedido con el siguiente código : %pedidoId%
         extra: ¡Gracias por su compra!
 
+# pending to translate
     estado_change_4:
         asunto: Your order of %nReferidos% has just started.
         msg: >
@@ -225,6 +258,7 @@ correo:
               Remember to use our tracking system (www.referralslol.com/en/tracking) with your OrderID: %pedidoId% to follow the process of the order.<br><br>
               Regards, www.referralslol.com
 
+# pending to translate
     estado_change_5:
         asunto: Your order of %nReferidos% is now completed.
         msg: >

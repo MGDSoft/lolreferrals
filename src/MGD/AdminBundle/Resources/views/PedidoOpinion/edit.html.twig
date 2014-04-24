@@ -1,0 +1,27 @@
+{% extends 'MGDAdminBundle::layout_admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - PedidoOpinion {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+<h1>PedidoOpinion {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+
+<form class="well" action="{{ path('pedidoopinion_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <input type="hidden" name="_method" value="PUT" />
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+    </p>
+</form>
+
+<div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('pedidoopinion') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+
+</div>
+{% endblock %}
