@@ -21,7 +21,7 @@ inicio:
 
     aside:
         titulo: Estadísticas de Referrals
-        slot_1: ~350 referrals al día.
+        slot_1: ~500 referrals al día.
         slot_2: Subimos League of Legends Referrals hasta nivel 10.
         slot_3: ¡Los precios más baratos!
         slot_4: Seguimiento del pedido.
@@ -77,7 +77,7 @@ faq:
         slot_4_texto: <ul><li>NA</li><li>EU West</li><li>EU East & Nordic</li><li>Brazil</li><li>Turkey</li></ul>
 
         slot_5_title: ¿Cuánto tardas en subir las cuentas al nivel 10?
-        slot_5_texto: <ul><li>24 - 72 horas dependiendo de la cola.</li><li>Hacemos unos 200 referidos diarios y hacemos lo mejor que podemos para acabar todos los pedidos lo más rápido posible.</li></ul>
+        slot_5_texto: <ul><li>24 - 72 horas dependiendo de la cola.</li><li>Hacemos unos 500 referidos diarios y hacemos lo mejor que podemos para acabar todos los pedidos lo más rápido posible.</li></ul>
 
         slot_6_title: ¿Empiezas mis referidos tan pronto como realizo el pago?
         slot_6_texto: No, dependerá de la cola de pedidos.
@@ -136,10 +136,9 @@ seguimiento:
         titulo: ¿Hay algún problema con el ID?
         texto: Entonces contacte con nosotros en nuestra zona de contacto.
 
-# pending to translate
     opinion:
-        titulo: Publish your opinion from our service help us to be greater!
-        descripcion: The email only will be used with gravatar image and it never will be public.
+        titulo: Da tu opinión sobre el servicio, ayudanos a crecer!
+        descripcion: El Email solo se usa para usar la foto de Gravatar (nunca se publicara el email), en caso de no tener cuenta en Gravatar podrás seguir dando tu opinión pero se publicara sin foto.
 
 
 formularios:
@@ -152,8 +151,7 @@ formularios:
               desbloquear_premios: Recuerda que Riot necesita 24/48h para actualizar las cuentas en la página de refer-a-friend. ¡Cuando su pedido finalice entra <a href="http://leagueoflegends.com/rewards" target="_blank">aquí</a> para desbloquear las recompensas!
 
               progreso_general: Progreso General
-# pending to translate
-              cola_pendiente: Remaining queue: %dias% days
+              cola_pendiente: Cola restante aproximada: %dias% dias
 
               bots_progreso: Progreso de cuentas
 
@@ -164,12 +162,11 @@ formularios:
                   lvl: Nivel
                   pendiente: Pendiente
 
-# pending to translate
               tus_datos:
-                  titulo: Data of your Order
-                  email: Email used
-                  referral_link: Referral link
-                  n_referidos: Amount
+                  titulo: Información de tu pedido
+                  email: Email usado
+                  referral_link: Referral-link
+                  n_referidos: Cantidad
 
         contacto:
               errors:
@@ -213,21 +210,20 @@ formularios:
 
               submit: Comprar
 
-# pending to translate
         opinion:
-              msg_ok: Thanks for your support!
-              locked: Your message has been locked :(
+              msg_ok: ¡Gracias por tu apoyo!
+              locked: Tu mensaje a sido bloqueado :(
               name:
-                  placeholder: Write your name
-                  label: Name
+                  placeholder: Escribe tu nombre
+                  label: Nombre *
               email:
-                  placeholder: Write a gravatar email
-                  label: Gravatar Email
+                  placeholder: Escribe un Email
+                  label: Email *
               text:
-                  placeholder: Write your opinion...
-                  label: Your opinion
+                  placeholder: Escribe tu opinion...
+                  label: Opinion *
 
-              submit: Your opinion is important for us!
+              submit: ¡Tu opinion es importante para nosotros!
 
 pago:
     finalizado: >
@@ -248,22 +244,20 @@ correo:
         seguimiento: Puede seguir el estado de su pedido con el siguiente código : %pedidoId%
         extra: ¡Gracias por su compra!
 
-# pending to translate
     estado_change_4:
-        asunto: Your order of %nReferidos% has just started.
+        asunto: Tu pedido de %nReferidos% referidos acaba de empezar.
         msg: >
-              Hello %email%,<br><br>
-              We inform you that we already started your order.<br>
-              It will take about 24-36h from now to be completed.<br>
-              Remember to use our tracking system (www.referralslol.com/en/tracking) with your OrderID: %pedidoId% to follow the process of the order.<br><br>
-              Regards, www.referralslol.com
+              Querido %email%,<br><br>
+              Te informamos que tu pedido acaba de empezar.<br>
+              Se finalizara en unas 24h-36h desde ahora.<br>
+              Recuerda usar nuestro sistema de seguimiento(www.referralslol.com/en/tracking) con tu OrderID: %pedidoId% para seguir el proceso de tu pedido.<br><br>
+              Saludos, www.referralslol.com
 
-# pending to translate
     estado_change_5:
-        asunto: Your order of %nReferidos% is now completed.
+        asunto: Tu pedido de %nReferidos% referidos esta completado.
         msg: >
-              Hello %email%,<br><br>
-              We inform you that we already finished your order.<br>
-              Take into account that Riot needs about 24h to fully update all the accounts in their website, also make sure you redeem all the rewards in www.leagueoflegends/rewards/ (make sure you are logged in and also in the correct server (EUW/NA/EUNE...))<br>
-              Remember you can give us your opinion from our service in our tracking system, we will appreciate it!<br><br>
-              Regards, www.referralslol.com
+              Querido %email%,<br><br>
+              Te informamos que tu pedido ya ha sido finalizado.<br>
+              Ten en cuenta que Riot necesita unas 24h para actualizar al completo las cuentas en su página web, recuerda desbloquear tus premios en "leagueoflegends/rewards/" (verifica que estés logeado y en el servidor de correcto(EUW/NA/EUNE...))<br>
+              Recuerda que puedes dar tu opinión del servicio en nuestra sección de seguimiento. ¡Lo agradeceremos!<br><br>
+              Saludos, www.referralslol.com
