@@ -77,7 +77,7 @@ faq:
         slot_4_texto: <ul><li>NA</li><li>EU West</li><li>EU East & Nordic</li><li>Brazil</li><li>Turkey</li></ul>
 
         slot_5_title: Wie lange dauert es, bis der Account Level 10 erreicht hat?
-        slot_5_texto: <ul><li>24-72 Stunden, es kommt darauf an, wir lang die Warteliste im Moment ist.</li><li>Wir machen ungefähr 250 Referrals am Tag und versuchen es, so schnell wie möglich zu erledigen.</li></ul>
+        slot_5_texto: <ul><li>24-72 Stunden, es kommt darauf an, wir lang die Warteliste im Moment ist.</li><li>Wir machen ungefähr 500 Referrals am Tag und versuchen es, so schnell wie möglich zu erledigen.</li></ul>
 
         slot_6_title: Beginnen Sie meine Bestellung an, sobald ich bezahlt habe?
         slot_6_texto: Nein, es kommt drauf an, wir lang die Warteliste im Moment ist.
@@ -136,10 +136,9 @@ seguimiento:
         titulo: Hast du Probleme mit dem ID?
         texto: Dann nimm Kontakt mit uns auf.
 
-# pending to translate
     opinion:
-        titulo: Publish your opinion from our service help us to be greater!
-        descripcion: The email only will be used with gravatar image and it never will be public.
+        titulo: Publish your opinion from our service, help us grow!
+        descripcion: The email will only be used with gravatar image and it will never be public. If you don't own a gravatar account then no image will be shown but you'll still be able to give us your opinion!
 
 formularios:
         seguimiento:
@@ -151,8 +150,7 @@ formularios:
               desbloquear_premios: Remember Riot needs 24h/48h to update the accounts into the refer-a-friend website. Also enter <a href="http://leagueoflegends.com/rewards" target="_blank">here</a> to redeem your rewards when the order is complete!
               
               progreso_general: Allgemeine Fortschritt
-# pending to translate
-              cola_pendiente: Remaining queue: %dias% days
+              cola_pendiente: Die ungefähre Rest Warteschlange: %dias% Tage
 
               bots_progreso: Fortschritt Konto
               
@@ -163,12 +161,11 @@ formularios:
                   lvl: Stufe
                   pendiente: Pending
 
-# pending to translate
               tus_datos:
                   titulo: Data of your Order
-                  email: Email used
+                  email: Email
                   referral_link: Referral link
-                  n_referidos: Amount
+                  n_referidos: Menge
 
         contacto:
               errors:
@@ -211,19 +208,18 @@ formularios:
                   label: Anzahl der Überweisungen
               submit: kaufen
 
-# pending to translate
         opinion:
               msg_ok: Thanks for your support!
               locked: Your message has been locked :(
               name:
                   placeholder: Write your name
-                  label: Name
+                  label: Name *
               email:
-                  placeholder: Write a gravatar email
-                  label: Gravatar Email
+                  placeholder: Write an email
+                  label: Email *
               text:
                   placeholder: Write your opinion...
-                  label: Your opinion
+                  label: Your opinion *
 
               submit: Your opinion is important for us!
 
@@ -246,22 +242,20 @@ correo:
         seguimiento: Sie können ihre Bestellung mit dem nächsten code Verfolgen : %pedidoId%
         extra: Vielen Dank für Ihren Einkauf!
 
-# pending to translate
     estado_change_4:
-        asunto: Your order of %nReferidos% has just started.
+        asunto: Your order of %nReferidos% referrals has just started.
         msg: >
-              Hello %email%,<br><br>
+              Dear %email%,<br><br>
               We inform you that we already started your order.<br>
               It will take about 24-36h from now to be completed.<br>
               Remember to use our tracking system (www.referralslol.com/en/tracking) with your OrderID: %pedidoId% to follow the process of the order.<br><br>
               Regards, www.referralslol.com
 
-# pending to translate
     estado_change_5:
-        asunto: Your order of %nReferidos% is now completed.
+        asunto: Your order of %nReferidos% referrals is now completed.
         msg: >
-              Hello %email%,<br><br>
+              Dear %email%,<br><br>
               We inform you that we already finished your order.<br>
-              Take into account that Riot needs about 24h to fully update all the accounts in their website, also make sure you redeem all the rewards in www.leagueoflegends/rewards/ (make sure you are logged in and also in the correct server (EUW/NA/EUNE...))<br>
+              Take into account that Riot needs about 24h to fully update all the accounts in their website, also make sure you redeem all the rewards in "leagueoflegends/rewards/" (make sure you are logged in and also in the correct server (EUW/NA/EUNE...))<br>
               Remember you can give us your opinion from our service in our tracking system, we will appreciate it!<br><br>
               Regards, www.referralslol.com
