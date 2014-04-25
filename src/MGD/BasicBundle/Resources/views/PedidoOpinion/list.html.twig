@@ -6,7 +6,11 @@
                 <hr>
             {% endif %}
             <div class="user">
-                <img src="{{ gravatar( opinion.email, 70, 'g', 'mm', true) }}" />
+                {% if gravatar_exists(opinion.email) %}
+                    <img src="{{ gravatar( opinion.email, 70, 'g', 'mm', true) }}" />
+                {% else %}
+                    <img src="{{ asset('/img/unknow_user.jpg') }}" />
+                {% endif %}
                 <b>{{ opinion.name }}</b>
             </div>
 
