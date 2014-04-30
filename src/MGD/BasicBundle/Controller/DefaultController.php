@@ -8,17 +8,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class DefaultController extends Controller
 {
     /**
+     * @Cache(expires="+360 secs", public=true)
      * @Route("/{_locale}/",requirements={"_locale" = "(en|es|de)"},defaults={"_locale" = "en"}, name="home")
      * @Template()
      */
     public function indexAction($_locale)
     {
-
-
         $repository = $this->getDoctrine()->getRepository('MGDBasicBundle:Noticia');
 
         /** @var Doctrine\ORM\QueryBuilder */

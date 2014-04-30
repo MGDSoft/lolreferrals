@@ -3,6 +3,7 @@ namespace MGD\BasicBundle\Controller;
 
 use Doctrine\ORM\EntityManager;
 use Ivory\CKEditorBundle\Exception\Exception;
+use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\Entity\Contacto;
 use MGD\BasicBundle\Entity\Pedido;
 use MGD\BasicBundle\Entity\PedidoOpinion;
@@ -32,6 +33,12 @@ class PedidoOpinionController extends Controller
         {
             throw new Exception('Order doesnt exist');
         }
+
+        if ($pedido->getEstado()->getId() != EstadoEnum::Finalizado)
+        {
+            throw new Exception('You can not comment until it is complete your order');
+        }
+
         $sessions = $request->getSession();
 
         if ($pedido->getOpinion() && $pedido->getOpinion()->getLocked())

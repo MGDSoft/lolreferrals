@@ -15,14 +15,13 @@ class ContactoController extends Controller
 {
 
     /**
-     * @Route("/es/contacto/",defaults={"_locale" = "es"}, name="contacto_es")
+     * @Route("/es/contacto/", name="contacto_es", defaults={"_locale" = "es"})
      * @Route("/en/contact/", name="contacto_en", defaults={"_locale" = "en"})
      * @Route("/de/kontakt/", name="contacto_de", defaults={"_locale" = "de"})
      * @Template()
      */
     public function indexAction(Request $request)
     {
-
         $contacto = new Contacto();
 
         $form = $this->createForm(new ContactoType(), $contacto);

@@ -115,7 +115,9 @@
 
                     {% endif %}
 
-                    {% if pedido.opinion and pedido.opinion.locked %}
+                    {% if pedido.estado.id is not constant('MGD\\BasicBundle\\DataConstants\\EstadoEnum::Finalizado') %}
+
+                    {% elseif pedido.opinion and pedido.opinion.locked %}
                         <br>
                         <h3 class="text-error">{{ 'formularios.opinion.locked' | trans }}</h3>
                     {% else %}
