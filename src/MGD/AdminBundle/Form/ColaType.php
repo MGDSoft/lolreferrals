@@ -11,9 +11,7 @@ class ColaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('days',null,array(
-                    'label'=> 'N Referrals'
-                ))
+            ->add('referalsPerDay')
             ->add('text','ckeditor')
         ;
     }
