@@ -10,7 +10,7 @@ use MGD\BasicBundle\Entity\Cola;
 
 class LoadColaData extends AbstractFixture implements OrderedFixtureInterface
 {
-    const DAYS = 2;
+    const REFERRALS_PER_DAY = 50;
 
     /**
      * {@inheritDoc}
@@ -18,7 +18,7 @@ class LoadColaData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $cola = new Cola();
-        $cola->setDays(self::DAYS);
+        $cola->setReferalsPerDay(self::REFERRALS_PER_DAY);
         $cola->setText("");
 
         $manager->persist($cola);

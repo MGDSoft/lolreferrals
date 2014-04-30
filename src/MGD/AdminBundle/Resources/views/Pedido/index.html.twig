@@ -72,8 +72,9 @@
             <td>{{ entity.precioRango }}</td>
             <td>{{ entity.estado }}
                 {% if entity.estado.id is constant('MGD\\BasicBundle\\DataConstants\\EstadoEnum::Cola')  %}
-                    | {{ entity.remainingQueueDiff }} Days</td>
+                    | {{ entity.queueRemainingDays}} Days
                 {% endif %}
+            </td>
             <td>{{ entity.cuponDescuento | raw }}</td>
             <td>{{ entity.total }}</td>
             <td>

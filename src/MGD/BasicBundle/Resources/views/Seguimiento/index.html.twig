@@ -47,7 +47,7 @@
                     <h4>{{ 'formularios.seguimiento.progreso_general' | trans }}
 
                         {% if pedido.estado.id is constant('MGD\\BasicBundle\\DataConstants\\EstadoEnum::Cola')  %}
-                            , {{ 'formularios.seguimiento.cola_pendiente' | trans({'%dias%': pedido.remainingQueueDiff }) }}
+                            , {{ 'formularios.seguimiento.cola_pendiente' | trans({'%dias%': pedido.queueRemainingDays }) }}
                         {% endif %}
 
                     </h4>

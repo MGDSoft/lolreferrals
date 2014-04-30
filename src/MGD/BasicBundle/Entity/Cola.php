@@ -24,9 +24,9 @@ class Cola
     /**
      * @var integer
      *
-     * @ORM\Column(name="days", nullable=true, type="integer")
+     * @ORM\Column(name="referals_per_day", nullable=true, type="integer")
      */
-    private $days;
+    private $referalsPerDay;
 
     /**
      * @var string
@@ -34,6 +34,13 @@ class Cola
      * @ORM\Column(name="text", type="text")
      */
     private $text;
+
+    /**
+     * dynamically generated AllQueueReferralsRemaining / referralsPerDay
+     *
+     * @var int
+     */
+    private $queueRemainingDays;
 
 
     /**
@@ -46,28 +53,7 @@ class Cola
         return $this->id;
     }
 
-    /**
-     * Set days
-     *
-     * @param integer $days
-     * @return Cola
-     */
-    public function setDays($days)
-    {
-        $this->days = $days;
-    
-        return $this;
-    }
 
-    /**
-     * Get days
-     *
-     * @return integer 
-     */
-    public function getDays()
-    {
-        return $this->days;
-    }
 
     /**
      * Set text
@@ -78,7 +64,7 @@ class Cola
     public function setText($text)
     {
         $this->text = $text;
-    
+
         return $this;
     }
 
@@ -91,4 +77,38 @@ class Cola
     {
         return $this->text;
     }
+
+    /**
+     * @param int $referalsPerDay
+     */
+    public function setReferalsPerDay($referalsPerDay)
+    {
+        $this->referalsPerDay = $referalsPerDay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getReferalsPerDay()
+    {
+        return $this->referalsPerDay;
+    }
+
+    /**
+     * @param int $queueRemainingDays
+     */
+    public function setQueueRemainingDays($queueRemainingDays)
+    {
+        $this->queueRemainingDays = $queueRemainingDays;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQueueRemainingDays()
+    {
+        return $this->queueRemainingDays;
+    }
+
+
 }

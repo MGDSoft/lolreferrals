@@ -5,7 +5,7 @@ namespace MGD\BasicBundle\Tests\Controller;
 use Fixtures\Bundles\AnnotationsBundle\Entity\Test;
 use MGD\BasicBundle\DataFixtures\ORM\LoadTestData;
 use MGD\FrameworkBundle\Tests\FunctionalTestCase;
-
+use Symfony\Component\DomCrawler\Crawler;
 
 class SeguimientoControllerTest extends FunctionalTestCase
 {
@@ -53,11 +53,10 @@ class SeguimientoControllerTest extends FunctionalTestCase
 
         $crawler = $this->client->submit($form);
 
-        $this->assertTrue($crawler->filter('#seguimiento')->count() == 1);
-
+        $this->assertContains('Seguimiento: '. LoadTestData::PEDIDO_ID, $crawler->html());
     }
 
-    private function setValuesForm($crawler, $pedidoId = LoadTestData::PEDIDO_ID, $captcha=true)
+    private function setValuesForm(Crawler $crawler, $pedidoId = LoadTestData::PEDIDO_ID, $captcha=true)
     {
         if ($captcha)
         {

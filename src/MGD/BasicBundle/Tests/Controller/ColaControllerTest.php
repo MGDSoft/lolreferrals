@@ -2,7 +2,6 @@
 
 namespace MGD\BasicBundle\Tests\Controller;
 
-use MGD\BasicBundle\DataFixtures\ORM\LoadColaData;
 use MGD\FrameworkBundle\Tests\FunctionalTestCase;
 
 class ColaControllerTest extends FunctionalTestCase
@@ -22,7 +21,7 @@ class ColaControllerTest extends FunctionalTestCase
         $crawler = $this->client->request('GET', $this->router->generate('home',array('locale'=>'en')));
 
         // Check data in the show view
-        $this->assertEquals('Current Queue: 2 days.',
+        $this->assertEquals('Current Queue: 3 days.',
             trim($crawler->filter('div#cola')->text()), 'Missing element Current Queue'
         );
 
@@ -30,7 +29,7 @@ class ColaControllerTest extends FunctionalTestCase
         $crawler = $this->client->request('GET', $this->router->generate('pedido_en'));
 
         // Check data in the show view
-        $this->assertEquals('Current Queue: 2 days.',
+        $this->assertEquals('Current Queue: 3 days.',
             trim($crawler->filter('div#cola')->text()), 'Missing element Current Queue'
         );
     }

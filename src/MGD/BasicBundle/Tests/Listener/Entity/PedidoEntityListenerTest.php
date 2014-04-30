@@ -214,17 +214,5 @@ class PedidoEntityListenerTest extends KernelAwareTest
         $this->assertEquals(5.2, $ppAcc->getDineroAgregadoTotal());
     }
 
-    public function testSetRemainingQueue()
-    {
-        $pedido = new Pedido();
-
-        TestPedidoHelper::setValues($pedido,$this->precioRango);
-        $this->em->persist($pedido);
-        $this->em->flush();
-
-        $this->assertEquals(LoadColaData::DAYS, $pedido->getRemainingQueue());
-
-    }
-
 
 }

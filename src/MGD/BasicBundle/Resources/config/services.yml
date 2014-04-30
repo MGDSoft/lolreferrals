@@ -9,6 +9,14 @@ services:
         class: MGD\BasicBundle\Service\PedidoPagoService
         arguments: [@service_container]
 
+    pedido_service:
+        class: MGD\BasicBundle\Service\PedidoService
+        arguments: [@service_container]
+
+    cola_service:
+            class: MGD\BasicBundle\Service\ColaService
+            arguments: [@service_container]
+
     pedido.finalizarPago:
         class: MGD\BasicBundle\Listener\FinalizarPagoListener
         arguments: [@service_container]

@@ -1,5 +1,5 @@
 <div id="cola">
-    {{ 'common.cola_actual' | trans({'%dias%': queue.days}) | raw }}
+    {{ 'common.cola_actual' | trans({'%dias%': queue.queueRemainingDays}) | raw }}
     <br>
 </div>
 

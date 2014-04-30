@@ -118,20 +118,18 @@ class Pedido
     private $total;
 
     /**
-     * It will be modified in EntityListener catching current queue
-     *
-     * @var integer
-     *
-     * @ORM\Column(name="n_remaining_queue", type="integer")
-     */
-    private $remainingQueue = 999;
-
-    /**
      * @var string
      *
      * @ORM\Column(type="string", length=2)
      */
     private $language='en';
+
+    /**
+     * dynamically generated nQueueReferralsRemaining / referralsPerDay
+     *
+     * @var int
+     */
+    private $queueRemainingDays;
 
     /**
      * Constructor
@@ -551,36 +549,6 @@ class Pedido
     }
 
     /**
-     * @param int $remainingQueue
-     */
-    public function setRemainingQueue($remainingQueue)
-    {
-        $this->remainingQueue = $remainingQueue;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRemainingQueue()
-    {
-        return $this->remainingQueue;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRemainingQueueDiff()
-    {
-        $actual= new \DateTime();
-        $timeLeft=$this->getFecha()->diff($actual);
-
-        $remainingQueue = $this->getRemainingQueue() - $timeLeft->days;
-        //$remainingQueue = ($remainingQueue < 0 ? 0 : $remainingQueue);
-
-        return $remainingQueue;
-    }
-
-    /**
      * @param \MGD\BasicBundle\Entity\PedidoOpinion $opinion
      */
     public function setOpinion($opinion)
@@ -610,6 +578,25 @@ class Pedido
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * @param $queueRemainingDays
+     * @return Pedido
+     */
+    public function setQueueRemainingDays($queueRemainingDays)
+    {
+        $this->queueRemainingDays = $queueRemainingDays;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQueueRemainingDays()
+    {
+        return $this->queueRemainingDays;
     }
 
 }

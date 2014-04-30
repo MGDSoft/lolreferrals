@@ -102,7 +102,6 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
             $this->setLanguage($entity);
             $this->createHistoryStates($entity);
             $this->createAccPPPayment($entity);
-            $this->setRemainingQueue($entity);
         }
 
         foreach ($this->pedidoUpdated AS $entity)
@@ -270,19 +269,6 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
         $this->em->persist($acc);
     }
 
-    protected function setRemainingQueue(Pedido $pedido)
-    {
-        $repoCola = $this->em->getRepository('MGDBasicBundle:Cola');
-
-        $queue = $repoCola->find(1);
-
-        if (!$queue)
-            $pedido->setRemainingQueue(0);
-        else
-            $pedido->setRemainingQueue($queue->getDays());
-
-        $this->em->persist($pedido);
-    }
 
     /**
      * Returns an array of events this subscriber wants to listen to.

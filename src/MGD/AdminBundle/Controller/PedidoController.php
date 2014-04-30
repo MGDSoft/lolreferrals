@@ -7,6 +7,7 @@ use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\Entity\Estado;
 use MGD\BasicBundle\Entity\PedidoBots;
 use MGD\BasicBundle\Service\PedidoPagoService;
+use MGD\BasicBundle\Service\PedidoService;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +24,7 @@ use MGD\AdminBundle\Form\PedidoType;
 use MGD\AdminBundle\Form\PedidoFilterType;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-
+use JMS\DiExtraBundle\Annotation as DI;
 
 /**
  * Pedido controller.
@@ -33,6 +34,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  */
 class PedidoController extends Controller
 {
+    /**
+     * @var PedidoService
+     *
+     * @DI\Inject
+     */
+    protected $pedidoService;
+
     /**
      * Lists all Pedido entities.
      *
@@ -49,8 +57,12 @@ class PedidoController extends Controller
         $queryBuilder->andWhere('e.estado is not null')->orderBy('e.fecha', 'DESC');
 
         /** @var Pedido[] $entities */
-
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+
+        foreach ($entities as $entity)
+        {
+            $this->pedidoService->setQueueDaysRemaining($entity);
+        }
 
         return array(
             'entities'   => $entities,

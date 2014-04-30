@@ -39,7 +39,7 @@ class LoadTestData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($precioRango);
 
         $pedido = new Pedido();
-        $pedido->setNReferidos(10);
+        $pedido->setNReferidos(151);
         $pedido->setId(self::PEDIDO_ID);
         $pedido->setPrecioRango($precioRango);
         //$pedido->setArticulo($articulo);

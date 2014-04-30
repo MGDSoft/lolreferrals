@@ -3,6 +3,7 @@
 namespace MGD\BasicBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use MGD\BasicBundle\DataConstants\EstadoEnum;
 
 
 /**
@@ -84,6 +85,28 @@ class PedidoRepository extends EntityRepository
         }
 
         return $result;
+    }
+
+    /**
+     * @param \DateTime $from
+     * @param int $estate
+     * @return int
+     */
+    public function sumNReferrals(\DateTime $from, $estate = EstadoEnum::Cola)
+    {
+        $result = $this->getEntityManager()
+            ->createQuery('
+            SELECT sum(p.nReferidos)
+            FROM MGDBasicBundle:Pedido p
+            WHERE
+                p.estado = :estado_id
+                AND p.fecha < :fecha
+
+            ')
+            ->setParameters(array('estado_id' => $estate, 'fecha' => $from))
+            ->getSingleScalarResult();
+
+        return $result ? $result: 0;
     }
 
 
