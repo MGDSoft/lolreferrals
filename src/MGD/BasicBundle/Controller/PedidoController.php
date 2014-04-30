@@ -202,7 +202,12 @@ class PedidoController extends Controller
         $eventDispatcher = $this->get('event_dispatcher');
         $eventDispatcher->dispatch('mgd.pedido_pagado', new PedidoPagadoEvent($pedido));
 
-        return new RedirectResponse($this->router->generate('home', array('_locale' => $pedido->getLanguage())));
+        return new RedirectResponse($this->router->generate('home',
+            array(
+                '_locale' => $pedido->getLanguage(),
+                'completed' => time(), // Needed to remove cache and show flashbags messages
+            ))
+        );
     }
 
     /**

@@ -71,13 +71,9 @@
 
     <div class="main-container">
         <div class="main wrapper clearfix">
-            {% for type, flashMessages in app.session.flashbag.all() %}
-                {% for flashMessage in flashMessages %}
-                    <div class="alert alert-{{ type }}">
-                        {{ flashMessage|trans({}) | raw }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
+
+            {% include 'MGDBasicBundle:Partial:flash_msgs.html.twig' %}
+
             <section id="body_principal">
                 {{ block('body_principal') }}
             </section>
