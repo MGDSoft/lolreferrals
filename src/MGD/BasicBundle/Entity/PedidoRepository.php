@@ -89,21 +89,21 @@ class PedidoRepository extends EntityRepository
 
     /**
      * @param \DateTime $from
-     * @param int $estate
+     * @param array $estates
      * @return int
      */
-    public function sumNReferrals(\DateTime $from, $estate = EstadoEnum::Cola)
+    public function sumNReferrals(\DateTime $from, $estates = array(EstadoEnum::Cola, EstadoEnum::Procesando))
     {
         $result = $this->getEntityManager()
             ->createQuery('
             SELECT sum(p.nReferidos)
             FROM MGDBasicBundle:Pedido p
             WHERE
-                p.estado = :estado_id
+                p.estado in (:estados)
                 AND p.fecha < :fecha
 
             ')
-            ->setParameters(array('estado_id' => $estate, 'fecha' => $from))
+            ->setParameters(array('estados' => implode(",", $estates), 'fecha' => $from))
             ->getSingleScalarResult();
 
         return $result ? $result: 0;
