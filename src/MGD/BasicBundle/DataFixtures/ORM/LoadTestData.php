@@ -16,6 +16,7 @@ class LoadTestData extends AbstractFixture implements OrderedFixtureInterface
 {
     const PEDIDO_ID = "REFLOL12345";
     const EMAIL = "prueba@prueba.com";
+    const TOTAL_N_REFERIDOS = 151;
 
     /**
      * {@inheritDoc}
@@ -39,7 +40,7 @@ class LoadTestData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($precioRango);
 
         $pedido = new Pedido();
-        $pedido->setNReferidos(151);
+        $pedido->setNReferidos(self::TOTAL_N_REFERIDOS);
         $pedido->setId(self::PEDIDO_ID);
         $pedido->setPrecioRango($precioRango);
         //$pedido->setArticulo($articulo);
