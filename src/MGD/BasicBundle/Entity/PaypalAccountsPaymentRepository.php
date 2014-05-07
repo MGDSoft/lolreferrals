@@ -204,11 +204,14 @@ class PaypalAccountsPaymentRepository extends EntityRepository
                         $resultadoSQL[$cont]['paypal_account_name']=$acc->getName();
                         $row[]=$resultadoSQL[$cont];
                         $cont++;
-                        $fechaActual=$fechaActual->add(\DateInterval::createFromDateString('+1 month'));
+                        $fechaActual = $fechaActual->add(\DateInterval::createFromDateString('+1 month'));
+
                     }else{
                         $cont++;
                     }
 
+                }else if (isset($resultadoSQL[$cont]) && $fechaActual->format('Y-m') > $resultadoSQL[$cont]['mes']){
+                    $cont++;
                 }else{
 
                     $aux['mes']=$fechaActual->format('Y-m');

@@ -141,7 +141,7 @@
                         name: '{{ payArr[0].paypal_account_name}}',
                         data: [
                             {% for pay in payArr %}
-                                [ {{ pay.ganado }} ]
+                                [ {{ pay.ganado|number_format(2, '.', '') }} ]
                                 {% if not loop.last %},{% endif %}
                             {% endfor %}
                         ]
@@ -183,7 +183,7 @@
                         name: '{{ payArr[0].paypal_account_name}}',
                         data: [
                             {% for pay in payArr %}
-                            [ {{ pay.ganado }} ]
+                            [ {{ pay.ganado|number_format(2, '.', '') }} ]
                             {% if not loop.last %},{% endif %}
                             {% endfor %}
                         ]
@@ -224,7 +224,7 @@
                     name: 'Cuentas',
                     data: [
                         {% for exp in expensesByAccountSum %}
-                            ['{{ exp.name }}', {{ exp.ganado }}]
+                            ['{{ exp.name }}', {{ exp.ganado|number_format(2, '.', '') }}]
                             {% if not loop.last %},{% endif %}
                         {% endfor %}
                     ]
