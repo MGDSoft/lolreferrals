@@ -16,7 +16,21 @@
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </div>
 
-<div class="social" id="skype_element"></div>
+<div class="social" id="skype_element">
+    <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
+    <div id="SkypeButton_Call_referralslol_1">
+        <script type="text/javascript">
+            Skype.ui({
+                "name": "call",
+                "element": "SkypeButton_Call_referralslol_1",
+                "participants": ["referralslol"],
+                "imageColor": "white",
+                "imageSize": 32
+            });
+        </script>
+    </div>
+
+</div>
 
 
 <div class="fb-like social" data-width="200" data-colorscheme="light" data-href="https://www.facebook.com/referralslol" data-layout="standard" data-action="recommend" data-show-faces="false" data-share="true">
@@ -27,17 +41,5 @@
 
 {% block javascripts %}
 
-    <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
-    <script type="text/javascript">
-        window.onload=function(){
-            Skype.ui({
-                "name": "chat",
-                "element": "skype_element",
-                "participants": ["referralslol"],
-                "imageSize": 32,
-                "imageColor" : "white"
-            });
-        };
-    </script>
 
 {% endblock %}
