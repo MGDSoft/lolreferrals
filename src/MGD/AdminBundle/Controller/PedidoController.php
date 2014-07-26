@@ -3,8 +3,10 @@
 namespace MGD\AdminBundle\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Persistence\ObjectManager;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\Entity\Estado;
+use MGD\BasicBundle\Entity\EXT\EXTRefseu;
 use MGD\BasicBundle\Entity\PedidoBots;
 use MGD\BasicBundle\Service\PedidoPagoService;
 use MGD\BasicBundle\Service\PedidoService;
@@ -298,6 +300,11 @@ class PedidoController extends Controller
         );
     }
 
+    /**
+     * @param $editForm
+     * @param Pedido $pedido
+     * @param ObjectManager $em
+     */
     private function insertarBots($editForm, Pedido $pedido, $em)
     {
         /** @var Form $file */
@@ -305,6 +312,8 @@ class PedidoController extends Controller
         if ($file->getViewData()) {
             /** @var PedidoBots[] $bots */
             $bots = $em->getRepository('MGDBasicBundle:PedidoBots')->findByPedido($pedido->getId());
+            /** @var EXTRefseu[] $botsExt */
+            $botsExt = $em->getRepository('MGDBasicBundle:EXT\EXTRefseu')->findByREFID($pedido->getId());
 
             $dir = sys_get_temp_dir();
             $fileName = date("Y-m-d_H-i-s") . ".txt";
@@ -326,6 +335,14 @@ class PedidoController extends Controller
                         }
                     }
 
+                    foreach ($botsExt as $key => $bot) {
+                        if ($bot->getUsername() == $nombreBot) {
+                            $flag = true;
+                            unset($botsExt[$key]);
+                            break;
+                        }
+                    }
+
                     if ($flag) {
                         continue;
                     }
@@ -338,6 +355,12 @@ class PedidoController extends Controller
 
                     $em->persist($pedidoBots);
 
+                    $em->flush();
+
+                    $ref = new EXTRefseu($pedidoBots);
+                    $em->persist($ref);
+                    $em->flush();
+
                 }
             }
 
@@ -345,7 +368,13 @@ class PedidoController extends Controller
                 $em->remove($bot);
             }
 
+            foreach ($botsExt as $bot) {
+                $em->remove($bot);
+            }
+
         }
+
+        $em->flush();
     }
 
     /**
@@ -368,6 +397,12 @@ class PedidoController extends Controller
             }
 
             $em->remove($entity);
+
+            $botsExt = $em->getRepository('MGDBasicBundle:EXT\EXTRefseu')->findByREFID($entity->getId());
+            foreach ($botsExt as $bot) {
+                $em->remove($bot);
+            }
+
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
         } else {
