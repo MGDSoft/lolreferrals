@@ -39,7 +39,7 @@ class EXTRefseu
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="MGD\BasicBundle\Entity\Pedido", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="MGD\BasicBundle\Entity\Pedido")
      * @ORM\JoinColumn(name="REFID", referencedColumnName="id", nullable=false)
      */
     private $rEFID;
