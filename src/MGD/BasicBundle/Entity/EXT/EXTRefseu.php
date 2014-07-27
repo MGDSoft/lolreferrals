@@ -48,21 +48,21 @@ class EXTRefseu
      *
      * @ORM\Column(name="Progress", type="smallint", nullable=true)
      */
-    private $progress;
+    private $progress=0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="Finished", type="smallint", nullable=true)
      */
-    private $finished;
+    private $finished=0;
 
     /**
      * @var string
      *
      * @ORM\Column(name="BOTID", type="string", length=45)
      */
-    private $bOTID;
+    private $bOTID='';
 
     /**
      * @var \DateTime
@@ -92,7 +92,7 @@ class EXTRefseu
         $this->username = $bot->getNombre();
         $this->password = $bot->getContrasena();
         $this->rEFID = $bot->getPedido()->getId();
-        $this->bOTID = $bot->getId();
+        //$this->bOTID = $bot->getId();
     }
 
     /**
