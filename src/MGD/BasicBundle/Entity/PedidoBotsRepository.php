@@ -65,7 +65,7 @@ class PedidoBotsRepository extends EntityRepository
 
     public function updateAllLvlsByPedido($pedido_id, $lvl)
     {
-        return $this->getEntityManager()
+        $result = $this->getEntityManager()
             ->createQuery('
             UPDATE MGDBasicBundle:PedidoBots p
             SET p.lvl = :lvl
@@ -74,5 +74,26 @@ class PedidoBotsRepository extends EntityRepository
             ')
             ->setParameters(array('lvl' => $lvl, 'pedido' => $pedido_id))
             ->execute();
+
+        $finished=0;
+        $progress=0;
+
+        if ($lvl==10)
+        {
+            $finished=1;
+            $progress=1;
+        }
+
+        $this->getEntityManager()
+            ->createQuery('
+            UPDATE MGDBasicBundle:EXT\EXTRefseu p
+            SET p.progress = :progress, p.finished = :finished
+            WHERE
+               p.rEFID = :pedido
+            ')
+            ->setParameters(array('progress' => $progress, 'finished' => $finished, 'pedido' => $pedido_id))
+            ->execute();
+
+        return $result;
     }
 }

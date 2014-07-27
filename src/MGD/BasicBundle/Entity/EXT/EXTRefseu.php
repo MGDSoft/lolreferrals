@@ -39,7 +39,8 @@ class EXTRefseu
     /**
      * @var string
      *
-     * @ORM\Column(name="REFID", type="string", length=45)
+     * @ORM\ManyToOne(targetEntity="MGD\BasicBundle\Entity\Pedido", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="REFID", referencedColumnName="id", nullable=false)
      */
     private $rEFID;
 
@@ -91,7 +92,7 @@ class EXTRefseu
         $this->idREFSEU = $this->dateCreated->getTimestamp() + $bot->getId();
         $this->username = $bot->getNombre();
         $this->password = $bot->getContrasena();
-        $this->rEFID = $bot->getPedido()->getId();
+        $this->rEFID = $bot->getPedido();
         //$this->bOTID = $bot->getId();
     }
 

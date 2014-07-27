@@ -337,7 +337,6 @@ class PedidoController extends Controller
 
                     foreach ($botsExt as $key => $bot) {
                         if ($bot->getUsername() == $nombreBot) {
-                            $flag = true;
                             unset($botsExt[$key]);
                             break;
                         }
