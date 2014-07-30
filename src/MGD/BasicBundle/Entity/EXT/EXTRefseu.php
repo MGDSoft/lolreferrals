@@ -89,7 +89,7 @@ class EXTRefseu
     function __construct(PedidoBots $bot)
     {
         $this->dateCreated = new \DateTime();
-        $this->idREFSEU = $this->dateCreated->getTimestamp() + $bot->getId();
+        $this->idREFSEU = $bot->getPedido()->getFecha()->getTimestamp() + $bot->getId();
         $this->username = $bot->getNombre();
         $this->password = $bot->getContrasena();
         $this->rEFID = $bot->getPedido();
