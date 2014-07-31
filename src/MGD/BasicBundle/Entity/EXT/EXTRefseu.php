@@ -25,7 +25,7 @@ class EXTRefseu
     /**
      * @var string
      *
-     * @ORM\Column(name="Username", type="string", length=20)
+     * @ORM\Column(name="Username", type="string", length=30)
      */
     private $username;
 
