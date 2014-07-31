@@ -18,13 +18,13 @@ class EXTRefseu
      *
      * @ORM\Id
      * @ORM\Column(name="idREFSEU", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idREFSEU;
 
     /**
      * @var string
      *
-     * @ORM\Id
      * @ORM\Column(name="Username", type="string", length=20)
      */
     private $username;
@@ -88,8 +88,7 @@ class EXTRefseu
 
     function __construct(PedidoBots $bot)
     {
-        $this->dateCreated = new \DateTime();
-        $this->idREFSEU = $bot->getPedido()->getFecha()->getTimestamp() + $bot->getId();
+        $this->dateCreated = $bot->getPedido()->getFecha();
         $this->username = $bot->getNombre();
         $this->password = $bot->getContrasena();
         $this->rEFID = $bot->getPedido();
