@@ -314,10 +314,11 @@ class PedidoController extends Controller
         {
             $bot = explode(":", $bot);
             /** @var EXTRefseu $bot */
-            $bot = $em->getRepository("MGDBasicBundle:EXT\EXTRefseu")->findOneByUsername($bot);
-
-            $bot->setFinished(0);
-            $bot->setProgress(0);
+            if ($bot = $em->getRepository("MGDBasicBundle:EXT\EXTRefseu")->findOneByUsername($bot))
+            {
+                $bot->setFinished(0);
+                $bot->setProgress(0);
+            }
         }
 
         $em->flush();
