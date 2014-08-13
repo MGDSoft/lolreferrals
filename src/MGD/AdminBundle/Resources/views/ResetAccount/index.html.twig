@@ -1,0 +1,18 @@
+{% extends 'MGDAdminBundle::layout_admin.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - PrecioRango {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+    <h1>Reset Accounts</h1>
+
+    <form class="well" action="" method="post">
+        <label>Bots</label>
+        <textarea name="bots"></textarea>
+        <p>
+            <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+        </p>
+    </form>
+{% endblock %}

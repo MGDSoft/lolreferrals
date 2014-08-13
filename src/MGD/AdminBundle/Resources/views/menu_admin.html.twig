@@ -12,7 +12,8 @@
                     <li>
                         <a href="{{ path('pedido') }}">Pedidos</a> /
                         <a href="{{ path('pedidoestados') }}">Estado de pedidos</a> /
-                        <a href="{{ path('estado') }}">Estados posibles</a>
+                        <a href="{{ path('estado') }}">Estados</a> /
+                        <a href="{{ path('reset_account_index') }}">Reset Acc</a>
                     </li>
 
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
