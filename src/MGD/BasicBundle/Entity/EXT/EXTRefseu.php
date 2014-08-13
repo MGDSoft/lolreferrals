@@ -73,6 +73,12 @@ class EXTRefseu
     private $dateCreated;
 
     /**
+     * @ORM\OneToOne(targetEntity="MGD\BasicBundle\Entity\PedidoBots", inversedBy="refseu")
+     * @ORM\JoinColumn(name="pedido_bot_id", referencedColumnName="id", nullable=true)
+     */
+    private $pedidoBots;
+
+    /**
      * @var \String
      *
      * @ORM\Column(name="DateStarted", type="string", length=45, nullable=true)
@@ -92,7 +98,7 @@ class EXTRefseu
         $this->username = $bot->getNombre();
         $this->password = $bot->getContrasena();
         $this->rEFID = $bot->getPedido();
-        //$this->bOTID = $bot->getId();
+        $this->pedidoBots = $bot;
     }
 
     /**

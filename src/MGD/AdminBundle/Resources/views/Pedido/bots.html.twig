@@ -4,6 +4,7 @@
         <div class="span2">
             Progreso
         </div>
+        <div class="span2">Maquina</div>
         <div class="span2">Fecha Actualizado</div>
         <div class="span2">Fecha Creado</div>
     </div>
@@ -15,6 +16,11 @@
             <div class="offset1 span2">{{ loop.index }}. {{ bot.nombre }}</div>
             <div class=" span2 progress progress-striped active text-info" style="text-align: center">
                 <div class="bar" style="width: {{ bot.lvl*10 }}%;">lvl {{ bot.lvl }}</div> Pendiente
+            </div>
+            <div class="span2">
+                {% if bot.refseu %}
+                    {{ bot.refseu.getBOTID() }}
+                {% endif %}
             </div>
             <div class="span2">{{ bot.updateDate|date('Y-m-d H:i:s') }}</div>
             <div class="span2">{{ bot.creadoDate|date('Y-m-d H:i:s') }}</div>

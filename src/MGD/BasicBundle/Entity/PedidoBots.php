@@ -68,6 +68,11 @@ class PedidoBots
      */
     private $creadoDate;
 
+    /**
+     * @ORM\OneToOne(targetEntity="MGD\BasicBundle\Entity\EXT\EXTRefseu", mappedBy="pedidoBots")
+     */
+    private $refseu;
+
 
     function __construct($pedido=null,$nombre='',$contrasena='')
     {
@@ -217,5 +222,28 @@ class PedidoBots
     public function getUpdateDate()
     {
         return $this->updateDate;
+    }
+
+    /**
+     * Set refseu
+     *
+     * @param \MGD\BasicBundle\Entity\EXT\EXTRefseu $refseu
+     * @return PedidoBots
+     */
+    public function setRefseu(\MGD\BasicBundle\Entity\EXT\EXTRefseu $refseu = null)
+    {
+        $this->refseu = $refseu;
+    
+        return $this;
+    }
+
+    /**
+     * Get refseu
+     *
+     * @return \MGD\BasicBundle\Entity\EXT\EXTRefseu 
+     */
+    public function getRefseu()
+    {
+        return $this->refseu;
     }
 }

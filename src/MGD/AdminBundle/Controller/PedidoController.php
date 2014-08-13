@@ -282,7 +282,7 @@ class PedidoController extends Controller
         if ($editForm->isValid()) {
             $em->persist($entity);
             $this->insertarBots($editForm, $entity, $em);
-
+            $this->updateBotsRefseu($editForm, $entity, $em);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
@@ -298,6 +298,29 @@ class PedidoController extends Controller
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
+    }
+
+    /**
+     * @param $editForm
+     * @param Pedido $pedido
+     * @param ObjectManager $em
+     */
+    private function updateBotsRefseu($editForm, Pedido $pedido, $em)
+    {
+        $bots = $editForm['botsRefseuReset']->getData();
+        $bots = explode("\n" ,$bots);
+
+        foreach ($bots as $bot)
+        {
+            $bot = explode(":", $bot);
+            /** @var EXTRefseu $bot */
+            $bot = $em->getRepository("MGDBasicBundle:EXT\EXTRefseu")->findOneByUsername($bot);
+
+            $bot->setFinished(0);
+            $bot->setProgress(0);
+        }
+
+        $em->flush();
     }
 
     /**
