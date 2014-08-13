@@ -31,10 +31,6 @@ class PedidoType extends AbstractType
                 'mapped' => false,
                 'required' => false
             ))
-            ->add('botsRefseuReset','textarea',array(
-                    'mapped' => false,
-                    'required' => false
-                ))
         ;
     }
 
