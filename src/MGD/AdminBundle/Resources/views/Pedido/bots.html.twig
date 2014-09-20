@@ -18,9 +18,7 @@
                 <div class="bar" style="width: {{ bot.lvl*10 }}%;">lvl {{ bot.lvl }}</div> Pendiente
             </div>
             <div class="span2">
-                {% if bot.refseu %}
-                    {{ bot.refseu.getBOTID() }}
-                {% endif %}
+                {{ bot.maquina }}
             </div>
             <div class="span2">{{ bot.updateDate|date('Y-m-d H:i:s') }}</div>
             <div class="span2">{{ bot.creadoDate|date('Y-m-d H:i:s') }}</div>
