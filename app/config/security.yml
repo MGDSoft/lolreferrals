@@ -5,9 +5,10 @@ jms_security_extra:
 security:
     encoders:
         MGD\FrameworkBundle\Entity\Usuario:
-          algorithm: sha512
-          encode-as-base64: true
-          iterations: 10
+            algorithm: sha512
+            encode-as-base64: true
+            iterations: 10
+        Symfony\Component\Security\Core\User\User: plaintext
 
     role_hierarchy:
         ROLE_ADMIN:       [ROLE_LECTOR, ROLE_EDITOR]
@@ -15,9 +16,19 @@ security:
 
     providers:
         user_db:
-          entity: { class: MGD\FrameworkBundle\Entity\Usuario, property: username }
+            entity: { class: MGD\FrameworkBundle\Entity\Usuario, property: username }
+        in_memory:
+            memory:
+                users:
+                    protected:  { password: %protected_password%, roles: 'ROLE_PROTECTED' }
 
     firewalls:
+        protected:
+            provider: in_memory
+            pattern:   ^/protected
+            anonymous: ~
+            http_basic:
+                realm: "Secured Demo Area"
         main:
             pattern: /.*
             provider: user_db
@@ -37,6 +48,7 @@ security:
             security: true
             anonymous: true
 
+
     access_control:
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/estadisticas, roles: [ROLE_SUPER_ADMIN]}
@@ -47,5 +59,6 @@ security:
         - { path: ^/admin/paypalaccount, roles: [ROLE_SUPER_ADMIN]}
         - { path: ^/admin/paypalaccountspayments, roles: [ROLE_SUPER_ADMIN]}
         - { path: ^/admin, roles: [ROLE_LECTOR,ROLE_EDITOR,ROLE_ADMIN,ROLE_SUPER_ADMIN]}
+        - { path: ^/protected, roles: [ROLE_PROTECTED]}
         - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

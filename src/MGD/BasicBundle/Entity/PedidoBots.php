@@ -38,6 +38,13 @@ class PedidoBots
     private $contrasena;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="maquina", type="string", length=255, nullable=true)
+     */
+    private $maquina;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="lvl", type="integer")
@@ -245,5 +252,28 @@ class PedidoBots
     public function getRefseu()
     {
         return $this->refseu;
+    }
+
+    /**
+     * Set maquina
+     *
+     * @param string $maquina
+     * @return PedidoBots
+     */
+    public function setMaquina($maquina)
+    {
+        $this->maquina = $maquina;
+    
+        return $this;
+    }
+
+    /**
+     * Get maquina
+     *
+     * @return string 
+     */
+    public function getMaquina()
+    {
+        return $this->maquina;
     }
 }

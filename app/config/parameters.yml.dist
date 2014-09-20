@@ -25,3 +25,4 @@ parameters:
     paypal_api_debug: true
 
     bots_updated_dir: /tmp/mgd/lol/bots
+    protected_password: 'secret0'

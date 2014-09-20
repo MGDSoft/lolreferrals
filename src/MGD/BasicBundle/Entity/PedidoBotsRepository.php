@@ -96,4 +96,25 @@ class PedidoBotsRepository extends EntityRepository
 
         return $result;
     }
+
+    /**
+     * @param $limit
+     * @return PedidoBots[]
+     */
+    public function getByPendientes($limit)
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+            SELECT p
+            FROM MGDBasicBundle:PedidoBots p
+            join p.pedido pedido
+            WHERE
+                p.maquina is null
+                AND p.lvl < 10
+            order by pedido.fecha, p.creadoDate
+            ')
+            ->setMaxResults($limit)
+            ->getResult();
+
+    }
 }
