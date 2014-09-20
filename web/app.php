@@ -9,6 +9,20 @@ $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 // Change 'sf2' to a unique prefix in order to prevent cache key conflicts
 // with other applications also using APC.
 
+if( !isset($_SERVER['PHP_AUTH_USER']) )
+{
+    if (isset($_SERVER['HTTP_AUTHORIZATION']) && (strlen($_SERVER['HTTP_AUTHORIZATION']) > 0))
+    {
+        list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+        if( strlen($_SERVER['PHP_AUTH_USER']) == 0 || strlen($_SERVER['PHP_AUTH_PW']) == 0 )
+        {
+            unset($_SERVER['PHP_AUTH_USER']);
+            unset($_SERVER['PHP_AUTH_PW']);
+        }
+    }
+}
+
+
 $loader = new ApcClassLoader('sf2', $loader);
 $loader->register(true);
 
