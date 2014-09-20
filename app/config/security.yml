@@ -26,9 +26,9 @@ security:
         protected:
             provider: in_memory
             pattern:   ^/protected
-            anonymous: ~
+            anonymous: true
             http_basic:
-                realm: "Secured Demo Area"
+                realm: "Hello my friend"
         main:
             pattern: /.*
             provider: user_db

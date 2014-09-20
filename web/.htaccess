@@ -9,6 +9,9 @@ Header set X-UA-Compatible "IE=Edge,chrome=1"
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    RewriteCond %{HTTP:Authorization} ^(.+)$
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
     RewriteCond %{HTTP_HOST} !^www\.referralslol\.com
     RewriteCond %{HTTP_HOST} ^referralslol\.com
     RewriteRule (.*) http://www.referralslol.com/$1 [L,R=301]
@@ -44,6 +47,8 @@ Header set X-UA-Compatible "IE=Edge,chrome=1"
 
     # Rewrite all other queries to the front controller.
     RewriteRule .? %{ENV:BASE}/app.php [L]
+
+
 </IfModule>
 
 <IfModule !mod_rewrite.c>
@@ -67,10 +72,3 @@ Header set X-UA-Compatible "IE=Edge,chrome=1"
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
 </ifmodule>
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ app.php [QSA,L]
-</IfModule>
