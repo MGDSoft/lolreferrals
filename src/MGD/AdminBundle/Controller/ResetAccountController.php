@@ -57,8 +57,8 @@ class ResetAccountController extends Controller
             /** @var PedidoBots $bot */
             if ($bot = $this->getDoctrine()->getRepository("MGDBasicBundle:PedidoBots")->findOneByNombre($bot))
             {
-                $bot->getRefseu->setFinished(0);
-                $bot->getRefseu->setProgress(0);
+                $bot->getRefseu()->setFinished(0);
+                $bot->getRefseu()->setProgress(0);
                 $bot->setMaquina(null);
             }
         }
