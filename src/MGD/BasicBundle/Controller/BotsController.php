@@ -30,6 +30,7 @@ class BotsController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $bots = $em->getRepository("MGDBasicBundle:PedidoBots")->getByPendientes($numero);
+        $this->getDoctrine()->getConnection()->exec('LOCK TABLES pedido_bots as t0_ WRITE;');
 
         $result= array();
 
@@ -40,7 +41,7 @@ class BotsController extends Controller
         }
 
         $em->flush();
-
+        $this->getDoctrine()->getConnection()->exec('UNLOCK TABLES;');
         return new JsonResponse($result);
     }
 }

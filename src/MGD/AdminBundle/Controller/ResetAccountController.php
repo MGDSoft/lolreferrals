@@ -2,6 +2,8 @@
 
 namespace MGD\AdminBundle\Controller;
 
+use MGD\BasicBundle\Entity\EXT\EXTRefseu;
+use MGD\BasicBundle\Entity\PedidoBots;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -52,11 +54,12 @@ class ResetAccountController extends Controller
         foreach ($bots as $bot)
         {
             $bot = explode(":", $bot);
-            /** @var EXTRefseu $bot */
-            if ($bot = $this->getDoctrine()->getRepository("MGDBasicBundle:EXT\EXTRefseu")->findOneByUsername($bot))
+            /** @var PedidoBots $bot */
+            if ($bot = $this->getDoctrine()->getRepository("MGDBasicBundle:PedidoBots")->findOneByNombre($bot))
             {
-                $bot->setFinished(0);
-                $bot->setProgress(0);
+                $bot->getRefseu->setFinished(0);
+                $bot->getRefseu->setProgress(0);
+                $bot->setMaquina(null);
             }
         }
 

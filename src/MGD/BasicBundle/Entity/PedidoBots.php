@@ -260,7 +260,7 @@ class PedidoBots
      * @param string $maquina
      * @return PedidoBots
      */
-    public function setMaquina($maquina)
+    public function setMaquina($maquina = null)
     {
         $this->maquina = $maquina;
     
