@@ -24,12 +24,12 @@ class BotsController extends Controller
     protected $colaService;
 
     /**
-     * @Route("/protected/get_bots/{maquina}")
+     * @Route("/protected/get_bots/{maquina}/{numero}", requirements={"numero"= "\d+"})
      */
-    public function indexAction(Request $request, $maquina)
+    public function indexAction(Request $request, $maquina, $numero)
     {
         $em = $this->getDoctrine()->getManager();
-        $bots = $em->getRepository("MGDBasicBundle:PedidoBots")->getByPendientes(50);
+        $bots = $em->getRepository("MGDBasicBundle:PedidoBots")->getByPendientes($numero);
 
         $result= array();
 
