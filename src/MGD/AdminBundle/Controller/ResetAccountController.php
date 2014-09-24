@@ -60,6 +60,7 @@ class ResetAccountController extends Controller
                 $bot->getRefseu()->setFinished(0);
                 $bot->getRefseu()->setProgress(0);
                 $bot->setMaquina(null);
+                $bot->setLvl(0);
             }
         }
 
