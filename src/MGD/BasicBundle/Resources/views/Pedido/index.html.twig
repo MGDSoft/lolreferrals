@@ -25,9 +25,9 @@
             <div id="table-rangos">
                 <table>
                     <tr><th colspan="2">{{ 'pedido.principal.precios_por_unidad' | trans }}</th></tr>
-                    {% set actRange = 10 %}
+                    {% set actRange = 3 %}
                     {% for rango in precioRangos %}
-                        {% if  (rango.limite == 10 or rango.limite == 50 or rango.limite == 100 or rango.limite == 150 or rango.limite == 200 or rango.limite == 300 or rango.limite == 400 or rango.limite == 1000) %}
+                        {% if  (rango.limite == 3 or rango.limite == 4 or rango.limite == 5)  %}
                         <tr id="rango-{{ rango.limite }}">
                             <td>
                                 {{ rango.limite }}
@@ -51,7 +51,7 @@
 
                                         <div class="span8">
                                             <!--[if !lt IE 10]><!-->
-                                            <input type="range" min="10" id="range" onchange="document.getElementById('mgd_basicbundle_pedidotype_nReferidos').value=document.getElementById('range').value;calculatePrice()" oninput="document.getElementById('mgd_basicbundle_pedidotype_nReferidos').value=document.getElementById('range').value;calculatePrice()" max="1000" value="{{ nReferidosStart }}" style="width: 100%;margin-top: 4px;">
+                                            <input type="range" min="3" max="5" id="range" onchange="document.getElementById('mgd_basicbundle_pedidotype_nReferidos').value=document.getElementById('range').value;calculatePrice()" oninput="document.getElementById('mgd_basicbundle_pedidotype_nReferidos').value=document.getElementById('range').value;calculatePrice()" value="{{ nReferidosStart }}" style="width: 100%;margin-top: 4px;">
                                             <!--<![endif]-->
                                         </div>
 
@@ -184,12 +184,12 @@
 
         function calculateRewards(nReferidos)
         {
-            var rewards="<table>";
+            var rewards="<table style='margin-top: 20px'>";
 
-            rewards+="<tr><td width='35'><img src='/img/rewards/rp_icon.png' width='26' height='26'></td><td>Riot Points</td><td style='font-weight: bold'>"+calculateRiotPoints(nReferidos)+"</td></tr>";
-            rewards+="<tr><td><img src='/img/rewards/ip_icon.png' width='26' height='26'></td><td>Influence Points</td><td style='font-weight: bold'>"+((nReferidos*250)+2500)+"</td></tr>";
-            rewards+="<tr><td><img src='/img/rewards/b_forum_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title</td></tr>";
-            rewards+="<tr><td><img src='/img/rewards/runepage_icon.png' width='26' height='26'></td><td colspan='2'>Rune Page</td></tr>";
+//            rewards+="<tr><td width='35'><img src='/img/rewards/rp_icon.png' width='26' height='26'></td><td>Riot Points</td><td style='font-weight: bold'>"+calculateRiotPoints(nReferidos)+"</td></tr>";
+            rewards+="<tr><td><img src='/img/rewards/ip_icon.png' width='26' height='26'></td><td>Influence Points</td><td style='font-weight: bold'>"+calculateInfluencePoints(nReferidos)+"</td></tr>";
+//            rewards+="<tr><td><img src='/img/rewards/b_forum_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title</td></tr>";
+//            rewards+="<tr><td><img src='/img/rewards/runepage_icon.png' width='26' height='26'></td><td colspan='2'>Rune Page</td></tr>";
 
             if (nReferidos<25)
             {
@@ -201,11 +201,11 @@
             }
 
 
-            if (nReferidos>=25)
+            if (nReferidos>=3)
             {
                 rewards+="<tr><td><img src='/img/rewards/warwick_icon.png' width='26' height='26'></td><td colspan='2'>Exclusive Grey Warwick Skin</td></tr>";
             }
-            if (nReferidos>=50)
+            if (nReferidos>=5)
             {
                 rewards+="<tr><td><img src='/img/rewards/twitch_icon.png' width='26' height='26'></td><td colspan='2'>Medieval Twitch </td></tr>";
             }
@@ -213,6 +213,20 @@
             rewards+="</table>";
 
             document.getElementById("rewards").innerHTML=rewards;
+        }
+
+        function calculateInfluencePoints(nReferidos)
+        {
+            if (nReferidos==1)
+                return 10000;
+            else if (nReferidos==2)
+                return 20000;
+            else if (nReferidos==3)
+                return 30000;
+            else if (nReferidos==4)
+                return 40000;
+            else if (nReferidos==5)
+                return 50000;
         }
 
         function calculateRiotPoints(nReferidos)
@@ -238,7 +252,7 @@
                 previous=null;
             }
 
-            if ((nReferidos == 50 || nReferidos == 10 || nReferidos == 100 || nReferidos == 150 || nReferidos == 200 || nReferidos == 300 || nReferidos == 400 || nReferidos == 1000)  && document.getElementById("rango-"+nReferidos))
+            if (document.getElementById("rango-"+nReferidos))
             {
                 previous=document.getElementById("rango-"+nReferidos);
                 previous.className="selected"
