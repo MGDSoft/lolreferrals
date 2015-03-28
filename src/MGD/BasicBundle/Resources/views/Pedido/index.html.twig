@@ -191,14 +191,14 @@
 //            rewards+="<tr><td><img src='/img/rewards/b_forum_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title</td></tr>";
 //            rewards+="<tr><td><img src='/img/rewards/runepage_icon.png' width='26' height='26'></td><td colspan='2'>Rune Page</td></tr>";
 
-            if (nReferidos<25)
-            {
-                rewards+="<tr><td><img src='/img/rewards/b_recruit_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title</td></tr>";
-            }else if (nReferidos>=25 && nReferidos<100){
-                rewards+="<tr><td><img src='/img/rewards/b_senior_icon.png' width='26' height='26'></td><td colspan='2'>Senior Recruiter Forum Title</td></tr>";
-            }else if(nReferidos>=100){
-                rewards+="<tr><td><img src='/img/rewards/b_master_icon.png' width='26' height='26'></td><td colspan='2'>Master Recruiter Forum Title </td></tr>";
-            }
+//            if (nReferidos<25)
+//            {
+//                rewards+="<tr><td><img src='/img/rewards/b_recruit_icon.png' width='26' height='26'></td><td colspan='2'>Recruiter Forum Title</td></tr>";
+//            }else if (nReferidos>=25 && nReferidos<100){
+//                rewards+="<tr><td><img src='/img/rewards/b_senior_icon.png' width='26' height='26'></td><td colspan='2'>Senior Recruiter Forum Title</td></tr>";
+//            }else if(nReferidos>=100){
+//                rewards+="<tr><td><img src='/img/rewards/b_master_icon.png' width='26' height='26'></td><td colspan='2'>Master Recruiter Forum Title </td></tr>";
+//            }
 
 
             if (nReferidos>=3)
@@ -218,15 +218,15 @@
         function calculateInfluencePoints(nReferidos)
         {
             if (nReferidos==1)
-                return 10000;
+                return 1000;
             else if (nReferidos==2)
-                return 20000;
+                return 2000;
             else if (nReferidos==3)
-                return 30000;
+                return 3000;
             else if (nReferidos==4)
-                return 40000;
+                return 4000;
             else if (nReferidos==5)
-                return 50000;
+                return 5000;
         }
 
         function calculateRiotPoints(nReferidos)

@@ -27,7 +27,8 @@ class ColaController extends Controller
      */
     public function showViewAction(Request $request)
     {
-        $queue = $this->getDoctrine()->getRepository('MGDBasicBundle:Cola')->findAll()[0];
+        $queues = $this->getDoctrine()->getRepository('MGDBasicBundle:Cola')->findAll();
+        $queue = $queues[0];
 
         $this->colaService->setQueueRemainingDays($queue);
 

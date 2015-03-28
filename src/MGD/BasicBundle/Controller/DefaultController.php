@@ -26,7 +26,8 @@ class DefaultController extends Controller
 
         $repoCola = $this->getDoctrine()->getRepository('MGDBasicBundle:Cola');
 
-        $queue = $repoCola->find(1);
+        $queues = $repoCola->findAll();
+        $queue = $queues[0];
 
         $noticias = $query->getResult();
 

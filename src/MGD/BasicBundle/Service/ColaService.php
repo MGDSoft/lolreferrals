@@ -67,7 +67,8 @@ class ColaService
     function calculateQueueDaysRemainingFromDate(\DateTime $date)
     {
         $remainingReferrals = $this->em->getRepository('MGDBasicBundle:Pedido')->sumNReferrals($date);
-        $referralsPerDay=$this->em->getRepository('MGDBasicBundle:Cola')->findAll()[0]->getReferalsPerDay();
+        $queues=$this->em->getRepository('MGDBasicBundle:Cola')->findAll();
+        $referralsPerDay = $queues[0]->getReferalsPerDay();
 
         return round($remainingReferrals/$referralsPerDay);
     }
