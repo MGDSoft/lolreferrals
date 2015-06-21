@@ -1,0 +1,91 @@
+{% extends "MGDBasicBundle::layout.html.twig" %}
+
+{% block title %}{{ 'cuenta.metas.title' | trans }}{% endblock %}
+{% block description %}{{ 'cuenta.metas.description' | trans }}{% endblock %}
+
+
+
+{% block body_principal %}
+
+    {% for cuenta in cuentas %}
+        <article class="row-fluid" style="margin-top: 30px; border-bottom: 1px dashed #666; padding-bottom: 15px">
+            <div style="float: right;margin-top: 10px; min-height: 80px">
+                {% if cuenta.imagenPath %}
+                    <img src="{{ web_image(cuenta.imagenPath).resize(140,null, 'transparent') }}" />
+                {% else %}
+                    <img src="{{ image('img/default_account.png').resize(140, null, 'transparent') }}" />
+                {% endif %}
+            </div>
+            <div >
+                {% set replaceStrings =  {'%nivel%': cuenta.level, '%ip%': cuenta.influencePoints, '%precio%': cuenta.precio, '%stock%': cuenta.stock} %}
+                <h1>{{ cuenta.titleTemplate  | trans(replaceStrings) | raw }}</h1>
+                <div>
+
+                    <div>
+                        <b>{{ 'cuenta.article.stock' | trans }}</b> {{ cuenta.stock }}
+                    </div>
+                    <div>
+                        <b>{{ 'cuenta.article.ip' | trans }}</b> {{ cuenta.influencePoints }}
+                    </div>
+
+
+                    <div style="margin-top: 15px">
+                        {{ cuenta.descripcion | trans(replaceStrings) | raw  }}
+                    </div>
+
+                    <div style="margin-top: 30px; ">
+                        <div style="text-align: right">
+                            <form action="{{ path('cuenta_comprar', {'_locale': app.request.locale, 'id_cuenta': cuenta.id}) }}" method="post">
+                                <div>
+                                    <input type="email" name="email" required placeholder="{{ 'formularios.pedido.email.placeholder' |trans }}">
+                                </div>
+                                <button type="submit" class="btn btn-default btn-large">
+                                    <div class="btn-primary btn-large" style="display: inline-block;font-size: 2em; text-shadow: 1px 1px 0 #000">
+
+                                        {% if descuento %}
+                                            <span style="color: #E1FFD7; padding-left: 5px">
+                                                {{ cuenta.getCalculatedPrice(descuento) |number_format }}€
+                                            </span>
+                                        {% else %}
+                                            <span>{{ cuenta.precio }}€</span>
+                                        {% endif %}
+                                    </div>
+
+                                    <img class="paypal-img" src="{{ asset('img/paypal-buy.gif') }}" style="border: 0">
+                                </button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </article>
+    {% endfor %}
+{% endblock %}
+
+{% block central %}
+    <section id="descuento" style="clear: both; padding: 20px;display: block">
+        <h2>{{ 'pedido.principal.activar_descuento' | trans }}{% if descuento %}, <span class="text-success">{{ descuento| raw }}</span>{% endif %}</h2>
+
+        {{ include('MGDBasicBundle:CuponDescuento:_index_form.html.twig', {form: cuponDescuentoForm}, with_context = false) }}
+
+    </section>
+{% endblock %}
+
+{% block aside_principal %}
+
+    <h3>{{ 'cuenta.aside.titulo' | trans }}</h3>
+    <p>{{ 'cuenta.aside.texto' | trans | raw }}</p>
+    <br>
+    <img src="{{ asset('img/accounts.jpg') }}">
+
+    <br>
+
+
+
+    <br>
+
+{% endblock %}

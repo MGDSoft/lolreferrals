@@ -61,9 +61,11 @@
                 <ul>
                     <li><a href="{{ path('home') }}">{{ 'portal.menu.inicio' | trans }}</a></li>
                     <li><a href="{{ path('pedido_' ~ app.request.locale) }}">{{ 'portal.menu.encargar' | trans }}</a></li>
+                    <li><a href="{{ path('cuenta_' ~ app.request.locale) }}">{{ 'portal.menu.cuenta' | trans }}</a></li>
                     <li><a href="{{ path('faq_' ~ app.request.locale) }}">{{ 'portal.menu.preguntas' | trans }}</a></li>
                     <li><a href="{{ path('seguimiento_' ~ app.request.locale) }}">{{ 'portal.menu.seguimiento' | trans }}</a></li>
                     <li><a href="{{ path('contacto_' ~ app.request.locale) }}">{{ 'portal.menu.contacto' | trans }}</a></li>
+
                 </ul>
             </nav>
         </header>

@@ -10,6 +10,7 @@
 namespace MGD\BasicBundle\Listener;
 
 use MGD\BasicBundle\DataConstants\EstadoEnum;
+use MGD\BasicBundle\Entity\CuentaUsuario;
 use MGD\BasicBundle\Entity\Pedido;
 use MGD\BasicBundle\Entity\PedidoEstados;
 use MGD\BasicBundle\Event\PedidoPagadoEvent;
@@ -92,14 +93,30 @@ class FinalizarPagoListener
         }
 
         $this->em->flush();
-        $this->enviarCorreo($pedido);
-        $this->enviarCorreoAdmin($pedido);
+
+        $cuentaUsuario = null;
+
+        if ($cuenta = $pedido->getCuenta())
+        {
+            if (!$cuentaUsuario = $cuenta->getPrimeraCuentaUsuarioNoUsada())
+            {
+                $this->enviarCorreoAdminProblemaConcurrecia($pedido);
+
+                return;
+            }
+
+            $cuentaUsuario->setUsado(true);
+        }
+        $this->em->flush();
+
+        $this->enviarCorreo($pedido, $cuentaUsuario);
+        $this->enviarCorreoAdmin($pedido, $cuentaUsuario);
 
         $this->session->remove('cuponDescuento');
 
     }
 
-    private function enviarCorreo(Pedido $pedido)
+    private function enviarCorreo(Pedido $pedido, CuentaUsuario $cuentaUsuario=null)
     {
         //preparing message
         $message = \Swift_Message::newInstance()
@@ -111,6 +128,7 @@ class FinalizarPagoListener
                     array(
                         'pedido' => $pedido,
                         'lang' => $pedido->getLanguage(),
+                        'cuentaUsuario' => $cuentaUsuario
                     )
                 ), 'text/html'
             )
@@ -122,7 +140,7 @@ class FinalizarPagoListener
         }
     }
 
-    private function enviarCorreoAdmin(Pedido $pedido)
+    private function enviarCorreoAdmin(Pedido $pedido, CuentaUsuario $cuentaUsuario=null)
     {
         $referralsLink = $pedido->getReferralLink();
         $email = $pedido->getEmail();
@@ -138,8 +156,31 @@ class FinalizarPagoListener
                         'pedido' => $pedido,
                         'referralsLink' => $referralsLink,
                         'email' => $email,
+                        'cuentaUsuario' => $cuentaUsuario
                     )
                 ), 'text/html'
+            )
+        ;
+
+        if (!$this->mailer->send($message))
+        {
+            $this->log->addCritical("No se ha enviado el correo para ".$pedido->getEmail().", despues del pago");
+        }
+    }
+
+    private function enviarCorreoAdminProblemaConcurrecia(Pedido $pedido)
+    {
+        $referralsLink = $pedido->getReferralLink();
+        $email = $pedido->getEmail();
+
+        //preparing message
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Pedido Sin stock (Concurrencia) '.$pedido)
+            ->setFrom($this->container->getParameter('email_app'), 'ReferralLol.com')
+            ->setTo($this->container->getParameter('email_pedido'), $pedido . " ". $pedido->getRefPaypal())
+            ->setBody(
+                "usuario email: $email, cuenta= ".$pedido->getCuenta()->getId()
+            , 'text/html'
             )
         ;
 

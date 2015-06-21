@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Util\SecureRandom;
  * @ORM\Entity(repositoryClass="MGD\BasicBundle\Entity\PedidoRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Pedido
+class Pedido extends AbstractPrice
 {
     /**
      * @var string
@@ -51,6 +51,14 @@ class Pedido
      * @ORM\JoinColumn(name="cupon_id", referencedColumnName="id", nullable=true)
      */
     private $cuponDescuento;
+
+    /**
+     * @var \MGD\BasicBundle\Entity\Cuenta
+     *
+     * @ORM\ManyToOne(targetEntity="MGD\BasicBundle\Entity\Cuenta", fetch="EAGER")
+     * @ORM\JoinColumn(name="cuenta_id", referencedColumnName="id", nullable=true)
+     */
+    private $cuenta;
 
     /**
      * @var string
@@ -433,28 +441,7 @@ class Pedido
      */
     public function calculatePrice()
     {
-        if (!$this->precioRango) {
-            return null;
-        }
-
-        $valor = $this->getPrecioRango()->getPrecio() * $this->nReferidos;
-
-        if ($cuponDescuento = $this->getCuponDescuento()) {
-            if ($cuponDescuento->getPorcentajeBoo()) {
-                $valor -= ($valor * $cuponDescuento->getValor() / 100);
-            } else {
-                $valor -= $cuponDescuento->getValor();
-            }
-        }
-
-        if ($valor < 5) {
-            $this->total = 5;
-
-        } else {
-            $this->total = $valor;
-        }
-
-        $this->total = number_format($this->total, 2, '.', '');
+        $this->total = parent::calculateRealPrice($this->precioRango, $this->nReferidos, $this->cuenta, $this->cuponDescuento);
 
         return true;
     }
@@ -598,5 +585,25 @@ class Pedido
     {
         return $this->queueRemainingDays;
     }
+
+    /**
+     * @return Cuenta
+     */
+    public function getCuenta()
+    {
+        return $this->cuenta;
+    }
+
+    /**
+     * @param mixed $cuenta
+     * @return $this
+     */
+    public function setCuenta($cuenta)
+    {
+        $this->cuenta = $cuenta;
+        return $this;
+    }
+
+
 
 }

@@ -95,7 +95,7 @@
             *{{ 'pedido.advertencia' | trans }}
         </div>
 
-        <section id="descuento">
+        <section id="descuento" >
             <h2>{{ 'pedido.principal.activar_descuento' | trans }}{% if descuento %}, <span class="text-success">{{ descuento| raw }}</span>{% endif %}</h2>
 
             {{ include('MGDBasicBundle:CuponDescuento:_index_form.html.twig', {form: cuponDescuentoForm}, with_context = false) }}

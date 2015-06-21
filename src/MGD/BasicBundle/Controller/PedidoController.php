@@ -4,6 +4,7 @@ namespace MGD\BasicBundle\Controller;
 
 use Doctrine\Common\Persistence\AbstractManagerRegistry;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
+use MGD\BasicBundle\Entity\Cuenta;
 use MGD\BasicBundle\Entity\Pedido;
 use MGD\BasicBundle\Entity\Articulo;
 use MGD\BasicBundle\Entity\CuponDescuento;
@@ -23,6 +24,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use JMS\DiExtraBundle\Annotation as DI;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Router;
 use Doctrine\ORM\EntityManager;
 
@@ -216,6 +218,25 @@ class PedidoController extends Controller
     public function cancelAction()
     {
         return new RedirectResponse($this->router->generate('home'));
+    }
+
+    /**
+     * @Route("/{_locale}/cuenta/proccess/{id_cuenta}", defaults={"_locale" = "en"}, name="cuenta_comprar")
+     * @ParamConverter("cuenta", class="MGDBasicBundle:Cuenta", options={"id" = "id_cuenta"})
+     */
+    public function cuentaComprarAction(Request $request, Cuenta $cuenta)
+    {
+        if (!$request->get('email'))
+            throw new BadRequestHttpException('email Required');
+
+        $pedido = new Pedido();
+        $pedido
+            ->setCuenta($cuenta)
+            ->setNReferidos(0)
+            ->setEmail($request->get('email'))
+        ;
+
+        return $this->pedidoPostAction($pedido);
     }
 
 }

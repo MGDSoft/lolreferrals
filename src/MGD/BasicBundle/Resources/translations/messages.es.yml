@@ -6,6 +6,7 @@ portal:
         reputacion: Reputación
         seguimiento: Seguimiento
         contacto: Contacto
+        cuenta: Cuentas
 
     idiomas:
         ingles: Ingles
@@ -261,3 +262,10 @@ correo:
               Ten en cuenta que Riot necesita unas 24h para actualizar al completo las cuentas en su página web, recuerda desbloquear tus premios en "leagueoflegends/rewards/" (verifica que estés logeado y en el servidor de correcto(EUW/NA/EUNE...))<br>
               Recuerda que puedes dar tu opinión del servicio en nuestra sección de seguimiento. ¡Lo agradeceremos!<br><br>
               Saludos, www.referralslol.com
+
+cuenta:
+    aside:
+        titulo: Titulo
+        texto: Descripcion
+    article:
+        stock: Stock:

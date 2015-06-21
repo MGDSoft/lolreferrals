@@ -70,6 +70,7 @@ services:
             - [ setAnnotationReader, [ @annotation_reader ] ]
 
 gregwar_captcha: ~
+gregwar_image: ~
 
 ornicar_gravatar: ~
 

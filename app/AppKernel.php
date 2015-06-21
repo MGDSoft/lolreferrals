@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
+            new Gregwar\ImageBundle\GregwarImageBundle(),
 
             // My bundles
             new MGD\BasicBundle\MGDBasicBundle(),

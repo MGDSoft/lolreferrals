@@ -3,10 +3,17 @@
 <br>
 Pago realizado.<br><br>
 
-NReferidos: {{ pedido.nReferidos }}<br>
+{% if cuentaUsuario %}
+    Cuenta: {{ pedido.cuenta.id }}<br>
+{% else %}
+    NReferidos: {{ pedido.nReferidos }}<br>
+{% endif %}
 PedidoId: {{ pedido.id }}<br>
 ReferralLink: {{ referralsLink }}<br>
-Correo: {{ email  }}
+Correo: {{ email  }}<br>
+Total: {{ pedido.paymentInstruction.amount }}
+
+
 
 
 </body>

@@ -6,6 +6,7 @@ portal:
         reputacion: Feedback
         seguimiento: Tracking
         contacto: Contact
+        cuenta: Accounts
 
     idiomas:
         ingles: English
@@ -262,3 +263,13 @@ correo:
               Regards, www.referralslol.com
 
 
+cuenta:
+    aside:
+        titulo: Title
+        texto: Description
+    article:
+        stock: Stock:
+        ip: Influence Points:
+    metas:
+        title: Title
+        description: Description
