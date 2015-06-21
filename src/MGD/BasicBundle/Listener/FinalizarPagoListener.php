@@ -81,6 +81,7 @@ class FinalizarPagoListener
         $pedido = $pedidoEvent->getPedido();
 
         $estado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
+        $pedido->setFecha(new \DateTime());
         $pedido->setEstado($estado);
 
         if ($cupon = $pedido->getCuponDescuento())
@@ -97,7 +98,7 @@ class FinalizarPagoListener
             $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
             $pedido->setEstado($estadoFinalizado);
             $pedido->setFecha(new \DateTime());
-            $this->em->persist($pedido);
+
             $this->em->flush();
 
             if (!$cuentaUsuario = $cuenta->getPrimeraCuentaUsuarioNoUsada())
