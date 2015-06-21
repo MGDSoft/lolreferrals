@@ -2,8 +2,8 @@
 <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"  font-family='verdana'>
 <br>
 {% if cuentaUsuario %}
-    User: cuentaUsuario.usuario<br>
-    Password: cuentaUsuario.password
+    User: {{ cuentaUsuario.usuario  }}<br>
+    Password: {{ cuentaUsuario.password }}
 {% else %}
 
     {% trans with {'%nReferidos%': pedido.nReferidos} into lang %}correo.pago.articulo{% endtrans %}

@@ -116,7 +116,7 @@ class PedidoPagoService
         $checkout_params = array_merge(
             $checkout_params,
             array(
-                sprintf('L_PAYMENTREQUEST_0_NAME%d', 0)   => $pedido->getNReferidos() . ' Referrals',
+                sprintf('L_PAYMENTREQUEST_0_NAME%d', 0)   => $pedido->getCuenta()? 'Account' : $pedido->getNReferidos() . ' Referrals',
                 sprintf('L_PAYMENTREQUEST_0_DESC%d', 0)   => $pedido->getCuenta()? 'Account' : 'Referrals',
                 sprintf('L_PAYMENTREQUEST_0_AMT%d', 0)    => $pedido->getTotal(),
                 sprintf('L_PAYMENTREQUEST_0_QTY%d', 0)    => 1,

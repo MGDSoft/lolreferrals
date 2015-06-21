@@ -14,6 +14,7 @@ class CuentaUsuarioType extends AbstractType
             ->add('usuario')
             ->add('password')
             ->add('usado')
+            ->add('email')
         ;
     }
 

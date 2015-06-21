@@ -95,6 +95,9 @@ class FinalizarPagoListener
 
         if ($cuenta = $pedido->getCuenta())
         {
+            $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
+            $pedido->setEstado($estadoFinalizado);
+
             if (!$cuentaUsuario = $cuenta->getPrimeraCuentaUsuarioNoUsada())
             {
                 $this->enviarCorreoAdminProblemaConcurrecia($pedido);
