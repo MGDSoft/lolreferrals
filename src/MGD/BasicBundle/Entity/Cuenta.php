@@ -279,12 +279,12 @@ class Cuenta extends AbstractPrice
 
     /**
      * @param string $precio
-     * @return string $precio
+     * @return $this
      */
     public function setPrecio($precio)
     {
         $this->precio = $precio;
-        return $this->precio;
+        return $this;
     }
 
     /**
@@ -297,12 +297,12 @@ class Cuenta extends AbstractPrice
 
     /**
      * @param string $influencePoints
-     * @return string $influencePoints
+     * @return $this
      */
     public function setInfluencePoints($influencePoints)
     {
         $this->influencePoints = $influencePoints;
-        return $this->influencePoints;
+        return $this;
     }
 
     /**
@@ -315,12 +315,12 @@ class Cuenta extends AbstractPrice
 
     /**
      * @param string $level
-     * @return string $level
+     * @return $this
      */
     public function setLevel($level)
     {
         $this->level = $level;
-        return $this->level;
+        return $this;
     }
 
     /**
@@ -333,12 +333,12 @@ class Cuenta extends AbstractPrice
 
     /**
      * @param string $imagenPath
-     * @return string $imagenPath
+     * @return $this
      */
     public function setImagenPath($imagenPath)
     {
         $this->imagenPath = $imagenPath;
-        return $this->imagenPath;
+        return $this;
     }
 
     /**
@@ -351,12 +351,12 @@ class Cuenta extends AbstractPrice
 
     /**
      * @param mixed $form
-     * @return mixed $form
+     * @return $this
      */
     public function setForm($form)
     {
         $this->form = $form;
-        return $this->form;
+        return $this;
     }
 
     /**
@@ -385,12 +385,12 @@ class Cuenta extends AbstractPrice
 
     /**
      * @param string $descripcion
-     * @return string $descripcion
+     * @return $this
      */
     public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
-        return $this->descripcion;
+        return $this;
     }
 
     /**
@@ -403,12 +403,12 @@ class Cuenta extends AbstractPrice
 
     /**
      * @param mixed $paypalAccount
-     * @return mixed $paypalAccount
+     * @return $this
      */
     public function setPaypalAccount($paypalAccount)
     {
         $this->paypalAccount = $paypalAccount;
-        return $this->paypalAccount;
+        return $this;
     }
 
 

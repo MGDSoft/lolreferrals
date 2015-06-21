@@ -14,7 +14,7 @@ use MGD\BasicBundle\Entity\PrecioRango;
 
 class TestPedidoHelper
 {
-    static public function setValues(Pedido $pedido, PrecioRango $precioRango, $nReferidos=5,
+    static public function setValues(Pedido $pedido, PrecioRango $precioRango=null, $nReferidos=5,
         CuponDescuento $cuponDescuento=null, Estado $estado = null, $email='test@test.com',
         $referralLink='http://referidos.com/asdasd/', $refPaypal='asdasd123')
     {

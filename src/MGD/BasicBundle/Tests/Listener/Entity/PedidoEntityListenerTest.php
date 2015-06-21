@@ -9,6 +9,8 @@ namespace MGD\BasicBundle\Tests\Listener\Entity;
 use JMS\Payment\CoreBundle\Entity\PaymentInstruction;
 use MGD\BasicBundle\DataConstants\EstadoEnum;
 use MGD\BasicBundle\DataFixtures\ORM\LoadEstadoData;
+use MGD\BasicBundle\DataFixtures\ORM\LoadPaypalAccount;
+use MGD\BasicBundle\Entity\Cuenta;
 use MGD\BasicBundle\Entity\CuponDescuento;
 use MGD\BasicBundle\Entity\PaypalAccount;
 use MGD\BasicBundle\Entity\PaypalAccountsPayment;
@@ -42,6 +44,54 @@ class PedidoEntityListenerTest extends KernelAwareTest
         ;
 
         $this->em->persist($this->precioRango);
+    }
+
+    public function testSumMoneyToPaypalAccountActive()
+    {
+
+        $this->loadArrFixtures(array(new LoadColaData(), new LoadEstadoData(), new LoadPaypalAccount()));
+
+        $cuenta = new Cuenta();
+        $cuenta
+            ->setLevel('')
+            ->setPaypalAccount($this->em->getRepository("MGDBasicBundle:PaypalAccount")->findAll()[0])
+            ->setInfluencePoints('')
+            ->setPrecio(30)
+            ->setDescripcion('')
+        ;
+
+
+        $paymentInstructions = new PaymentInstruction(4, 'EUR', 'paypal_express_checkout');
+
+        $this->em->persist($paymentInstructions);
+        $this->em->persist($cuenta);
+        $this->em->flush();
+
+
+
+
+        $pedido = new Pedido();
+
+        TestPedidoHelper::setValues($pedido,null,0);
+
+        $pedido
+            ->setCuenta($cuenta)
+            ->setEmail('m@a.com')
+            ->setPaymentInstruction($paymentInstructions)
+            ;
+
+        $this->em->persist($pedido);
+        $this->em->flush();
+
+        $this->assertCount(0, $this->em->getRepository("MGDBasicBundle:PaypalAccountsPayment")->findAll());
+
+        $pedido->setEstado($this->em->getRepository("MGDBasicBundle:Estado")->find(EstadoEnum::Cola));
+
+        $this->em->persist($pedido);
+        $this->em->flush();
+
+        $this->assertCount(1, $this->em->getRepository("MGDBasicBundle:PaypalAccountsPayment")->findAll());
+
     }
 
     public function testCalculatePriceOK()

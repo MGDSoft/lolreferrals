@@ -94,10 +94,11 @@ class FinalizarPagoListener
 
         if ($cuenta = $pedido->getCuenta())
         {
-//            $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
-//            $pedido->setEstado($estadoFinalizado);
-//            $this->em->persist($pedido);
-//            $this->em->flush();
+            $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
+            $pedido->setEstado($estadoFinalizado);
+            $pedido->setFecha(new \DateTime());
+            $this->em->persist($pedido);
+            $this->em->flush();
 
             if (!$cuentaUsuario = $cuenta->getPrimeraCuentaUsuarioNoUsada())
             {
