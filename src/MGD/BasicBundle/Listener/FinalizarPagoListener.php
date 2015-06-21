@@ -105,7 +105,11 @@ class FinalizarPagoListener
                 return;
             }
 
-            $cuentaUsuario->setUsado(true);
+            $cuentaUsuario
+                ->setUsado(true)
+                ->setEmail($pedido->getEmail())
+            ;
+
             $this->session->getFlashBag()->add('success',
                 $this->translator->trans('pago.finalizado_cuenta', array(), null, $pedido->getLanguage())
             );
