@@ -80,8 +80,8 @@ class FinalizarPagoListener
 
         $pedido = $pedidoEvent->getPedido();
 
-
-
+        $estado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
+        $pedido->setEstado($estado);
 
         if ($cupon = $pedido->getCuponDescuento())
         {
@@ -96,6 +96,7 @@ class FinalizarPagoListener
         {
             $estadoFinalizado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Finalizado);
             $pedido->setEstado($estadoFinalizado);
+            $this->em->persist($pedido);
             $this->em->flush();
 
             if (!$cuentaUsuario = $cuenta->getPrimeraCuentaUsuarioNoUsada())
@@ -115,9 +116,6 @@ class FinalizarPagoListener
             );
 
         }else{
-
-            $estado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
-            $pedido->setEstado($estado);
 
             $this->session->getFlashBag()->add('success',
                 $this->translator->trans('pago.finalizado', array(), null, $pedido->getLanguage())
