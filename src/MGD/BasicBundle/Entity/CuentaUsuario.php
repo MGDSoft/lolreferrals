@@ -43,7 +43,6 @@ class CuentaUsuario
      *
      * @ORM\Column(name="email", type="string", length=100, nullable=true)
      * @Assert\Email()
-     * @Assert\NotBlank()
      */
     private $email;
 
