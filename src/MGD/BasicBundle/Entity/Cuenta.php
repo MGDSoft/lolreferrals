@@ -62,11 +62,14 @@ class Cuenta extends AbstractPrice
     private $descripcion='
 
     <div><b>IP:</b> %ip%</div>
-    <div><b>RP:</b> Replace</div>
-    <div><b>RANKED DIVISION:</b> Replace</div>
-    <div><b>SERVER:</b> Replace</div>
-    <div style="margin-top: 20px"><b>EXTRA:</b></div>
-    <div>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que</div>
+    <div><b>RP:</b> 140</div>
+    <div><b>RANKED DIVISION:</b> Unranked</div>
+    <div><b>SERVER:</b> EU</div>
+    <div style="margin-top: 20px">
+        This account is perfect for your new smurf for ranked.<br>
+        This lol accounts don\'t have any champion or rune, they are fully customizable by you.<br>
+        The accounts are created and leveled by us. They are not verified, which means that you can verify your own email and become the original owner and you\'ll also receive a "4IP win".<br>
+    </div>
 ';
 
     /**
