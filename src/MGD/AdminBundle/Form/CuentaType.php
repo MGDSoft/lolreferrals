@@ -18,7 +18,7 @@ class CuentaType extends AbstractType
             ->add('descripcion','ckeditor')
             ->add('paypalAccount')
             ->add('file')
-            ->add('cuentaUsuarios', 'collection', ['type' => new CuentaUsuarioType(),'allow_add' => true,'allow_delete' => true,])
+            ->add('cuentaUsuarios', 'collection', array('type' => new CuentaUsuarioType(),'allow_add' => true,'allow_delete' => true))
         ;
     }
 
