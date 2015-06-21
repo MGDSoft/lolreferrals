@@ -458,7 +458,7 @@ class Cuenta extends AbstractPrice
     {
         foreach ($this->getCuentaUsuarios() as $cuentaUsuario)
         {
-            if ($cuentaUsuario->isUsado())
+            if (!$cuentaUsuario->isUsado())
                 return $cuentaUsuario;
         }
 

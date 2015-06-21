@@ -80,9 +80,6 @@ class FinalizarPagoListener
 
         $pedido = $pedidoEvent->getPedido();
 
-        $this->session->getFlashBag()->add('success',
-            $this->translator->trans('pago.finalizado', array(), null, $pedido->getLanguage())
-        );
 
         $estado = $this->em->getRepository('MGDBasicBundle:Estado')->find(EstadoEnum::Cola);
         $pedido->setEstado($estado);
@@ -106,6 +103,14 @@ class FinalizarPagoListener
             }
 
             $cuentaUsuario->setUsado(true);
+            $this->session->getFlashBag()->add('success',
+                $this->translator->trans('pago.finalizado_cuenta', array(), null, $pedido->getLanguage())
+            );
+
+        }else{
+            $this->session->getFlashBag()->add('success',
+                $this->translator->trans('pago.finalizado', array(), null, $pedido->getLanguage())
+            );
         }
         $this->em->flush();
 

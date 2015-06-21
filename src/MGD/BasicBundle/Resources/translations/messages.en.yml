@@ -234,6 +234,10 @@ pago:
         <b>Your order has been performed correctly</b>,
         You'll receive an email with the OrderID in it. If you have any problem refer to our contact section. Thanks for your purchase!
 
+    finalizado_cuenta: >
+        <b>Your order has been performed correctly</b>,
+        You'll receive an email with the account credentials. Thanks for your purchase!
+
 correo:
 
     from_txt: ReferralsLol.com
