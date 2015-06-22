@@ -15,7 +15,7 @@ matrix:
 before_script:
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar require symfony/framework-bundle:${SYMFONY_VERSION} --no-update
-    - php composer.phar install
+    - php composer.phar install --no-interaction
     - cp app/config/parameters.yml.dist app/config/parameters.yml
 
 script:
