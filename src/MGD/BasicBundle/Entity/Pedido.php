@@ -165,6 +165,7 @@ class Pedido extends AbstractPrice
         $this->id = uniqid('LOL' . date("Ymdhis"));
 
         $this->pedidoBots = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->objetosExtras = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
