@@ -5,6 +5,12 @@ Pago realizado.<br><br>
 
 {% if cuentaUsuario %}
     Cuenta: {{ pedido.cuenta.id }}<br>
+
+    Extra: {% if pedido.objetosExtras is empty %}Nada{% endif %}
+    {% for objetoExtra in pedido.objetosExtras%}
+        - {{ objetoExtra.name }} {{ objetoExtra.precio }}
+    {% endfor %}
+
 {% else %}
     NReferidos: {{ pedido.nReferidos }}<br>
 {% endif %}

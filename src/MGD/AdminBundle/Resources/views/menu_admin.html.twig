@@ -17,7 +17,7 @@
                     </li>
 
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
-                        <li><a href="{{ path('preciorango') }}">Rango de Precios</a> / <a href="{{ path('cuenta') }}">Cuentas</a></li>
+                        <li><a href="{{ path('preciorango') }}">Rango de Precios</a> / <a href="{{ path('cuenta') }}">Cuentas</a> / <a href="{{ path('objetoextra') }}">Objetos Extra</a> </li>
                         <li><a href="{{ path('cupondescuento') }}">Cupones descuento</a></li>
                         <li><a href="{{ path('cola_edit', { 'id': 1 }) }}">Cola</a></li>
                         <li><a href="{{ path('paypalaccount') }}">Cuentas de Paypal</a> /

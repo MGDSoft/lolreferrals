@@ -6,32 +6,25 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CuentaType extends AbstractType
+class ObjetoExtraType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titleTemplate')
+            ->add('nombre')
             ->add('precio')
-            ->add('influencePoints')
-            ->add('level')
-            ->add('descripcion','ckeditor')
-            ->add('paypalAccount')
-            ->add('file')
-            ->add('objetosExtras')
-            ->add('cuentaUsuarios', 'collection', array('type' => new CuentaUsuarioType(),'allow_add' => true,'allow_delete' => true))
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MGD\BasicBundle\Entity\Cuenta'
+            'data_class' => 'MGD\BasicBundle\Entity\ObjetoExtra'
         ));
     }
 
     public function getName()
     {
-        return 'mgd_basicbundle_cuentatype';
+        return 'mgd_basicbundle_objetoextratype';
     }
 }

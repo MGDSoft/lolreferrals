@@ -1,0 +1,33 @@
+{% extends 'MGDAdminBundle::layout_admin.html.twig' %}
+
+{% block title %}
+{{ parent() }} - ObjetoExtra {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+<h1>ObjetoExtra {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
+
+<form class="well" action="{{ path('objetoextra_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <input type="hidden" name="_method" value="PUT" />
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+    </p>
+</form>
+
+<div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('objetoextra') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <div class="float-left">
+        <form action="{{ path('objetoextra_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -274,6 +274,7 @@ cuenta:
     article:
         stock: Stock:
         ip: Influence Points:
+        extra_items: Extra Items
     metas:
         title: Title
         description: Description

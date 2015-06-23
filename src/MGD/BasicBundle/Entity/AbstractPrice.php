@@ -15,7 +15,9 @@ class AbstractPrice
         }
 
         if ($cuenta)
+        {
             $valor = $cuenta->getPrecio();
+        }
         else
             $valor = $precioRango->getPrecio() * $nReferidos;
 

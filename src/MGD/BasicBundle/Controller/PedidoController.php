@@ -236,6 +236,17 @@ class PedidoController extends Controller
             ->setEmail($request->get('email'))
         ;
 
+        $prefixSearch = 'objeto_extra_';
+
+        foreach($request->request->all() as $key => $value)
+        {
+            if (strpos($key, $prefixSearch)!== false)
+            {
+                if ($objetoExtra = $this->em->getRepository("MGDBasicBundle:ObjetoExtra")->find($value))
+                    $pedido->addObjetosExtra($objetoExtra);
+            }
+        }
+
         return $this->pedidoPostAction($pedido);
     }
 

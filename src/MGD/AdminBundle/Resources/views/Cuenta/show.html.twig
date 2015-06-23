@@ -1,3 +1,4 @@
+{# entity \MGD\BasicBundle\Entity\Cuenta #}
 {% extends 'MGDAdminBundle::layout_admin.html.twig' %}
 
 {% block title %}
@@ -22,12 +23,37 @@
             <label class="control-label">Influencepoints</label>
             <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.influencePoints }}</span>            </div>
         </div>        <div class="control-group">
+            <label class="control-label">Descripcion</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.descripcion }}</span>            </div>
+        </div>        <div class="control-group">
             <label class="control-label">Level</label>
             <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.level }}</span>            </div>
         </div>        <div class="control-group">
             <label class="control-label">Imagenpath</label>
             <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.imagenPath }}</span>            </div>
-        </div>    </fieldset>
+        </div>
+
+        <div style="margin-top: 20px">
+            <h4>Objetos extra</h4>
+            <ul>
+                {% for objetoExtra in entity.objetosExtras %}
+                    <li>
+                        {{ objetoExtra.nombre }} {{ objetoExtra.precio }}€
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="margin-top: 20px">
+            <h4>Cuentas</h4>
+            <ul>
+            {% for cuenta in entity.cuentaUsuarios %}
+                <li>
+                    {{ cuenta.usuario }} {{ cuenta.password }} Usado: {% if cuenta.usado %} Si {% else %} No {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </fieldset>
 </form>
 
 <div>
@@ -42,7 +68,6 @@
         </a>
     </div>
     <div class="float-left">
-
         <form action="{{ path('cuenta_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}

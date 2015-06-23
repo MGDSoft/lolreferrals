@@ -112,6 +112,14 @@ class Pedido extends AbstractPrice
     private $paymentInstruction;
 
     /**
+     * @var \MGD\BasicBundle\Entity\ObjetoExtra
+     *
+     * @ORM\ManyToMany(targetEntity="MGD\BasicBundle\Entity\ObjetoExtra",cascade={"persist"})
+     * @ORM\JoinTable(name="pedido_has_objetos_extras")
+     */
+    private $objetosExtras;
+
+    /**
      * @var PedidoOpinion
      *
      * @ORM\OneToOne(targetEntity="PedidoOpinion", mappedBy="pedido", cascade={"remove"}, orphanRemoval=true)
@@ -442,6 +450,10 @@ class Pedido extends AbstractPrice
     public function calculatePrice()
     {
         $this->total = parent::calculateRealPrice($this->precioRango, $this->nReferidos, $this->cuenta, $this->cuponDescuento);
+        foreach ($this->getObjetosExtras() as $objetoExtra)
+        {
+            $this->total+= $objetoExtra->getPrecio();
+        }
 
         return true;
     }
@@ -606,4 +618,37 @@ class Pedido extends AbstractPrice
 
 
 
+
+    /**
+     * Add objetosExtras
+     *
+     * @param \MGD\BasicBundle\Entity\ObjetoExtra $objetosExtras
+     * @return Pedido
+     */
+    public function addObjetosExtra(\MGD\BasicBundle\Entity\ObjetoExtra $objetosExtras)
+    {
+        $this->objetosExtras[] = $objetosExtras;
+    
+        return $this;
+    }
+
+    /**
+     * Remove objetosExtras
+     *
+     * @param \MGD\BasicBundle\Entity\ObjetoExtra $objetosExtras
+     */
+    public function removeObjetosExtra(\MGD\BasicBundle\Entity\ObjetoExtra $objetosExtras)
+    {
+        $this->objetosExtras->removeElement($objetosExtras);
+    }
+
+    /**
+     * Get objetosExtras
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getObjetosExtras()
+    {
+        return $this->objetosExtras;
+    }
 }

@@ -96,6 +96,14 @@ class Cuenta extends AbstractPrice
      */
     private $cuentaUsuarios;
 
+    /**
+     * @var \MGD\BasicBundle\Entity\ObjetoExtra
+     *
+     * @ORM\ManyToMany(targetEntity="MGD\BasicBundle\Entity\ObjetoExtra",cascade={"persist"})
+     * @ORM\JoinTable(name="cuenta_has_objetos_extras")
+     */
+    private $objetosExtras;
+
 
     /**
      * @var UploadedFile
@@ -116,6 +124,7 @@ class Cuenta extends AbstractPrice
     function __construct()
     {
         $this->cuentaUsuarios = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->objetosExtra = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -273,7 +282,7 @@ class Cuenta extends AbstractPrice
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getPrecio()
     {
@@ -466,5 +475,40 @@ class Cuenta extends AbstractPrice
         }
 
         return null;
+    }
+
+
+
+    /**
+     * Add objetosExtras
+     *
+     * @param \MGD\BasicBundle\Entity\ObjetoExtra $objetosExtras
+     * @return Cuenta
+     */
+    public function addObjetosExtra(\MGD\BasicBundle\Entity\ObjetoExtra $objetosExtras)
+    {
+        $this->objetosExtras[] = $objetosExtras;
+    
+        return $this;
+    }
+
+    /**
+     * Remove objetosExtras
+     *
+     * @param \MGD\BasicBundle\Entity\ObjetoExtra $objetosExtras
+     */
+    public function removeObjetosExtra(\MGD\BasicBundle\Entity\ObjetoExtra $objetosExtras)
+    {
+        $this->objetosExtras->removeElement($objetosExtras);
+    }
+
+    /**
+     * Get objetosExtras
+     *
+     * @return ObjetoExtra[]
+     */
+    public function getObjetosExtras()
+    {
+        return $this->objetosExtras;
     }
 }
