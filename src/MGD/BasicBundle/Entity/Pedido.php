@@ -646,7 +646,7 @@ class Pedido extends AbstractPrice
     /**
      * Get objetosExtras
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return ObjetoExtra[]
      */
     public function getObjetosExtras()
     {
