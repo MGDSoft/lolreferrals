@@ -66,9 +66,9 @@ class Cuenta extends AbstractPrice
     <div><b>RANKED DIVISION:</b> Unranked</div>
     <div><b>SERVER:</b> EU</div>
     <div style="margin-top: 20px">
-        This account is perfect for your new smurf for ranked.<br>
-        This lol accounts don\'t have any champion or rune, they are fully customizable by you.<br>
-        The accounts are created and leveled by us. They are not verified, which means that you can verify your own email and become the original owner and you\'ll also receive a "4IP win".<br>
+        The account is perfect for your new smurf for ranked games.<br>
+        This lol account don\'t have any champion or rune, they are fully customizable by you.<br>
+        The accounts are created and leveled by us. They are not verified, which means that you can verify your own email and become the original owner.
     </div>
 ';
 

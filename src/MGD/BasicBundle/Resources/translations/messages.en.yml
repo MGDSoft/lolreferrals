@@ -269,12 +269,18 @@ correo:
 
 cuenta:
     aside:
-        titulo: Title
-        texto: Description
+        titulo: Get accounts level 30
+        texto: |
+             - All the accounts are made by us and you'll receive exactly the ammount of IP or more, never less.
+
+             - The accounts are sent at the moment of your purchase, in the email you provide us, so please use a valid email adress.
+
+             - You can add extra items to your purchase to receive nice features.
     article:
         stock: Stock:
         ip: Influence Points:
         extra_items: Extra Items
     metas:
         title: Title
-        description: Description
+        description: Accounts level 30
+

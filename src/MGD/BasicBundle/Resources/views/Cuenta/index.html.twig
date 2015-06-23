@@ -33,15 +33,17 @@
                         <div style="text-align: right">
                             <form action="{{ path('cuenta_comprar', {'_locale': app.request.locale, 'id_cuenta': cuenta.id}) }}" method="post">
                                 <div style="text-align: left">
-                                    <div style="margin-bottom: 12px; font-size: 1.2em; font-weight: bold">{{ 'cuenta.article.extra_items' | trans }}</div>
-                                    <ul>
-                                    {% for objetoExtra in cuenta.objetosExtras %}
-                                        <li style="background: #fff; width: auto; display: inline-block; margin: 3px; color: #000;padding: 3px 7px;border-color: #999">
-                                            <input id="objeto_extra_{{ objetoExtra.id }}" value="{{ objetoExtra.id }}" type="checkbox" name="objeto_extra_{{ objetoExtra.id }}" style="margin-top: 0">
-                                            <label for="objeto_extra_{{ objetoExtra.id }}" style="display: inline-block;margin: 0">{{  objetoExtra.nombre }} <span style="font-size: 1.2em">+{{ objetoExtra.precio }}€</span></label>
-                                        </li>
-                                    {% endfor %}
-                                    </ul>
+                                    {% if cuenta.objetosExtras is not empty %}
+                                        <div style="margin-bottom: 12px; font-size: 1.2em; font-weight: bold">{{ 'cuenta.article.extra_items' | trans }}</div>
+                                        <ul>
+                                        {% for objetoExtra in cuenta.objetosExtras %}
+                                            <li style="background: #fff; width: auto; display: inline-block; margin: 3px; color: #000;padding: 3px 7px;border-color: #999">
+                                                <input id="objeto_extra_{{ objetoExtra.id }}" value="{{ objetoExtra.id }}" type="checkbox" name="objeto_extra_{{ objetoExtra.id }}" style="margin-top: 0">
+                                                <label for="objeto_extra_{{ objetoExtra.id }}" style="display: inline-block;margin: 0">{{  objetoExtra.nombre }} <span style="font-size: 1.2em">+{{ objetoExtra.precio }}€</span></label>
+                                            </li>
+                                        {% endfor %}
+                                        </ul>
+                                    {% endif %}
                                 </div>
                                 <div style="margin-top: 20px">
                                     <input type="email" name="email" required placeholder="{{ 'formularios.pedido.email.placeholder' |trans }}">
@@ -85,7 +87,7 @@
 {% block aside_principal %}
 
     <h3>{{ 'cuenta.aside.titulo' | trans }}</h3>
-    <p>{{ 'cuenta.aside.texto' | trans | raw }}</p>
+    <p>{{ 'cuenta.aside.texto' | trans | raw | nl2br}}</p>
     <br>
     <img src="{{ asset('img/accounts.jpg') }}">
 
