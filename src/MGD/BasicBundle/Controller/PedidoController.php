@@ -229,6 +229,11 @@ class PedidoController extends Controller
         if (!$request->get('email'))
             throw new BadRequestHttpException('email Required');
 
+        if ($cuenta->getStock() <= 0)
+        {
+            return $this->redirect($this->generateUrl('cuenta_en'));
+        }
+
         $pedido = new Pedido();
         $pedido
             ->setCuenta($cuenta)

@@ -96,7 +96,7 @@ class CuentaController extends Controller
         $cuponDescuentoForm = $this->cDescController->indexForm();
         $descuento = $this->getDescuentoSession();
         /** @var \MGD\BasicBundle\Entity\Cuenta[] $cuentas */
-        $cuentas = $this->em->getRepository("MGDBasicBundle:Cuenta")->getAllAvailable();
+        $cuentas = $this->em->getRepository("MGDBasicBundle:Cuenta")->findBy(array(), array('precio'=> 'ASC'));
 
         return array(
             'cuentas'     => $cuentas,
