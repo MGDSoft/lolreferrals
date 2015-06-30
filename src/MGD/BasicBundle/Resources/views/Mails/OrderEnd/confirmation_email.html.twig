@@ -2,8 +2,13 @@
 <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"  font-family='verdana'>
 <br>
 {% if cuentaUsuario %}
+    Dear Customer.<br>
     User: {{ cuentaUsuario.usuario  }}<br>
-    Password: {{ cuentaUsuario.password }}
+    Password: {{ cuentaUsuario.password }}<br><br>
+    To change your email and password you need to Log-in to the official League of Legends website at the respective region (example: na.leagueoflegends.com, euw.leagueoflegends.com) and go to Settings.Log-in to the official League of Legends website at the respective region (example: na.leagueoflegends.com, euw.leagueoflegends.com).<br>
+    If you purchased the extra addon that contains Warwick Gray and Twitch Medieval skin, you'll need to give us your referral-link at our contact via our website.<br>
+    To get your referral-link go to the Refer a Friend section in the official League of Legends website.<br>
+    Thanks for your purchase and enjoy the account!
 {% else %}
 
     {% trans with {'%nReferidos%': pedido.nReferidos} into lang %}correo.pago.articulo{% endtrans %}
