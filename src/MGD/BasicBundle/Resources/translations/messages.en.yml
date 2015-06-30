@@ -1,7 +1,7 @@
 portal:
     menu:
         inicio: Home
-        encargar: Order
+        encargar: Referrals
         preguntas:  FAQ
         reputacion: Feedback
         seguimiento: Tracking
@@ -13,20 +13,20 @@ portal:
         aleman: German
         espanol: Spanish
 
-    footer: Copyright © 2013 Referralslol.com your website to earn RP & IP. All Rights Reserved.
+    footer: Copyright © 2013 Referralslol.com your website to get Referrals and Level 30 accounts. All Rights Reserved.
 
 inicio:
     metas:
-        title: LoL Referrals: Buy League of Legends Referrals | Cheapest LoL Referral
-        description: Fastest and cheapest referral on the market.Selling League of Legends referrals on the web Since 2012. Buy LoL referrals now. Cheapest than regular LoL RP.
+        title: LoL Referrals: Buy League of Legends Referrals | Selling level 30 LoL Accounts
+        description: Fastest and cheapest referral on the market.Selling League of Legends referrals on the web Since 2012. Buy LoL referrals now. Cheapest LoL level 30 accounts!.
     
     aside:
-        titulo: Referral Stats
-        slot_1: ~500 referral each day.
-        slot_2: Leveling LoL Referrals to level 10.
+        titulo: ReferralsLoL statistics
+        slot_1: ~400 referral each day.
+        slot_2: Working with the new Referral-System 3.0.
         slot_3: Cheapest prices!
         slot_4: Tracking of the order on our website!
-        slot_5: League of Legends Referral are much profitable than buying RP in the LoL store!
+        slot_5: Selling accounts level 30 for you!
 
 pedido:
     metas:
@@ -42,7 +42,7 @@ pedido:
                 *Remember to send us your referral-link, without it we can't start your order. You can find it <a href="http://leagueoflegends.com/rewards" target="_blank">here</a>.
                 <br><br>
                 Pay by paypal confidence.
-        activar_descuento: Activate especial discount
+        activar_descuento: Activate special discount
         packs: League of Legends Referrals Options!
         footer:
             titulo: Safe payment with Paypal
@@ -66,7 +66,7 @@ faq:
         titulo: Frequently Asked Questions
 
         slot_1_title: What will I get with this?
-        slot_1_texto: Referral System Rewards: Riot Points, Influence Points and rare skins!
+        slot_1_texto: Referral System Rewards: Influence Points and rare skins! - Fresh League of Legends accounts at level 30, ready to play!
 
         slot_2_title: How does this work?
         slot_2_texto: We create the accounts you purchased using your referral link. Then we level them to 10 in a very short time.
@@ -269,15 +269,15 @@ correo:
 
 cuenta:
     aside:
-        titulo: Fresh and ranked LOL Accounts
+        titulo: Ranked and Fresh LoL Accounts !
         texto: |
-             - All the accounts are made by us and you'll receive exactly the ammount of IP or more, never less.
+             - All the accounts are made by us and you'll receive the exact ammount of IP or more, never less.
 
-             - The accounts are sent at the moment of your purchase, in the email you provide us, so please use a valid email adress.
+             - The accounts are sent at the moment of your purchase at the email you provide us, so please <b>use a valid email adress</b>.
 
-             - You can add extra items to your purchase to receive nice features.
+             - You can add extra addons to your purchase to receive nice features like <b>special skins</b>!
 
-             - Our ranked accounts are played by high ELO users, so you'll get always accounts with nice Win/loss ratio.
+             - Our ranked accounts are played by <b>high ELO users</b>, so you'll get always accounts with nice Win/loss ratio.
 
              - Neither of those accounts are chatbanned/rankbanned.
 
@@ -286,8 +286,7 @@ cuenta:
     article:
         stock: Stock:
         ip: Influence Points:
-        extra_items: Extra Items
+        extra_items: Extra Addons
     metas:
-        title: Title
-        description: Accounts level 30
-
+        title: Get your League of Legends level 30 Accounts here. Ready to play and customize for you!
+        description: League of Legends Accounts level 30
