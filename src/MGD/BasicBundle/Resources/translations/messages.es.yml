@@ -265,7 +265,23 @@ correo:
 
 cuenta:
     aside:
-        titulo: Titulo
-        texto: Descripcion
+        titulo: Ranked and Fresh LoL Accounts !
+        texto: |
+             - All the accounts are made by us and you'll receive the exact ammount of IP or more, never less.
+
+             - The accounts are sent at the moment of your purchase at the email you provide us, so please <b>use a valid email adress</b>.
+
+             - You can add extra addons to your purchase to receive nice features like <b>special skins</b>!
+
+             - Our ranked accounts are played by <b>high ELO users</b>, so you'll get always accounts with nice Win/loss ratio.
+
+             - Neither of those accounts are chatbanned/rankbanned.
+
+             - If you get the warranty you'll be able to get a new account with the same features if it's needed.
+
     article:
         stock: Stock:
+        ip: Influence Points:
+        extra_items: Extra Addons
+    metas:
+        title: Get your League of Legends level 30 Accounts here. Ready to play and customize for you!
