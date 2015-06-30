@@ -36,7 +36,7 @@ class Pedido extends AbstractPrice
      *
      * @ORM\Column(name="n_referidos", type="integer")
      * @Assert\NotBlank()
-     * @Assert\Range(min = 3, max = 5)
+     * @Assert\Range(min = 2, max = 5)
      */
     private $nReferidos;
 
@@ -455,6 +455,8 @@ class Pedido extends AbstractPrice
         {
             $this->total+= $objetoExtra->getPrecio();
         }
+
+
 
         return true;
     }

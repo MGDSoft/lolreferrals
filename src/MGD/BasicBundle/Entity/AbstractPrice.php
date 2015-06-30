@@ -30,8 +30,8 @@ class AbstractPrice
         }
 
         // min value 5€
-        if ($valor < 5) {
-            $total = 5;
+        if ($valor < 2) {
+            $total = 2;
 
         } else {
             $total = $valor;

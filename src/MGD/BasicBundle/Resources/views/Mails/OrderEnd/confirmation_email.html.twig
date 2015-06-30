@@ -3,7 +3,8 @@
 <br>
 {% if cuentaUsuario %}
     User: {{ cuentaUsuario.usuario  }}<br>
-    Password: {{ cuentaUsuario.password }}
+    Password: {{ cuentaUsuario.password }}<br><br>
+    {% trans into lang %}correo.pago.extra_cuenta_usuario{% endtrans %}
 {% else %}
 
     {% trans with {'%nReferidos%': pedido.nReferidos} into lang %}correo.pago.articulo{% endtrans %}

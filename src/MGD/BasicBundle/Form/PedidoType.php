@@ -30,7 +30,7 @@ class PedidoType extends AbstractType
                     'label'=> 'formularios.pedido.n_referidos.label',
                     'attr' => array(
                         'placeholder' => 'formularios.pedido.n_referidos.placeholder',
-                        'min'=> '3',
+                        'min'=> '2',
                         'max' => '5',
                     )
                 ))
