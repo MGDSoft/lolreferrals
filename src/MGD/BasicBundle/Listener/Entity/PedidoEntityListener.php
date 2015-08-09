@@ -176,6 +176,10 @@ class PedidoEntityListener extends EntityListenerAssistEvents implements EventSu
 
     private function sendEmailSwitchingEstado(Pedido $pedido)
     {
+        // no enviar correo cuando el pedido sea de tipo cuenta
+        if ($pedido->getCuenta())
+            return;
+
         $template = $this->container->get('templating');
         $estadoId=$pedido->getEstado()->getId();
 
