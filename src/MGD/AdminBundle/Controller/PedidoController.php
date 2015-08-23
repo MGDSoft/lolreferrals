@@ -74,6 +74,24 @@ class PedidoController extends Controller
     }
 
     /**
+     * Lists all Pedido entities.
+     *
+     * @Route("/completado/{id}", name="pedido_completado")
+     * @ParamConverter("pedido", class="MGDBasicBundle:Pedido", options={"id" = "id"})
+     * @Method("GET")
+     */
+    public function completadoAction(Pedido $pedido)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $pedido->setEstado($em->getRepository("MGDBasicBundle:Estado")->find(EstadoEnum::Finalizado));
+
+        $em->flush();
+        $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
+
+        return $this->redirect($this->generateUrl('pedido'));
+    }
+
+    /**
      * Create filter form and process filter request.
      *
      */

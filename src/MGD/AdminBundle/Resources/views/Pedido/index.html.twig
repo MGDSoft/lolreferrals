@@ -92,6 +92,9 @@
         <a class="btn btn-mini" href="{{ path('pedido_edit', { 'id': entity.id }) }}">
             {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
+            <a class="btn btn-mini" href="{{ path('pedido_completado', { 'id': entity.id }) }}">
+                completed
+            </a>
 
             {% endif %}
             </td>
